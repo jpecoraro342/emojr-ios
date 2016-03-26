@@ -20,10 +20,55 @@ class NetworkFacade : NSObject {
         super.init();
     }
     
-    func signInUser(username: String, password: String, completionBlock: UserDataClosure) {
-        dataAccessor.signInUser(username, password: password, completionBlock: completionBlock);
+    // GET
+    func isUsernameAvailable(username: String, completionBlock: BooleanClosure?) {
+        dataAccessor.isUsernameAvailable(username, completionBlock: completionBlock)
     }
-
+    
+    func getAllUsers(completionBlock: UserArrayClosure?) {
+        dataAccessor.getAllUsers(completionBlock)
+    }
+    
+    func getAllFollowing(userId: String, completionBlock: UserArrayClosure?) {
+        dataAccessor.getAllFollowing(userId, completionBlock: completionBlock)
+    }
+    
+    func getAllFollowers(userId: String, completionBlock: UserArrayClosure?) {
+        dataAccessor.getAllFollowers(userId, completionBlock: completionBlock)
+    }
+    
+    func getPost(postId: String, completionBlock: PostClosure?) {
+        dataAccessor.getPost(postId, completionBlock: completionBlock)
+    }
+    
+    func getAllPostsFromUser(userId: String, completionBlock: PostArrayClosure?) {
+        dataAccessor.getAllPostsFromUser(userId, completionBlock: completionBlock)
+    }
+    
+    func getAllFollowingPosts(userId: String, completionBlock: PostArrayClosure?) {
+        dataAccessor.getAllFollowingPosts(userId, completionBlock: completionBlock)
+    }
+    
+    // POST
+    func startFollowingUser(userId: String, usernameToFollow: String, completionBlock: BooleanClosure?) {
+        dataAccessor.startFollowingUser(userId, usernameToFollow: usernameToFollow, completionBlock: completionBlock)
+    }
+    
+    func signUpUser(username: String, password: String, fullname: String, completionBlock: UserDataClosure?) {
+        dataAccessor.signUpUser(username, password: password, fullname: fullname, completionBlock: completionBlock)
+    }
+    
+    func signInUser(username: String, password: String, completionBlock: UserDataClosure?) {
+        dataAccessor.signInUser(username, password: password, completionBlock: completionBlock)
+    }
+    
+    func createPost(userId: String, post: String, completionBlock: PostClosure?) {
+        dataAccessor.createPost(userId, post: post, completionBlock: completionBlock)
+    }
+    
+    func reactToPost(userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
+        dataAccessor.reactToPost(userId, postId: postId, reaction: reaction, completionBlock: completionBlock)
+    }
 }
 
 

@@ -102,6 +102,7 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
             let newUser = UserData(username: username, fullname: fullname)
             userDictionary[newUser.id] = newUser
             usernameDictionary[newUser.username] = newUser
+            userFollowingDictionary[newUser.id] = [UserData]()
             completionBlock?(error: nil, user: newUser)
         }
     }
@@ -146,6 +147,12 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         let james = usernameDictionary["😌"]!
         let jacob = usernameDictionary["🍆"]!
         
+        startFollowingUser(james.id, usernameToFollow: "🍆", completionBlock: nil)
+        startFollowingUser(jacob.id, usernameToFollow: "😌", completionBlock: nil)
+        
+        startFollowingUser(james.id, usernameToFollow: "😎😈😎", completionBlock: nil)
+        startFollowingUser(jacob.id, usernameToFollow: "😎😈😎", completionBlock: nil)
+        
         createPost(joe.id, post: "🍔🍺", completionBlock: nil)
         createPost(joe.id, post: "👋🏼👵🏻😡", completionBlock: nil)
         
@@ -156,7 +163,6 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         
         reactToPost(james.id, postId: tempPost.id, reaction: "👍🏽", completionBlock: nil)
         reactToPost(jacob.id, postId: tempPost.id, reaction: "👃🏼", completionBlock: nil)
-        
     }
     
     func URLStringWithExtension(urlExtension: String) -> String {
