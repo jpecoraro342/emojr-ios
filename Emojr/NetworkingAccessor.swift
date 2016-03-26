@@ -9,7 +9,23 @@
 protocol NetworkingAccessor {
     
     // GET
+    func isUsernameAvailable(username: String, completeionBlock: BooleanClosure);
+    func getAllUsers(completionBlock: UserArrayClosure);
+    
+    func getAllFollowing(userId: String, completionBlock: UserArrayClosure);
+    func getAllFollowers(userId: String, completionBlock: UserArrayClosure);
+    
+    // func getAllPosts(completionBlock: PostArrayClosure);
+    func getPost(postId: String, completionBlock: PostClosure);
+    func getAllPostsFromUser(userId: String, completionBlock: PostArrayClosure);
     
     // POST
+    func startFollowingUser(userId: String, usernameToFollow: String, completionBlock: BooleanClosure);
+    
+    func signUpUser(username: String, password: String, completionBlock: UserDataClosure);
     func signInUser(username: String, password: String, completionBlock: UserDataClosure);
+    
+    func createPost(userId: String, post: String, completionBlock: PostClosure);
+    func reactToPost(userId: String, postId: String, reaction: String, completionBlock: ReactionClosure);
+    
 }

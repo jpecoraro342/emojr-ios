@@ -12,8 +12,12 @@ import UIKit
 
 typealias ErrorClosure = (error: NSError?) -> Void;
 typealias BooleanClosure = (success: Bool) -> Void;
-typealias UserDataClosure = (error: NSError?, song: UserData?) -> Void;
+typealias UserDataClosure = (error: NSError?, user: UserData?) -> Void;
 typealias UserArrayClosure = (error: NSError?, list: Array<UserData>?) -> Void;
+typealias PostClosure = (error: NSError?, post: Post?) -> Void;
+typealias PostArrayClosure = (error: NSError?, list: Array<Post>?) -> Void;
+typealias ReactionClosure = (error: NSError?, reaction: Reaction?) -> Void;
+typealias ReactionArrayClosure = (error: NSError?, list: Array<Reaction>?) -> Void;
 typealias JsonClosure = (error: NSError?, jsonData: AnyObject?) -> Void;
 typealias DataClosure = (error: NSError?, data: NSData?) -> Void;
 typealias StringClosure = (error: NSError?, string: String?) -> Void;
