@@ -1,2 +1,3 @@
 github "thoughtbot/Swish" "master"
+github "thoughtbot/Curry"
 github "SVProgressHUD/SVProgressHUD"

@@ -1,4 +1,5 @@
 github "thoughtbot/Argo" "v2.3.0"
+github "thoughtbot/Curry" "v2.0.0"
 github "antitypical/Result" "1.0.2"
 github "SVProgressHUD/SVProgressHUD" "2.0"
 github "thoughtbot/Swish" "1d214d0dd3245bbea9e69b9d012e3fd56b22aa12"
