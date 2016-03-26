@@ -153,13 +153,18 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         startFollowingUser(james.id, usernameToFollow: "😎😈😎", completionBlock: nil)
         startFollowingUser(jacob.id, usernameToFollow: "😎😈😎", completionBlock: nil)
         
-        createPost(joe.id, post: "🍔🍺", completionBlock: nil)
+        var postId = ""
+        
+        createPost(joe.id, post: "🍔🍺", completionBlock: { (error, post) in
+            postId = post!.id
+        })
+        
         createPost(joe.id, post: "👋🏼👵🏻😡", completionBlock: nil)
         
         createPost(james.id, post: "👺👾🙇", completionBlock: nil)
         createPost(jacob.id, post: "🐊☀️❄️🌄🌋", completionBlock: nil)
         
-        let tempPost = postDictionary.first!.1
+        let tempPost = postDictionary[postId]!
         
         reactToPost(james.id, postId: tempPost.id, reaction: "👍🏽", completionBlock: nil)
         reactToPost(jacob.id, postId: tempPost.id, reaction: "👃🏼", completionBlock: nil)
