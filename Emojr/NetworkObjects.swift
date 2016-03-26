@@ -8,10 +8,16 @@
 
 import Foundation
 
-struct UserData: CustomStringConvertible {
+struct UserData: CustomStringConvertible, Equatable {
     var id: String
     var username: String
     var fullname: String
+    
+    init(username: String, fullname: String) {
+        self.username = username
+        self.fullname = fullname
+        self.id = randomStringWithLength(8) as String
+    }
     
     init(fromJson: Dictionary<String, AnyObject>) {
         id = fromJson["_id"] as! String
@@ -24,11 +30,22 @@ struct UserData: CustomStringConvertible {
     }
 }
 
+func ==(lhs: UserData, rhs: UserData) -> Bool {
+    return lhs.id == rhs.id
+}
+
 struct Post {
     var id: String;
     var userId: String;
     var post: String;
     var reactions: [Reaction];
+    
+    init(userId: String, post: String, reactions: [Reaction]) {
+        self.userId = userId
+        self.post = post
+        self.reactions = reactions
+        self.id = randomStringWithLength(8) as String
+    }
     
     init(fromJson: Dictionary<String, AnyObject>) {
         id = fromJson["_id"] as! String
@@ -48,6 +65,12 @@ struct Reaction {
     var id: String;
     var user: UserData;
     var reaction: String;
+
+    init(user: UserData, reaction: String) {
+        self.user = user
+        self.reaction = reaction
+        self.id = randomStringWithLength(8) as String
+    }
     
     init(fromJson: Dictionary<String, AnyObject>) {
         id = fromJson["_id"] as! String
