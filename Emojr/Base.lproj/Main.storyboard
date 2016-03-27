@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -145,33 +144,28 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ckB-7s-Orw">
-                                                    <rect key="frame" x="540" y="5" width="50" height="50"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddZ-nj-1y1">
+                                                    <rect key="frame" x="541" y="8" width="44" height="43.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="ckB-7s-Orw" secondAttribute="height" multiplier="1:1" id="cQO-lj-dJz"/>
-                                                        <constraint firstAttribute="height" constant="50" id="fRa-ff-bDZ"/>
-                                                        <constraint firstAttribute="width" constant="50" id="yji-te-Ugq"/>
+                                                        <constraint firstAttribute="width" constant="44" id="2oM-Hw-lWy"/>
                                                     </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="fRa-ff-bDZ"/>
-                                                            <exclude reference="yji-te-Ugq"/>
-                                                        </mask>
-                                                    </variation>
-                                                </imageView>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="ddZ-nj-1y1" firstAttribute="top" secondItem="cNj-hJ-Gc9" secondAttribute="top" constant="8" id="03d-6a-KpY"/>
                                                 <constraint firstItem="uOL-1B-Dqk" firstAttribute="top" secondItem="cNj-hJ-Gc9" secondAttribute="topMargin" constant="5" id="0Q2-z9-McN"/>
                                                 <constraint firstItem="uOe-8e-dd4" firstAttribute="top" secondItem="cNj-hJ-Gc9" secondAttribute="topMargin" constant="5" id="DAM-nt-oY2"/>
+                                                <constraint firstAttribute="bottom" secondItem="ddZ-nj-1y1" secondAttribute="bottom" constant="8" id="EFt-zk-WfC"/>
                                                 <constraint firstItem="uOe-8e-dd4" firstAttribute="leading" secondItem="cNj-hJ-Gc9" secondAttribute="leadingMargin" constant="10" id="a5F-uy-T3D"/>
-                                                <constraint firstItem="ckB-7s-Orw" firstAttribute="top" secondItem="cNj-hJ-Gc9" secondAttribute="top" constant="5" id="dOe-xL-hiI"/>
-                                                <constraint firstAttribute="trailing" secondItem="ckB-7s-Orw" secondAttribute="trailing" constant="10" id="kPC-iM-qUE"/>
+                                                <constraint firstAttribute="trailing" secondItem="ddZ-nj-1y1" secondAttribute="trailing" constant="15" id="iMZ-rZ-kWK"/>
                                                 <constraint firstItem="uOL-1B-Dqk" firstAttribute="leading" secondItem="uOe-8e-dd4" secondAttribute="trailing" constant="10" id="ug5-5a-ggC"/>
-                                                <constraint firstAttribute="bottom" secondItem="ckB-7s-Orw" secondAttribute="bottom" constant="5" id="xKf-O5-NxO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="checkMarkImageView" destination="ckB-7s-Orw" id="Fbx-7x-V2s"/>
+                                            <outlet property="emojiFollowingLabel" destination="ddZ-nj-1y1" id="4BY-zv-HfH"/>
                                             <outlet property="fullNameLabel" destination="uOL-1B-Dqk" id="ZXM-dk-d3k"/>
                                             <outlet property="usernameLabel" destination="uOe-8e-dd4" id="B8C-RG-Zt4"/>
                                         </connections>

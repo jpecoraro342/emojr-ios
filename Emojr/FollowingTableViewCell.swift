@@ -12,8 +12,8 @@ class FollowingTableViewCell: UITableViewCell {
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var fullNameLabel: UILabel!
-    @IBOutlet weak var checkMarkImageView: UIImageView!
-
+    @IBOutlet weak var emojiFollowingLabel: UILabel!
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
