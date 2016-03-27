@@ -35,39 +35,35 @@
                         <action selector="accountButtonTouched" destination="iN0-l3-epB" eventType="touchUpInside" id="AXM-x1-6g8"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9c0-kS-iOt">
-                    <rect key="frame" x="232" y="50" width="136.5" height="36"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBH-pm-Ncg">
                     <rect key="frame" x="268" y="314" width="63" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="Logout">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="logout:" destination="iN0-l3-epB" eventType="touchUpInside" id="uaj-Ui-inL"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wM-CU-alr">
-                    <rect key="frame" x="245" y="258" width="110" height="36"/>
+                    <rect key="frame" x="228" y="258" width="145" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <state key="normal" title="Find Friends">
+                    <state key="normal" title="Discover People">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="followPeople:" destination="iN0-l3-epB" eventType="touchUpInside" id="iNi-q5-4OY"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3k-Ds-mI5">
-                    <rect key="frame" x="250" y="202" width="99" height="36"/>
+                    <rect key="frame" x="241" y="202" width="118" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <state key="normal" title="My Friends">
+                    <state key="normal" title="My Followers">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNb-kN-yxC">
-                    <rect key="frame" x="234" y="146" width="132" height="36"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <state key="normal" title="Edit Username">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
+                    <connections>
+                        <action selector="myFolowers:" destination="iN0-l3-epB" eventType="touchUpInside" id="z6C-3b-eLb"/>
+                    </connections>
                 </button>
                 <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ih-GA-YIJ">
                     <rect key="frame" x="280" y="552" width="40" height="40"/>
@@ -83,9 +79,19 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYl-I2-c9n">
-                    <rect key="frame" x="273.5" y="535" width="53.5" height="17"/>
+                    <rect key="frame" x="273" y="535" width="53.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9c0-kS-iOt">
+                    <rect key="frame" x="150" y="67" width="300" height="85"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="VEA-E8-hcm"/>
+                        <constraint firstAttribute="height" constant="85" id="eEb-3D-pcx"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -93,23 +99,21 @@
             <constraints>
                 <constraint firstItem="1ih-GA-YIJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="19Y-NB-0Gd"/>
                 <constraint firstItem="oac-bO-U49" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1Vb-Ba-rnh"/>
-                <constraint firstItem="O3k-Ds-mI5" firstAttribute="top" secondItem="lNb-kN-yxC" secondAttribute="bottom" constant="20" id="HrQ-7H-B7I"/>
                 <constraint firstAttribute="bottom" secondItem="oac-bO-U49" secondAttribute="bottom" constant="8" id="VEC-s7-WTS"/>
                 <constraint firstAttribute="bottom" secondItem="Vu3-FH-MEd" secondAttribute="bottom" constant="8" id="YY6-Zx-jtx"/>
-                <constraint firstItem="9c0-kS-iOt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="dc3-4B-3vY"/>
+                <constraint firstItem="9c0-kS-iOt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="67" id="dc3-4B-3vY"/>
                 <constraint firstItem="oac-bO-U49" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="f8P-4N-Q5t"/>
                 <constraint firstItem="bBH-pm-Ncg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="g2S-4k-Uts"/>
                 <constraint firstAttribute="trailing" secondItem="Vu3-FH-MEd" secondAttribute="trailing" constant="30" id="iDt-tX-PQC"/>
                 <constraint firstItem="8wM-CU-alr" firstAttribute="top" secondItem="O3k-Ds-mI5" secondAttribute="bottom" constant="20" id="jd1-ae-bYg"/>
-                <constraint firstItem="lNb-kN-yxC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="kh4-6s-RfG"/>
                 <constraint firstItem="1ih-GA-YIJ" firstAttribute="top" secondItem="rYl-I2-c9n" secondAttribute="bottom" id="kjo-tK-Jm9"/>
                 <constraint firstItem="bBH-pm-Ncg" firstAttribute="top" secondItem="8wM-CU-alr" secondAttribute="bottom" constant="20" id="oSY-2u-f9j"/>
-                <constraint firstItem="lNb-kN-yxC" firstAttribute="top" secondItem="9c0-kS-iOt" secondAttribute="bottom" constant="60" id="om8-7s-kqM"/>
                 <constraint firstItem="9c0-kS-iOt" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pRc-K4-For"/>
                 <constraint firstItem="O3k-Ds-mI5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qeI-F3-6fX"/>
                 <constraint firstAttribute="bottom" secondItem="1ih-GA-YIJ" secondAttribute="bottom" constant="8" id="r3e-WY-jKe"/>
                 <constraint firstItem="8wM-CU-alr" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="w9h-Lh-b8i"/>
                 <constraint firstItem="rYl-I2-c9n" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yCL-EI-E9u"/>
+                <constraint firstItem="O3k-Ds-mI5" firstAttribute="top" secondItem="9c0-kS-iOt" secondAttribute="bottom" constant="50" id="yPH-zH-otN"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
@@ -119,11 +123,7 @@
             <connections>
                 <outlet property="accountButton" destination="oac-bO-U49" id="Aii-ZR-RRW"/>
                 <outlet property="closeButton" destination="1ih-GA-YIJ" id="IoS-Z9-qjk"/>
-                <outlet property="editUsernameButton" destination="lNb-kN-yxC" id="pqe-l8-Cig"/>
                 <outlet property="emoteButton" destination="Vu3-FH-MEd" id="gwu-ih-YYY"/>
-                <outlet property="findFriendsButton" destination="8wM-CU-alr" id="IKV-Wg-vur"/>
-                <outlet property="logoutButton" destination="bBH-pm-Ncg" id="RDt-a1-bkO"/>
-                <outlet property="myFriendsButton" destination="O3k-Ds-mI5" id="aVQ-qO-4U6"/>
                 <outlet property="transitionLabel" destination="rYl-I2-c9n" id="KBe-TF-SFr"/>
                 <outlet property="usernameLabel" destination="9c0-kS-iOt" id="K9z-Mm-sap"/>
             </connections>
