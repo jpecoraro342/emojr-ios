@@ -14,8 +14,8 @@ class NetworkFacade : NSObject {
     
     override init() {
         // TODO: pass data accessor and socket to use in the init method
-        // dataAccessor = RestNetworkAccessor();
-        dataAccessor = DummyNetworkAccessor();
+        dataAccessor = RestNetworkAccessor();
+        // dataAccessor = DummyNetworkAccessor();
         
         super.init();
     }
@@ -50,8 +50,8 @@ class NetworkFacade : NSObject {
     }
     
     // POST
-    func startFollowingUser(userId: String, usernameToFollow: String, completionBlock: BooleanClosure?) {
-        dataAccessor.startFollowingUser(userId, usernameToFollow: usernameToFollow, completionBlock: completionBlock)
+    func startFollowingUser(userId: String, userIdToFollow: String, completionBlock: BooleanClosure?) {
+        dataAccessor.startFollowingUser(userId, userIdToFollow: userIdToFollow, completionBlock: completionBlock)
     }
     
     func signUpUser(username: String, password: String, fullname: String, completionBlock: UserDataClosure?) {
@@ -66,8 +66,8 @@ class NetworkFacade : NSObject {
         dataAccessor.createPost(userId, post: post, completionBlock: completionBlock)
     }
     
-    func reactToPost(userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
-        dataAccessor.reactToPost(userId, postId: postId, reaction: reaction, completionBlock: completionBlock)
+    func reactToPost(username: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
+        dataAccessor.reactToPost(username, postId: postId, reaction: reaction, completionBlock: completionBlock)
     }
 }
 

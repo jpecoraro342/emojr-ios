@@ -14,8 +14,8 @@ class TimelineViewController: UIViewController {
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
-        // refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
+        // refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
         
         return refreshControl
     }()
@@ -50,7 +50,7 @@ class TimelineViewController: UIViewController {
         emoteView?.frame = self.view.frame
         emoteView?.bounds = self.view.bounds
         
-        networkFacade.signInUser("😌", password: "test") { (error, user) in
+        networkFacade.signInUser("😎", password: "test") { (error, user) in
             if let data = user {
                 User.sharedInstance.configureWithUserData(data)
             }
@@ -137,7 +137,7 @@ class TimelineViewController: UIViewController {
     
     func postReaction(post: String) {
         if let id = reactingToPostId {
-            networkFacade.reactToPost(User.sharedInstance.id!, postId: id, reaction: post)
+            networkFacade.reactToPost(User.sharedInstance.username!, postId: id, reaction: post)
             { (error, reaction) in
                 if let newReaction = reaction {
                     // TODO: Attach reaction to post

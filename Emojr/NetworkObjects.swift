@@ -53,9 +53,14 @@ struct Post {
         id = fromJson["_id"] as! String
         user = UserData(fromJson: fromJson["user"] as! Dictionary<String, AnyObject>)
         post = fromJson["post"] as! String
-        created = fromJson["created"] as! NSDate
         
-        reactions = jsonArrayToReactionArray(fromJson["reactions"] as! [Dictionary<String, AnyObject>])
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let dateString = fromJson["created"] as! String
+        created = dateFormatter.dateFromString(dateString)!
+
+        reactions = jsonArrayToReactionArray(fromJson["reactions"] as! [AnyObject])
     }
     
     var description: String {
@@ -85,11 +90,11 @@ struct Reaction {
     }
 }
 
-func jsonArrayToReactionArray(jsonArr: [Dictionary<String, AnyObject>]) -> [Reaction] {
+func jsonArrayToReactionArray(jsonArr: [AnyObject]) -> [Reaction] {
     var reactArray = [Reaction]()
     
     for jsonDict in jsonArr {
-        reactArray.append(Reaction(fromJson: jsonDict))
+        reactArray.append(Reaction(fromJson: jsonDict as! Dictionary<String, AnyObject>))
     }
     
     return reactArray

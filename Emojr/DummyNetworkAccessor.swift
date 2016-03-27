@@ -80,9 +80,9 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
     }
     
     // POST
-    func startFollowingUser(userId: String, usernameToFollow: String, completionBlock: BooleanClosure?) {
+    func startFollowingUser(userId: String, userIdToFollow: String, completionBlock: BooleanClosure?) {
         var followingList = userFollowingDictionary[userId]
-        let userToFollow = usernameDictionary[usernameToFollow]!
+        let userToFollow = userDictionary[userIdToFollow]!
         
         if followingList!.contains(userToFollow) {
             completionBlock?(success: false)
@@ -147,11 +147,11 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         let james = usernameDictionary["😌"]!
         let jacob = usernameDictionary["🍆"]!
         
-        startFollowingUser(james.id, usernameToFollow: "🍆", completionBlock: nil)
-        startFollowingUser(jacob.id, usernameToFollow: "😌", completionBlock: nil)
+        startFollowingUser(james.id, userIdToFollow: "🍆", completionBlock: nil)
+        startFollowingUser(jacob.id, userIdToFollow: "😌", completionBlock: nil)
         
-        startFollowingUser(james.id, usernameToFollow: "😎😈😎", completionBlock: nil)
-        startFollowingUser(jacob.id, usernameToFollow: "😎😈😎", completionBlock: nil)
+        startFollowingUser(james.id, userIdToFollow: "😎😈😎", completionBlock: nil)
+        startFollowingUser(jacob.id, userIdToFollow: "😎😈😎", completionBlock: nil)
         
         var postId = ""
         

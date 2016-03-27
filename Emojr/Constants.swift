@@ -48,7 +48,7 @@ let navigationBarColor = blue1;
 
 // MARK:
 
-let baseURL = "http://localhost:3000/api";
+let baseURL = "https://emojr.herokuapp.com/api";
 
 let networkErrorDomain = "com.emojr.network";
 

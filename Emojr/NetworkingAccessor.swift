@@ -22,12 +22,12 @@ protocol NetworkingAccessor {
     func getAllFollowingPosts(userId: String, completionBlock: PostArrayClosure?);
     
     // POST
-    func startFollowingUser(userId: String, usernameToFollow: String, completionBlock: BooleanClosure?);
+    func startFollowingUser(userId: String, userIdToFollow: String, completionBlock: BooleanClosure?);
     
     func signUpUser(username: String, password: String, fullname: String, completionBlock: UserDataClosure?);
     func signInUser(username: String, password: String, completionBlock: UserDataClosure?);
     
     func createPost(userId: String, post: String, completionBlock: PostClosure?);
-    func reactToPost(userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?);
+    func reactToPost(username: String, postId: String, reaction: String, completionBlock: ReactionClosure?);
     
 }
