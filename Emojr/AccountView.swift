@@ -30,7 +30,7 @@ class AccountView: UIView {
     }
 
     @IBAction func myFolowers(sender: AnyObject) {
-        
+        controller?.performSegueWithIdentifier("accountToFollowers", sender: self)
     }
     
     @IBAction func followPeople(sender: AnyObject) {
@@ -38,7 +38,7 @@ class AccountView: UIView {
     }
     
     @IBAction func logout(sender: AnyObject) {
-        
+        controller?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     

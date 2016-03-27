@@ -12,12 +12,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vu3-FH-MEd">
-                    <rect key="frame" x="530" y="552" width="40" height="40"/>
+                    <rect key="frame" x="540" y="545" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="HRA-OL-WY8"/>
                         <constraint firstAttribute="width" constant="40" id="VkA-ey-bib"/>
                     </constraints>
-                    <state key="normal" image="settingsGear"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                    <state key="normal" title="📝"/>
                     <connections>
                         <action selector="emoteButtonTouched" destination="iN0-l3-epB" eventType="touchUpInside" id="lXd-IK-RYI"/>
                     </connections>
@@ -100,11 +101,11 @@
                 <constraint firstItem="1ih-GA-YIJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="19Y-NB-0Gd"/>
                 <constraint firstItem="oac-bO-U49" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1Vb-Ba-rnh"/>
                 <constraint firstAttribute="bottom" secondItem="oac-bO-U49" secondAttribute="bottom" constant="8" id="VEC-s7-WTS"/>
-                <constraint firstAttribute="bottom" secondItem="Vu3-FH-MEd" secondAttribute="bottom" constant="8" id="YY6-Zx-jtx"/>
+                <constraint firstAttribute="bottom" secondItem="Vu3-FH-MEd" secondAttribute="bottom" constant="15" id="YY6-Zx-jtx"/>
                 <constraint firstItem="9c0-kS-iOt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="67" id="dc3-4B-3vY"/>
                 <constraint firstItem="oac-bO-U49" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="f8P-4N-Q5t"/>
                 <constraint firstItem="bBH-pm-Ncg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="g2S-4k-Uts"/>
-                <constraint firstAttribute="trailing" secondItem="Vu3-FH-MEd" secondAttribute="trailing" constant="30" id="iDt-tX-PQC"/>
+                <constraint firstAttribute="trailing" secondItem="Vu3-FH-MEd" secondAttribute="trailing" constant="20" id="iDt-tX-PQC"/>
                 <constraint firstItem="8wM-CU-alr" firstAttribute="top" secondItem="O3k-Ds-mI5" secondAttribute="bottom" constant="20" id="jd1-ae-bYg"/>
                 <constraint firstItem="1ih-GA-YIJ" firstAttribute="top" secondItem="rYl-I2-c9n" secondAttribute="bottom" id="kjo-tK-Jm9"/>
                 <constraint firstItem="bBH-pm-Ncg" firstAttribute="top" secondItem="8wM-CU-alr" secondAttribute="bottom" constant="20" id="oSY-2u-f9j"/>
@@ -131,7 +132,6 @@
     </objects>
     <resources>
         <image name="downArrow" width="128" height="128"/>
-        <image name="settingsGear" width="64" height="64"/>
         <image name="upArrow" width="64" height="64"/>
     </resources>
 </document>
