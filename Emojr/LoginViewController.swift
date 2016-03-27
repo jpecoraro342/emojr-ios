@@ -34,6 +34,17 @@ class LoginViewController: UIViewController {
         
         styleViews()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let username = UICKeyChainStore.stringForKey("com.currentuser.username", service: "com.emojr") {
+            usernameField.text = username
+            
+            if let password = UICKeyChainStore.stringForKey("com.currentuser.password", service: "com.emojr") {
+                passwordField.text = password
+            }
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -91,7 +102,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUp() {
-        
+        UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.username", service: "com.emojr")
+        UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
+        self.performSegueWithIdentifier("loginToSignup", sender: self)
     }
     
     func validLoginForm() -> (Bool, String) {
@@ -108,6 +121,15 @@ class LoginViewController: UIViewController {
         }
         
         return (true, "Success")
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "loginToSignup" {
+            let destinationVc = segue.destinationViewController as! SignUpViewController
+            destinationVc.completionBlock = { () in
+                self.performSegueWithIdentifier("login", sender: self)
+            }
+        }
     }
 }
 
