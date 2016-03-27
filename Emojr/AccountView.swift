@@ -13,11 +13,6 @@ class AccountView: UIView {
     @IBOutlet weak var accountButton: UIButton!
     @IBOutlet weak var emoteButton: UIButton!
     
-    @IBOutlet weak var editUsernameButton: UIButton!
-    @IBOutlet weak var myFriendsButton: UIButton!
-    @IBOutlet weak var findFriendsButton: UIButton!
-    @IBOutlet weak var logoutButton: UIButton!
-    
     @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet weak var usernameLabel: UILabel!
@@ -34,6 +29,19 @@ class AccountView: UIView {
         usernameLabel.text = User.sharedInstance.username
     }
 
+    @IBAction func myFolowers(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func followPeople(sender: AnyObject) {
+        controller?.performSegueWithIdentifier("accountToFollowing", sender: self)
+    }
+    
+    @IBAction func logout(sender: AnyObject) {
+        
+    }
+    
+    
     @IBAction func accountButtonTouched() {
         controller!.displayAccount()
         UIView.animateWithDuration(0.5) {
