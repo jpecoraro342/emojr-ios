@@ -23,12 +23,14 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oac-bO-U49">
-                    <rect key="frame" x="30" y="552" width="40" height="40"/>
+                    <rect key="frame" x="280" y="552" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="1me-YO-5jq"/>
                         <constraint firstAttribute="height" constant="40" id="igL-Ax-idW"/>
                     </constraints>
-                    <state key="normal" image="defaultEmoji"/>
+                    <state key="normal" image="downArrow">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="accountButtonTouched" destination="iN0-l3-epB" eventType="touchUpInside" id="AXM-x1-6g8"/>
                     </connections>
@@ -80,10 +82,17 @@
                         <action selector="closeButtonTouched" destination="iN0-l3-epB" eventType="touchUpInside" id="n71-AI-C5i"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYl-I2-c9n">
+                    <rect key="frame" x="273.5" y="535" width="53.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.67450980390000004" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.20392156859999999" green="0.56470588239999997" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="1ih-GA-YIJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="19Y-NB-0Gd"/>
+                <constraint firstItem="oac-bO-U49" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1Vb-Ba-rnh"/>
                 <constraint firstItem="O3k-Ds-mI5" firstAttribute="top" secondItem="lNb-kN-yxC" secondAttribute="bottom" constant="20" id="HrQ-7H-B7I"/>
                 <constraint firstAttribute="bottom" secondItem="oac-bO-U49" secondAttribute="bottom" constant="8" id="VEC-s7-WTS"/>
                 <constraint firstAttribute="bottom" secondItem="Vu3-FH-MEd" secondAttribute="bottom" constant="8" id="YY6-Zx-jtx"/>
@@ -93,13 +102,20 @@
                 <constraint firstAttribute="trailing" secondItem="Vu3-FH-MEd" secondAttribute="trailing" constant="30" id="iDt-tX-PQC"/>
                 <constraint firstItem="8wM-CU-alr" firstAttribute="top" secondItem="O3k-Ds-mI5" secondAttribute="bottom" constant="20" id="jd1-ae-bYg"/>
                 <constraint firstItem="lNb-kN-yxC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="kh4-6s-RfG"/>
+                <constraint firstItem="1ih-GA-YIJ" firstAttribute="top" secondItem="rYl-I2-c9n" secondAttribute="bottom" id="kjo-tK-Jm9"/>
                 <constraint firstItem="bBH-pm-Ncg" firstAttribute="top" secondItem="8wM-CU-alr" secondAttribute="bottom" constant="20" id="oSY-2u-f9j"/>
                 <constraint firstItem="lNb-kN-yxC" firstAttribute="top" secondItem="9c0-kS-iOt" secondAttribute="bottom" constant="60" id="om8-7s-kqM"/>
                 <constraint firstItem="9c0-kS-iOt" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pRc-K4-For"/>
                 <constraint firstItem="O3k-Ds-mI5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qeI-F3-6fX"/>
                 <constraint firstAttribute="bottom" secondItem="1ih-GA-YIJ" secondAttribute="bottom" constant="8" id="r3e-WY-jKe"/>
                 <constraint firstItem="8wM-CU-alr" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="w9h-Lh-b8i"/>
+                <constraint firstItem="rYl-I2-c9n" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yCL-EI-E9u"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="f8P-4N-Q5t"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="accountButton" destination="oac-bO-U49" id="Aii-ZR-RRW"/>
                 <outlet property="closeButton" destination="1ih-GA-YIJ" id="IoS-Z9-qjk"/>
@@ -108,12 +124,13 @@
                 <outlet property="findFriendsButton" destination="8wM-CU-alr" id="IKV-Wg-vur"/>
                 <outlet property="logoutButton" destination="bBH-pm-Ncg" id="RDt-a1-bkO"/>
                 <outlet property="myFriendsButton" destination="O3k-Ds-mI5" id="aVQ-qO-4U6"/>
+                <outlet property="transitionLabel" destination="rYl-I2-c9n" id="KBe-TF-SFr"/>
                 <outlet property="usernameLabel" destination="9c0-kS-iOt" id="K9z-Mm-sap"/>
             </connections>
         </view>
     </objects>
     <resources>
-        <image name="defaultEmoji" width="80" height="80"/>
+        <image name="downArrow" width="128" height="128"/>
         <image name="settingsGear" width="64" height="64"/>
         <image name="upArrow" width="64" height="64"/>
     </resources>

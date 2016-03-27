@@ -26,21 +26,9 @@ typealias StringClosure = (error: NSError?, string: String?) -> Void;
 
 // TODO: Redefine Color Scheme
 
-let blueLight1 = UIColor(hexString: "65a5d1");
-let blueLight2 = UIColor(hexString: "3e94d1");
-let blue1 = UIColor(hexString: "0a64a4");
-let blueDark1 = UIColor(hexString: "24577b");
-let blueDark2 = UIColor(hexString: "03406a");
-let transparentOrange = UIColor(hexString: "bfec6b0e");
-let orange = UIColor(hexString: "ec6b0e");
-
-let offWhiteColor = UIColor(hexString: "fefefe");
-
-let buttonNormalColor = blue1;
-let buttonHighlightedColor = blueDark2;
-
-let shadowColor = blueLight1;
-let navigationBarColor = blue1;
+let blueLight = UIColor(hexString: "6FE7DD");
+let blue = UIColor(hexString: "3490DE");
+let offWhite = UIColor(hexString: "fefefe");
 
 // MARK: Segues
 
@@ -60,7 +48,7 @@ func randomStringWithLength (len : Int) -> NSString {
     
     let randomString : NSMutableString = NSMutableString(capacity: len)
     
-    for (var i=0; i < len; i++){
+    for (var i=0; i < len; i+=1){
         let length = UInt32 (letters.length)
         let rand = arc4random_uniform(length)
         randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))

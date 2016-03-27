@@ -50,13 +50,7 @@ class TimelineViewController: UIViewController {
         emoteView?.frame = self.view.frame
         emoteView?.bounds = self.view.bounds
         
-        networkFacade.signInUser("😎", password: "test") { (error, user) in
-            if let data = user {
-                User.sharedInstance.configureWithUserData(data)
-            }
-            
-            self.refreshData()
-        }
+        refreshData()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -174,6 +168,7 @@ class TimelineViewController: UIViewController {
 extension TimelineViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         reactToPostWithId(posts[indexPath.row].id)
+        timelineTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
 

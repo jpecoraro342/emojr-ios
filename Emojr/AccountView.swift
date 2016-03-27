@@ -21,6 +21,7 @@ class AccountView: UIView {
     @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var transitionLabel: UILabel!
     
     var controller: TimelineViewController?;
     
@@ -35,20 +36,23 @@ class AccountView: UIView {
 
     @IBAction func accountButtonTouched() {
         controller!.displayAccount()
-        UIView.animateWithDuration(0.7) {
+        UIView.animateWithDuration(0.5) {
             self.accountButton.alpha = 0.0
             self.emoteButton.alpha = 0.0
             self.closeButton.alpha = 1.0
         }
+        transitionLabel.text = "Timeline"
     }
     
     @IBAction func closeButtonTouched() {
         controller!.dismissAccount()
-        UIView.animateWithDuration(0.7) {
+        
+        UIView.animateWithDuration(0.5) {
             self.accountButton.alpha = 1.0
             self.emoteButton.alpha = 1.0
             self.closeButton.alpha = 0.0
         }
+        transitionLabel.text = "Account"
     }
     
     @IBAction func emoteButtonTouched() {
