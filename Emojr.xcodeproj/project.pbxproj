@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15454DF11CA7E00900A520D1 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 15454DF01CA7E00900A520D1 /* UICKeyChainStore.m */; };
 		1546D39B1CA61A5100D8ECC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1546D39A1CA61A5100D8ECC5 /* AppDelegate.swift */; };
 		1546D3A01CA61A5100D8ECC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1546D39E1CA61A5100D8ECC5 /* Main.storyboard */; };
 		1546D3A21CA61A5100D8ECC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1546D3A11CA61A5100D8ECC5 /* Assets.xcassets */; };
@@ -51,6 +52,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		15454DEE1CA7E00800A520D1 /* Emojr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Emojr-Bridging-Header.h"; sourceTree = "<group>"; };
+		15454DEF1CA7E00900A520D1 /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICKeyChainStore.h; path = Emojr/UICKeyChainStore.h; sourceTree = "<group>"; };
+		15454DF01CA7E00900A520D1 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICKeyChainStore.m; path = Emojr/UICKeyChainStore.m; sourceTree = "<group>"; };
 		1546D3971CA61A5100D8ECC5 /* Emojr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emojr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1546D39A1CA61A5100D8ECC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1546D39F1CA61A5100D8ECC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -129,9 +133,12 @@
 		1546D3B91CA61D3100D8ECC5 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				15454DEF1CA7E00900A520D1 /* UICKeyChainStore.h */,
+				15454DF01CA7E00900A520D1 /* UICKeyChainStore.m */,
 				15AA50051CA637570066CAB9 /* Alamofire.framework */,
 				15AA50061CA637570066CAB9 /* SwiftyJSON.framework */,
 				1546D3AE1CA61D2B00D8ECC5 /* SVProgressHUD.framework */,
+				15454DEE1CA7E00800A520D1 /* Emojr-Bridging-Header.h */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -251,6 +258,7 @@
 				6ECCD7971CA7152400F53AD5 /* TimelineTableViewCell.swift in Sources */,
 				15AA50191CA6392F0066CAB9 /* UIColor+Hex.swift in Sources */,
 				15AA501B1CA639870066CAB9 /* DummyNetworkAccessor.swift in Sources */,
+				15454DF11CA7E00900A520D1 /* UICKeyChainStore.m in Sources */,
 				15AA50131CA637780066CAB9 /* RestNetworkAccessor.swift in Sources */,
 				15AA50111CA637780066CAB9 /* NetworkingAccessor.swift in Sources */,
 				15AA50101CA637780066CAB9 /* NetworkFacade.swift in Sources */,
@@ -367,6 +375,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -375,6 +384,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.josephpecoraro.Emojr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Emojr-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -382,6 +393,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -390,6 +402,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.josephpecoraro.Emojr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Emojr-Bridging-Header.h";
 			};
 			name = Release;
 		};

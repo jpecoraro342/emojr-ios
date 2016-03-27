@@ -24,6 +24,14 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let username = UICKeyChainStore.stringForKey("com.currentuser.username", service: "com.emojr") {
+            usernameField.text = username
+            
+            if let password = UICKeyChainStore.stringForKey("com.currentuser.password", service: "com.emojr") {
+                passwordField.text = password
+            }
+        }
+        
         styleViews()
     }
 
@@ -65,6 +73,10 @@ class LoginViewController: UIViewController {
                     self.displayError(e.localizedDescription)
                 } else if let data = user {
                     User.sharedInstance.configureWithUserData(data)
+                    
+                    UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.username", service: "com.emojr")
+                    UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
+                    
                     self.performSegueWithIdentifier("login", sender: self)
                 }
             }
