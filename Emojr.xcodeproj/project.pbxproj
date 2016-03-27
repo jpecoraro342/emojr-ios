@@ -25,6 +25,12 @@
 		15AA50161CA6383A0066CAB9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA50151CA6383A0066CAB9 /* Constants.swift */; };
 		15AA50191CA6392F0066CAB9 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA50181CA6392F0066CAB9 /* UIColor+Hex.swift */; };
 		15AA501B1CA639870066CAB9 /* DummyNetworkAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA501A1CA639870066CAB9 /* DummyNetworkAccessor.swift */; };
+		6ECCD7951CA714FA00F53AD5 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */; };
+		6ECCD7971CA7152400F53AD5 /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD7961CA7152400F53AD5 /* TimelineTableViewCell.swift */; };
+		6ECCD7991CA7172900F53AD5 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD7981CA7172900F53AD5 /* AccountView.swift */; };
+		6ECCD79C1CA72C7600F53AD5 /* EmoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD79B1CA72C7600F53AD5 /* EmoteView.swift */; };
+		6ECCD79E1CA72C8D00F53AD5 /* EmoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECCD79D1CA72C8D00F53AD5 /* EmoteView.xib */; };
+		6ECCD7A01CA7642200F53AD5 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECCD79F1CA7642200F53AD5 /* AccountView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +67,12 @@
 		15AA50151CA6383A0066CAB9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		15AA50181CA6392F0066CAB9 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		15AA501A1CA639870066CAB9 /* DummyNetworkAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyNetworkAccessor.swift; sourceTree = "<group>"; };
+		6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		6ECCD7961CA7152400F53AD5 /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
+		6ECCD7981CA7172900F53AD5 /* AccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		6ECCD79B1CA72C7600F53AD5 /* EmoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoteView.swift; sourceTree = "<group>"; };
+		6ECCD79D1CA72C8D00F53AD5 /* EmoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmoteView.xib; sourceTree = "<group>"; };
+		6ECCD79F1CA7642200F53AD5 /* AccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +109,7 @@
 		1546D3991CA61A5100D8ECC5 /* Emojr */ = {
 			isa = PBXGroup;
 			children = (
+				6ECCD79A1CA717DA00F53AD5 /* View */,
 				15AA50171CA638F50066CAB9 /* Utilities */,
 				1546D3BA1CA61D4D00D8ECC5 /* Networking */,
 				1570790F1CA6299500043676 /* User.swift */,
@@ -105,6 +118,8 @@
 				1546D3A11CA61A5100D8ECC5 /* Assets.xcassets */,
 				1546D3A31CA61A5100D8ECC5 /* LaunchScreen.storyboard */,
 				1546D3A61CA61A5100D8ECC5 /* Info.plist */,
+				6ECCD79D1CA72C8D00F53AD5 /* EmoteView.xib */,
+				6ECCD79F1CA7642200F53AD5 /* AccountView.xib */,
 			);
 			path = Emojr;
 			sourceTree = "<group>";
@@ -138,6 +153,17 @@
 				15AA50151CA6383A0066CAB9 /* Constants.swift */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		6ECCD79A1CA717DA00F53AD5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */,
+				6ECCD7961CA7152400F53AD5 /* TimelineTableViewCell.swift */,
+				6ECCD7981CA7172900F53AD5 /* AccountView.swift */,
+				6ECCD79B1CA72C7600F53AD5 /* EmoteView.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,7 +227,9 @@
 			files = (
 				1546D3A51CA61A5100D8ECC5 /* LaunchScreen.storyboard in Resources */,
 				1546D3A21CA61A5100D8ECC5 /* Assets.xcassets in Resources */,
+				6ECCD7A01CA7642200F53AD5 /* AccountView.xib in Resources */,
 				1546D3A01CA61A5100D8ECC5 /* Main.storyboard in Resources */,
+				6ECCD79E1CA72C8D00F53AD5 /* EmoteView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,15 +240,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ECCD7991CA7172900F53AD5 /* AccountView.swift in Sources */,
 				157079101CA6299500043676 /* User.swift in Sources */,
 				15AA50121CA637780066CAB9 /* NetworkObjects.swift in Sources */,
 				1546D39B1CA61A5100D8ECC5 /* AppDelegate.swift in Sources */,
+				6ECCD7971CA7152400F53AD5 /* TimelineTableViewCell.swift in Sources */,
 				15AA50191CA6392F0066CAB9 /* UIColor+Hex.swift in Sources */,
 				15AA501B1CA639870066CAB9 /* DummyNetworkAccessor.swift in Sources */,
 				15AA50131CA637780066CAB9 /* RestNetworkAccessor.swift in Sources */,
 				15AA50111CA637780066CAB9 /* NetworkingAccessor.swift in Sources */,
 				15AA50101CA637780066CAB9 /* NetworkFacade.swift in Sources */,
 				15AA50161CA6383A0066CAB9 /* Constants.swift in Sources */,
+				6ECCD79C1CA72C7600F53AD5 /* EmoteView.swift in Sources */,
+				6ECCD7951CA714FA00F53AD5 /* TimelineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
