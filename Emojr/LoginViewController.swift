@@ -32,6 +32,14 @@ class LoginViewController: UIViewController {
             }
         }
         
+//        let letters = "allletters"
+//        let emojis = "😳👨‍👨‍👧‍👦🍕😳👨‍👨‍👧‍👦🍕😳👨‍👨‍👧‍👦🍕"
+//        let mixed = "letters🍕😳👨‍👨‍👧‍👦🍕"
+        
+//        print(isAllEmoji(letters))
+//        print(isAllEmoji(emojis))
+//        print(isAllEmoji(mixed))
+        
         styleViews()
     }
 
