@@ -79,15 +79,44 @@ class FollowingViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func startFollowingUser(userId: String) {
+        networkFacade.startFollowingUser(User.sharedInstance.id!, userIdToFollow: userId) { (success) -> Void in
+            if (success) {
+                self.followingUsers[userId] = true;
+                self.followingTableView.reloadData()
+            }
+            else {
+                print("unable to follow user")
+            }
+        }
+    }
+    
 }
 
 extension FollowingViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let user = allUsers[indexPath.row]
-        if (user.id != User.sharedInstance.id) {
-            // TODO: Check if they are already following the user
-            // TODO: Show alert controller asking if they want to start following the user
+        if user.id != User.sharedInstance.id {
+            if followingUsers[user.id] == true {
+                // Nothing to do here, already following
+            }
+            else {
+                let alertController = UIAlertController(title: "Follow \(user.username)", message: "Are you sure you want to start following \(user.username)?", preferredStyle: .Alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                    
+                }
+                alertController.addAction(cancelAction)
+                
+                let OKAction = UIAlertAction(title: "Follow", style: .Default) { (action) in
+                    self.startFollowingUser(user.id)
+                }
+                alertController.addAction(OKAction)
+                
+                self.presentViewController(alertController, animated: true) {
+                }
+            }
         }
         
         followingTableView.deselectRowAtIndexPath(indexPath, animated: true)
