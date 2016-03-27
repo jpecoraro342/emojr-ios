@@ -46,11 +46,7 @@ class TimelineTableViewCell: UITableViewCell {
     func timeDisplayForTimestamp(date: NSDate) -> String {
         let past = NSDate().timeIntervalSinceDate(date)
         
-        print(date)
-        
         let pastInt = Int(past)
-        
-        print(pastInt)
         
         if pastInt < 60 {
             return "\(pastInt)s"

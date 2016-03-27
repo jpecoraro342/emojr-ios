@@ -22,6 +22,7 @@ class TimelineViewController: UIViewController {
     
     var accountView: AccountView?
     var emoteView: EmoteView?
+    var fadeView: UIView?
     var reacting = false
     var reactingToPostId: String?
     
@@ -32,6 +33,20 @@ class TimelineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createViews()
+        
+        refreshData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func createViews() {
         timelineTableView.addSubview(refreshControl)
         
         accountView = AccountView.instanceFromNib()
@@ -46,18 +61,17 @@ class TimelineViewController: UIViewController {
         
         emoteView = EmoteView.instanceFromNib()
         emoteView?.configureWithController(self)
-        emoteView?.frame = self.view.frame
-        emoteView?.bounds = self.view.bounds
+        frame = self.view.frame
+        frame.origin.x = 0 - frame.width
+        emoteView?.frame = frame
         
-        refreshData()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        fadeView = UIView(frame: self.view.frame)
+        fadeView?.backgroundColor = UIColor.blackColor()
+        fadeView?.alpha = 0.0
+        
+        //let recognizer = UITapGestureRecognizer(target: self, action: #selector(TimelineViewController.dismissPostForm))
+        let recognizer = UITapGestureRecognizer(target: self, action: "dismissPostForm")
+        fadeView?.addGestureRecognizer(recognizer)
     }
     
     func refreshData() {
@@ -82,15 +96,36 @@ class TimelineViewController: UIViewController {
         displayPostForm(true)
     }
     
-    func displayPostForm(reacting: Bool) {
-        // TODO: Animate view in by growing from center
+    func displayPostForm(reacting: Bool) {        
+        emoteView?.setButtonTitle(reacting)
         self.reacting = reacting
+        
+        var frame = self.view.frame
+        frame.origin.x = 0 - frame.width
+        emoteView?.frame = frame
+        self.view.addSubview(fadeView!)
         self.view.addSubview(emoteView!)
+        
+        UIView.animateWithDuration(0.5) {
+            self.fadeView?.alpha = 0.6
+            
+            var frame = self.emoteView?.frame
+            frame!.origin.x = 0
+            self.emoteView?.frame = frame!
+        }
     }
     
     func dismissPostForm() {
-        // TODO: Animate view away by shrinking to center
-        emoteView?.removeFromSuperview()
+        UIView.animateWithDuration(0.5, animations: {
+            self.fadeView?.alpha = 0.0
+            
+            var frame = self.emoteView?.frame
+            frame!.origin.x = self.view.frame.width
+            self.emoteView?.frame = frame!
+        }) { (completed) in
+            self.emoteView?.removeFromSuperview()
+            self.fadeView?.removeFromSuperview()
+        }
     }
     
     func postFormReturnedPost(post: String) {
