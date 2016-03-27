@@ -1,75 +1,100 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EmoteView" customModule="Emojr" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="520" height="150"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tgu-Nw-USv">
-                    <rect key="frame" x="275" y="275" width="50" height="50"/>
-                    <color key="backgroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXN-EY-nha">
+                    <rect key="frame" x="0.0" y="0.0" width="520" height="150"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="emojis go here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tgu-Nw-USv">
+                            <rect key="frame" x="160" y="10" width="200" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="200" id="46g-z2-Rgd"/>
+                                <constraint firstAttribute="height" constant="50" id="eLg-M2-lmj"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ag9-5i-Je9">
+                            <rect key="frame" x="160" y="60" width="200" height="4"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="200" id="DD8-0i-nuz"/>
+                                <constraint firstAttribute="height" constant="4" id="r2w-cH-yWD"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FrX-SJ-Vqp">
+                            <rect key="frame" x="236" y="120" width="48" height="30"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="exitButtonTouched" destination="iN0-l3-epB" eventType="touchUpInside" id="l3R-MU-8Un"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VgO-5L-vHP">
+                            <rect key="frame" x="219" y="79" width="82" height="34"/>
+                            <color key="backgroundColor" red="0.43529411759999997" green="0.90588235289999997" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                            <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                            <state key="normal" title="Emote!">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="emoteButtonTouched" destination="iN0-l3-epB" eventType="touchUpInside" id="FGQ-c3-hPY"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.20392156859999999" green="0.56470588239999997" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="50" id="46g-z2-Rgd"/>
-                        <constraint firstAttribute="height" constant="50" id="eLg-M2-lmj"/>
+                        <constraint firstItem="VgO-5L-vHP" firstAttribute="top" secondItem="Ag9-5i-Je9" secondAttribute="bottom" constant="15" id="7ce-g1-NsU"/>
+                        <constraint firstAttribute="bottom" secondItem="FrX-SJ-Vqp" secondAttribute="bottom" id="R9b-Ix-ytN"/>
+                        <constraint firstItem="tgu-Nw-USv" firstAttribute="top" secondItem="cXN-EY-nha" secondAttribute="top" constant="10" id="eaz-OP-8Ts"/>
+                        <constraint firstAttribute="height" constant="150" id="gEG-5r-DHD"/>
+                        <constraint firstItem="tgu-Nw-USv" firstAttribute="centerX" secondItem="cXN-EY-nha" secondAttribute="centerX" id="lC4-Gc-shn"/>
+                        <constraint firstItem="FrX-SJ-Vqp" firstAttribute="centerX" secondItem="cXN-EY-nha" secondAttribute="centerX" id="mxD-jv-fmt"/>
+                        <constraint firstItem="VgO-5L-vHP" firstAttribute="centerX" secondItem="cXN-EY-nha" secondAttribute="centerX" id="oA8-bG-7Lu"/>
+                        <constraint firstAttribute="bottom" secondItem="VgO-5L-vHP" secondAttribute="bottom" id="qf4-UW-krl"/>
+                        <constraint firstItem="Ag9-5i-Je9" firstAttribute="centerX" secondItem="cXN-EY-nha" secondAttribute="centerX" id="roG-yd-4tj"/>
+                        <constraint firstItem="VgO-5L-vHP" firstAttribute="top" secondItem="Ag9-5i-Je9" secondAttribute="bottom" constant="25" id="sEa-Yu-JbY"/>
+                        <constraint firstItem="Ag9-5i-Je9" firstAttribute="top" secondItem="tgu-Nw-USv" secondAttribute="bottom" id="sdD-dw-Alu"/>
+                        <constraint firstAttribute="bottom" secondItem="VgO-5L-vHP" secondAttribute="bottom" constant="6" id="xhI-bu-rxD"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Your Emote:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uef-xa-UHe">
-                    <rect key="frame" x="222" y="234" width="156" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VgO-5L-vHP">
-                    <rect key="frame" x="221.5" y="365" width="156" height="74"/>
-                    <color key="backgroundColor" red="0.43529411759999997" green="0.90588235289999997" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
-                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                    <state key="normal" title="Emote!">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="emoteButtonTouched" destination="iN0-l3-epB" eventType="touchUpInside" id="FGQ-c3-hPY"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXy-nr-lxw">
-                    <rect key="frame" x="540" y="24" width="40" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="0KQ-eU-MfQ"/>
-                        <constraint firstAttribute="width" constant="40" id="COC-mD-xDf"/>
-                    </constraints>
-                    <state key="normal" image="exit"/>
-                    <connections>
-                        <action selector="exitButtonTouched" destination="iN0-l3-epB" eventType="touchUpInside" id="M3I-d5-KSs"/>
-                    </connections>
-                </button>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="qf4-UW-krl"/>
+                            <exclude reference="sEa-Yu-JbY"/>
+                            <exclude reference="xhI-bu-rxD"/>
+                        </mask>
+                    </variation>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="0.20392156859999999" green="0.56470588239999997" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="VgO-5L-vHP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="BJ3-8g-VzN"/>
-                <constraint firstItem="bXy-nr-lxw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="CnS-Yf-T5U"/>
-                <constraint firstItem="tgu-Nw-USv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="EDa-PY-bHK"/>
-                <constraint firstItem="uef-xa-UHe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="HXS-sP-hHO"/>
-                <constraint firstAttribute="trailing" secondItem="bXy-nr-lxw" secondAttribute="trailing" constant="20" id="P2C-1u-uuy"/>
-                <constraint firstItem="tgu-Nw-USv" firstAttribute="top" secondItem="uef-xa-UHe" secondAttribute="bottom" constant="20" id="aH7-dL-sb3"/>
-                <constraint firstItem="VgO-5L-vHP" firstAttribute="top" secondItem="tgu-Nw-USv" secondAttribute="bottom" constant="40" id="krb-OI-BpR"/>
-                <constraint firstItem="tgu-Nw-USv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="sC1-ON-VGn"/>
+                <constraint firstItem="cXN-EY-nha" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0YU-tC-gjw"/>
+                <constraint firstItem="cXN-EY-nha" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="90S-gg-aRJ"/>
+                <constraint firstAttribute="trailing" secondItem="cXN-EY-nha" secondAttribute="trailing" id="Xil-pk-8MY"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="emojiField" destination="tgu-Nw-USv" id="whM-Rk-jEH"/>
                 <outlet property="emoteButton" destination="VgO-5L-vHP" id="STG-u4-hG6"/>
-                <outlet property="exitButton" destination="bXy-nr-lxw" id="sWZ-bn-Ppv"/>
+                <outlet property="exitButton" destination="FrX-SJ-Vqp" id="LQv-0f-Soh"/>
+                <outlet property="textFieldBar" destination="Ag9-5i-Je9" id="r7G-MA-3bO"/>
             </connections>
+            <point key="canvasLocation" x="338" y="275"/>
         </view>
     </objects>
-    <resources>
-        <image name="exit" width="30" height="30"/>
-    </resources>
 </document>
