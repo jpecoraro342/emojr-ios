@@ -47,17 +47,30 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CtR-B7-h43">
+                                                    <rect key="frame" x="10" y="92.5" width="580" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="VBl-s4-gbz"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="f6R-SZ-ygQ" secondAttribute="trailing" constant="8" id="1hl-BX-rxo"/>
                                                 <constraint firstItem="f6R-SZ-ygQ" firstAttribute="top" secondItem="kN8-gH-GII" secondAttribute="top" constant="8" id="DQE-AY-eLm"/>
                                                 <constraint firstItem="bG1-RA-03K" firstAttribute="top" secondItem="kN8-gH-GII" secondAttribute="top" constant="8" id="EzA-ja-bDa"/>
+                                                <constraint firstItem="CtR-B7-h43" firstAttribute="leading" secondItem="kN8-gH-GII" secondAttribute="leading" constant="10" id="MDs-pV-5TC"/>
+                                                <constraint firstAttribute="bottom" secondItem="CtR-B7-h43" secondAttribute="bottom" constant="2" id="S5D-ey-s3U"/>
+                                                <constraint firstAttribute="trailing" secondItem="CtR-B7-h43" secondAttribute="trailing" constant="10" id="T1F-ri-BHS"/>
                                                 <constraint firstItem="bG1-RA-03K" firstAttribute="leading" secondItem="kN8-gH-GII" secondAttribute="leading" constant="8" id="Vks-yv-OFv"/>
                                                 <constraint firstItem="dST-nT-weq" firstAttribute="centerX" secondItem="kN8-gH-GII" secondAttribute="centerX" id="fTD-sJ-vy2"/>
                                                 <constraint firstItem="dST-nT-weq" firstAttribute="top" secondItem="kN8-gH-GII" secondAttribute="top" constant="30" id="xUp-sb-sqZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="reactionsLabel" destination="CtR-B7-h43" id="znP-27-JJ2"/>
                                             <outlet property="statusImageLabel" destination="dST-nT-weq" id="swF-Pu-5H4"/>
                                             <outlet property="timestampLabel" destination="f6R-SZ-ygQ" id="e9v-5k-cBq"/>
                                             <outlet property="usernameLabel" destination="bG1-RA-03K" id="4Po-IC-deO"/>

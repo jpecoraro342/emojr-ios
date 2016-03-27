@@ -20,7 +20,6 @@ class TimelineViewController: UIViewController {
         return refreshControl
     }()
     
-    
     var accountView: AccountView?
     var emoteView: EmoteView?
     var reacting = false
@@ -67,10 +66,15 @@ class TimelineViewController: UIViewController {
         networkFacade.getAllFollowingPosts(User.sharedInstance.id!) { (error, list) in
             if let posts = list {
                 self.posts = posts
+                self.sortPostsByDate()
                 self.timelineTableView.reloadData()
                 self.refreshControl.endRefreshing()
             }
         }
+    }
+    
+    func sortPostsByDate() {
+        posts.sortInPlace({$0.created.isGreaterThanDate($1.created)})
     }
     
     func reactToPostWithId(id: String) {
@@ -141,28 +145,7 @@ class TimelineViewController: UIViewController {
         }
     }
     
-    func timeDisplayForTimestamp(timestamp: Double) -> String {
-        let then = NSDate(timeIntervalSince1970: timestamp)
-        let past = NSDate().timeIntervalSinceDate(then)
-        
-        let pastInt = Int(past)
-        
-        if pastInt < 60 {
-            return "\(pastInt)s"
-        } else if pastInt < 3600 {
-            let minutes = pastInt / 3600
-            return "\(minutes)m"
-        } else if pastInt < 86400 {
-            let hours = pastInt / 86400
-            return "\(hours)h"
-        } else if pastInt < 604800 {
-            let days = pastInt / 604800
-            return "\(days)d"
-        } else {
-            let weeks = pastInt / 2592000
-            return "\(weeks)w"
-        }
-    }
+    
 }
 
 extension TimelineViewController : UITableViewDelegate {
@@ -186,9 +169,7 @@ extension TimelineViewController : UITableViewDataSource {
         
         let post = posts[indexPath.row];
         
-        cell.usernameLabel.text = post.user.username
-        cell.statusImageLabel.text = post.post
-        cell.timestampLabel.text = timeDisplayForTimestamp(NSDate().timeIntervalSince1970 - 12)
+        cell.configureWithPost(post)
         
         return cell;
     }
