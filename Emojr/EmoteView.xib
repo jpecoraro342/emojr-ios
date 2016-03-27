@@ -11,8 +11,9 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tgu-Nw-USv">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tgu-Nw-USv">
                     <rect key="frame" x="275" y="275" width="50" height="50"/>
+                    <color key="backgroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="46g-z2-Rgd"/>
                         <constraint firstAttribute="height" constant="50" id="eLg-M2-lmj"/>
@@ -27,9 +28,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VgO-5L-vHP">
-                    <rect key="frame" x="220" y="365" width="159" height="74"/>
-                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                    <rect key="frame" x="221.5" y="365" width="156" height="74"/>
+                    <color key="backgroundColor" red="0.43529411759999997" green="0.90588235289999997" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="45"/>
                     <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                     <state key="normal" title="Emote!">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -50,7 +51,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.20392156859999999" green="0.56470588239999997" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="VgO-5L-vHP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="BJ3-8g-VzN"/>
                 <constraint firstItem="bXy-nr-lxw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="CnS-Yf-T5U"/>

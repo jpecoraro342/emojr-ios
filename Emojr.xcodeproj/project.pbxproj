@@ -31,6 +31,7 @@
 		6ECCD79C1CA72C7600F53AD5 /* EmoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD79B1CA72C7600F53AD5 /* EmoteView.swift */; };
 		6ECCD79E1CA72C8D00F53AD5 /* EmoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECCD79D1CA72C8D00F53AD5 /* EmoteView.xib */; };
 		6ECCD7A01CA7642200F53AD5 /* AccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECCD79F1CA7642200F53AD5 /* AccountView.xib */; };
+		6ECCD7A21CA7724F00F53AD5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD7A11CA7724F00F53AD5 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -73,6 +74,7 @@
 		6ECCD79B1CA72C7600F53AD5 /* EmoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoteView.swift; sourceTree = "<group>"; };
 		6ECCD79D1CA72C8D00F53AD5 /* EmoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmoteView.xib; sourceTree = "<group>"; };
 		6ECCD79F1CA7642200F53AD5 /* AccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountView.xib; sourceTree = "<group>"; };
+		6ECCD7A11CA7724F00F53AD5 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				6ECCD7961CA7152400F53AD5 /* TimelineTableViewCell.swift */,
 				6ECCD7981CA7172900F53AD5 /* AccountView.swift */,
 				6ECCD79B1CA72C7600F53AD5 /* EmoteView.swift */,
+				6ECCD7A11CA7724F00F53AD5 /* LoginViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ECCD7A21CA7724F00F53AD5 /* LoginViewController.swift in Sources */,
 				6ECCD7991CA7172900F53AD5 /* AccountView.swift in Sources */,
 				157079101CA6299500043676 /* User.swift in Sources */,
 				15AA50121CA637780066CAB9 /* NetworkObjects.swift in Sources */,

@@ -10,6 +10,8 @@ import Foundation
 
 class NetworkFacade : NSObject {
 
+    static let sharedInstance = NetworkFacade()
+    
     let dataAccessor : NetworkingAccessor;
     
     override init() {
