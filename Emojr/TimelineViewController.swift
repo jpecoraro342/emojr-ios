@@ -15,6 +15,7 @@ class TimelineViewController: UIViewController {
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
+        // refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
         
         return refreshControl
     }()
@@ -185,7 +186,7 @@ extension TimelineViewController : UITableViewDataSource {
         
         let post = posts[indexPath.row];
         
-        cell.usernameLabel.text = post.userId
+        cell.usernameLabel.text = post.user.username
         cell.statusImageLabel.text = post.post
         cell.timestampLabel.text = timeDisplayForTimestamp(NSDate().timeIntervalSince1970 - 12)
         

@@ -67,7 +67,7 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         var posts = [Post]();
         
         for (_, post) in postDictionary {
-            if post.userId == userId {
+            if post.user.id == userId {
                 posts.append(post)
             }
         }
@@ -117,14 +117,14 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
     }
     
     func createPost(userId: String, post: String, completionBlock: PostClosure?) {
-        let newPost = Post(userId: userId, post: post, reactions: [Reaction]())
+        let newPost = Post(user: userDictionary[userId]!, post: post, reactions: [Reaction](), created: NSDate(timeIntervalSinceNow: -60*60*3))
         postDictionary[newPost.id] = newPost;
         
         completionBlock?(error: nil, post: newPost)
     }
     
-    func reactToPost(userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
-        let newReaction = Reaction(user: userDictionary[userId]!, reaction: reaction)
+    func reactToPost(username: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
+        let newReaction = Reaction(username: username, reaction: reaction)
         
         var post = postDictionary[postId]
         var reactionArr = post?.reactions
