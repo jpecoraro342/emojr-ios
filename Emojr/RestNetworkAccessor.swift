@@ -138,7 +138,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         Alamofire.request(.POST, URLStringWithExtension("follow"), parameters: parameters)
             .responseJSON { response in
                 if let json = response.result.value {
-                    completionBlock?(success: json["success"] as! Bool);
+                    completionBlock?(success: true);
                 }
                 else {
                     completionBlock?(success: false);

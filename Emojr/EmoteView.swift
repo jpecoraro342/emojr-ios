@@ -87,17 +87,6 @@ extension EmoteView: UITextFieldDelegate {
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        // TODO: Check if new string is an emoji
-        
-        var newTextLength = string.characters.count
-        
-        if let count = textField.text?.characters.count {
-            newTextLength += count
-        }
-        
-        if newTextLength <= 1 {
-            return true
-        }
-        return false
+        return true
     }
 }

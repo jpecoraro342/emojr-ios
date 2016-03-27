@@ -131,7 +131,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func dismissView(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(false, completion: nil)
     }
 }
 
