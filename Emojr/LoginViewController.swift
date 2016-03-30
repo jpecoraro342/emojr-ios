@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class LoginViewController: UIViewController {
     
@@ -74,11 +75,24 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func disableUI() {
+        signInButton.enabled = false
+        signUpButton.enabled = false
+        SVProgressHUD.show()
+    }
+    
+    func enableUI() {
+        signInButton.enabled = true
+        signUpButton.enabled = true
+        SVProgressHUD.dismiss()
+    }
+    
     @IBAction func signIn() {
         errorLabel.hidden = true
         let (valid, message) = validLoginForm()
         
         if valid {
+            disableUI()
             NetworkFacade.sharedInstance.signInUser(usernameField.text!, password: passwordField.text!) { (error, user) in
                 if let e = error {
                     self.displayError(e.localizedDescription)
@@ -88,10 +102,12 @@ class LoginViewController: UIViewController {
                     UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.username", service: "com.emojr")
                     UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
                     
+                    self.enableUI()
                     self.performSegueWithIdentifier("login", sender: self)
                 }
             }
         } else {
+            self.enableUI()
             displayError(message)
         }
     }
