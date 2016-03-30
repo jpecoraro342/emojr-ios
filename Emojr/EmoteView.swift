@@ -15,7 +15,9 @@ class EmoteView: UIView {
     @IBOutlet weak var emoteButton: UIButton!
     @IBOutlet weak var textFieldBar: UIView!
 
-    var controller: TimelineViewController?;
+    var controller: TimelineViewController?
+    
+    var reacting = false
     
     class func instanceFromNib() -> EmoteView {
         return UINib(nibName: "EmoteView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! EmoteView
@@ -28,6 +30,7 @@ class EmoteView: UIView {
     }
     
     func setButtonTitle(reacting: Bool) {
+        self.reacting = reacting
         if !reacting {
             emoteButton.setTitle("Emote!", forState: .Normal)
         } else {
@@ -87,6 +90,13 @@ extension EmoteView: UITextFieldDelegate {
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        return true
+        if reacting {
+            guard let text = textField.text else { return true }
+            
+            let newLength = text.characters.count + string.characters.count - range.length
+            return newLength <= 1
+        } else {
+            return true
+        }
     }
 }
