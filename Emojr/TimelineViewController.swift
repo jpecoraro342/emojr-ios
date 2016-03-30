@@ -24,7 +24,7 @@ class TimelineViewController: UIViewController {
     var emoteView: EmoteView?
     var fadeView: UIView?
     var reacting = false
-    var reactingToPostId: String?
+    var reactionInfo : (id: String?, index: NSIndexPath?)
     
     let networkFacade = NetworkFacade()
     
@@ -91,8 +91,8 @@ class TimelineViewController: UIViewController {
         posts.sortInPlace({$0.created.isGreaterThanDate($1.created)})
     }
     
-    func reactToPostWithId(id: String) {
-        reactingToPostId = id
+    func reactToPostWithId(id: String, index: NSIndexPath) {
+        reactionInfo = (id, index)
         displayPostForm(true)
     }
     
@@ -171,12 +171,13 @@ class TimelineViewController: UIViewController {
     }
     
     func postReaction(post: String) {
-        if let id = reactingToPostId {
+        if let id = reactionInfo.id {
             networkFacade.reactToPost(User.sharedInstance.username!, postId: id, reaction: post)
             { (error, reaction) in
-                if let newReaction = reaction {
-                    // TODO: Attach reaction to post
-                    self.reactingToPostId = nil
+                if let _ = reaction {
+                    let cell = self.timelineTableView.cellForRowAtIndexPath(self.reactionInfo.index!) as! TimelineTableViewCell
+                    cell.addReaction(post)
+                    self.reactionInfo = (nil, nil)
                 }
             }
         }
@@ -187,7 +188,7 @@ class TimelineViewController: UIViewController {
 
 extension TimelineViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        reactToPostWithId(posts[indexPath.row].id)
+        reactToPostWithId(posts[indexPath.row].id, index: indexPath)
         timelineTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }

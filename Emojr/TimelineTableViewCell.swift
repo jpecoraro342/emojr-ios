@@ -43,6 +43,16 @@ class TimelineTableViewCell: UITableViewCell {
         reactionsLabel.text = reactionString
     }
     
+    func addReaction(reaction: String) {
+        if let currentString = reactionsLabel.text {
+            var newReactionString = currentString
+            newReactionString += reaction
+            reactionsLabel.text = newReactionString
+        } else {
+            reactionsLabel.text = reaction
+        }
+    }
+    
     func timeDisplayForTimestamp(date: NSDate) -> String {
         let past = NSDate().timeIntervalSinceDate(date)
         
