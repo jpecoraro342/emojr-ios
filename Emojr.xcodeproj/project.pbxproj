@@ -131,11 +131,11 @@
 				1570790F1CA6299500043676 /* User.swift */,
 				1546D39A1CA61A5100D8ECC5 /* AppDelegate.swift */,
 				1546D39E1CA61A5100D8ECC5 /* Main.storyboard */,
-				1546D3A11CA61A5100D8ECC5 /* Assets.xcassets */,
 				1546D3A31CA61A5100D8ECC5 /* LaunchScreen.storyboard */,
-				1546D3A61CA61A5100D8ECC5 /* Info.plist */,
 				6ECCD79D1CA72C8D00F53AD5 /* EmoteView.xib */,
 				6ECCD79F1CA7642200F53AD5 /* AccountView.xib */,
+				1546D3A11CA61A5100D8ECC5 /* Assets.xcassets */,
+				1546D3A61CA61A5100D8ECC5 /* Info.plist */,
 			);
 			path = Emojr;
 			sourceTree = "<group>";

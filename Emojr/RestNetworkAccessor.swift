@@ -137,7 +137,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         let parameters = [ "userid" : userId, "followUserId" : userIdToFollow]
         Alamofire.request(.POST, URLStringWithExtension("follow"), parameters: parameters)
             .responseJSON { response in
-                if let json = response.result.value {
+                if let _ = response.result.value {
                     completionBlock?(success: true);
                 }
                 else {

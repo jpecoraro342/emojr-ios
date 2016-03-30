@@ -106,12 +106,14 @@ class TimelineViewController: UIViewController {
         self.view.addSubview(fadeView!)
         self.view.addSubview(emoteView!)
         
-        UIView.animateWithDuration(0.5) {
+        UIView.animateWithDuration(0.5, animations: {
             self.fadeView?.alpha = 0.6
             
             var frame = self.emoteView?.frame
             frame!.origin.x = 0
             self.emoteView?.frame = frame!
+        }) { (completed) in
+            self.emoteView?.emojiField.becomeFirstResponder()
         }
     }
     

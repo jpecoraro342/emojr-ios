@@ -42,33 +42,6 @@ let networkErrorDomain = "com.emojr.network";
 
 // MARK: Debug
 
-func isAllEmoji(string: String) -> Bool {
-    let emojiSet = NSMutableCharacterSet(range: NSRange(location: 0x1F601, length: 0x4e))
-    print(emojiSet)
-    emojiSet.formUnionWithCharacterSet(NSCharacterSet(range: NSRange(location: 0x2702, length: 0xae)))
-    print(emojiSet)
-    emojiSet.formUnionWithCharacterSet(NSCharacterSet(range: NSRange(location: 0x1F680, length: 0x40)))
-    print(emojiSet)
-    emojiSet.formUnionWithCharacterSet(NSCharacterSet(range: NSRange(location: 0x24C2, length: 0x1cd8f)))
-    print(emojiSet)
-    emojiSet.formUnionWithCharacterSet(NSCharacterSet(range: NSRange(location: 0x1F600, length: 0x36)))
-    print(emojiSet)
-    emojiSet.formUnionWithCharacterSet(NSCharacterSet(range: NSRange(location: 0x1F681, length: 0x44)))
-    print(emojiSet)
-    emojiSet.formUnionWithCharacterSet(NSCharacterSet(range: NSRange(location: 0x1F30D, length: 0x25a)))
-    print(emojiSet)
-    
-    let notEmojiSet = emojiSet.invertedSet
-    print(notEmojiSet)
-    let range = string.rangeOfCharacterFromSet(notEmojiSet)
-    
-    if let _ = range {
-        return false
-    } else {
-        return true
-    }
-}
-
 func randomStringWithLength (len : Int) -> NSString {
     
     let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
