@@ -118,7 +118,7 @@ class TimelineViewController: UIViewController {
     }
     
     func dismissPostForm() {
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animateWithDuration(0.4, animations: {
             self.fadeView?.alpha = 0.0
             
             var frame = self.emoteView?.frame
@@ -141,7 +141,7 @@ class TimelineViewController: UIViewController {
     }
     
     func displayAccount() {
-        UIView.animateWithDuration(1.0, animations: { 
+        UIView.animateWithDuration(0.4, animations: {
             var frame = self.accountView!.frame
             frame.origin.y = 0
             self.accountView!.frame = frame
@@ -151,7 +151,7 @@ class TimelineViewController: UIViewController {
     }
     
     func dismissAccount() {
-        UIView.animateWithDuration(1.0, animations: {
+        UIView.animateWithDuration(0.5, animations: {
             var frame = self.accountView!.frame
             frame.origin.y = (-1*self.view.frame.size.height + 84)
             self.accountView!.frame = frame
