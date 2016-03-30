@@ -91,12 +91,12 @@ extension EmoteView: UITextFieldDelegate {
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if reacting {
-            guard let text = textField.text else { return true }
+            guard let text = textField.text else { return string.isAllEmoji() }
             
             let newLength = text.characters.count + string.characters.count - range.length
             return newLength <= 1
         } else {
-            return true
+            return string.isAllEmoji()
         }
     }
 }
