@@ -166,7 +166,7 @@ extension FollowingViewController : UITableViewDataSource {
         var users = [UserData]()
         
         for user in allUsers {
-            if user.username.hasPrefix(prefix) {
+            if user.username.hasPrefix(prefix) || user.fullname!.hasPrefix(prefix) {
                 users.append(user)
             }
         }
