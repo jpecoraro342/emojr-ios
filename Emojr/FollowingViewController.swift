@@ -12,8 +12,10 @@ class FollowingViewController: UIViewController {
     
     @IBOutlet weak var followingTableView: UITableView!
     @IBOutlet weak var navigationBar: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var allUsers = [UserData]()
+    var filteredUsers = [UserData]()
     var followingUsers = Dictionary<String, Bool>()
     
     lazy var refreshControl: UIRefreshControl = {
@@ -29,6 +31,7 @@ class FollowingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBar.backgroundImage = UIImage();
         followingTableView.addSubview(refreshControl)
 
         refreshData()
@@ -49,6 +52,7 @@ class FollowingViewController: UIViewController {
             }
             else {
                 self.allUsers = list!
+                self.filteredUsers = list!
                 
                 for var user in self.allUsers {
                     self.followingUsers[user.id] = false;
@@ -133,13 +137,13 @@ extension FollowingViewController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.allUsers.count
+        return self.filteredUsers.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FollowingCell") as! FollowingTableViewCell;
         
-        let user = allUsers[indexPath.row]
+        let user = filteredUsers[indexPath.row]
     
         cell.usernameLabel.text = user.username
         cell.fullNameLabel.text = user.fullname
@@ -152,5 +156,33 @@ extension FollowingViewController : UITableViewDataSource {
         }
         
         return cell;
+    }
+    
+    func usersWithPrefix(prefix: String) -> [UserData] {
+        if prefix == "" {
+            return allUsers
+        }
+        
+        var users = [UserData]()
+        
+        for user in allUsers {
+            if user.username.hasPrefix(prefix) {
+                users.append(user)
+            }
+        }
+        
+        return users
+    }
+}
+
+extension FollowingViewController : UISearchBarDelegate {
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredUsers = usersWithPrefix(searchText)
+        followingTableView.reloadData()
+    }
+    
+    func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        // TODO: Limit input to emoji
+        return true
     }
 }

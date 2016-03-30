@@ -27,7 +27,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dd5-re-Eel" id="kN8-gH-GII">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😙🙏🏼🔑✊🏾🙃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bG1-RA-03K">
@@ -442,7 +442,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ubx-C9-oyC" id="cNj-hJ-Gc9">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOe-8e-dd4">
@@ -511,11 +511,23 @@
                                             <action selector="closeView:" destination="V9F-S3-6qQ" eventType="touchUpInside" id="Egl-QH-14q"/>
                                         </connections>
                                     </button>
+                                    <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="search for friends" translatesAutoresizingMaskIntoConstraints="NO" id="dTX-MY-KDb">
+                                        <rect key="frame" x="43" y="18" width="557" height="44"/>
+                                        <color key="barTintColor" red="0.20392156859999999" green="0.56470588239999997" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="light"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="V9F-S3-6qQ" id="h0u-AR-O2p"/>
+                                        </connections>
+                                    </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20392156859999999" green="0.56470588239999997" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="w8e-rG-ahe" firstAttribute="leading" secondItem="VQK-06-81R" secondAttribute="leading" constant="15" id="7OP-18-3VM"/>
+                                    <constraint firstItem="dTX-MY-KDb" firstAttribute="top" secondItem="VQK-06-81R" secondAttribute="top" constant="18" id="Fzn-tR-VY5"/>
+                                    <constraint firstAttribute="bottom" secondItem="dTX-MY-KDb" secondAttribute="bottom" constant="2" id="Kcs-BX-K2M"/>
+                                    <constraint firstItem="dTX-MY-KDb" firstAttribute="leading" secondItem="w8e-rG-ahe" secondAttribute="trailing" constant="8" id="NG8-5v-Rk6"/>
                                     <constraint firstItem="w8e-rG-ahe" firstAttribute="top" secondItem="VQK-06-81R" secondAttribute="top" constant="30" id="abD-LQ-82b"/>
+                                    <constraint firstAttribute="trailing" secondItem="dTX-MY-KDb" secondAttribute="trailing" id="alm-NG-11S"/>
                                     <constraint firstAttribute="height" constant="64" id="tpX-Fy-1nG"/>
                                 </constraints>
                             </view>
@@ -534,6 +546,7 @@
                     <connections>
                         <outlet property="followingTableView" destination="PFq-Pl-Bru" id="Rkb-m9-9ZI"/>
                         <outlet property="navigationBar" destination="VQK-06-81R" id="yp1-fO-g7Q"/>
+                        <outlet property="searchBar" destination="dTX-MY-KDb" id="cIu-Wt-KLC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="656-0E-kBn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -735,7 +748,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r6R-03-C2s" id="WSC-4U-mh6">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMt-Xk-aBu">
