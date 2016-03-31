@@ -30,6 +30,13 @@ let blueLight = UIColor(hexString: "6FE7DD");
 let blue = UIColor(hexString: "3490DE");
 let offWhite = UIColor(hexString: "fefefe");
 
+let emojiKeyboardImages: [UIImage] = [UIImage(named: "recentCategory")!,
+                                      UIImage(named: "faceCategory")!,
+                                      UIImage(named: "bellCategory")!,
+                                      UIImage(named: "plantCategory")!,
+                                      UIImage(named: "carCategory")!,
+                                      UIImage(named: "characterCategory")!]
+
 // MARK: Segues
 
 // MARK: Reuse Identifiers
