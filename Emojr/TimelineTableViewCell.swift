@@ -16,6 +16,7 @@ class TimelineTableViewCell: UITableViewCell {
     @IBOutlet weak var reactionsLabel: UILabel!
     
     var reactions: [Reaction] = []
+    var post: Post?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +27,7 @@ class TimelineTableViewCell: UITableViewCell {
     }
     
     func configureWithPost(post: Post) {
+        self.post = post
         usernameLabel.text = post.user.username
         statusImageLabel.text = post.post
         timestampLabel.text = timeDisplayForTimestamp(post.created)

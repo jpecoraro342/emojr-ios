@@ -14,11 +14,12 @@ class TimelineViewController: UIViewController {
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        // refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
-        refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
         
         return refreshControl
     }()
+    
+    var tableDataSource: TimelineTableViewDataSource = TimelineTableViewDataSource()
     
     var accountView: AccountView?
     var emoteView: EmoteView?
@@ -32,6 +33,9 @@ class TimelineViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        timelineTableView.delegate = tableDataSource
+        timelineTableView.dataSource = tableDataSource
         
         createViews()
         
@@ -69,26 +73,18 @@ class TimelineViewController: UIViewController {
         fadeView?.backgroundColor = UIColor.blackColor()
         fadeView?.alpha = 0.0
         
-        //let recognizer = UITapGestureRecognizer(target: self, action: #selector(TimelineViewController.dismissPostForm))
-        let recognizer = UITapGestureRecognizer(target: self, action: "dismissPostForm")
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(TimelineViewController.dismissPostForm))
         fadeView?.addGestureRecognizer(recognizer)
     }
     
     func refreshData() {
-        self.posts = []
-        
         networkFacade.getAllFollowingPosts(User.sharedInstance.id!) { (error, list) in
             if let posts = list {
-                self.posts = posts
-                self.sortPostsByDate()
+                self.tableDataSource.configureWithPosts(posts, delegate: self)
                 self.timelineTableView.reloadData()
                 self.refreshControl.endRefreshing()
             }
         }
-    }
-    
-    func sortPostsByDate() {
-        posts.sortInPlace({$0.created.isGreaterThanDate($1.created)})
     }
     
     func reactToPostWithId(id: String, index: NSIndexPath) {
@@ -186,29 +182,12 @@ class TimelineViewController: UIViewController {
     
 }
 
-extension TimelineViewController : UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        reactToPostWithId(posts[indexPath.row].id, index: indexPath)
+extension TimelineViewController : TimelineTableViewDelegate {
+    func cellSelectedInTable(tableView: UITableView, indexPath: NSIndexPath) {
+        reactToPostWithId(tableDataSource.posts[indexPath.row].id, index: indexPath)
         timelineTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
 
-extension TimelineViewController : UITableViewDataSource {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1;
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count;
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TimelineCell") as! TimelineTableViewCell;
-        
-        let post = posts[indexPath.row];
-        
-        cell.configureWithPost(post)
-        
-        return cell;
     }
 }

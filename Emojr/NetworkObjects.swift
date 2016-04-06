@@ -60,7 +60,8 @@ struct Post {
         let dateString = fromJson["created"] as! String
         created = dateFormatter.dateFromString(dateString)!
 
-        reactions = jsonArrayToReactionArray(fromJson["reactions"] as! [AnyObject])
+        //reactions = jsonArrayToReactionArray(fromJson["reactions"] as! [AnyObject])
+        reactions = [Reaction]()
     }
     
     var description: String {

@@ -18,10 +18,12 @@ class FollowingViewController: UIViewController {
     var filteredUsers = [UserData]()
     var followingUsers = Dictionary<String, Bool>()
     
+    var userFeedId: String?
+    var userFeedName: String?
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        // refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
-        refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
         
         return refreshControl
     }()
@@ -43,6 +45,14 @@ class FollowingViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "followingToUserTimeline" {
+            let destinationVc = segue.destinationViewController as! UserTimelineViewController
+            destinationVc.userID = userFeedId!
+            destinationVc.username = userFeedName!
+        }
     }
     
     func refreshData() {
@@ -102,25 +112,29 @@ extension FollowingViewController : UITableViewDelegate {
         
         let user = allUsers[indexPath.row]
         if user.id != User.sharedInstance.id {
-            if followingUsers[user.id] == true {
-                // Nothing to do here, already following
-            }
-            else {
-                let alertController = UIAlertController(title: "Follow \(user.username)", message: "Are you sure you want to start following \(user.username)?", preferredStyle: .Alert)
-                
-                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-                    
-                }
-                alertController.addAction(cancelAction)
-                
-                let OKAction = UIAlertAction(title: "Follow", style: .Default) { (action) in
-                    self.startFollowingUser(user.id)
-                }
-                alertController.addAction(OKAction)
-                
-                self.presentViewController(alertController, animated: true) {
-                }
-            }
+            userFeedId = user.id
+            userFeedName = user.username
+            self.performSegueWithIdentifier("followingToUserTimeline", sender: self)
+            
+//            if followingUsers[user.id] == true {
+//                // Nothing to do here, already following
+//            }
+//            else {
+//                let alertController = UIAlertController(title: "Follow \(user.username)", message: "Are you sure you want to start following \(user.username)?", preferredStyle: .Alert)
+//                
+//                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+//                    
+//                }
+//                alertController.addAction(cancelAction)
+//                
+//                let OKAction = UIAlertAction(title: "Follow", style: .Default) { (action) in
+//                    self.startFollowingUser(user.id)
+//                }
+//                alertController.addAction(OKAction)
+//                
+//                self.presentViewController(alertController, animated: true) {
+//                }
+//            }
         }
         
         followingTableView.deselectRowAtIndexPath(indexPath, animated: true)

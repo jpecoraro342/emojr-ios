@@ -28,6 +28,10 @@ class AccountView: UIView {
         self.controller = controller
         usernameLabel.text = User.sharedInstance.username
     }
+    
+    @IBAction func myFeed(sender: AnyObject) {
+        controller?.performSegueWithIdentifier("accountToUserTimeline", sender: self)
+    }
 
     @IBAction func myFolowers(sender: AnyObject) {
         controller?.performSegueWithIdentifier("accountToFollowers", sender: self)
