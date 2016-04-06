@@ -200,3 +200,10 @@ extension FollowingViewController : UISearchBarDelegate {
         return true
     }
 }
+
+extension FollowingViewController {
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+}
+

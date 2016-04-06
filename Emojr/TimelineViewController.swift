@@ -189,5 +189,8 @@ extension TimelineViewController : TimelineTableViewDelegate {
     }
 }
 
+extension TimelineViewController {
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
 }

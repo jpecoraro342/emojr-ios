@@ -149,3 +149,10 @@ extension SignUpViewController: UITextFieldDelegate {
         return true;
     }
 }
+
+extension SignUpViewController {
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+}
+

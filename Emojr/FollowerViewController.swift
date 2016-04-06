@@ -93,3 +93,10 @@ extension FollowerViewController : UITableViewDataSource {
         return cell;
     }
 }
+
+extension FollowerViewController {
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+}
+

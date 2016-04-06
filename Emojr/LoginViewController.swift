@@ -171,3 +171,9 @@ extension LoginViewController: UITextFieldDelegate {
         return true;
     }
 }
+
+extension LoginViewController {
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+}
