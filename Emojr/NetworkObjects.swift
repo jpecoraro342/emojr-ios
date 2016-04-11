@@ -9,9 +9,11 @@
 import Foundation
 
 struct UserData: CustomStringConvertible, Equatable {
-    var id: String
-    var username: String
+    var id: String?
+    var username: String?
     var fullname: String?
+    var created: NSDate?
+    var lastmodified: NSDate?
     
     init(username: String, fullname: String?) {
         self.username = username
@@ -20,9 +22,9 @@ struct UserData: CustomStringConvertible, Equatable {
     }
     
     init(fromJson: Dictionary<String, AnyObject>) {
-        id = fromJson["_id"] as! String
-        username = fromJson["username"] as! String
-        fullname = fromJson["fullname"] as? String
+        id = stringFromInt(fromJson["pk_userid"] as? Int)
+        username = fromJson["username"] as? String
+        fullname = fromJson["userfullname"] as? String
     }
     
     var description: String {
@@ -35,11 +37,12 @@ func ==(lhs: UserData, rhs: UserData) -> Bool {
 }
 
 struct Post {
-    var id: String
-    var user: UserData
-    var post: String
+    var id: String?
+    var user: UserData?
+    var post: String?
     var reactions: [Reaction]
-    var created: NSDate
+    var created: NSDate?
+    var lastmodified: NSDate?
     
     init(user: UserData, post: String, reactions: [Reaction], created: NSDate) {
         self.user = user
@@ -50,17 +53,16 @@ struct Post {
     }
     
     init(fromJson: Dictionary<String, AnyObject>) {
-        id = fromJson["_id"] as! String
-        user = UserData(fromJson: fromJson["user"] as! Dictionary<String, AnyObject>)
-        post = fromJson["post"] as! String
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        
-        let dateString = fromJson["created"] as! String
-        created = dateFormatter.dateFromString(dateString)!
-
-        reactions = jsonArrayToReactionArray(fromJson["reactions"] as! [AnyObject])
+        id = stringFromInt(fromJson["pk_postid"] as? Int)
+        user = UserData(fromJson: fromJson)
+        post = fromJson["post"] as? String
+        created = dateFromString(fromJson["created"] as? String)
+        if let reactionArray = fromJson["reactions"] as? [AnyObject] {
+            reactions = jsonArrayToReactionArray(reactionArray)
+        }
+        else {
+            reactions = [Reaction]()
+        }
     }
     
     var description: String {
@@ -69,20 +71,22 @@ struct Post {
 }
 
 struct Reaction {
-    var id: String;
-    var username: String;
-    var reaction: String;
+    var id: String?
+    var user: UserData?
+    var reaction: String?
+    var created: NSDate?
+    var lastmodified: NSDate?
 
-    init(username: String, reaction: String) {
-        self.username = username
+    init(user: UserData, reaction: String) {
+        self.user = user
         self.reaction = reaction
         self.id = randomStringWithLength(8) as String
     }
     
     init(fromJson: Dictionary<String, AnyObject>) {
-        id = fromJson["_id"] as! String
-        username = fromJson["username"] as! String
-        reaction = fromJson["reaction"] as! String
+        id = stringFromInt(fromJson["pk_reactionid"] as? Int)
+        user = UserData(fromJson: fromJson)
+        reaction = fromJson["reaction"] as? String
     }
     
     var description: String {
@@ -98,5 +102,24 @@ func jsonArrayToReactionArray(jsonArr: [AnyObject]) -> [Reaction] {
     }
     
     return reactArray
+}
+
+func dateFromString(dateString: String?) -> NSDate? {
+    if let dateString = dateString {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        return dateFormatter.dateFromString(dateString)
+    }
+    
+    return nil;
+}
+
+func stringFromInt(optionalInt: Int?) -> String? {
+    if let value = optionalInt {
+        return "\(value)";
+    }
+    
+    return nil;
 }
 

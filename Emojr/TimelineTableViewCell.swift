@@ -28,9 +28,9 @@ class TimelineTableViewCell: UITableViewCell {
     
     func configureWithPost(post: Post) {
         self.post = post
-        usernameLabel.text = post.user.username
+        usernameLabel.text = post.user!.username
         statusImageLabel.text = post.post
-        timestampLabel.text = timeDisplayForTimestamp(post.created)
+        timestampLabel.text = timeDisplayForTimestamp(post.created!)
         reactions = post.reactions
         configureReactions()
     }
@@ -39,7 +39,7 @@ class TimelineTableViewCell: UITableViewCell {
         var reactionString = ""
         
         for reaction in reactions {
-            reactionString += reaction.reaction
+            reactionString += reaction.reaction!
         }
         
         reactionsLabel.text = reactionString

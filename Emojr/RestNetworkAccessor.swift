@@ -134,7 +134,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
     }
     
     func startFollowingUser(userId: String, userIdToFollow: String, completionBlock: BooleanClosure?) {
-        let parameters = [ "userid" : userId, "followUserId" : userIdToFollow]
+        let parameters = [ "followerUserId" : userId, "followingUserId" : userIdToFollow]
         Alamofire.request(.POST, URLStringWithExtension("follow"), parameters: parameters)
             .responseJSON { response in
                 if let _ = response.result.value {
@@ -173,7 +173,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
     }
     
     func createPost(userId: String, post: String, completionBlock: PostClosure?) {
-        let parameters = ["user" : userId, "post" : post]
+        let parameters = ["userid" : userId, "post" : post]
         Alamofire.request(.POST, URLStringWithExtension("post"), parameters: parameters)
             .responseJSON { response in
                 if let json = response.result.value {
@@ -185,8 +185,8 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
-    func reactToPost(username: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
-        let parameters = ["username" : username, "post" : postId, "reaction" : reaction]
+    func reactToPost(userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
+        let parameters = ["userid" : userId, "postid" : postId, "reaction" : reaction]
         Alamofire.request(.POST, URLStringWithExtension("reaction"), parameters: parameters, encoding: .JSON)
             .responseJSON { response in
                 if let json = response.result.value {

@@ -28,6 +28,6 @@ protocol NetworkingAccessor {
     func signInUser(username: String, password: String, completionBlock: UserDataClosure?);
     
     func createPost(userId: String, post: String, completionBlock: PostClosure?);
-    func reactToPost(username: String, postId: String, reaction: String, completionBlock: ReactionClosure?);
+    func reactToPost(userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?);
     
 }

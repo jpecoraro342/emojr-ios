@@ -67,7 +67,7 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         var posts = [Post]();
         
         for (_, post) in postDictionary {
-            if post.user.id == userId {
+            if post.user!.id == userId {
                 posts.append(post)
             }
         }
@@ -100,9 +100,9 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         }
         else {
             let newUser = UserData(username: username, fullname: fullname)
-            userDictionary[newUser.id] = newUser
-            usernameDictionary[newUser.username] = newUser
-            userFollowingDictionary[newUser.id] = [UserData]()
+            userDictionary[newUser.id!] = newUser
+            usernameDictionary[newUser.username!] = newUser
+            userFollowingDictionary[newUser.id!] = [UserData]()
             completionBlock?(error: nil, user: newUser)
         }
     }
@@ -118,13 +118,13 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
     
     func createPost(userId: String, post: String, completionBlock: PostClosure?) {
         let newPost = Post(user: userDictionary[userId]!, post: post, reactions: [Reaction](), created: NSDate(timeIntervalSinceNow: -60*60*3))
-        postDictionary[newPost.id] = newPost;
+        postDictionary[newPost.id!] = newPost;
         
         completionBlock?(error: nil, post: newPost)
     }
     
-    func reactToPost(username: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
-        let newReaction = Reaction(username: username, reaction: reaction)
+    func reactToPost(userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
+        let newReaction = Reaction(user: userDictionary[userId]!, reaction: reaction)
         
         var post = postDictionary[postId]
         var reactionArr = post?.reactions
@@ -147,27 +147,27 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         let james = usernameDictionary["😌"]!
         let jacob = usernameDictionary["🍆"]!
         
-        startFollowingUser(james.id, userIdToFollow: "🍆", completionBlock: nil)
-        startFollowingUser(jacob.id, userIdToFollow: "😌", completionBlock: nil)
+        startFollowingUser(james.id!, userIdToFollow: "🍆", completionBlock: nil)
+        startFollowingUser(jacob.id!, userIdToFollow: "😌", completionBlock: nil)
         
-        startFollowingUser(james.id, userIdToFollow: "😎😈😎", completionBlock: nil)
-        startFollowingUser(jacob.id, userIdToFollow: "😎😈😎", completionBlock: nil)
+        startFollowingUser(james.id!, userIdToFollow: "😎😈😎", completionBlock: nil)
+        startFollowingUser(jacob.id!, userIdToFollow: "😎😈😎", completionBlock: nil)
         
         var postId = ""
         
-        createPost(joe.id, post: "🍔🍺", completionBlock: { (error, post) in
-            postId = post!.id
+        createPost(joe.id!, post: "🍔🍺", completionBlock: { (error, post) in
+            postId = post!.id!
         })
         
-        createPost(joe.id, post: "👋🏼👵🏻😡", completionBlock: nil)
+        createPost(joe.id!, post: "👋🏼👵🏻😡", completionBlock: nil)
         
-        createPost(james.id, post: "👺👾🙇", completionBlock: nil)
-        createPost(jacob.id, post: "🐊☀️❄️🌄🌋", completionBlock: nil)
+        createPost(james.id!, post: "👺👾🙇", completionBlock: nil)
+        createPost(jacob.id!, post: "🐊☀️❄️🌄🌋", completionBlock: nil)
         
         let tempPost = postDictionary[postId]!
         
-        reactToPost(james.id, postId: tempPost.id, reaction: "👍🏽", completionBlock: nil)
-        reactToPost(jacob.id, postId: tempPost.id, reaction: "👃🏼", completionBlock: nil)
+        reactToPost(james.id!, postId: tempPost.id!, reaction: "👍🏽", completionBlock: nil)
+        reactToPost(jacob.id!, postId: tempPost.id!, reaction: "👃🏼", completionBlock: nil)
     }
     
     func URLStringWithExtension(urlExtension: String) -> String {

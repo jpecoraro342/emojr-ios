@@ -64,8 +64,8 @@ class FollowingViewController: UIViewController {
                 self.allUsers = list!
                 self.filteredUsers = list!
                 
-                for var user in self.allUsers {
-                    self.followingUsers[user.id] = false;
+                for user in self.allUsers {
+                    self.followingUsers[user.id!] = false;
                 }
                 
                 self.queryFollowing();
@@ -79,8 +79,8 @@ class FollowingViewController: UIViewController {
                 print(err)
             }
             else {
-                for var user in list! {
-                    self.followingUsers[user.id] = true;
+                for user in list! {
+                    self.followingUsers[user.id!] = true;
                 }
                 
                 self.followingTableView.reloadData()
@@ -162,7 +162,7 @@ extension FollowingViewController : UITableViewDataSource {
         cell.usernameLabel.text = user.username
         cell.fullNameLabel.text = user.fullname
         
-        if followingUsers[user.id] == true {
+        if followingUsers[user.id!] == true {
             cell.emojiFollowingLabel.hidden = false
         }
         else {
@@ -180,7 +180,7 @@ extension FollowingViewController : UITableViewDataSource {
         var users = [UserData]()
         
         for user in allUsers {
-            if user.username.hasPrefix(prefix) || user.fullname!.hasPrefix(prefix) {
+            if user.username!.hasPrefix(prefix) || user.fullname!.hasPrefix(prefix) {
                 users.append(user)
             }
         }

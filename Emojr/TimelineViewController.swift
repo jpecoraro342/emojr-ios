@@ -168,7 +168,7 @@ class TimelineViewController: UIViewController {
     
     func postReaction(post: String) {
         if let id = reactionInfo.id {
-            networkFacade.reactToPost(User.sharedInstance.username!, postId: id, reaction: post)
+            networkFacade.reactToPost(User.sharedInstance.id!, postId: id, reaction: post)
             { (error, reaction) in
                 if let _ = reaction {
                     let cell = self.timelineTableView.cellForRowAtIndexPath(self.reactionInfo.index!) as! TimelineTableViewCell
@@ -184,7 +184,7 @@ class TimelineViewController: UIViewController {
 
 extension TimelineViewController : TimelineTableViewDelegate {
     func cellSelectedInTable(tableView: UITableView, indexPath: NSIndexPath) {
-        reactToPostWithId(tableDataSource.posts[indexPath.row].id, index: indexPath)
+        reactToPostWithId(tableDataSource.posts[indexPath.row].id!, index: indexPath)
         timelineTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }

@@ -23,7 +23,7 @@ class TimelineTableViewDataSource: NSObject {
     }
     
     func sortPostsByDate() {
-        posts.sortInPlace({$0.created.isGreaterThanDate($1.created)})
+        posts.sortInPlace({$0.created!.isGreaterThanDate($1.created!)})
     }
 }
 
