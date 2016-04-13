@@ -71,6 +71,11 @@ class NetworkFacade : NSObject {
     func reactToPost(userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
         dataAccessor.reactToPost(userId, postId: postId, reaction: reaction, completionBlock: completionBlock)
     }
+    
+    // DELETE
+    func stopFollowingUser(userId: String, userIdToStopFollowing: String, completionBlock: BooleanClosure?) {
+        dataAccessor.stopFollowingUser(userId, userIdToStopFollowing: userIdToStopFollowing, completionBlock: completionBlock)
+    }
 }
 
 

@@ -30,4 +30,6 @@ protocol NetworkingAccessor {
     func createPost(userId: String, post: String, completionBlock: PostClosure?);
     func reactToPost(userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?);
     
+    // DELETE
+    func stopFollowingUser(userId: String, userIdToStopFollowing: String, completionBlock: BooleanClosure?);
 }

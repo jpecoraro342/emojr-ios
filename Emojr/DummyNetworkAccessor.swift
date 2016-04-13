@@ -136,6 +136,12 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         completionBlock?(error: nil, reaction: newReaction);
     }
     
+    // DELETE
+    
+    func stopFollowingUser(userId: String, userIdToStopFollowing: String, completionBlock: BooleanClosure?) {
+        // TODO: Implement this
+    }
+    
     // Utility
     
     func initializeDummyData() {

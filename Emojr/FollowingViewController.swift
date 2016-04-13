@@ -105,6 +105,61 @@ class FollowingViewController: UIViewController {
         }
     }
     
+    func stopFollowingUser(userId: String) {
+        networkFacade.stopFollowingUser(User.sharedInstance.id!, userIdToStopFollowing: userId) { (success) -> Void in
+            if (success) {
+                self.followingUsers[userId] = false;
+                self.followingTableView.reloadData()
+            }
+            else {
+                print("unable to stop following user")
+            }
+        }
+    }
+    
+    func askToFollowUser(user: UserData) {
+        if followingUsers[user.id!] == true {
+            // Nothing to do here, already following
+        }
+        else {
+            let alertController = UIAlertController(title: "Follow \(user.username!)", message: "Are you sure you want to start following \(user.username!)?", preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                
+            }
+            alertController.addAction(cancelAction)
+            
+            let OKAction = UIAlertAction(title: "Follow", style: .Default) { (action) in
+                self.startFollowingUser(user.id!)
+            }
+            alertController.addAction(OKAction)
+            
+            self.presentViewController(alertController, animated: true) {
+            }
+        }
+    }
+    
+    func askToStopFollowingUser(user: UserData) {
+        if followingUsers[user.id!] == false {
+            // Nothing to do here, not currently following
+        }
+        else {
+            let alertController = UIAlertController(title: "Unfollow \(user.username!)", message: "Are you sure you want to stop following \(user.username!)?", preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                
+            }
+            alertController.addAction(cancelAction)
+            
+            let OKAction = UIAlertAction(title: "Unfollow", style: .Destructive) { (action) in
+                self.stopFollowingUser(user.id!)
+            }
+            alertController.addAction(OKAction)
+            
+            self.presentViewController(alertController, animated: true) {
+            }
+        }
+    }
 }
 
 extension FollowingViewController : UITableViewDelegate {
@@ -116,28 +171,41 @@ extension FollowingViewController : UITableViewDelegate {
             userFeedName = user.username
             self.performSegueWithIdentifier("followingToUserTimeline", sender: self)
             
-//            if followingUsers[user.id] == true {
-//                // Nothing to do here, already following
-//            }
-//            else {
-//                let alertController = UIAlertController(title: "Follow \(user.username)", message: "Are you sure you want to start following \(user.username)?", preferredStyle: .Alert)
-//                
-//                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-//                    
-//                }
-//                alertController.addAction(cancelAction)
-//                
-//                let OKAction = UIAlertAction(title: "Follow", style: .Default) { (action) in
-//                    self.startFollowingUser(user.id)
-//                }
-//                alertController.addAction(OKAction)
-//                
-//                self.presentViewController(alertController, animated: true) {
-//                }
-//            }
         }
         
         followingTableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let user = allUsers[indexPath.row];
+        
+        if followingUsers[user.id!] == true {
+            // Currently following, show stop following rowaction
+            let unfollow = UITableViewRowAction(style: .Normal, title: "Unfollow") { action, index in
+                self.askToStopFollowingUser(self.allUsers[indexPath.row])
+            }
+            
+            unfollow.backgroundColor = UIColor.redColor()
+            
+            return [unfollow]
+        }
+        else {
+            // Not following, show following rowaction
+            let follow = UITableViewRowAction(style: .Normal, title: "Follow") { action, index in
+                self.askToFollowUser(self.allUsers[indexPath.row])
+            }
+            
+            follow.backgroundColor = blue;
+            
+            return [follow]
+        }
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if (User.sharedInstance.id! == allUsers[indexPath.row].id!) {
+            return false
+        }
+        return true
     }
 }
 

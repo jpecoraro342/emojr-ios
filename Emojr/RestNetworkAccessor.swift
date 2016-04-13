@@ -198,6 +198,21 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
+    // DELETE
+    
+    func stopFollowingUser(userId: String, userIdToStopFollowing: String, completionBlock: BooleanClosure?) {
+        let parameters = [ "followerUserId" : userId, "followingUserId" : userIdToStopFollowing]
+        Alamofire.request(.DELETE, URLStringWithExtension("follow"), parameters: parameters)
+            .responseJSON { response in
+                if let _ = response.result.value {
+                    completionBlock?(success: true);
+                }
+                else {
+                    completionBlock?(success: false);
+                }
+        }
+    }
+    
     // Utility
     
     func URLStringWithExtension(urlExtension: String) -> String {
