@@ -130,6 +130,10 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    @IBAction func backgroundTapped(sender: AnyObject) {
+        self.view.endEditing(true);
+    }
+    
     @IBAction func dismissView(sender: AnyObject) {
         self.dismissViewControllerAnimated(false, completion: nil)
     }

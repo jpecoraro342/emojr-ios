@@ -138,6 +138,10 @@ class LoginViewController: UIViewController {
         
         return (true, "Success")
     }
+    
+    @IBAction func backgroundTapped(sender: AnyObject) {
+        self.view.endEditing(true);
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "loginToSignup" {
