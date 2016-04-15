@@ -74,7 +74,7 @@ class TimelineViewController: UIViewController {
         fadeView?.alpha = 0.0
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(TimelineViewController.dismissPostForm))
-        fadeView?.addGestureRecognizer(recognizer)
+        emoteView?.addGestureRecognizer(recognizer)
     }
     
     func refreshData() {
