@@ -61,8 +61,10 @@ class FollowingViewController: UIViewController {
                 print(err)
             }
             else {
-                self.allUsers = list!
-                self.filteredUsers = list!
+                let listWithoutMe = list!.filter({ $0.id != User.sharedInstance.id})
+                
+                self.allUsers = listWithoutMe
+                self.filteredUsers = listWithoutMe
                 
                 for user in self.allUsers {
                     self.followingUsers[user.id!] = false;
