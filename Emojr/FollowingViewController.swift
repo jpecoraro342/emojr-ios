@@ -48,7 +48,7 @@ class FollowingViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "followingToUserTimeline" {
+        if segue.identifier == FollowingToUserTimeline {
             let destinationVc = segue.destinationViewController as! UserTimelineViewController
             destinationVc.userID = userFeedId!
             destinationVc.username = userFeedName!
@@ -171,7 +171,7 @@ extension FollowingViewController : UITableViewDelegate {
         if user.id != User.sharedInstance.id {
             userFeedId = user.id
             userFeedName = user.username
-            self.performSegueWithIdentifier("followingToUserTimeline", sender: self)
+            self.performSegueWithIdentifier(FollowingToUserTimeline, sender: self)
             
         }
         
@@ -250,8 +250,10 @@ extension FollowingViewController : UITableViewDataSource {
         var users = [UserData]()
         
         for user in allUsers {
-            if user.username!.hasPrefix(prefix) || user.fullname!.hasPrefix(prefix) {
-                users.append(user)
+            if let username = user.username {
+                if (username.hasPrefix(prefix)) {
+                    users.append(user)
+                }
             }
         }
         

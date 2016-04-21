@@ -21,7 +21,6 @@ class TimelineViewController: UIViewController {
     
     var tableDataSource: TimelineTableViewDataSource = TimelineTableViewDataSource()
     
-    var accountView: AccountView?
     var emoteView: EmoteView?
     var fadeView: UIView?
     var reacting = false
@@ -53,15 +52,8 @@ class TimelineViewController: UIViewController {
     func createViews() {
         timelineTableView.addSubview(refreshControl)
         
-        accountView = AccountView.instanceFromNib()
-        accountView?.configureWithController(self)
         var frame = self.view.frame
         frame.origin.y = (-1*frame.size.height + 84)
-        accountView?.frame = frame
-        accountView?.bounds = self.view.bounds
-        if let view = accountView {
-            self.view.addSubview(view)
-        }
         
         emoteView = EmoteView.instanceFromNib()
         emoteView?.configureWithController(self)
@@ -136,26 +128,6 @@ class TimelineViewController: UIViewController {
         }
     }
     
-    func displayAccount() {
-        UIView.animateWithDuration(0.4, animations: {
-            var frame = self.accountView!.frame
-            frame.origin.y = 0
-            self.accountView!.frame = frame
-            }) { (completed) in
-                
-        }
-    }
-    
-    func dismissAccount() {
-        UIView.animateWithDuration(0.5, animations: {
-            var frame = self.accountView!.frame
-            frame.origin.y = (-1*self.view.frame.size.height + 84)
-            self.accountView!.frame = frame
-        }) { (completed) in
-            
-        }
-    }
-    
     func postPost(post: String) {
         networkFacade.createPost(User.sharedInstance.id!, post: post)
         { (error, post) in
@@ -179,6 +151,9 @@ class TimelineViewController: UIViewController {
         }
     }
     
+    @IBAction func postButtonTapped(sender: AnyObject) {
+        self.displayPostForm(false)
+    }
     
 }
 

@@ -103,7 +103,7 @@ class LoginViewController: UIViewController {
                     UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
                     
                     self.enableUI()
-                    self.performSegueWithIdentifier("login", sender: self)
+                    self.performSegueWithIdentifier(LoginToMain, sender: self)
                 }
             }
         } else {
@@ -120,7 +120,7 @@ class LoginViewController: UIViewController {
     @IBAction func signUp() {
         UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.username", service: "com.emojr")
         UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
-        self.performSegueWithIdentifier("loginToSignup", sender: self)
+        self.performSegueWithIdentifier(LoginToSignup, sender: self)
     }
     
     func validLoginForm() -> (Bool, String) {
@@ -144,10 +144,10 @@ class LoginViewController: UIViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "loginToSignup" {
+        if segue.identifier == LoginToSignup {
             let destinationVc = segue.destinationViewController as! SignUpViewController
             destinationVc.completionBlock = { () in
-                self.performSegueWithIdentifier("login", sender: self)
+                self.performSegueWithIdentifier(LoginToMain, sender: self)
             }
         }
     }

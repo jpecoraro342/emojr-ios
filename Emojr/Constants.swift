@@ -37,7 +37,25 @@ let emojiKeyboardImages: [UIImage] = [UIImage(named: "recentCategory")!,
                                       UIImage(named: "carCategory")!,
                                       UIImage(named: "characterCategory")!]
 
-// MARK: Segues
+// MARK: Segue Identifiers
+
+let LoginToMain = "LoginToMain"
+let LoginToSignup = "LoginToSignup"
+let AccountToUserTimeline = "AccountToUserTimeline"
+let AccountToFollower = "AccountToFollower"
+let MainToUserTimeline = "MainToUserTimeline"
+let FollowingToUserTimeline = "FollowingToUserTimeline"
+
+
+// MARK: Storyboard IDs
+
+let LoginVCIdentifier = "LoginViewController"
+let SignUpVCIdentifier = "SignUpViewController"
+let TimelineVCIdentifier = "TimelineViewController"
+let UserTimelineVCIdentifier = "UserTImelineViewController"
+let FollowingVCIdentifier = "FollowingViewController"
+let FollowerVCIdentifier = "FollowerViewController"
+let MainTabVCIdentifier = "MainTabBarViewController"
 
 // MARK: Reuse Identifiers
 
@@ -55,7 +73,7 @@ func randomStringWithLength (len : Int) -> NSString {
     
     let randomString : NSMutableString = NSMutableString(capacity: len)
     
-    for (var i=0; i < len; i+=1){
+    for _ in 0 ..< len {
         let length = UInt32 (letters.length)
         let rand = arc4random_uniform(length)
         randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
