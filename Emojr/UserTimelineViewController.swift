@@ -11,7 +11,6 @@ import UIKit
 class UserTimelineViewController: UIViewController {
     
     @IBOutlet weak var timelineTableView: UITableView!
-    @IBOutlet weak var usernameLabel: UILabel!
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -23,8 +22,8 @@ class UserTimelineViewController: UIViewController {
     let networkFacade = NetworkFacade()
     var tableDataSource: TimelineTableViewDataSource = TimelineTableViewDataSource()
     
-    var userID: String = User.sharedInstance.id!
-    var username: String = User.sharedInstance.username!
+    var userID: String? = User.sharedInstance.id
+    var username: String? = User.sharedInstance.username
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +32,9 @@ class UserTimelineViewController: UIViewController {
         timelineTableView.dataSource = tableDataSource
         timelineTableView.addSubview(refreshControl)
         
-        usernameLabel.text = username
+        navigationItem.title = username
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.systemFontOfSize(32)]
         
         refreshData()
     }
@@ -51,7 +52,7 @@ class UserTimelineViewController: UIViewController {
     }
     
     func refreshData() {
-        networkFacade.getAllPostsFromUser(userID) { (error, list) in
+        networkFacade.getAllPostsFromUser(userID!) { (error, list) in
             if let posts = list {
                 self.tableDataSource.configureWithPosts(posts, delegate: self)
                 self.timelineTableView.reloadData()

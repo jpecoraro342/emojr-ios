@@ -21,4 +21,8 @@ class User : NSObject {
         self.username = data.username
         self.fullname = data.fullname
     }
+    
+    func logout() {
+        
+    }
 }

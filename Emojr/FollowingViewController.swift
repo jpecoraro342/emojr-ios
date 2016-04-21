@@ -50,8 +50,8 @@ class FollowingViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == FollowingToUserTimeline {
             let destinationVc = segue.destinationViewController as! UserTimelineViewController
-            destinationVc.userID = userFeedId!
-            destinationVc.username = userFeedName!
+            destinationVc.userID = userFeedId
+            destinationVc.username = userFeedName
         }
     }
     

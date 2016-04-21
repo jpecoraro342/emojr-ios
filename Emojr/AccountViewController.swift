@@ -15,4 +15,17 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         self.usernameLabel.text = User.sharedInstance.username
     }
+    
+    @IBAction func myFeedButtonTapped(sender: AnyObject) {
+        performSegueWithIdentifier(AccountToUserTimeline, sender: self)
+    }
+    
+    @IBAction func myFollowersButtonTapped(sender: AnyObject) {
+        performSegueWithIdentifier(AccountToFollower, sender: self)
+    }
+    
+    @IBAction func logoutButtonTapped(sender: AnyObject) {
+        User.sharedInstance.logout()
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
