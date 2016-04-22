@@ -16,10 +16,14 @@ class User : NSObject {
     var username: String?
     var fullname: String?
     
+    var userData: UserData?
+    
     func configureWithUserData(data: UserData) {
         self.id = data.id
         self.username = data.username
         self.fullname = data.fullname
+        
+        self.userData = data
     }
     
     func logout() {

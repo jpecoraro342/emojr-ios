@@ -18,8 +18,7 @@ class FollowingViewController: UIViewController {
     var filteredUsers = [UserData]()
     var followingUsers = Dictionary<String, Bool>()
     
-    var userFeedId: String?
-    var userFeedName: String?
+    var userData : UserData?
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -29,11 +28,12 @@ class FollowingViewController: UIViewController {
     }()
     
     let networkFacade = NetworkFacade()
+    let followManager = FollowUserManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchBar.backgroundImage = UIImage();
+        searchBar.backgroundImage = UIImage()
         followingTableView.addSubview(refreshControl)
 
         refreshData()
@@ -50,8 +50,7 @@ class FollowingViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == FollowingToUserTimeline {
             let destinationVc = segue.destinationViewController as! UserTimelineViewController
-            destinationVc.userID = userFeedId
-            destinationVc.username = userFeedName
+            destinationVc.userData = userData
         }
     }
     
@@ -95,49 +94,20 @@ class FollowingViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func startFollowingUser(userId: String) {
-        networkFacade.startFollowingUser(User.sharedInstance.id!, userIdToFollow: userId) { (success) -> Void in
-            if (success) {
-                self.followingUsers[userId] = true;
-                self.followingTableView.reloadData()
-            }
-            else {
-                print("unable to follow user")
-            }
-        }
-    }
-    
-    func stopFollowingUser(userId: String) {
-        networkFacade.stopFollowingUser(User.sharedInstance.id!, userIdToStopFollowing: userId) { (success) -> Void in
-            if (success) {
-                self.followingUsers[userId] = false;
-                self.followingTableView.reloadData()
-            }
-            else {
-                print("unable to stop following user")
-            }
-        }
-    }
-    
     func askToFollowUser(user: UserData) {
         if followingUsers[user.id!] == true {
             // Nothing to do here, already following
         }
         else {
-            let alertController = UIAlertController(title: "Follow \(user.username!)", message: "Are you sure you want to start following \(user.username!)?", preferredStyle: .Alert)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-                
-            }
-            alertController.addAction(cancelAction)
-            
-            let OKAction = UIAlertAction(title: "Follow", style: .Default) { (action) in
-                self.startFollowingUser(user.id!)
-            }
-            alertController.addAction(OKAction)
-            
-            self.presentViewController(alertController, animated: true) {
-            }
+            followManager.askToFollowUser(user, presentingViewController: self, completionBlock: { (success) in
+                if (success) {
+                    self.followingUsers[user.id!] = true;
+                    self.followingTableView.reloadData()
+                }
+                else {
+                    print("unable to follow user")
+                }
+            })
         }
     }
     
@@ -146,20 +116,15 @@ class FollowingViewController: UIViewController {
             // Nothing to do here, not currently following
         }
         else {
-            let alertController = UIAlertController(title: "Unfollow \(user.username!)", message: "Are you sure you want to stop following \(user.username!)?", preferredStyle: .Alert)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-                
-            }
-            alertController.addAction(cancelAction)
-            
-            let OKAction = UIAlertAction(title: "Unfollow", style: .Destructive) { (action) in
-                self.stopFollowingUser(user.id!)
-            }
-            alertController.addAction(OKAction)
-            
-            self.presentViewController(alertController, animated: true) {
-            }
+            followManager.askToStopFollowingUser(user, presentingViewController: self, completionBlock: { (success) in
+                if (success) {
+                    self.followingUsers[user.id!] = false;
+                    self.followingTableView.reloadData()
+                }
+                else {
+                    print("unable to stop following user")
+                }
+            })
         }
     }
 }
@@ -169,8 +134,7 @@ extension FollowingViewController : UITableViewDelegate {
         
         let user = allUsers[indexPath.row]
         if user.id != User.sharedInstance.id {
-            userFeedId = user.id
-            userFeedName = user.username
+            userData = user
             self.performSegueWithIdentifier(FollowingToUserTimeline, sender: self)
             
         }

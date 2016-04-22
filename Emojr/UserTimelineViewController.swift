@@ -20,10 +20,13 @@ class UserTimelineViewController: UIViewController {
     }()
     
     let networkFacade = NetworkFacade()
+    let followManager = FollowUserManager()
+    
     var tableDataSource: TimelineTableViewDataSource = TimelineTableViewDataSource()
     
-    var userID: String? = User.sharedInstance.id
-    var username: String? = User.sharedInstance.username
+    var userData: UserData? = User.sharedInstance.userData
+    
+    var isFollowing: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +35,36 @@ class UserTimelineViewController: UIViewController {
         timelineTableView.dataSource = tableDataSource
         timelineTableView.addSubview(refreshControl)
         
-        navigationItem.title = username
+        navigationItem.title = userData?.username
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.systemFontOfSize(32)]
         
+        if userData?.id != User.sharedInstance.id {
+            if (isFollowing) {
+                
+            }
+            else {
+                let followButton = UIBarButtonItem(title: "👀", style: .Plain, target: self, action: #selector(UserTimelineViewController.followUser))
+                navigationItem.rightBarButtonItem = followButton
+            }
+        }
+        
         refreshData()
+    }
+    
+    func followUser() {
+        followManager.askToFollowUser(userData!, presentingViewController: self, completionBlock: { (success) in
+            if (success) {
+                
+            }
+            else {
+                
+            }
+        })
+    }
+    
+    func stopFollowingUser() {
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -52,7 +80,13 @@ class UserTimelineViewController: UIViewController {
     }
     
     func refreshData() {
-        networkFacade.getAllPostsFromUser(userID!) { (error, list) in
+        guard let user = userData
+            else { return }
+        
+        guard let userId = user.id
+            else { return }
+                
+        networkFacade.getAllPostsFromUser(userId) { (error, list) in
             if let posts = list {
                 self.tableDataSource.configureWithPosts(posts, delegate: self)
                 self.timelineTableView.reloadData()
