@@ -39,17 +39,22 @@ class UserTimelineViewController: UIViewController {
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.systemFontOfSize(32)]
         
+        updateFollowButton()
+        
+        refreshData()
+    }
+    
+    func updateFollowButton() {
         if userData?.id != User.sharedInstance.id {
             if (isFollowing) {
-                
+                let unfollowButton = UIBarButtonItem(title: "Unfollow", style: .Plain, target: self, action: #selector(UserTimelineViewController.stopFollowingUser))
+                navigationItem.rightBarButtonItem = unfollowButton
             }
             else {
-                let followButton = UIBarButtonItem(title: "👀", style: .Plain, target: self, action: #selector(UserTimelineViewController.followUser))
+                let followButton = UIBarButtonItem(title: "Follow", style: .Plain, target: self, action: #selector(UserTimelineViewController.followUser))
                 navigationItem.rightBarButtonItem = followButton
             }
         }
-        
-        refreshData()
     }
     
     func followUser() {
@@ -64,7 +69,14 @@ class UserTimelineViewController: UIViewController {
     }
     
     func stopFollowingUser() {
-        
+        followManager.askToStopFollowingUser(userData!, presentingViewController: self, completionBlock: { (success) in
+            if (success) {
+                
+            }
+            else {
+                
+            }
+        })
     }
     
     override func viewDidAppear(animated: Bool) {

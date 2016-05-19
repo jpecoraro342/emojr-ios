@@ -154,6 +154,24 @@ class TimelineViewController: UIViewController {
     @IBAction func postButtonTapped(sender: AnyObject) {
         self.displayPostForm(false)
     }
+}
+
+extension TimelineViewController {
+    
+    @IBAction func longTapOnCell(sender: UILongPressGestureRecognizer) {
+        if sender.state == .Began {
+            let location = sender.locationInView(self.timelineTableView)
+            let indexPath = self.timelineTableView.indexPathForRowAtPoint(location)
+            
+            if let index = indexPath {
+                longPressOnIndex(index.row)
+            }
+        }
+    }
+    
+    func longPressOnIndex(index: Int) {
+        print("Long press on cell: \(index)")
+    }
     
 }
 

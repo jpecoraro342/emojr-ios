@@ -131,6 +131,7 @@
                                                 <constraint firstItem="dST-nT-weq" firstAttribute="top" secondItem="kN8-gH-GII" secondAttribute="top" constant="30" id="xUp-sb-sqZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="reactionsLabel" destination="CtR-B7-h43" id="znP-27-JJ2"/>
                                             <outlet property="statusImageLabel" destination="dST-nT-weq" id="swF-Pu-5H4"/>
@@ -139,6 +140,9 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="D45-Ch-16S" appends="YES" id="LhC-mz-2Xr"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -159,6 +163,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.80000000000000004" id="D45-Ch-16S">
+                    <connections>
+                        <action selector="longTapOnCell:" destination="BYZ-38-t0r" id="LCT-8K-JNv"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2070" y="-424"/>
         </scene>
@@ -1075,6 +1084,6 @@
         <image name="logo" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UoD-qw-025"/>
+        <segue reference="33h-40-Qql"/>
     </inferredMetricsTieBreakers>
 </document>
