@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Crashlytics
 
 class User : NSObject {
     
@@ -23,8 +24,15 @@ class User : NSObject {
         self.username = data.username
         self.fullname = data.fullname
         
+        self.setupCrashlyticsUser(data)
         self.userData = data
     }
+    
+    func setupCrashlyticsUser(user: UserData) {
+        Crashlytics.sharedInstance().setUserIdentifier(user.id)
+        Crashlytics.sharedInstance().setUserName(user.username)
+    }
+    
     
     func logout() {
         

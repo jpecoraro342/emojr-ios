@@ -33,6 +33,8 @@
 		15AA50161CA6383A0066CAB9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA50151CA6383A0066CAB9 /* Constants.swift */; };
 		15AA50191CA6392F0066CAB9 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA50181CA6392F0066CAB9 /* UIColor+Hex.swift */; };
 		15AA501B1CA639870066CAB9 /* DummyNetworkAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA501A1CA639870066CAB9 /* DummyNetworkAccessor.swift */; };
+		15CC551D1CEE9F14006ABFE3 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CC551B1CEE9F14006ABFE3 /* Fabric.framework */; };
+		15CC551E1CEE9F14006ABFE3 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CC551C1CEE9F14006ABFE3 /* Crashlytics.framework */; };
 		6E18F6B11CAC439000696CC5 /* EmojisList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E18F6AC1CAC439000696CC5 /* EmojisList.plist */; };
 		6E18F6B21CAC439000696CC5 /* AGEmojiPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18F6AD1CAC439000696CC5 /* AGEmojiPageView.m */; };
 		6E18F6B31CAC439000696CC5 /* AGEmojiKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18F6AF1CAC439000696CC5 /* AGEmojiKeyBoardView.m */; };
@@ -91,6 +93,8 @@
 		15AA50151CA6383A0066CAB9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		15AA50181CA6392F0066CAB9 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		15AA501A1CA639870066CAB9 /* DummyNetworkAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyNetworkAccessor.swift; sourceTree = "<group>"; };
+		15CC551B1CEE9F14006ABFE3 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		15CC551C1CEE9F14006ABFE3 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6E18F6AC1CAC439000696CC5 /* EmojisList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EmojisList.plist; sourceTree = "<group>"; };
 		6E18F6AD1CAC439000696CC5 /* AGEmojiPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEmojiPageView.m; sourceTree = "<group>"; };
 		6E18F6AE1CAC439000696CC5 /* AGEmojiPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGEmojiPageView.h; sourceTree = "<group>"; };
@@ -113,8 +117,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1546D3B41CA61D2B00D8ECC5 /* SVProgressHUD.framework in Frameworks */,
+				15CC551E1CEE9F14006ABFE3 /* Crashlytics.framework in Frameworks */,
 				15AA50071CA637570066CAB9 /* Alamofire.framework in Frameworks */,
 				15AA50091CA637570066CAB9 /* SwiftyJSON.framework in Frameworks */,
+				15CC551D1CEE9F14006ABFE3 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,12 +162,12 @@
 		1546D3991CA61A5100D8ECC5 /* Emojr */ = {
 			isa = PBXGroup;
 			children = (
+				1546D39A1CA61A5100D8ECC5 /* AppDelegate.swift */,
 				15313C371CC9499000745760 /* ViewControllers */,
 				6EF1EF4A1CB4EE5000992A2F /* Model */,
 				6ECCD79A1CA717DA00F53AD5 /* View */,
 				15AA50171CA638F50066CAB9 /* Utilities */,
 				1546D3BA1CA61D4D00D8ECC5 /* Networking */,
-				1546D39A1CA61A5100D8ECC5 /* AppDelegate.swift */,
 				1546D39E1CA61A5100D8ECC5 /* Main.storyboard */,
 				1546D3A31CA61A5100D8ECC5 /* LaunchScreen.storyboard */,
 				6ECCD79D1CA72C8D00F53AD5 /* EmoteView.xib */,
@@ -175,6 +181,8 @@
 		1546D3B91CA61D3100D8ECC5 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				15CC551B1CEE9F14006ABFE3 /* Fabric.framework */,
+				15CC551C1CEE9F14006ABFE3 /* Crashlytics.framework */,
 				6E18F6B41CAC439C00696CC5 /* AGEmojiKeyBoard */,
 				15454DEF1CA7E00900A520D1 /* UICKeyChainStore.h */,
 				15454DF01CA7E00900A520D1 /* UICKeyChainStore.m */,
@@ -252,6 +260,7 @@
 				1546D3941CA61A5100D8ECC5 /* Frameworks */,
 				1546D3951CA61A5100D8ECC5 /* Resources */,
 				1546D3B81CA61D2B00D8ECC5 /* Embed Frameworks */,
+				15CC551A1CEE9EE3006ABFE3 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -310,6 +319,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		15CC551A1CEE9EE3006ABFE3 /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run c4ea490589e8b5ba9b19e21b752e709dce57b97e ef6952f24283b37e69a3378338e6f28c441fb470c5664f6d11053c6d343f3d56";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1546D3931CA61A5100D8ECC5 /* Sources */ = {
@@ -459,6 +485,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Emojr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -480,6 +507,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Emojr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
