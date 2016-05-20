@@ -26,9 +26,9 @@ class TimelineViewController: UIViewController {
     var reacting = false
     var reactionInfo : (id: String?, index: NSIndexPath?)
     
-    let networkFacade = NetworkFacade()
+    var selectedUserData : UserData?
     
-    var posts: [Post] = []
+    let networkFacade = NetworkFacade()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,8 +131,9 @@ class TimelineViewController: UIViewController {
     func postPost(post: String) {
         networkFacade.createPost(User.sharedInstance.id!, post: post)
         { (error, post) in
-            if let newPost = post {
-                self.posts.insert(newPost, atIndex: 0)
+            if var newPost = post {
+                newPost.user = User.sharedInstance.userData
+                self.tableDataSource.insertPost(newPost)
                 self.timelineTableView.reloadData()
             }
         }
@@ -154,10 +155,16 @@ class TimelineViewController: UIViewController {
     @IBAction func postButtonTapped(sender: AnyObject) {
         self.displayPostForm(false)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == MainToUserTimeline {
+            let destinationVc = segue.destinationViewController as! UserTimelineViewController
+            destinationVc.userData = self.selectedUserData
+        }
+    }
 }
 
 extension TimelineViewController {
-    
     @IBAction func longTapOnCell(sender: UILongPressGestureRecognizer) {
         if sender.state == .Began {
             let location = sender.locationInView(self.timelineTableView)
@@ -171,6 +178,23 @@ extension TimelineViewController {
     
     func longPressOnIndex(index: Int) {
         print("Long press on cell: \(index)")
+        let userSelected = tableDataSource.posts[index].user
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        if let user = userSelected {
+            let viewUserPageAction = UIAlertAction(title: "View \(user.username!) Feed", style: .Default) { (action: UIAlertAction) in
+                self.selectedUserData = user
+                self.performSegueWithIdentifier(MainToUserTimeline, sender: self)
+            }
+            
+            alertController.addAction(viewUserPageAction)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancel)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
 }

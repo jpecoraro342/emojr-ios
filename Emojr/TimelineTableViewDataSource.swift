@@ -25,6 +25,10 @@ class TimelineTableViewDataSource: NSObject {
     func sortPostsByDate() {
         posts.sortInPlace({$0.created!.isGreaterThanDate($1.created!)})
     }
+    
+    func insertPost(newPost: Post) {
+        posts.insert(newPost, atIndex: 0)
+    }
 }
 
 extension TimelineTableViewDataSource : UITableViewDelegate {
