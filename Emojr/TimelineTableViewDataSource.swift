@@ -18,8 +18,11 @@ class TimelineTableViewDataSource: NSObject {
     
     func configureWithPosts(posts: [Post], delegate: TimelineTableViewDelegate) {
         self.posts = posts
-        sortPostsByDate()
         self.delegate = delegate
+    }
+    
+    func addPosts(newPosts: [Post]) {
+        self.posts.appendContentsOf(newPosts)
     }
     
     func sortPostsByDate() {

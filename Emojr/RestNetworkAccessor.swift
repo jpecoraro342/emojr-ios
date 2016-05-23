@@ -125,7 +125,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         Alamofire.request(.POST, URLStringWithExtension("user/available"), parameters: ["username" : username], encoding: .JSON)
             .responseJSON { response in
                 if let json = response.result.value {
-                    completionBlock?(success: json["available"] as! Bool);
+                    completionBlock?(success: (json["available"] as String) as! Bool);
                 }
                 else {
                     completionBlock?(success: false);
