@@ -59,6 +59,8 @@ let MainTabVCIdentifier = "MainTabBarViewController"
 
 // MARK: Reuse Identifiers
 
+let LoadingCellIdentifier = "loadingCell"
+
 // MARK:
 
 let baseURL = "https://emojr.herokuapp.com/api";

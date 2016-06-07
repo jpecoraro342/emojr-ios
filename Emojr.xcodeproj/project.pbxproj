@@ -36,6 +36,7 @@
 		15CC551D1CEE9F14006ABFE3 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CC551B1CEE9F14006ABFE3 /* Fabric.framework */; };
 		15CC551E1CEE9F14006ABFE3 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CC551C1CEE9F14006ABFE3 /* Crashlytics.framework */; };
 		15CC55201CEEA7D8006ABFE3 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC551F1CEEA7D8006ABFE3 /* AnalyticsManager.swift */; };
+		15CC55221CF2B19B006ABFE3 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC55211CF2B19B006ABFE3 /* LoadingTableViewCell.swift */; };
 		6E18F6B11CAC439000696CC5 /* EmojisList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E18F6AC1CAC439000696CC5 /* EmojisList.plist */; };
 		6E18F6B21CAC439000696CC5 /* AGEmojiPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18F6AD1CAC439000696CC5 /* AGEmojiPageView.m */; };
 		6E18F6B31CAC439000696CC5 /* AGEmojiKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18F6AF1CAC439000696CC5 /* AGEmojiKeyBoardView.m */; };
@@ -97,6 +98,7 @@
 		15CC551B1CEE9F14006ABFE3 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		15CC551C1CEE9F14006ABFE3 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		15CC551F1CEEA7D8006ABFE3 /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		15CC55211CF2B19B006ABFE3 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		6E18F6AC1CAC439000696CC5 /* EmojisList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EmojisList.plist; sourceTree = "<group>"; };
 		6E18F6AD1CAC439000696CC5 /* AGEmojiPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEmojiPageView.m; sourceTree = "<group>"; };
 		6E18F6AE1CAC439000696CC5 /* AGEmojiPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGEmojiPageView.h; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				6ECCD7961CA7152400F53AD5 /* TimelineTableViewCell.swift */,
 				6ECCD79B1CA72C7600F53AD5 /* EmoteView.swift */,
 				15454DF41CA7ECCB00A520D1 /* FollowingTableViewCell.swift */,
+				15CC55211CF2B19B006ABFE3 /* LoadingTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				15454DF91CA80CAC00A520D1 /* SignUpViewController.swift in Sources */,
 				15AA50101CA637780066CAB9 /* NetworkFacade.swift in Sources */,
 				15AA50161CA6383A0066CAB9 /* Constants.swift in Sources */,
+				15CC55221CF2B19B006ABFE3 /* LoadingTableViewCell.swift in Sources */,
 				6ECCD79C1CA72C7600F53AD5 /* EmoteView.swift in Sources */,
 				6EF1EF491CB4DC2A00992A2F /* UserTimelineViewController.swift in Sources */,
 				15454DF51CA7ECCB00A520D1 /* FollowingTableViewCell.swift in Sources */,

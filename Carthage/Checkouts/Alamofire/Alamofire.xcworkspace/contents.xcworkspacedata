@@ -5,6 +5,9 @@
       location = "group:Alamofire.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Example/iOS Example.xcodeproj">
+      location = "group:iOS Example.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Alamofire.playground">
    </FileRef>
 </Workspace>

@@ -68,7 +68,7 @@ class TimelineViewController: UIViewController {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(TimelineViewController.dismissPostForm))
         emoteView?.addGestureRecognizer(recognizer)
     }
-    
+
     func refreshData() {
         networkFacade.getAllFollowingPosts(User.sharedInstance.id!) { (error, list) in
             if let posts = list {
@@ -77,6 +77,10 @@ class TimelineViewController: UIViewController {
                 self.refreshControl.endRefreshing()
             }
         }
+    }
+    
+    func loadNewPage() {
+        print("refresh")
     }
     
     func reactToPostWithId(id: String, index: NSIndexPath) {
@@ -201,8 +205,20 @@ extension TimelineViewController {
 
 extension TimelineViewController : TimelineTableViewDelegate {
     func cellSelectedInTable(tableView: UITableView, indexPath: NSIndexPath) {
+        let userForSelectedPost = tableDataSource.posts[indexPath.row].user
+        
+        if let user = userForSelectedPost {
+            if (user.id == User.sharedInstance.id) {
+                return;
+            }
+        }
+        
         reactToPostWithId(tableDataSource.posts[indexPath.row].id!, index: indexPath)
         timelineTableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func bottomLoadingCellReached() {
+        //TODO: Load more
     }
 }
 

@@ -113,6 +113,10 @@ extension UserTimelineViewController : TimelineTableViewDelegate {
         //reactToPostWithId(tableDataSource.posts[indexPath.row].id, index: indexPath)
         timelineTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
+    func bottomLoadingCellReached() {
+        
+    }
 }
 
 extension UserTimelineViewController {

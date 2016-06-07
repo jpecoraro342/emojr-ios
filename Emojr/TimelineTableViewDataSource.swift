@@ -10,13 +10,14 @@ import UIKit
 
 protocol TimelineTableViewDelegate {
     func cellSelectedInTable(tableView: UITableView, indexPath: NSIndexPath)
+    func bottomLoadingCellReached()
 }
 
 class TimelineTableViewDataSource: NSObject {
     var delegate: TimelineTableViewDelegate?
     var posts: [Post] = []
     
-    func configureWithPosts(posts: [Post], delegate: TimelineTableViewDelegate) {
+    func configureWithPosts(posts: [Post], delegate: TimelineTableViewDelegate?=nil) {
         self.posts = posts
         self.delegate = delegate
     }
@@ -36,23 +37,56 @@ class TimelineTableViewDataSource: NSObject {
 
 extension TimelineTableViewDataSource : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        delegate?.cellSelectedInTable(tableView, indexPath: indexPath)
+        if (indexPath.section == 0) {
+            delegate?.cellSelectedInTable(tableView, indexPath: indexPath)
+        }
+        else {
+            print("tapped on refresh cell")
+            delegate?.bottomLoadingCellReached()
+        }
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (indexPath.section == 1) {
+            let refreshCell = cell as! LoadingTableViewCell
+            
+            refreshCell.activityIndicator.hidden = false
+            refreshCell.activityIndicator.startAnimating()
+            print("displaying refresh cell")
+            
+            delegate?.bottomLoadingCellReached()
+        }
     }
 }
 
 extension TimelineTableViewDataSource : UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1;
+        return 2;
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return indexPath.section == 0 ? 120 : 80;
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count;
+        return section == 0 ? posts.count : 1;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if (indexPath.section == 0) {
+            return getTimelineCellForRow(tableView, row: indexPath.row)
+        }
+        else {
+            return tableView.dequeueReusableCellWithIdentifier(LoadingCellIdentifier, forIndexPath: indexPath) as! LoadingTableViewCell
+        }
+    }
+    
+    func getTimelineCellForRow(tableView: UITableView, row: Int) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TimelineCell") as! TimelineTableViewCell;
         
-        let post = posts[indexPath.row];
+        let post = posts[row];
         
         cell.configureWithPost(post)
         

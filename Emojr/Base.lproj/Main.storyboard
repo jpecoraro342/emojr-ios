@@ -139,6 +139,30 @@
                                             <outlet property="usernameLabel" destination="bG1-RA-03K" id="4Po-IC-deO"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="loadingCell" rowHeight="80" id="g7q-Ur-wfD" customClass="LoadingTableViewCell" customModule="Emojr" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="148" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g7q-Ur-wfD" id="Z0i-1Q-qk8">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="trb-hb-qYB">
+                                                    <rect key="frame" x="280" y="19" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="il7-Mr-8Ux"/>
+                                                        <constraint firstAttribute="width" constant="40" id="kPg-Mu-CL9"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="trb-hb-qYB" firstAttribute="centerX" secondItem="Z0i-1Q-qk8" secondAttribute="centerX" id="2Cs-MO-Vsj"/>
+                                                <constraint firstItem="trb-hb-qYB" firstAttribute="centerY" secondItem="Z0i-1Q-qk8" secondAttribute="centerY" id="y0P-QN-XB4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="activityIndicator" destination="trb-hb-qYB" id="mOf-Ql-j0F"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="D45-Ch-16S" appends="YES" id="LhC-mz-2Xr"/>
