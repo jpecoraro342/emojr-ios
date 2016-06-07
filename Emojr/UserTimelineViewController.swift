@@ -114,8 +114,13 @@ extension UserTimelineViewController : TimelineTableViewDelegate {
         timelineTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    func bottomLoadingCellReached() {
-        
+    func loadingCellDisplayed(cell: LoadingTableViewCell) {
+        // TODO: Handle htis
+    }
+    
+    func shouldShowLoadingCell() -> Bool {
+        //TODO: Make this true and hangle loading cell
+        return false
     }
 }
 

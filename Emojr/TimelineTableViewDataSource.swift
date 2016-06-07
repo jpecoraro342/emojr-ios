@@ -10,7 +10,8 @@ import UIKit
 
 protocol TimelineTableViewDelegate {
     func cellSelectedInTable(tableView: UITableView, indexPath: NSIndexPath)
-    func bottomLoadingCellReached()
+    func loadingCellDisplayed(cell: LoadingTableViewCell)
+    func shouldShowLoadingCell() -> Bool
 }
 
 class TimelineTableViewDataSource: NSObject {
@@ -41,8 +42,7 @@ extension TimelineTableViewDataSource : UITableViewDelegate {
             delegate?.cellSelectedInTable(tableView, indexPath: indexPath)
         }
         else {
-            print("tapped on refresh cell")
-            delegate?.bottomLoadingCellReached()
+            // Tapped on refresh cell
         }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -51,19 +51,21 @@ extension TimelineTableViewDataSource : UITableViewDelegate {
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if (indexPath.section == 1) {
             let refreshCell = cell as! LoadingTableViewCell
-            
-            refreshCell.activityIndicator.hidden = false
-            refreshCell.activityIndicator.startAnimating()
             print("displaying refresh cell")
             
-            delegate?.bottomLoadingCellReached()
+            delegate?.loadingCellDisplayed(refreshCell)
         }
     }
 }
 
 extension TimelineTableViewDataSource : UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2;
+        if delegate != nil {
+            return delegate!.shouldShowLoadingCell() ? 2 : 1
+        }
+        else {
+            return 1;
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

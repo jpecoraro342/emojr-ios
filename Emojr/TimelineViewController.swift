@@ -217,8 +217,12 @@ extension TimelineViewController : TimelineTableViewDelegate {
         timelineTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    func bottomLoadingCellReached() {
-        //TODO: Load more
+    func loadingCellDisplayed(cell: LoadingTableViewCell) {
+        // cell.startRefreshAnimation()
+    }
+    
+    func shouldShowLoadingCell() -> Bool {
+        return false
     }
 }
 
