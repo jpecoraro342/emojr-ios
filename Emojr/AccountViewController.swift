@@ -20,6 +20,14 @@ class AccountViewController: UIViewController {
         performSegueWithIdentifier(AccountToUserTimeline, sender: self)
     }
     
+    @IBAction func addUsersButtonTapped(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func followingButtonTapped(sender: AnyObject) {
+        performSegueWithIdentifier(AccountToFollowing, sender: self)
+    }
+    
     @IBAction func myFollowersButtonTapped(sender: AnyObject) {
         performSegueWithIdentifier(AccountToFollower, sender: self)
     }

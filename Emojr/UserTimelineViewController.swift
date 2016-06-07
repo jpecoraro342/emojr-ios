@@ -71,10 +71,13 @@ class UserTimelineViewController: UIViewController {
     func stopFollowingUser() {
         followManager.askToStopFollowingUser(userData!, presentingViewController: self, completionBlock: { (success) in
             if (success) {
-                
+                // TODO:
+                print("Successfully unfollowed user")
+                self.updateFollowButton()
             }
             else {
-                
+                // TODO:
+                print("could not stop following user")
             }
         })
     }

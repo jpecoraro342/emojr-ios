@@ -10,6 +10,7 @@
 		15313C3B1CC94C9200745760 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313C3A1CC94C9200745760 /* AccountViewController.swift */; };
 		15313C3D1CC9814A00745760 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313C3C1CC9814A00745760 /* MainTabController.swift */; };
 		15313C3F1CC9921400745760 /* FollowUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313C3E1CC9921400745760 /* FollowUserManager.swift */; };
+		15313DC51D0749E2006E738A /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313DC41D0749E2006E738A /* DiscoverViewController.swift */; };
 		15454DF11CA7E00900A520D1 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 15454DF01CA7E00900A520D1 /* UICKeyChainStore.m */; };
 		15454DF31CA7EAF900A520D1 /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15454DF21CA7EAF900A520D1 /* FollowingViewController.swift */; };
 		15454DF51CA7ECCB00A520D1 /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15454DF41CA7ECCB00A520D1 /* FollowingTableViewCell.swift */; };
@@ -71,6 +72,7 @@
 		15313C3A1CC94C9200745760 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		15313C3C1CC9814A00745760 /* MainTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		15313C3E1CC9921400745760 /* FollowUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowUserManager.swift; sourceTree = "<group>"; };
+		15313DC41D0749E2006E738A /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		15454DEE1CA7E00800A520D1 /* Emojr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Emojr-Bridging-Header.h"; sourceTree = "<group>"; };
 		15454DEF1CA7E00900A520D1 /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICKeyChainStore.h; path = Emojr/UICKeyChainStore.h; sourceTree = "<group>"; };
 		15454DF01CA7E00900A520D1 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICKeyChainStore.m; path = Emojr/UICKeyChainStore.m; sourceTree = "<group>"; };
@@ -136,12 +138,13 @@
 			children = (
 				6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */,
 				6ECCD7A11CA7724F00F53AD5 /* LoginViewController.swift */,
-				15454DF21CA7EAF900A520D1 /* FollowingViewController.swift */,
 				15454DF61CA808BB00A520D1 /* FollowerViewController.swift */,
+				15454DF21CA7EAF900A520D1 /* FollowingViewController.swift */,
 				15454DF81CA80CAC00A520D1 /* SignUpViewController.swift */,
 				6EF1EF481CB4DC2A00992A2F /* UserTimelineViewController.swift */,
 				15313C3A1CC94C9200745760 /* AccountViewController.swift */,
 				15313C3C1CC9814A00745760 /* MainTabController.swift */,
+				15313DC41D0749E2006E738A /* DiscoverViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -167,14 +170,13 @@
 			isa = PBXGroup;
 			children = (
 				1546D39A1CA61A5100D8ECC5 /* AppDelegate.swift */,
+				15AA50171CA638F50066CAB9 /* Utilities */,
 				15313C371CC9499000745760 /* ViewControllers */,
 				6EF1EF4A1CB4EE5000992A2F /* Model */,
 				6ECCD79A1CA717DA00F53AD5 /* View */,
-				15AA50171CA638F50066CAB9 /* Utilities */,
 				1546D3BA1CA61D4D00D8ECC5 /* Networking */,
 				1546D39E1CA61A5100D8ECC5 /* Main.storyboard */,
 				1546D3A31CA61A5100D8ECC5 /* LaunchScreen.storyboard */,
-				6ECCD79D1CA72C8D00F53AD5 /* EmoteView.xib */,
 				1546D3A11CA61A5100D8ECC5 /* Assets.xcassets */,
 				1546D3A61CA61A5100D8ECC5 /* Info.plist */,
 				6E18F6AC1CAC439000696CC5 /* EmojisList.plist */,
@@ -236,6 +238,7 @@
 		6ECCD79A1CA717DA00F53AD5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6ECCD79D1CA72C8D00F53AD5 /* EmoteView.xib */,
 				6ECCD7961CA7152400F53AD5 /* TimelineTableViewCell.swift */,
 				6ECCD79B1CA72C7600F53AD5 /* EmoteView.swift */,
 				15454DF41CA7ECCB00A520D1 /* FollowingTableViewCell.swift */,
@@ -357,6 +360,7 @@
 				15313C3D1CC9814A00745760 /* MainTabController.swift in Sources */,
 				6E5DBF721CABC494004D3088 /* String+Emoji.swift in Sources */,
 				15CC55201CEEA7D8006ABFE3 /* AnalyticsManager.swift in Sources */,
+				15313DC51D0749E2006E738A /* DiscoverViewController.swift in Sources */,
 				6ECCD7971CA7152400F53AD5 /* TimelineTableViewCell.swift in Sources */,
 				15AA50191CA6392F0066CAB9 /* UIColor+Hex.swift in Sources */,
 				15AA501B1CA639870066CAB9 /* DummyNetworkAccessor.swift in Sources */,
