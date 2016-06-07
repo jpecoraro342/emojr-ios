@@ -14,6 +14,8 @@ class FollowerViewController: UIViewController {
     
     var allUsers = [UserData]()
     
+    var userData : UserData?
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
@@ -52,16 +54,28 @@ class FollowerViewController: UIViewController {
             }
         });
     }
-
     
     @IBAction func closeView(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == FollowerToUserTimeline {
+            let destinationVc = segue.destinationViewController as! UserTimelineViewController
+            destinationVc.userData = userData
+        }
+    }
 }
 
 extension FollowerViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let user = allUsers[indexPath.row]
+        if user.id != User.sharedInstance.id {
+            userData = user
+            self.performSegueWithIdentifier(FollowerToUserTimeline, sender: self)
+            
+        }
+        
         followingTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
