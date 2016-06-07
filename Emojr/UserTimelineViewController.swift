@@ -25,8 +25,6 @@ class UserTimelineViewController: UIViewController {
     var tableDataSource: TimelineTableViewDataSource = TimelineTableViewDataSource()
     
     var userData: UserData? = User.sharedInstance.userData
-    
-    var isFollowing: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +44,7 @@ class UserTimelineViewController: UIViewController {
     
     func updateFollowButton() {
         if userData?.id != User.sharedInstance.id {
-            if (isFollowing) {
+            if User.sharedInstance.following[userData!.id!] == true {
                 let unfollowButton = UIBarButtonItem(title: "Unfollow", style: .Plain, target: self, action: #selector(UserTimelineViewController.stopFollowingUser))
                 navigationItem.rightBarButtonItem = unfollowButton
             }
@@ -60,10 +58,12 @@ class UserTimelineViewController: UIViewController {
     func followUser() {
         followManager.askToFollowUser(userData!, presentingViewController: self, completionBlock: { (success) in
             if (success) {
-                
+                User.sharedInstance.startFollowing(self.userData!.id!)
+                self.updateFollowButton()
             }
             else {
-                
+                // TODO:
+                print("could not stop follow user")
             }
         })
     }
@@ -71,7 +71,7 @@ class UserTimelineViewController: UIViewController {
     func stopFollowingUser() {
         followManager.askToStopFollowingUser(userData!, presentingViewController: self, completionBlock: { (success) in
             if (success) {
-                // TODO:
+                User.sharedInstance.stopFollowing(self.userData!.id!)
                 print("Successfully unfollowed user")
                 self.updateFollowButton()
             }
