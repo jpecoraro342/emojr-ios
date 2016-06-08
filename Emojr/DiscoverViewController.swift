@@ -19,3 +19,9 @@ class DiscoverViewController: TimelineViewController {
         }
     }
 }
+
+extension DiscoverViewController {
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+}

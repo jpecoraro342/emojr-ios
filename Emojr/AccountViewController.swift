@@ -37,3 +37,9 @@ class AccountViewController: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
 }
+
+extension AccountViewController {
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+}

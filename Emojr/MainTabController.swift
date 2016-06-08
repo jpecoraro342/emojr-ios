@@ -19,5 +19,10 @@ class MainTabController: UITabBarController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
     }
+}
 
+extension MainTabController {
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 }
