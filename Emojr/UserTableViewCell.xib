@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="60" id="A3C-q1-Vss" customClass="UserTableViewCell" customModule="Emojr" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A3C-q1-Vss" id="x8L-vX-9Zb">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3S-OM-veo">
+                        <rect key="frame" x="18" y="13" width="100" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="XaZ-UG-BGw"/>
+                            <constraint firstAttribute="width" constant="100" id="huh-8P-rKl"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="full name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyU-IK-vuY">
+                        <rect key="frame" x="128" y="13" width="140" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="06a-7b-yOj"/>
+                            <constraint firstAttribute="width" constant="140" id="KQI-PS-3bJ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1P3-6e-dPZ">
+                        <rect key="frame" x="541" y="8" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="9KF-SM-nVm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="1P3-6e-dPZ" secondAttribute="trailing" constant="15" id="Cf8-vL-ZYv"/>
+                    <constraint firstItem="G3S-OM-veo" firstAttribute="top" secondItem="x8L-vX-9Zb" secondAttribute="topMargin" constant="5" id="LHR-Wx-EBK"/>
+                    <constraint firstItem="1P3-6e-dPZ" firstAttribute="top" secondItem="x8L-vX-9Zb" secondAttribute="top" constant="8" id="UMN-H5-36c"/>
+                    <constraint firstItem="G3S-OM-veo" firstAttribute="leading" secondItem="x8L-vX-9Zb" secondAttribute="leadingMargin" constant="10" id="YNc-3G-Yh7"/>
+                    <constraint firstItem="iyU-IK-vuY" firstAttribute="top" secondItem="x8L-vX-9Zb" secondAttribute="topMargin" constant="5" id="f2T-4L-x99"/>
+                    <constraint firstAttribute="bottom" secondItem="1P3-6e-dPZ" secondAttribute="bottom" constant="7" id="pUL-Ie-Owr"/>
+                    <constraint firstItem="iyU-IK-vuY" firstAttribute="leading" secondItem="G3S-OM-veo" secondAttribute="trailing" constant="10" id="qaX-ua-Dhw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="emojiFollowingLabel" destination="1P3-6e-dPZ" id="0T8-rc-fhx"/>
+                <outlet property="fullNameLabel" destination="iyU-IK-vuY" id="Asc-HL-zoq"/>
+                <outlet property="usernameLabel" destination="G3S-OM-veo" id="QvQ-1R-JMJ"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

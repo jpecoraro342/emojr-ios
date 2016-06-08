@@ -21,15 +21,20 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func addUsersButtonTapped(sender: AnyObject) {
-        
+        let addUserVC = UserListViewController()
+        self.navigationController?.pushViewController(addUserVC, animated: true)
     }
     
     @IBAction func followingButtonTapped(sender: AnyObject) {
-        performSegueWithIdentifier(AccountToFollowing, sender: self)
+        let followingVC = FollowingViewController()
+        self.navigationController?.pushViewController(followingVC, animated: true)
+        // performSegueWithIdentifier(AccountToFollowing, sender: self)
     }
     
     @IBAction func myFollowersButtonTapped(sender: AnyObject) {
-        performSegueWithIdentifier(AccountToFollower, sender: self)
+        let followerVC = FollowerViewController()
+        self.navigationController?.pushViewController(followerVC, animated: true)
+        // performSegueWithIdentifier(AccountToFollower, sender: self)
     }
     
     @IBAction func logoutButtonTapped(sender: AnyObject) {

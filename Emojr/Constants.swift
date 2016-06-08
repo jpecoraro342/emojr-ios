@@ -63,6 +63,7 @@ let MainTabVCIdentifier = "MainTabBarViewController"
 // MARK: Reuse Identifiers
 
 let LoadingCellIdentifier = "loadingCell"
+let UserCellIdentifier = "UserCell"
 
 // MARK:
 

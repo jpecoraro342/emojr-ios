@@ -11,6 +11,11 @@
 		15313C3D1CC9814A00745760 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313C3C1CC9814A00745760 /* MainTabController.swift */; };
 		15313C3F1CC9921400745760 /* FollowUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313C3E1CC9921400745760 /* FollowUserManager.swift */; };
 		15313DC51D0749E2006E738A /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313DC41D0749E2006E738A /* DiscoverViewController.swift */; };
+		15313DC71D07B0FF006E738A /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313DC61D07B0FF006E738A /* UserListViewController.swift */; };
+		15313DC91D07B2BE006E738A /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15313DC81D07B2BE006E738A /* SnapKit.framework */; };
+		15313DCA1D07B2BE006E738A /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15313DC81D07B2BE006E738A /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		15313DCC1D07B54F006E738A /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15313DCB1D07B54F006E738A /* UserTableViewCell.xib */; };
+		15313DCE1D07B5D3006E738A /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313DCD1D07B5D3006E738A /* UserTableViewCell.swift */; };
 		15454DF11CA7E00900A520D1 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 15454DF01CA7E00900A520D1 /* UICKeyChainStore.m */; };
 		15454DF31CA7EAF900A520D1 /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15454DF21CA7EAF900A520D1 /* FollowingViewController.swift */; };
 		15454DF51CA7ECCB00A520D1 /* FollowingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15454DF41CA7ECCB00A520D1 /* FollowingTableViewCell.swift */; };
@@ -62,6 +67,7 @@
 				1546D3B51CA61D2B00D8ECC5 /* SVProgressHUD.framework in Embed Frameworks */,
 				15AA50081CA637570066CAB9 /* Alamofire.framework in Embed Frameworks */,
 				15AA500A1CA637570066CAB9 /* SwiftyJSON.framework in Embed Frameworks */,
+				15313DCA1D07B2BE006E738A /* SnapKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,6 +79,10 @@
 		15313C3C1CC9814A00745760 /* MainTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		15313C3E1CC9921400745760 /* FollowUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowUserManager.swift; sourceTree = "<group>"; };
 		15313DC41D0749E2006E738A /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		15313DC61D07B0FF006E738A /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		15313DC81D07B2BE006E738A /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		15313DCB1D07B54F006E738A /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		15313DCD1D07B5D3006E738A /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		15454DEE1CA7E00800A520D1 /* Emojr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Emojr-Bridging-Header.h"; sourceTree = "<group>"; };
 		15454DEF1CA7E00900A520D1 /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICKeyChainStore.h; path = Emojr/UICKeyChainStore.h; sourceTree = "<group>"; };
 		15454DF01CA7E00900A520D1 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICKeyChainStore.m; path = Emojr/UICKeyChainStore.m; sourceTree = "<group>"; };
@@ -125,6 +135,7 @@
 				1546D3B41CA61D2B00D8ECC5 /* SVProgressHUD.framework in Frameworks */,
 				15CC551E1CEE9F14006ABFE3 /* Crashlytics.framework in Frameworks */,
 				15AA50071CA637570066CAB9 /* Alamofire.framework in Frameworks */,
+				15313DC91D07B2BE006E738A /* SnapKit.framework in Frameworks */,
 				15AA50091CA637570066CAB9 /* SwiftyJSON.framework in Frameworks */,
 				15CC551D1CEE9F14006ABFE3 /* Fabric.framework in Frameworks */,
 			);
@@ -138,6 +149,7 @@
 			children = (
 				6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */,
 				6ECCD7A11CA7724F00F53AD5 /* LoginViewController.swift */,
+				15313DC61D07B0FF006E738A /* UserListViewController.swift */,
 				15454DF61CA808BB00A520D1 /* FollowerViewController.swift */,
 				15454DF21CA7EAF900A520D1 /* FollowingViewController.swift */,
 				15454DF81CA80CAC00A520D1 /* SignUpViewController.swift */,
@@ -187,6 +199,7 @@
 		1546D3B91CA61D3100D8ECC5 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				15313DC81D07B2BE006E738A /* SnapKit.framework */,
 				15CC551B1CEE9F14006ABFE3 /* Fabric.framework */,
 				15CC551C1CEE9F14006ABFE3 /* Crashlytics.framework */,
 				6E18F6B41CAC439C00696CC5 /* AGEmojiKeyBoard */,
@@ -243,6 +256,8 @@
 				6ECCD79B1CA72C7600F53AD5 /* EmoteView.swift */,
 				15454DF41CA7ECCB00A520D1 /* FollowingTableViewCell.swift */,
 				15CC55211CF2B19B006ABFE3 /* LoadingTableViewCell.swift */,
+				15313DCD1D07B5D3006E738A /* UserTableViewCell.swift */,
+				15313DCB1D07B54F006E738A /* UserTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -323,6 +338,7 @@
 				1546D3A21CA61A5100D8ECC5 /* Assets.xcassets in Resources */,
 				6E18F6B11CAC439000696CC5 /* EmojisList.plist in Resources */,
 				1546D3A01CA61A5100D8ECC5 /* Main.storyboard in Resources */,
+				15313DCC1D07B54F006E738A /* UserTableViewCell.xib in Resources */,
 				6ECCD79E1CA72C8D00F53AD5 /* EmoteView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,6 +371,7 @@
 				6ECCD7A21CA7724F00F53AD5 /* LoginViewController.swift in Sources */,
 				15313C3B1CC94C9200745760 /* AccountViewController.swift in Sources */,
 				157079101CA6299500043676 /* User.swift in Sources */,
+				15313DC71D07B0FF006E738A /* UserListViewController.swift in Sources */,
 				15AA50121CA637780066CAB9 /* NetworkObjects.swift in Sources */,
 				1546D39B1CA61A5100D8ECC5 /* AppDelegate.swift in Sources */,
 				15313C3D1CC9814A00745760 /* MainTabController.swift in Sources */,
@@ -370,6 +387,7 @@
 				15AA50131CA637780066CAB9 /* RestNetworkAccessor.swift in Sources */,
 				6EF1EF471CB4D4A400992A2F /* TimelineTableViewDataSource.swift in Sources */,
 				6E18F6B31CAC439000696CC5 /* AGEmojiKeyBoardView.m in Sources */,
+				15313DCE1D07B5D3006E738A /* UserTableViewCell.swift in Sources */,
 				15AA50111CA637780066CAB9 /* NetworkingAccessor.swift in Sources */,
 				6EBDFF5F1CA7F35A0067B7CC /* NSDate+Comparisons.swift in Sources */,
 				15454DF91CA80CAC00A520D1 /* SignUpViewController.swift in Sources */,
