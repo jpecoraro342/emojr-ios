@@ -34,7 +34,7 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         completionBlock?(success: true)
     }
     
-    func getAllUsers(completionBlock: UserArrayClosure?) {
+    func getUsers(searchString: String?=nil, completionBlock: UserArrayClosure?) {
         completionBlock?(error: nil, list: Array(userDictionary.values))
     }
     

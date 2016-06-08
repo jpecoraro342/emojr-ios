@@ -12,8 +12,14 @@ import Alamofire
 class RestNetworkAccessor: NSObject, NetworkingAccessor {
     
     // GET
-    func getAllUsers(completionBlock: UserArrayClosure?) {
-        Alamofire.request(.GET, URLStringWithExtension("users"))
+    func getUsers(searchString: String?=nil, completionBlock: UserArrayClosure?) {
+        var parameters: Dictionary<String, String>?
+        
+        if let search = searchString {
+            parameters = [ "searchString" : search]
+        }
+        
+        Alamofire.request(.GET, URLStringWithExtension("users"), parameters: parameters)
             .responseJSON { response in
                 var friends : Array<UserData> = Array<UserData>();
                 

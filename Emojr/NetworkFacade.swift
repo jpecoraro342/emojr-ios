@@ -27,8 +27,8 @@ class NetworkFacade : NSObject {
         dataAccessor.isUsernameAvailable(username, completionBlock: completionBlock)
     }
     
-    func getAllUsers(completionBlock: UserArrayClosure?) {
-        dataAccessor.getAllUsers(completionBlock)
+    func getUsers(searchString: String?=nil, completionBlock: UserArrayClosure?) {
+        dataAccessor.getUsers(searchString, completionBlock: completionBlock)
     }
     
     func getAllFollowing(userId: String, completionBlock: UserArrayClosure?) {

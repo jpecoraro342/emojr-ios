@@ -21,7 +21,7 @@ class FollowerViewController: UserListViewController {
     }
     
     override func refreshData() {
-        followingUsers = User.sharedInstance.following
+        super.refreshData()
         
         networkFacade.getAllFollowers(User.sharedInstance.id!, completionBlock: { (error, list) -> Void in
             if let err = error {

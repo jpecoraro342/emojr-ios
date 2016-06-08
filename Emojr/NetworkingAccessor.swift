@@ -10,7 +10,7 @@ protocol NetworkingAccessor {
     
     // GET
     func isUsernameAvailable(username: String, completionBlock: BooleanClosure?);
-    func getAllUsers(completionBlock: UserArrayClosure?);
+    func getUsers(searchString: String?, completionBlock: UserArrayClosure?);
     
     func getAllFollowing(userId: String, completionBlock: UserArrayClosure?);
     func getAllFollowers(userId: String, completionBlock: UserArrayClosure?);

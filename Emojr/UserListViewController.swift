@@ -58,18 +58,6 @@ class UserListViewController: UIViewController {
     
     func refreshData() {
         followingUsers = User.sharedInstance.following
-        
-        networkFacade.getAllUsers({ (error, list) -> Void in
-            if let err = error {
-                print(err)
-            }
-            else {
-                self.allUsers = list!
-                
-                self.followingTableView.reloadData()
-                self.refreshControl.endRefreshing()
-            }
-        });
     }
     
     func askToFollowUser(user: UserData) {
@@ -117,14 +105,14 @@ class UserListViewController: UIViewController {
 extension UserListViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let user = allUsers[indexPath.row]
-        if user.id != User.sharedInstance.id {
+        // if user.id != User.sharedInstance.id {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let userVC = storyboard.instantiateViewControllerWithIdentifier(UserTimelineVCIdentifier) as! UserTimelineViewController
             
             userVC.userData = user
             
             self.navigationController?.pushViewController(userVC, animated: true)
-        }
+        // }
         
         followingTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
