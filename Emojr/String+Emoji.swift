@@ -12,7 +12,7 @@ extension String {
     
     func isAllEmoji() -> Bool {
         
-        var set = NSMutableCharacterSet()
+        let set = NSMutableCharacterSet()
         set.formUnionWithCharacterSet(NSCharacterSet.alphanumericCharacterSet())
         set.formUnionWithCharacterSet(NSCharacterSet.symbolCharacterSet())
         set.formUnionWithCharacterSet(NSCharacterSet.punctuationCharacterSet())

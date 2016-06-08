@@ -123,7 +123,7 @@ extension UserListViewController : UITableViewDelegate {
             
             userVC.userData = user
             
-            self.navigationController?.presentViewController(userVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(userVC, animated: true)
         }
         
         followingTableView.deselectRowAtIndexPath(indexPath, animated: true)

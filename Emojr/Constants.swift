@@ -42,11 +42,7 @@ let emojiKeyboardImages: [UIImage] = [UIImage(named: "recentCategory")!,
 let LoginToMain = "LoginToMain"
 let LoginToSignup = "LoginToSignup"
 let AccountToUserTimeline = "AccountToUserTimeline"
-let AccountToFollower = "AccountToFollower"
-let AccountToFollowing = "AccountToFollowing"
 let MainToUserTimeline = "MainToUserTimeline"
-let FollowingToUserTimeline = "FollowingToUserTimeline"
-let FollowerToUserTimeline = "FollowerToUserTimeline"
 let DiscoverToUserTimeline = "DiscoverToUserTimeline"
 
 
@@ -56,8 +52,6 @@ let LoginVCIdentifier = "LoginViewController"
 let SignUpVCIdentifier = "SignUpViewController"
 let TimelineVCIdentifier = "TimelineViewController"
 let UserTimelineVCIdentifier = "UserTImelineViewController"
-let FollowingVCIdentifier = "FollowingViewController"
-let FollowerVCIdentifier = "FollowerViewController"
 let MainTabVCIdentifier = "MainTabBarViewController"
 
 // MARK: Reuse Identifiers

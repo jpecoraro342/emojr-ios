@@ -13,7 +13,21 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationItem.title = "Account"
+        
         self.usernameLabel.text = User.sharedInstance.username
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
     }
     
     @IBAction func myFeedButtonTapped(sender: AnyObject) {
@@ -21,20 +35,18 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func addUsersButtonTapped(sender: AnyObject) {
-        let addUserVC = UserListViewController()
+        let addUserVC = AddUsersViewController()
         self.navigationController?.pushViewController(addUserVC, animated: true)
     }
     
     @IBAction func followingButtonTapped(sender: AnyObject) {
         let followingVC = FollowingViewController()
         self.navigationController?.pushViewController(followingVC, animated: true)
-        // performSegueWithIdentifier(AccountToFollowing, sender: self)
     }
     
     @IBAction func myFollowersButtonTapped(sender: AnyObject) {
         let followerVC = FollowerViewController()
         self.navigationController?.pushViewController(followerVC, animated: true)
-        // performSegueWithIdentifier(AccountToFollower, sender: self)
     }
     
     @IBAction func logoutButtonTapped(sender: AnyObject) {
