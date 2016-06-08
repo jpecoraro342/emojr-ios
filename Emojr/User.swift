@@ -18,15 +18,25 @@ class User : NSObject {
     
     var userData: UserData?
     
+    var isLoggedIn = false
+    
     var followers = Dictionary<String, Bool>()
     var following = Dictionary<String, Bool>()
     
-    var manuallyLoggedOut = false
+    var manuallyLoggedOut: Bool {
+        set {
+            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "manuallyLoggedOut")
+        }
+        get {
+            return NSUserDefaults.standardUserDefaults().boolForKey("manuallyLoggedOut")
+        }
+    }
     
     let networkFacade = NetworkFacade()
     
     func configureWithUserData(data: UserData) {
         manuallyLoggedOut = false
+        isLoggedIn = true
         
         self.id = data.id
         self.username = data.username
@@ -81,5 +91,6 @@ class User : NSObject {
     
     func logout() {
         manuallyLoggedOut = true
+        isLoggedIn = false
     }
 }

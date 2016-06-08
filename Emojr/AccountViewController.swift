@@ -50,8 +50,7 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func logoutButtonTapped(sender: AnyObject) {
-        User.sharedInstance.logout()
-        dismissViewControllerAnimated(true, completion: nil)
+        LoginManager().logout()
     }
 }
 

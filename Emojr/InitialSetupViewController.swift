@@ -12,46 +12,26 @@ class InitialSetupViewController: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    let loginManager = LoginManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.activityIndicator.hidden = true
+        self.activityIndicator.stopAnimating()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         attemptLogin()
     }
     
     func attemptLogin() {
-        if User.sharedInstance.manuallyLoggedOut {
-            skipLogin()
-        }
-        
-        guard let username = UICKeyChainStore.stringForKey("com.currentuser.username", service: "com.emojr")
-            else { skipLogin(); return; }
-        
-        guard let password = UICKeyChainStore.stringForKey("com.currentuser.password", service: "com.emojr")
-            else { skipLogin(); return; }
-        
-        login(username, password: password)
-    }
-    
-    func login(username: String, password: String) {
-        activityIndicator.hidden = false
-        activityIndicator.startAnimating()
-        
-        NetworkFacade.sharedInstance.signInUser(username, password: password) { (error, user) in
-            if let _ = error {
-                self.skipLogin()
-            } else if let data = user {
-                User.sharedInstance.configureWithUserData(data)
-                
-                self.activityIndicator.hidden = true
-                self.activityIndicator.stopAnimating()
-                
-                self.performSegueWithIdentifier(InitialSetupToMainTab, sender: self)
-            }
-        }
-    }
-    
-    func skipLogin() {
-        
+        loginManager.attemptLogin(activityIndicator)
     }
 
     override func didReceiveMemoryWarning() {

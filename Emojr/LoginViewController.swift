@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
+    let loginManager = LoginManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,7 +104,7 @@ class LoginViewController: UIViewController {
                     UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
                     
                     self.enableUI()
-                    self.performSegueWithIdentifier(LoginToMain, sender: self)
+                    self.navigationController?.performSegueWithIdentifier(LoginNavToMainTab, sender: self.navigationController)
                 }
             }
         } else {
@@ -141,15 +142,6 @@ class LoginViewController: UIViewController {
     
     @IBAction func backgroundTapped(sender: AnyObject) {
         self.view.endEditing(true);
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == LoginToSignup {
-            let destinationVc = segue.destinationViewController as! SignUpViewController
-            destinationVc.completionBlock = { () in
-                self.performSegueWithIdentifier(LoginToMain, sender: self)
-            }
-        }
     }
 }
 

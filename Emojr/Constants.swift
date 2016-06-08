@@ -21,6 +21,7 @@ typealias ReactionArrayClosure = (error: NSError?, list: Array<Reaction>?) -> Vo
 typealias JsonClosure = (error: NSError?, jsonData: AnyObject?) -> Void;
 typealias DataClosure = (error: NSError?, data: NSData?) -> Void;
 typealias StringClosure = (error: NSError?, string: String?) -> Void;
+typealias VoidClosure = () -> Void
 
 // MARK: Color Scheme
 
@@ -39,8 +40,8 @@ let emojiKeyboardImages: [UIImage] = [UIImage(named: "recentCategory")!,
 
 // MARK: Segue Identifiers
 
-let LoginToMain = "LoginToMain"
 let LoginToSignup = "LoginToSignup"
+let LoginNavToMainTab = "LoginNavToMainTab"
 let AccountToUserTimeline = "AccountToUserTimeline"
 let MainToUserTimeline = "MainToUserTimeline"
 let DiscoverToUserTimeline = "DiscoverToUserTimeline"
@@ -50,10 +51,13 @@ let InitialSetupToMainTab = "InitialSetupToMainTab"
 // MARK: Storyboard IDs
 
 let InitialSetupVCIdentifier = "InitialSetup"
+let LoginTabVCIdentifier = "LoginTab"
 let LoginVCIdentifier = "LoginViewController"
+let LoginNavVCIdentifier = "LoginNavViewController"
 let SignUpVCIdentifier = "SignUpViewController"
 let TimelineVCIdentifier = "TimelineViewController"
 let UserTimelineVCIdentifier = "UserTImelineViewController"
+let DiscoverVCIdentifier = "DiscoverViewController"
 let MainTabVCIdentifier = "MainTabBarViewController"
 
 // MARK: Reuse Identifiers

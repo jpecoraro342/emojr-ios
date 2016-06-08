@@ -23,8 +23,6 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var signUpButton: UIButton!
     
-    var completionBlock : (() -> Void)?
-    
     var fieldViewDict = Dictionary<UITextField, UIView>()
     
     override func viewDidLoad() {
@@ -88,9 +86,7 @@ class SignUpViewController: UIViewController {
                     UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.username", service: "com.emojr")
                     UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
                     
-                    self.dismissViewControllerAnimated(false, completion: {
-                        self.completionBlock?()
-                    })
+                    self.navigationController?.performSegueWithIdentifier(LoginNavToMainTab, sender: self.navigationController)
                 }
             }
         } else {
@@ -134,8 +130,8 @@ class SignUpViewController: UIViewController {
         self.view.endEditing(true);
     }
     
-    @IBAction func dismissView(sender: AnyObject) {
-        self.dismissViewControllerAnimated(false, completion: nil)
+    @IBAction func toLoginPressed(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(false)
     }
 }
 

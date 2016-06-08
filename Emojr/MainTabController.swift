@@ -10,6 +10,12 @@ import UIKit
 
 class MainTabController: UITabBarController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tabBar.tintColor = blue
+    }
+    
     override func viewWillAppear(animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
