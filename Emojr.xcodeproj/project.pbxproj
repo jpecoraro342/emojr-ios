@@ -17,6 +17,7 @@
 		15313DCC1D07B54F006E738A /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15313DCB1D07B54F006E738A /* UserTableViewCell.xib */; };
 		15313DCE1D07B5D3006E738A /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313DCD1D07B5D3006E738A /* UserTableViewCell.swift */; };
 		15313DD41D07C34C006E738A /* AddUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313DD31D07C34C006E738A /* AddUsersViewController.swift */; };
+		15313DD61D08934B006E738A /* InitialSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313DD51D08934B006E738A /* InitialSetupViewController.swift */; };
 		15454DF11CA7E00900A520D1 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 15454DF01CA7E00900A520D1 /* UICKeyChainStore.m */; };
 		15454DF31CA7EAF900A520D1 /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15454DF21CA7EAF900A520D1 /* FollowingViewController.swift */; };
 		15454DF71CA808BB00A520D1 /* FollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15454DF61CA808BB00A520D1 /* FollowerViewController.swift */; };
@@ -84,6 +85,7 @@
 		15313DCB1D07B54F006E738A /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		15313DCD1D07B5D3006E738A /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		15313DD31D07C34C006E738A /* AddUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUsersViewController.swift; sourceTree = "<group>"; };
+		15313DD51D08934B006E738A /* InitialSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialSetupViewController.swift; sourceTree = "<group>"; };
 		15454DEE1CA7E00800A520D1 /* Emojr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Emojr-Bridging-Header.h"; sourceTree = "<group>"; };
 		15454DEF1CA7E00900A520D1 /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICKeyChainStore.h; path = Emojr/UICKeyChainStore.h; sourceTree = "<group>"; };
 		15454DF01CA7E00900A520D1 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICKeyChainStore.m; path = Emojr/UICKeyChainStore.m; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */,
 				6EF1EF461CB4D4A400992A2F /* TimelineTableViewDataSource.swift */,
 				6ECCD7961CA7152400F53AD5 /* TimelineTableViewCell.swift */,
+				15313DD51D08934B006E738A /* InitialSetupViewController.swift */,
 			);
 			name = "Main Tab";
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				6ECCD7A21CA7724F00F53AD5 /* LoginViewController.swift in Sources */,
 				15313C3B1CC94C9200745760 /* AccountViewController.swift in Sources */,
 				157079101CA6299500043676 /* User.swift in Sources */,
+				15313DD61D08934B006E738A /* InitialSetupViewController.swift in Sources */,
 				15313DC71D07B0FF006E738A /* UserListViewController.swift in Sources */,
 				15AA50121CA637780066CAB9 /* NetworkObjects.swift in Sources */,
 				1546D39B1CA61A5100D8ECC5 /* AppDelegate.swift in Sources */,

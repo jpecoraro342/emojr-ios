@@ -44,10 +44,12 @@ let LoginToSignup = "LoginToSignup"
 let AccountToUserTimeline = "AccountToUserTimeline"
 let MainToUserTimeline = "MainToUserTimeline"
 let DiscoverToUserTimeline = "DiscoverToUserTimeline"
+let InitialSetupToMainTab = "InitialSetupToMainTab"
 
 
 // MARK: Storyboard IDs
 
+let InitialSetupVCIdentifier = "InitialSetup"
 let LoginVCIdentifier = "LoginViewController"
 let SignUpVCIdentifier = "SignUpViewController"
 let TimelineVCIdentifier = "TimelineViewController"

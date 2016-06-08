@@ -21,9 +21,13 @@ class User : NSObject {
     var followers = Dictionary<String, Bool>()
     var following = Dictionary<String, Bool>()
     
+    var manuallyLoggedOut = false
+    
     let networkFacade = NetworkFacade()
     
     func configureWithUserData(data: UserData) {
+        manuallyLoggedOut = false
+        
         self.id = data.id
         self.username = data.username
         self.fullname = data.fullname
@@ -76,6 +80,6 @@ class User : NSObject {
     }
     
     func logout() {
-        
+        manuallyLoggedOut = true
     }
 }
