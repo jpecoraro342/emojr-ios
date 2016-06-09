@@ -220,7 +220,9 @@ extension TimelineViewController {
         if let user = userSelected {
             let viewUserPageAction = UIAlertAction(title: "View \(user.username!) Feed", style: .Default) { (action: UIAlertAction) in
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                self.navigationController?.pushViewController(storyboard.instantiateViewControllerWithIdentifier(UserTimelineVCIdentifier), animated: true)
+                let userTimelineVC = storyboard.instantiateViewControllerWithIdentifier(UserTimelineVCIdentifier) as! UserTimelineViewController
+                userTimelineVC.userData = user
+                self.navigationController?.pushViewController(userTimelineVC, animated: true)
             }
             
             alertController.addAction(viewUserPageAction)
