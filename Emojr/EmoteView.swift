@@ -31,7 +31,7 @@ class EmoteView: UIView {
     }
     
     func configureEmojiKeyboard() {
-        let keyboardFrame = CGRectMake(0, 0, self.frame.width, 500)
+        let keyboardFrame = CGRectMake(0, 0, self.frame.width, getEmojiKeyboardHeight())
         let emojiKeyboard = AGEmojiKeyboardView(frame: keyboardFrame, dataSource: self)
         emojiKeyboard.autoresizingMask = .FlexibleHeight
         emojiKeyboard.delegate = self
@@ -40,6 +40,10 @@ class EmoteView: UIView {
         emojiKeyboard.segmentsBar.tintColor = offWhite
         emojiKeyboard.segmentsBar.contentMode = .ScaleAspectFill
         emojiField.inputView = emojiKeyboard
+    }
+    
+    func getEmojiKeyboardHeight() -> CGFloat {
+        return 500
     }
     
     func setButtonTitle(reacting: Bool) {

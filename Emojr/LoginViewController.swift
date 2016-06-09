@@ -20,8 +20,6 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
-    
-    let loginManager = LoginManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,7 +102,7 @@ class LoginViewController: UIViewController {
                     UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
                     
                     self.enableUI()
-                    self.navigationController?.performSegueWithIdentifier(LoginNavToMainTab, sender: self.navigationController)
+                    self.navigateToMainTab()
                 }
             }
         } else {
@@ -116,6 +114,16 @@ class LoginViewController: UIViewController {
     func displayError(message: String) {
         errorLabel.text = message
         errorLabel.hidden = false
+    }
+    
+    func navigateToMainTab() {
+        let tabVC = LoginManager().getMainTab(true)
+        self.navigationController?.presentViewController(tabVC, animated: true, completion: {
+            if let window = UIApplication.sharedApplication().delegate?.window {
+                window!.rootViewController = tabVC
+                window?.makeKeyAndVisible()
+            }
+        })
     }
     
     @IBAction func signUp() {

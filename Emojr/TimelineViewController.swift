@@ -10,7 +10,7 @@ import UIKit
 
 class TimelineViewController: UIViewController {
     
-    @IBOutlet weak var timelineTableView: UITableView!
+    var timelineTableView = UITableView()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -33,10 +33,11 @@ class TimelineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        timelineTableView.delegate = tableDataSource
-        timelineTableView.dataSource = tableDataSource
-        
+        layoutTableView()
         createViews()
+        setupLongTapGesture()
+        
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem()
         
         refreshData()
     }
@@ -49,11 +50,46 @@ class TimelineViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func rightBarButtonItem() -> UIBarButtonItem? {
+        return nil
+    }
+    
+    func layoutTableView() {
+        view.addSubview(timelineTableView)
+        
+        timelineTableView.snp_makeConstraints { (make) in
+            make.top.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+            make.left.equalTo(self.view)
+            make.right.equalTo(self.view)
+        }
+        
+        timelineTableView.addSubview(refreshControl)
+        
+        timelineTableView.delegate = tableDataSource;
+        timelineTableView.dataSource = tableDataSource;
+        timelineTableView.rowHeight = 120;
+        
+        timelineTableView.registerNib(UINib(nibName: "TimelineTableViewCell", bundle:nil), forCellReuseIdentifier: TimelineCellIdentifier)
+    }
+    
+    func setupLongTapGesture() {
+        let longTap = UILongPressGestureRecognizer(target: self, action: #selector(self.longTapOnCell(_:)))
+        longTap.minimumPressDuration = 0.8
+        longTap.numberOfTapsRequired = 0
+        longTap.numberOfTouchesRequired = 1
+        longTap.cancelsTouchesInView = true
+        longTap.delaysTouchesBegan = false
+        longTap.delaysTouchesEnded = true
+        
+        self.view.addGestureRecognizer(longTap)
+    }
+    
     func createViews() {
         timelineTableView.addSubview(refreshControl)
         
         var frame = self.view.frame
-        frame.origin.y = (-1*frame.size.height + 84)
+        frame.origin.y = 0
         
         emoteView = EmoteView.instanceFromNib()
         emoteView?.configureWithController(self)
@@ -70,13 +106,7 @@ class TimelineViewController: UIViewController {
     }
 
     func refreshData() {
-        networkFacade.getAllFollowingPosts(User.sharedInstance.id!) { (error, list) in
-            if let posts = list {
-                self.tableDataSource.configureWithPosts(posts, delegate: self)
-                self.timelineTableView.reloadData()
-                self.refreshControl.endRefreshing()
-            }
-        }
+        
     }
     
     func loadNewPage() {
@@ -84,6 +114,9 @@ class TimelineViewController: UIViewController {
     }
     
     func reactToPostWithId(id: String, index: NSIndexPath) {
+        guard let _ = User.sharedInstance.id
+            else { return } // TODO: Display warning banner
+        
         reactionInfo = (id, index)
         displayPostForm(true)
     }
@@ -95,8 +128,8 @@ class TimelineViewController: UIViewController {
         var frame = self.view.frame
         frame.origin.x = 0 - frame.width
         emoteView?.frame = frame
-        self.view.addSubview(fadeView!)
-        self.view.addSubview(emoteView!)
+        self.navigationController?.view.addSubview(fadeView!)
+        self.navigationController?.view.addSubview(emoteView!)
         
         UIView.animateWithDuration(0.5, animations: {
             self.fadeView?.alpha = 0.6
@@ -134,11 +167,14 @@ class TimelineViewController: UIViewController {
     
     func postPost(post: String) {
         networkFacade.createPost(User.sharedInstance.id!, post: post)
-        { (error, post) in
-            if var newPost = post {
+        { [weak self](error, post) in
+            guard var newPost = post
+                else {return }
+            
+            if let strongSelf = self {
                 newPost.user = User.sharedInstance.userData
-                self.tableDataSource.insertPost(newPost)
-                self.timelineTableView.reloadData()
+                strongSelf.tableDataSource.insertPost(newPost)
+                strongSelf.timelineTableView.reloadData()
             }
         }
     }
@@ -146,11 +182,14 @@ class TimelineViewController: UIViewController {
     func postReaction(post: String) {
         if let id = reactionInfo.id {
             networkFacade.reactToPost(User.sharedInstance.id!, postId: id, reaction: post)
-            { (error, reaction) in
-                if let _ = reaction {
-                    let cell = self.timelineTableView.cellForRowAtIndexPath(self.reactionInfo.index!) as! TimelineTableViewCell
+            { [weak self](error, reaction) in
+                guard let _ = reaction
+                    else {return }
+                
+                if let strongSelf = self {
+                    let cell = strongSelf.timelineTableView.cellForRowAtIndexPath(strongSelf.reactionInfo.index!) as! TimelineTableViewCell
                     cell.addReaction(post)
-                    self.reactionInfo = (nil, nil)
+                    strongSelf.reactionInfo = (nil, nil)
                 }
             }
         }
@@ -159,17 +198,10 @@ class TimelineViewController: UIViewController {
     @IBAction func postButtonTapped(sender: AnyObject) {
         self.displayPostForm(false)
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == MainToUserTimeline {
-            let destinationVc = segue.destinationViewController as! UserTimelineViewController
-            destinationVc.userData = self.selectedUserData
-        }
-    }
 }
 
 extension TimelineViewController {
-    @IBAction func longTapOnCell(sender: UILongPressGestureRecognizer) {
+    func longTapOnCell(sender: UILongPressGestureRecognizer) {
         if sender.state == .Began {
             let location = sender.locationInView(self.timelineTableView)
             let indexPath = self.timelineTableView.indexPathForRowAtPoint(location)
@@ -181,15 +213,14 @@ extension TimelineViewController {
     }
     
     func longPressOnIndex(index: Int) {
-        print("Long press on cell: \(index)")
         let userSelected = tableDataSource.posts[index].user
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         
         if let user = userSelected {
             let viewUserPageAction = UIAlertAction(title: "View \(user.username!) Feed", style: .Default) { (action: UIAlertAction) in
-                self.selectedUserData = user
-                self.performSegueWithIdentifier(MainToUserTimeline, sender: self)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                self.navigationController?.pushViewController(storyboard.instantiateViewControllerWithIdentifier(UserTimelineVCIdentifier), animated: true)
             }
             
             alertController.addAction(viewUserPageAction)

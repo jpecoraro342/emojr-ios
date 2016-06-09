@@ -92,5 +92,10 @@ class User : NSObject {
     func logout() {
         manuallyLoggedOut = true
         isLoggedIn = false
+        
+        self.id = nil
+        self.username = nil
+        self.fullname = nil
+        self.userData = nil
     }
 }

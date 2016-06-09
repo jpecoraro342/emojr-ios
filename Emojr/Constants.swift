@@ -43,8 +43,6 @@ let emojiKeyboardImages: [UIImage] = [UIImage(named: "recentCategory")!,
 let LoginToSignup = "LoginToSignup"
 let LoginNavToMainTab = "LoginNavToMainTab"
 let AccountToUserTimeline = "AccountToUserTimeline"
-let MainToUserTimeline = "MainToUserTimeline"
-let DiscoverToUserTimeline = "DiscoverToUserTimeline"
 let InitialSetupToMainTab = "InitialSetupToMainTab"
 
 
@@ -55,13 +53,12 @@ let LoginTabVCIdentifier = "LoginTab"
 let LoginVCIdentifier = "LoginViewController"
 let LoginNavVCIdentifier = "LoginNavViewController"
 let SignUpVCIdentifier = "SignUpViewController"
-let TimelineVCIdentifier = "TimelineViewController"
-let UserTimelineVCIdentifier = "UserTImelineViewController"
-let DiscoverVCIdentifier = "DiscoverViewController"
-let MainTabVCIdentifier = "MainTabBarViewController"
+let UserTimelineVCIdentifier = "UserTimelineViewController"
+let AccountVCIdentifier = "AccountViewController"
 
 // MARK: Reuse Identifiers
 
+let TimelineCellIdentifier = "TimelineCell"
 let LoadingCellIdentifier = "loadingCell"
 let UserCellIdentifier = "UserCell"
 

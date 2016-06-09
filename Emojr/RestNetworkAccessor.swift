@@ -88,6 +88,31 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
+    func getDiscoverPosts(userId: String?=nil, completionBlock: PostArrayClosure?) {
+        var parameters: Dictionary<String, String>?
+        
+        if let id = userId {
+            parameters = [ "userId" : id]
+        }
+        
+        Alamofire.request(.GET, URLStringWithExtension("posts/discover"), parameters: parameters)
+            .responseJSON { response in
+                var posts : Array<Post> = Array<Post>();
+                
+                if let json = response.result.value {
+                    
+                    for jsonPost in json as! Array<Dictionary<String, AnyObject>> {
+                        posts.append(Post(fromJson: jsonPost));
+                    }
+                    
+                    completionBlock?(error: nil, list: posts);
+                }
+                else {
+                    completionBlock?(error: response.result.error, list: posts);
+                }
+        }
+    }
+    
     func getAllPostsFromUser(userId: String, completionBlock: PostArrayClosure?) {
         Alamofire.request(.GET, URLStringWithExtension("posts/user/\(userId)"))
             .responseJSON { response in

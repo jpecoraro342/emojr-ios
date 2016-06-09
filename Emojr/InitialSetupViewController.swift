@@ -12,8 +12,6 @@ class InitialSetupViewController: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    let loginManager = LoginManager()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -31,7 +29,7 @@ class InitialSetupViewController: UIViewController {
     }
     
     func attemptLogin() {
-        loginManager.attemptLogin(activityIndicator)
+        LoginManager().attemptLogin(activityIndicator)
     }
 
     override func didReceiveMemoryWarning() {

@@ -10,7 +10,9 @@ import UIKit
 
 class DiscoverViewController: TimelineViewController {
     override func refreshData() {
-        networkFacade.getAllFollowingPosts(User.sharedInstance.id!) { (error, list) in
+        super.refreshData()
+        
+        networkFacade.getDiscoverPosts(User.sharedInstance.id) { (error, list) in
             if let posts = list {
                 self.tableDataSource.configureWithPosts(posts, delegate: self)
                 self.timelineTableView.reloadData()
@@ -18,10 +20,14 @@ class DiscoverViewController: TimelineViewController {
             }
         }
     }
-}
-
-extension DiscoverViewController {
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.title = ""
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationItem.title = "Discover"
     }
 }

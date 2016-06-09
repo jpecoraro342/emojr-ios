@@ -86,12 +86,21 @@ class SignUpViewController: UIViewController {
                     UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.username", service: "com.emojr")
                     UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
                     
-                    self.navigationController?.performSegueWithIdentifier(LoginNavToMainTab, sender: self.navigationController)
+                    self.navigateToMainTab()
                 }
             }
         } else {
             displayError(message)
         }
+    }
+    
+    func navigateToMainTab() {
+        let tabVC = LoginManager().getMainTab(true)
+        self.navigationController?.presentViewController(tabVC, animated: true, completion: {
+            if let window = UIApplication.sharedApplication().delegate?.window {
+                window!.rootViewController = tabVC
+            }
+        })
     }
     
     func displayError(message: String) {

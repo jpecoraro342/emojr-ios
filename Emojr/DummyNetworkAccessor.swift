@@ -63,6 +63,10 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         completionBlock?(error: nil, post: postDictionary[postId])
     }
     
+    func getDiscoverPosts(userId: String?=nil, completionBlock: PostArrayClosure?) {
+        completionBlock?(error: nil, list: Array(postDictionary.values))
+    }
+    
     func getAllPostsFromUser(userId: String, completionBlock: PostArrayClosure?) {
         var posts = [Post]();
         

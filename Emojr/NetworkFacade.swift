@@ -43,6 +43,10 @@ class NetworkFacade : NSObject {
         dataAccessor.getPost(postId, completionBlock: completionBlock)
     }
     
+    func getDiscoverPosts(userId: String?=nil, completionBlock: PostArrayClosure?) {
+        dataAccessor.getDiscoverPosts(userId, completionBlock: completionBlock)
+    }
+    
     func getAllPostsFromUser(userId: String, completionBlock: PostArrayClosure?) {
         dataAccessor.getAllPostsFromUser(userId, completionBlock: completionBlock)
     }

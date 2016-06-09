@@ -12,22 +12,26 @@ class LoginManager: NSObject {
     
     func attemptLogin(activityIndicator: UIActivityIndicatorView?=nil) {
         if User.sharedInstance.manuallyLoggedOut {
-            skipLogin()
+            loadMainTab(false)
             return
         }
         
         if User.sharedInstance.isLoggedIn {
-            loadMainTab()
+            loadMainTab(true)
             return
         }
         
         guard let username = UICKeyChainStore.stringForKey("com.currentuser.username", service: "com.emojr")
-            else { skipLogin(); return; }
+            else { loadMainTab(false); return; }
         
         guard let password = UICKeyChainStore.stringForKey("com.currentuser.password", service: "com.emojr")
-            else { skipLogin(); return; }
+            else { loadMainTab(false); return; }
         
         login(username, password: password, activityIndicator: activityIndicator)
+    }
+    
+    func didLogIn() {
+        
     }
     
     func login(username: String, password: String, activityIndicator: UIActivityIndicatorView?=nil) {
@@ -37,60 +41,88 @@ class LoginManager: NSObject {
         NetworkFacade.sharedInstance.signInUser(username, password: password) { (error, user) in
             if let _ = error {
                 // TODO: Show unable to login banner
-                self.skipLogin()
+                self.loadMainTab(false)
             } else if let data = user {
                 User.sharedInstance.configureWithUserData(data)
                 
                 activityIndicator?.hidden = true
                 activityIndicator?.stopAnimating()
                 
-                self.loadMainTab()
+                self.loadMainTab(true)
             }
         }
     }
     
     func logout() {
         User.sharedInstance.logout()
-        skipLogin()
+        loadMainTab(false)
     }
     
-    func skipLogin() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let homeVC = storyboard.instantiateViewControllerWithIdentifier(LoginNavVCIdentifier)
-        let discoverVC = storyboard.instantiateViewControllerWithIdentifier(DiscoverVCIdentifier)
-        let myEmotesVC = storyboard.instantiateViewControllerWithIdentifier(LoginNavVCIdentifier)
-        let accountVC = storyboard.instantiateViewControllerWithIdentifier(LoginNavVCIdentifier)
-        
-        let discoverNav = UINavigationController(rootViewController: discoverVC)
-        styleNavigationController(discoverNav)
-        
-        homeVC.tabBarItem.title = "Home"
-        discoverNav.tabBarItem.title = "Discover"
-        myEmotesVC.tabBarItem.title = "My Emotes"
-        accountVC.tabBarItem.title = "Account"
-        
-        let tabController = UITabBarController()
-        tabController.tabBar.translucent = false
-        tabController.tabBar.tintColor = blue
-        
-        tabController.setViewControllers([homeVC, discoverNav, myEmotesVC, accountVC], animated: false)
-        
-        tabController.selectedIndex = 1
+    func loadMainTab(isLoggedIn: Bool) {
+        let tabController = getMainTab(isLoggedIn)
         
         if let window = UIApplication.sharedApplication().delegate?.window {
             window!.rootViewController = tabController
         }
     }
     
-    func loadMainTab() {
+    func getMainTab(isLoggedIn: Bool) -> UIViewController {
+        let tabVCList = isLoggedIn ? getLoggedInTabs() : getLoggedOutTabs()
+        
+        setVCTitlesAndIcons(tabVCList)
+        
+        let tabController = UITabBarController()
+        tabController.tabBar.translucent = false
+        tabController.tabBar.tintColor = blue
+        
+        tabController.setViewControllers(tabVCList, animated: false)
+        
+        tabController.selectedIndex = isLoggedIn ? 0 : 1
+        
+        return tabController
+    }
+    
+    func getLoggedInTabs() -> [UIViewController] {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let mainTabVC = storyboard.instantiateViewControllerWithIdentifier(MainTabVCIdentifier)
+        let homeVC = navControllerEmbeddedVC(HomeTimelineViewController())
+        let discoverVC = navControllerEmbeddedVC(DiscoverViewController())
+        let myEmotesVC = navControllerEmbeddedVC(storyboard.instantiateViewControllerWithIdentifier(UserTimelineVCIdentifier))
+        let accountVC = navControllerEmbeddedVC(storyboard.instantiateViewControllerWithIdentifier(AccountVCIdentifier))
         
-        if let window = UIApplication.sharedApplication().delegate?.window {
-            window!.rootViewController = mainTabVC
-        }
+        return [homeVC, discoverVC, myEmotesVC, accountVC]
+    }
+    
+    func getLoggedOutTabs() -> [UIViewController] {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let homeVC = storyboard.instantiateViewControllerWithIdentifier(LoginNavVCIdentifier)
+        let discoverVC = navControllerEmbeddedVC(DiscoverViewController())
+        let myEmotesVC = storyboard.instantiateViewControllerWithIdentifier(LoginNavVCIdentifier)
+        let accountVC = storyboard.instantiateViewControllerWithIdentifier(LoginNavVCIdentifier)
+        
+        return [homeVC, discoverVC, myEmotesVC, accountVC]
+    }
+    
+    func setVCTitlesAndIcons(tabVCList: [UIViewController]) {
+        tabVCList[0].tabBarItem.title = "Home"
+        // tabVCList[0].tabBarItem.image =
+        
+        tabVCList[1].tabBarItem.title = "Discover"
+        // tabVCList[1].tabBarItem.image =
+        
+        tabVCList[2].tabBarItem.title = "My Emotes"
+        // tabVCList[2].tabBarItem.image =
+        
+        tabVCList[3].tabBarItem.title = "Account"
+        // tabVCList[3].tabBarItem.image =
+    }
+    
+    func navControllerEmbeddedVC(viewController: UIViewController) -> UINavigationController {
+        let navController = UINavigationController(rootViewController: viewController)
+        styleNavigationController(navController)
+        
+        return navController
     }
     
     func styleNavigationController(navController: UINavigationController) {
@@ -99,5 +131,4 @@ class LoginManager: NSObject {
         
         navController.navigationBar.translucent = false
     }
-
 }

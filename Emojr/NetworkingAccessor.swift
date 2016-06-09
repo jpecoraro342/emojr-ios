@@ -17,6 +17,7 @@ protocol NetworkingAccessor {
     
     // func getAllPosts(completionBlock: PostArrayClosure);
     func getPost(postId: String, completionBlock: PostClosure?);
+    func getDiscoverPosts(userId: String?, completionBlock: PostArrayClosure?)
     func getAllPostsFromUser(userId: String, completionBlock: PostArrayClosure?);
     
     func getAllFollowingPosts(userId: String, completionBlock: PostArrayClosure?);
