@@ -19,6 +19,8 @@ class EmoteView: UIView {
     
     var reacting = false
     
+    var emojiKeyboard = EmojiKeyboard()
+    
     class func instanceFromNib() -> EmoteView {
         return UINib(nibName: "EmoteView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! EmoteView
     }
@@ -31,19 +33,8 @@ class EmoteView: UIView {
     }
     
     func configureEmojiKeyboard() {
-        let keyboardFrame = CGRectMake(0, 0, self.frame.width, getEmojiKeyboardHeight())
-        let emojiKeyboard = AGEmojiKeyboardView(frame: keyboardFrame, dataSource: self)
-        emojiKeyboard.autoresizingMask = .FlexibleHeight
+        emojiField.inputView = emojiKeyboard.getKeyboardView()
         emojiKeyboard.delegate = self
-        emojiKeyboard.backgroundColor = blue
-        emojiKeyboard.segmentsBar.backgroundColor = UIColor.clearColor()
-        emojiKeyboard.segmentsBar.tintColor = offWhite
-        emojiKeyboard.segmentsBar.contentMode = .ScaleAspectFill
-        emojiField.inputView = emojiKeyboard
-    }
-    
-    func getEmojiKeyboardHeight() -> CGFloat {
-        return 500
     }
     
     func setButtonTitle(reacting: Bool) {
@@ -111,8 +102,8 @@ extension EmoteView: UITextFieldDelegate {
     }
 }
 
-extension EmoteView: AGEmojiKeyboardViewDelegate {
-    func emojiKeyBoardView(emojiKeyBoardView: AGEmojiKeyboardView!, didUseEmoji emoji: String!) {
+extension EmoteView: EmojiKeyboardDelegate {
+    func emojiKeyBoarDidUseEmoji(emojiKeyBoard: EmojiKeyboard, emoji: String) {
         if reacting {
             let newLength = (emojiField.text?.characters.count)! + 1
             if newLength <= 1 {
@@ -123,26 +114,12 @@ extension EmoteView: AGEmojiKeyboardViewDelegate {
         }
     }
     
-    func emojiKeyBoardViewDidPressBackSpace(emojiKeyBoardView: AGEmojiKeyboardView!) {
+    func emojiKeyBoardDidPressBackSpace(emojiKeyBoard: EmojiKeyboard) {
         if var text = emojiField.text {
             if text != "" {
                 text.removeAtIndex(text.endIndex.predecessor())
                 emojiField.text = text
             }
         }
-    }
-}
-
-extension EmoteView: AGEmojiKeyboardViewDataSource {
-    func emojiKeyboardView(emojiKeyboardView: AGEmojiKeyboardView!, imageForSelectedCategory category: AGEmojiKeyboardViewCategoryImage) -> UIImage! {
-        return emojiKeyboardImages[category.rawValue]
-    }
-    
-    func emojiKeyboardView(emojiKeyboardView: AGEmojiKeyboardView!, imageForNonSelectedCategory category: AGEmojiKeyboardViewCategoryImage) -> UIImage! {
-        return emojiKeyboardImages[category.rawValue]
-    }
-    
-    func backSpaceButtonImageForEmojiKeyboardView(emojiKeyboardView: AGEmojiKeyboardView!) -> UIImage! {
-        return UIImage(named: "backspace")
     }
 }

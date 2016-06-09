@@ -48,9 +48,10 @@
 		15DDD0F51D09C49200E9649C /* LoadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15DDD0F41D09C49200E9649C /* LoadingTableViewCell.xib */; };
 		15DDD0F71D09C4AD00E9649C /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15DDD0F61D09C4AD00E9649C /* TimelineTableViewCell.xib */; };
 		15DDD0F91D09E2B300E9649C /* HomeTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDD0F81D09E2B300E9649C /* HomeTimelineViewController.swift */; };
+		15DDD1061D0A034500E9649C /* AGEmojiKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DDD1031D0A034500E9649C /* AGEmojiKeyBoardView.m */; };
+		15DDD1071D0A034500E9649C /* AGEmojiPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DDD1051D0A034500E9649C /* AGEmojiPageView.m */; };
+		15DDD1091D0A040E00E9649C /* EmojiKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDD1081D0A040E00E9649C /* EmojiKeyboard.swift */; };
 		6E18F6B11CAC439000696CC5 /* EmojisList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E18F6AC1CAC439000696CC5 /* EmojisList.plist */; };
-		6E18F6B21CAC439000696CC5 /* AGEmojiPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18F6AD1CAC439000696CC5 /* AGEmojiPageView.m */; };
-		6E18F6B31CAC439000696CC5 /* AGEmojiKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18F6AF1CAC439000696CC5 /* AGEmojiKeyBoardView.m */; };
 		6E5DBF721CABC494004D3088 /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5DBF711CABC494004D3088 /* String+Emoji.swift */; };
 		6EBDFF5F1CA7F35A0067B7CC /* NSDate+Comparisons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFF5E1CA7F35A0067B7CC /* NSDate+Comparisons.swift */; };
 		6ECCD7951CA714FA00F53AD5 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */; };
@@ -121,11 +122,12 @@
 		15DDD0F41D09C49200E9649C /* LoadingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingTableViewCell.xib; sourceTree = "<group>"; };
 		15DDD0F61D09C4AD00E9649C /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
 		15DDD0F81D09E2B300E9649C /* HomeTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewController.swift; sourceTree = "<group>"; };
+		15DDD1021D0A034500E9649C /* AGEmojiKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGEmojiKeyBoardView.h; sourceTree = "<group>"; };
+		15DDD1031D0A034500E9649C /* AGEmojiKeyBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEmojiKeyBoardView.m; sourceTree = "<group>"; };
+		15DDD1041D0A034500E9649C /* AGEmojiPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGEmojiPageView.h; sourceTree = "<group>"; };
+		15DDD1051D0A034500E9649C /* AGEmojiPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEmojiPageView.m; sourceTree = "<group>"; };
+		15DDD1081D0A040E00E9649C /* EmojiKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiKeyboard.swift; sourceTree = "<group>"; };
 		6E18F6AC1CAC439000696CC5 /* EmojisList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EmojisList.plist; sourceTree = "<group>"; };
-		6E18F6AD1CAC439000696CC5 /* AGEmojiPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEmojiPageView.m; sourceTree = "<group>"; };
-		6E18F6AE1CAC439000696CC5 /* AGEmojiPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGEmojiPageView.h; sourceTree = "<group>"; };
-		6E18F6AF1CAC439000696CC5 /* AGEmojiKeyBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEmojiKeyBoardView.m; sourceTree = "<group>"; };
-		6E18F6B01CAC439000696CC5 /* AGEmojiKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGEmojiKeyBoardView.h; sourceTree = "<group>"; };
 		6E5DBF711CABC494004D3088 /* String+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
 		6EBDFF5E1CA7F35A0067B7CC /* NSDate+Comparisons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Comparisons.swift"; sourceTree = "<group>"; };
 		6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				15AA50151CA6383A0066CAB9 /* Constants.swift */,
+				15DDD1081D0A040E00E9649C /* EmojiKeyboard.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -254,12 +257,12 @@
 		1546D3B91CA61D3100D8ECC5 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				15313DC81D07B2BE006E738A /* SnapKit.framework */,
-				15CC551B1CEE9F14006ABFE3 /* Fabric.framework */,
-				15CC551C1CEE9F14006ABFE3 /* Crashlytics.framework */,
 				6E18F6B41CAC439C00696CC5 /* AGEmojiKeyBoard */,
 				15454DEF1CA7E00900A520D1 /* UICKeyChainStore.h */,
 				15454DF01CA7E00900A520D1 /* UICKeyChainStore.m */,
+				15313DC81D07B2BE006E738A /* SnapKit.framework */,
+				15CC551B1CEE9F14006ABFE3 /* Fabric.framework */,
+				15CC551C1CEE9F14006ABFE3 /* Crashlytics.framework */,
 				15AA50051CA637570066CAB9 /* Alamofire.framework */,
 				15AA50061CA637570066CAB9 /* SwiftyJSON.framework */,
 				1546D3AE1CA61D2B00D8ECC5 /* SVProgressHUD.framework */,
@@ -293,10 +296,10 @@
 		6E18F6B41CAC439C00696CC5 /* AGEmojiKeyBoard */ = {
 			isa = PBXGroup;
 			children = (
-				6E18F6AD1CAC439000696CC5 /* AGEmojiPageView.m */,
-				6E18F6AE1CAC439000696CC5 /* AGEmojiPageView.h */,
-				6E18F6AF1CAC439000696CC5 /* AGEmojiKeyBoardView.m */,
-				6E18F6B01CAC439000696CC5 /* AGEmojiKeyBoardView.h */,
+				15DDD1021D0A034500E9649C /* AGEmojiKeyBoardView.h */,
+				15DDD1031D0A034500E9649C /* AGEmojiKeyBoardView.m */,
+				15DDD1041D0A034500E9649C /* AGEmojiPageView.h */,
+				15DDD1051D0A034500E9649C /* AGEmojiPageView.m */,
 			);
 			name = AGEmojiKeyBoard;
 			path = Emojr;
@@ -408,6 +411,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15DDD1061D0A034500E9649C /* AGEmojiKeyBoardView.m in Sources */,
 				15454DF71CA808BB00A520D1 /* FollowerViewController.swift in Sources */,
 				6ECCD7A21CA7724F00F53AD5 /* LoginViewController.swift in Sources */,
 				15313C3B1CC94C9200745760 /* AccountViewController.swift in Sources */,
@@ -429,7 +433,6 @@
 				15313DD41D07C34C006E738A /* AddUsersViewController.swift in Sources */,
 				15AA50131CA637780066CAB9 /* RestNetworkAccessor.swift in Sources */,
 				6EF1EF471CB4D4A400992A2F /* TimelineTableViewDataSource.swift in Sources */,
-				6E18F6B31CAC439000696CC5 /* AGEmojiKeyBoardView.m in Sources */,
 				15313DCE1D07B5D3006E738A /* UserTableViewCell.swift in Sources */,
 				15AA50111CA637780066CAB9 /* NetworkingAccessor.swift in Sources */,
 				15DDD0F91D09E2B300E9649C /* HomeTimelineViewController.swift in Sources */,
@@ -438,11 +441,12 @@
 				15AA50101CA637780066CAB9 /* NetworkFacade.swift in Sources */,
 				15AA50161CA6383A0066CAB9 /* Constants.swift in Sources */,
 				15CC55221CF2B19B006ABFE3 /* LoadingTableViewCell.swift in Sources */,
+				15DDD1071D0A034500E9649C /* AGEmojiPageView.m in Sources */,
 				15DDD0F31D08BF2400E9649C /* LoginManager.swift in Sources */,
 				6ECCD79C1CA72C7600F53AD5 /* EmoteView.swift in Sources */,
 				6EF1EF491CB4DC2A00992A2F /* UserTimelineViewController.swift in Sources */,
-				6E18F6B21CAC439000696CC5 /* AGEmojiPageView.m in Sources */,
 				6ECCD7951CA714FA00F53AD5 /* TimelineViewController.swift in Sources */,
+				15DDD1091D0A040E00E9649C /* EmojiKeyboard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

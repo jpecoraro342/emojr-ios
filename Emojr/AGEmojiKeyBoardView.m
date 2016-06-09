@@ -33,8 +33,9 @@ NSString *const RecentUsedEmojiCharactersKey = @"RecentUsedEmojiCharactersKey";
 
 - (NSDictionary *)emojis {
   if (!_emojis) {
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"EmojisList"
-                                                          ofType:@"plist"];
+    NSBundle *selfBundle = [NSBundle bundleForClass:[self class]];
+    NSString *plistPath = [selfBundle pathForResource:@"EmojisList"
+                                               ofType:@"plist"];
     _emojis = [[NSDictionary dictionaryWithContentsOfFile:plistPath] copy];
   }
   return _emojis;
@@ -49,7 +50,7 @@ NSString *const RecentUsedEmojiCharactersKey = @"RecentUsedEmojiCharactersKey";
   if ([self.dataSource respondsToSelector:@selector(defaultCategoryForEmojiKeyboardView:)]) {
     return [self.dataSource defaultCategoryForEmojiKeyboardView:self];
   }
-  return AGEmojiKeyboardViewCategoryImageFace;
+  return AGEmojiKeyboardViewCategoryImageRecent;
 }
 
 - (NSUInteger)recentEmojisMaintainedCount {
@@ -154,7 +155,7 @@ NSString *const RecentUsedEmojiCharactersKey = @"RecentUsedEmojiCharactersKey";
     [self addSubview:self.pageControl];
 
     CGRect scrollViewFrame = CGRectMake(0,
-                                        CGRectGetHeight(self.segmentsBar.bounds)+10,
+                                        CGRectGetHeight(self.segmentsBar.bounds),
                                         CGRectGetWidth(self.bounds),
                                         CGRectGetHeight(self.bounds) - CGRectGetHeight(self.segmentsBar.bounds) - pageControlSize.height);
     self.emojiPagesScrollView = [[UIScrollView alloc] initWithFrame:scrollViewFrame];
@@ -185,7 +186,7 @@ NSString *const RecentUsedEmojiCharactersKey = @"RecentUsedEmojiCharactersKey";
   self.pageControl.frame = CGRectIntegral(pageControlFrame);
 
   self.emojiPagesScrollView.frame = CGRectMake(0,
-                                               CGRectGetHeight(self.segmentsBar.bounds)+10,
+                                               CGRectGetHeight(self.segmentsBar.bounds),
                                                CGRectGetWidth(self.bounds),
                                                CGRectGetHeight(self.bounds) - CGRectGetHeight(self.segmentsBar.bounds) - pageControlSize.height);
   [self.emojiPagesScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
