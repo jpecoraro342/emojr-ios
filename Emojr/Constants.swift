@@ -32,19 +32,11 @@ let blue = UIColor(hexString: "3490DE")
 let offWhite = UIColor(hexString: "fefefe")
 let offBlack = UIColor(hexString: "#404040")
 
-let emojiKeyboardImages: [UIImage] = [UIImage(named: "recentCategory")!,
-                                      UIImage(named: "faceCategory")!,
-                                      UIImage(named: "bellCategory")!,
-                                      UIImage(named: "plantCategory")!,
-                                      UIImage(named: "carCategory")!,
-                                      UIImage(named: "characterCategory")!]
-
 // Keychain Keys
 
 let serviceKey = "com.emojr"
 let emailKey = "com.currentuser.email"
 let passwordKey = "com.currentuser.password"
-
 
 // MARK: Segue Identifiers
 

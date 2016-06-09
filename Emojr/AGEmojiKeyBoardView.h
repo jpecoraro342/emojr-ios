@@ -12,11 +12,14 @@
 
 typedef NS_ENUM(NSInteger, AGEmojiKeyboardViewCategoryImage) {
   AGEmojiKeyboardViewCategoryImageRecent,
-  AGEmojiKeyboardViewCategoryImageFace,
-  AGEmojiKeyboardViewCategoryImageBell,
-  AGEmojiKeyboardViewCategoryImageFlower,
-  AGEmojiKeyboardViewCategoryImageCar,
-  AGEmojiKeyboardViewCategoryImageCharacters
+  AGEmojiKeyboardViewCategoryImageSmileys,
+  AGEmojiKeyboardViewCategoryImageAnimals,
+  AGEmojiKeyboardViewCategoryImageFood,
+  AGEmojiKeyboardViewCategoryImageActivity,
+  AGEmojiKeyboardViewCategoryImageTravel,
+  AGEmojiKeyboardViewCategoryImageObjects,
+  AGEmojiKeyboardViewCategoryImageSymbols,
+  AGEmojiKeyboardViewCategoryImageFlags
 };
 
 @protocol AGEmojiKeyboardViewDelegate;
