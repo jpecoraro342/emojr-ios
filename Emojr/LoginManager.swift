@@ -129,6 +129,8 @@ class LoginManager: NSObject {
         navController.navigationBar.barTintColor = blue
         navController.navigationBar.tintColor = UIColor.whiteColor()
         
+        navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        
         navController.navigationBar.translucent = false
     }
 }

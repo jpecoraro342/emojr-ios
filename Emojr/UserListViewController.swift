@@ -53,6 +53,7 @@ class UserListViewController: UIViewController {
         
         followingTableView.delegate = self;
         followingTableView.dataSource = self;
+        followingTableView.rowHeight = 60;
         followingTableView.registerNib(UINib(nibName: "UserTableViewCell", bundle:nil), forCellReuseIdentifier: UserCellIdentifier)
     }
     

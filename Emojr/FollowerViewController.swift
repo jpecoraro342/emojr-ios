@@ -10,16 +10,12 @@ import UIKit
 
 class FollowerViewController: UserListViewController {
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.title = ""
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         self.navigationItem.title = "Followers"
     }
-    
+
     override func refreshData() {
         super.refreshData()
         

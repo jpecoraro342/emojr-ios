@@ -10,13 +10,9 @@ import UIKit
 
 class FollowingViewController: UserListViewController {
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.title = ""
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         self.navigationItem.title = "Following"
     }
     
