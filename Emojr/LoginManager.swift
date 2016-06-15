@@ -106,16 +106,16 @@ class LoginManager: NSObject {
     
     func setVCTitlesAndIcons(tabVCList: [UIViewController]) {
         tabVCList[0].tabBarItem.title = "Home"
-        tabVCList[0].tabBarItem.image = UIImage(named: "houseEmoji")
+        tabVCList[0].tabBarItem.image = UIImage(named: "houseEmoji")?.imageWithRenderingMode(.AlwaysOriginal)
         
         tabVCList[1].tabBarItem.title = "Discover"
-        tabVCList[1].tabBarItem.image = UIImage(named: "fireEmoji")
+        tabVCList[1].tabBarItem.image = UIImage(named: "fireEmoji")?.imageWithRenderingMode(.AlwaysOriginal)
         
         tabVCList[2].tabBarItem.title = "My Emotes"
-        tabVCList[2].tabBarItem.image = UIImage(named: "tongueOutEmoji")
+        tabVCList[2].tabBarItem.image = UIImage(named: "tongueOutEmoji")?.imageWithRenderingMode(.AlwaysOriginal)
         
         tabVCList[3].tabBarItem.title = "Account"
-        tabVCList[3].tabBarItem.image = UIImage(named: "gearEmoji")
+        tabVCList[3].tabBarItem.image = UIImage(named: "gearEmoji")?.imageWithRenderingMode(.AlwaysOriginal)
     }
     
     func navControllerEmbeddedVC(viewController: UIViewController) -> UINavigationController {
