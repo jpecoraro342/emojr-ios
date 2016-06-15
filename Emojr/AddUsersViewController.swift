@@ -15,6 +15,8 @@ class AddUsersViewController: UserListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.rightBarButtonItem = nil
+        
         (UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])).tintColor = UIColor.whiteColor()
         
         searchBar.tintColor = blue
@@ -72,8 +74,7 @@ extension AddUsersViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        // Should clear the text first?
-        searchBar.endEditing(true)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {

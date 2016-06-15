@@ -32,7 +32,15 @@ class UserListViewController: UIViewController {
         
         layoutTableView()
         
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(UserListViewController.navigateToAddBySearch))
+        self.navigationItem.rightBarButtonItem = addButton
+        
         refreshData()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,6 +67,10 @@ class UserListViewController: UIViewController {
     
     func refreshData() {
         followingUsers = User.sharedInstance.following
+    }
+    
+    func navigateToAddBySearch() {
+        self.navigationController?.pushViewController(AddUsersViewController(), animated: true)
     }
     
     func askToFollowUser(user: UserData) {
