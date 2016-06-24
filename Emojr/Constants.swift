@@ -62,6 +62,12 @@ let TimelineCellIdentifier = "TimelineCell"
 let LoadingCellIdentifier = "loadingCell"
 let UserCellIdentifier = "UserCell"
 
+// MARK: File Paths
+
+let emojiNameKeysFilePath = NSBundle.mainBundle().pathForResource("emoji-name-keys", ofType: "json")!
+let emojiEmojiKeysFilePath = NSBundle.mainBundle().pathForResource("emoji-emoji-keys", ofType: "json")!
+let complexEmojiFilePath = NSBundle.mainBundle().pathForResource("emoji-complex", ofType: "json")!
+
 // MARK:
 
 let baseURL = "https://emojr.herokuapp.com/api";

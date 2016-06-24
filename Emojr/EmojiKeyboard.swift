@@ -40,8 +40,6 @@ class EmojiKeyboard: NSObject {
         emojiKeyboard.segmentsBar.backgroundColor = UIColor.clearColor()
         emojiKeyboard.segmentsBar.tintColor = offWhite
         emojiKeyboard.segmentsBar.contentMode = .ScaleAspectFill
-
-        
         
         return emojiKeyboard
     }
