@@ -23,12 +23,6 @@ class EmojiSearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        delegate = self
-        
-        view.backgroundColor = UIColor.whiteColor()
-        
-        layoutTestingTextField()
         layoutTableView()
     }
     
@@ -40,8 +34,7 @@ class EmojiSearchViewController: UIViewController {
         view.addSubview(emojiTableView)
         
         emojiTableView.snp_makeConstraints { (make) in
-            // make.top.equalTo(self.view)
-            make.top.equalTo(self.targetTextfield!.snp_bottom)
+            make.top.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.left.equalTo(self.view)
             make.right.equalTo(self.view)
@@ -51,20 +44,6 @@ class EmojiSearchViewController: UIViewController {
         emojiTableView.dataSource = self;
         emojiTableView.rowHeight = 60;
         emojiTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "EmojiListCell")
-    }
-    
-    func layoutTestingTextField() {
-        targetTextfield = UITextField()
-        targetTextfield!.delegate = self
-        
-        view.addSubview(targetTextfield!)
-        
-        targetTextfield?.snp_makeConstraints(closure: { (make) in
-            make.top.equalTo(self.view)
-            make.height.equalTo(40)
-            make.left.equalTo(self.view)
-            make.right.equalTo(self.view)
-        })
     }
     
     func updateEmojiSearchWithString(oldText : String, newText : String, changedText : String) -> String {
@@ -114,12 +93,6 @@ extension EmojiSearchViewController : UITableViewDataSource {
     }
 }
 
-extension EmojiSearchViewController : EmojiSearchViewControllerDelegate {
-    func didSelectEmoji(emoji: String) {
-        updateEmojiSearchWithString(targetTextfield!.text!, newText: "\(targetTextfield!.text!)\(emoji)", changedText: emoji)
-    }
-}
-
 extension EmojiSearchViewController : UITextFieldDelegate {
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         return true
@@ -138,9 +111,9 @@ extension EmojiSearchViewController : UITextFieldDelegate {
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        print("Current Text - \"\(textField.text!)\"")
-        print("Replacement Text - \"\(string)\"")
-        print("Range - \(range.location)-\(range.length)")
+//        print("Current Text - \"\(textField.text!)\"")
+//        print("Replacement Text - \"\(string)\"")
+//        print("Range - \(range.location)-\(range.length)")
         
         let newText = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
         textField.text = updateEmojiSearchWithString(textField.text!, newText: newText, changedText: string)
