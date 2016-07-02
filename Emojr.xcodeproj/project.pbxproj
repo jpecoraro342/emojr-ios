@@ -34,6 +34,12 @@
 		1589F88D1D1CF0C400451912 /* emoji-emoji-keys.json in Resources */ = {isa = PBXBuildFile; fileRef = 1589F8891D1CF0C400451912 /* emoji-emoji-keys.json */; };
 		1589F88E1D1CF0C400451912 /* emoji-name-keys.json in Resources */ = {isa = PBXBuildFile; fileRef = 1589F88A1D1CF0C400451912 /* emoji-name-keys.json */; };
 		1589F88F1D1CF0C400451912 /* emoji-names.json in Resources */ = {isa = PBXBuildFile; fileRef = 1589F88B1D1CF0C400451912 /* emoji-names.json */; };
+		1589F8981D27556600451912 /* EmojiValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1589F8971D27556600451912 /* EmojiValidationTests.swift */; };
+		1589F89F1D27597D00451912 /* EmojiValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1589F8861D1CEFDE00451912 /* EmojiValidator.swift */; };
+		1589F8A01D275C5600451912 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA50151CA6383A0066CAB9 /* Constants.swift */; };
+		1589F8A11D275C7800451912 /* NetworkObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA500D1CA637780066CAB9 /* NetworkObjects.swift */; };
+		1589F8A21D275CA800451912 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA50181CA6392F0066CAB9 /* UIColor+Hex.swift */; };
+		1589F8A31D275CAB00451912 /* NSDate+Comparisons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFF5E1CA7F35A0067B7CC /* NSDate+Comparisons.swift */; };
 		15AA50071CA637570066CAB9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AA50051CA637570066CAB9 /* Alamofire.framework */; };
 		15AA50081CA637570066CAB9 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15AA50051CA637570066CAB9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15AA50091CA637570066CAB9 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AA50061CA637570066CAB9 /* SwiftyJSON.framework */; };
@@ -67,6 +73,16 @@
 		6EF1EF471CB4D4A400992A2F /* TimelineTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF1EF461CB4D4A400992A2F /* TimelineTableViewDataSource.swift */; };
 		6EF1EF491CB4DC2A00992A2F /* UserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF1EF481CB4DC2A00992A2F /* UserTimelineViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1589F89A1D27556600451912 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1546D38F1CA61A5100D8ECC5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1546D3961CA61A5100D8ECC5;
+			remoteInfo = Emojr;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		1546D3B81CA61D2B00D8ECC5 /* Embed Frameworks */ = {
@@ -115,6 +131,9 @@
 		1589F8891D1CF0C400451912 /* emoji-emoji-keys.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "emoji-emoji-keys.json"; sourceTree = "<group>"; };
 		1589F88A1D1CF0C400451912 /* emoji-name-keys.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "emoji-name-keys.json"; sourceTree = "<group>"; };
 		1589F88B1D1CF0C400451912 /* emoji-names.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "emoji-names.json"; sourceTree = "<group>"; };
+		1589F8951D27556600451912 /* EmojrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1589F8971D27556600451912 /* EmojiValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiValidationTests.swift; sourceTree = "<group>"; };
+		1589F8991D27556600451912 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15AA50051CA637570066CAB9 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		15AA50061CA637570066CAB9 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		15AA500B1CA637780066CAB9 /* NetworkFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkFacade.swift; sourceTree = "<group>"; };
@@ -160,6 +179,13 @@
 				15313DC91D07B2BE006E738A /* SnapKit.framework in Frameworks */,
 				15AA50091CA637570066CAB9 /* SwiftyJSON.framework in Frameworks */,
 				15CC551D1CEE9F14006ABFE3 /* Fabric.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1589F8921D27556600451912 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +257,7 @@
 			children = (
 				1546D3991CA61A5100D8ECC5 /* Emojr */,
 				1546D3B91CA61D3100D8ECC5 /* Libraries */,
+				1589F8961D27556600451912 /* EmojrTests */,
 				1546D3981CA61A5100D8ECC5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -239,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				1546D3971CA61A5100D8ECC5 /* Emojr.app */,
+				1589F8951D27556600451912 /* EmojrTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,6 +342,15 @@
 			name = "Emoji FIles";
 			sourceTree = "<group>";
 		};
+		1589F8961D27556600451912 /* EmojrTests */ = {
+			isa = PBXGroup;
+			children = (
+				1589F8971D27556600451912 /* EmojiValidationTests.swift */,
+				1589F8991D27556600451912 /* Info.plist */,
+			);
+			path = EmojrTests;
+			sourceTree = "<group>";
+		};
 		15AA50171CA638F50066CAB9 /* Class Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,19 +405,41 @@
 			productReference = 1546D3971CA61A5100D8ECC5 /* Emojr.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1589F8941D27556600451912 /* EmojrTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1589F89C1D27556600451912 /* Build configuration list for PBXNativeTarget "EmojrTests" */;
+			buildPhases = (
+				1589F8911D27556600451912 /* Sources */,
+				1589F8921D27556600451912 /* Frameworks */,
+				1589F8931D27556600451912 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1589F89B1D27556600451912 /* PBXTargetDependency */,
+			);
+			name = EmojrTests;
+			productName = EmojrTests;
+			productReference = 1589F8951D27556600451912 /* EmojrTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1546D38F1CA61A5100D8ECC5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Joseph Pecoraro";
 				TargetAttributes = {
 					1546D3961CA61A5100D8ECC5 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = CX87MDXJNH;
+					};
+					1589F8941D27556600451912 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 1546D3961CA61A5100D8ECC5;
 					};
 				};
 			};
@@ -398,6 +457,7 @@
 			projectRoot = "";
 			targets = (
 				1546D3961CA61A5100D8ECC5 /* Emojr */,
+				1589F8941D27556600451912 /* EmojrTests */,
 			);
 		};
 /* End PBXProject section */
@@ -419,6 +479,13 @@
 				15313DCC1D07B54F006E738A /* UserTableViewCell.xib in Resources */,
 				6ECCD79E1CA72C8D00F53AD5 /* EmoteView.xib in Resources */,
 				15DDD0F51D09C49200E9649C /* LoadingTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1589F8931D27556600451912 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,7 +553,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1589F8911D27556600451912 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1589F8981D27556600451912 /* EmojiValidationTests.swift in Sources */,
+				1589F89F1D27597D00451912 /* EmojiValidator.swift in Sources */,
+				1589F8A01D275C5600451912 /* Constants.swift in Sources */,
+				1589F8A31D275CAB00451912 /* NSDate+Comparisons.swift in Sources */,
+				1589F8A11D275C7800451912 /* NetworkObjects.swift in Sources */,
+				1589F8A21D275CA800451912 /* UIColor+Hex.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1589F89B1D27556600451912 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1546D3961CA61A5100D8ECC5 /* Emojr */;
+			targetProxy = 1589F89A1D27556600451912 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1546D39E1CA61A5100D8ECC5 /* Main.storyboard */ = {
@@ -632,6 +720,34 @@
 			};
 			name = Release;
 		};
+		1589F89D1D27556600451912 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = EmojrTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.josephpecoraro.EmojrTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Emojr.app/Emojr";
+			};
+			name = Debug;
+		};
+		1589F89E1D27556600451912 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = EmojrTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.josephpecoraro.EmojrTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Emojr.app/Emojr";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -652,6 +768,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		1589F89C1D27556600451912 /* Build configuration list for PBXNativeTarget "EmojrTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1589F89D1D27556600451912 /* Debug */,
+				1589F89E1D27556600451912 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

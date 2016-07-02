@@ -79,17 +79,3 @@ class EmojiValidator : NSObject {
         return emojis
     }
 }
-
-func emojiValidatorTest() {
-    let validator = EmojiValidator()
-    
-    print("😇 \(validator.isEmoji("😇"))")
-    print("🇳🇫 \(validator.isEmoji("🇳🇫"))")
-    print("📳 \(validator.isEmoji("📳"))")
-    print("🕰 \(validator.isEmoji("🕰"))")
-    print("tes \(validator.isEmoji("tes"))")
-    
-    print("scissors \(validator.emojiForName("scissors"))")
-    
-    print("Arrow test: \(validator.emojisForNameStartingWith("arrow"))")
-}
