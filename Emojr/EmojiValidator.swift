@@ -64,6 +64,10 @@ class EmojiValidator : NSObject {
         return emojiWithNameKeys?[name]
     }
     
+    func nameForEmoji(emoji: String) -> String? {
+        return emojiWithEmojiKeys?[emoji]
+    }
+    
     func emojisForNameStartingWith(name: String) -> [String] {
         var emojis = [String]()
         
@@ -71,7 +75,7 @@ class EmojiValidator : NSObject {
             else { return emojis }
         
         for (emojiName, emoji) in emojiDict {
-            if emojiName.containsString(name) {
+            if emojiName.containsString(name.lowercaseString) {
                 emojis.append(emoji)
             }
         }
