@@ -10,7 +10,7 @@ import UIKit
 
 class LoginManager: NSObject {
     
-    func attemptLogin(activityIndicator: UIActivityIndicatorView?=nil) {
+    func attemptLogin(_ activityIndicator: UIActivityIndicatorView?=nil) {
         if User.sharedInstance.manuallyLoggedOut {
             loadMainTab(false)
             return
@@ -21,10 +21,10 @@ class LoginManager: NSObject {
             return
         }
         
-        guard let username = UICKeyChainStore.stringForKey("com.currentuser.username", service: "com.emojr")
+        guard let username = UICKeyChainStore.string(forKey: "com.currentuser.username", service: "com.emojr")
             else { loadMainTab(false); return; }
         
-        guard let password = UICKeyChainStore.stringForKey("com.currentuser.password", service: "com.emojr")
+        guard let password = UICKeyChainStore.string(forKey: "com.currentuser.password", service: "com.emojr")
             else { loadMainTab(false); return; }
         
         login(username, password: password, activityIndicator: activityIndicator)
@@ -34,8 +34,8 @@ class LoginManager: NSObject {
         
     }
     
-    func login(username: String, password: String, activityIndicator: UIActivityIndicatorView?=nil) {
-        activityIndicator?.hidden = false
+    func login(_ username: String, password: String, activityIndicator: UIActivityIndicatorView?=nil) {
+        activityIndicator?.isHidden = false
         activityIndicator?.startAnimating()
         
         NetworkFacade.sharedInstance.signInUser(username, password: password) { (error, user) in
@@ -45,7 +45,7 @@ class LoginManager: NSObject {
             } else if let data = user {
                 User.sharedInstance.configureWithUserData(data)
                 
-                activityIndicator?.hidden = true
+                activityIndicator?.isHidden = true
                 activityIndicator?.stopAnimating()
                 
                 self.loadMainTab(true)
@@ -58,21 +58,21 @@ class LoginManager: NSObject {
         loadMainTab(false)
     }
     
-    func loadMainTab(isLoggedIn: Bool) {
+    func loadMainTab(_ isLoggedIn: Bool) {
         let tabController = getMainTab(isLoggedIn)
         
-        if let window = UIApplication.sharedApplication().delegate?.window {
+        if let window = UIApplication.shared.delegate?.window {
             window!.rootViewController = tabController
         }
     }
     
-    func getMainTab(isLoggedIn: Bool) -> UIViewController {
+    func getMainTab(_ isLoggedIn: Bool) -> UIViewController {
         let tabVCList = isLoggedIn ? getLoggedInTabs() : getLoggedOutTabs()
         
         setVCTitlesAndIcons(tabVCList)
         
         let tabController = UITabBarController()
-        tabController.tabBar.translucent = false
+        tabController.tabBar.isTranslucent = false
         tabController.tabBar.tintColor = blue
         
         tabController.setViewControllers(tabVCList, animated: false)
@@ -87,8 +87,8 @@ class LoginManager: NSObject {
         
         let homeVC = navControllerEmbeddedVC(HomeTimelineViewController())
         let discoverVC = navControllerEmbeddedVC(DiscoverViewController())
-        let myEmotesVC = navControllerEmbeddedVC(storyboard.instantiateViewControllerWithIdentifier(UserTimelineVCIdentifier))
-        let accountVC = navControllerEmbeddedVC(storyboard.instantiateViewControllerWithIdentifier(AccountVCIdentifier))
+        let myEmotesVC = navControllerEmbeddedVC(storyboard.instantiateViewController(withIdentifier: UserTimelineVCIdentifier))
+        let accountVC = navControllerEmbeddedVC(storyboard.instantiateViewController(withIdentifier: AccountVCIdentifier))
         
         return [homeVC, discoverVC, myEmotesVC, accountVC]
     }
@@ -96,41 +96,41 @@ class LoginManager: NSObject {
     func getLoggedOutTabs() -> [UIViewController] {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let homeVC = storyboard.instantiateViewControllerWithIdentifier(LoginNavVCIdentifier)
+        let homeVC = storyboard.instantiateViewController(withIdentifier: LoginNavVCIdentifier)
         let discoverVC = navControllerEmbeddedVC(DiscoverViewController())
-        let myEmotesVC = storyboard.instantiateViewControllerWithIdentifier(LoginNavVCIdentifier)
-        let accountVC = storyboard.instantiateViewControllerWithIdentifier(LoginNavVCIdentifier)
+        let myEmotesVC = storyboard.instantiateViewController(withIdentifier: LoginNavVCIdentifier)
+        let accountVC = storyboard.instantiateViewController(withIdentifier: LoginNavVCIdentifier)
         
         return [homeVC, discoverVC, myEmotesVC, accountVC]
     }
     
-    func setVCTitlesAndIcons(tabVCList: [UIViewController]) {
+    func setVCTitlesAndIcons(_ tabVCList: [UIViewController]) {
         tabVCList[0].tabBarItem.title = "Home"
-        tabVCList[0].tabBarItem.image = UIImage(named: "houseEmoji")?.imageWithRenderingMode(.AlwaysOriginal)
+        tabVCList[0].tabBarItem.image = UIImage(named: "houseEmoji")?.withRenderingMode(.alwaysOriginal)
         
         tabVCList[1].tabBarItem.title = "Discover"
-        tabVCList[1].tabBarItem.image = UIImage(named: "fireEmoji")?.imageWithRenderingMode(.AlwaysOriginal)
+        tabVCList[1].tabBarItem.image = UIImage(named: "fireEmoji")?.withRenderingMode(.alwaysOriginal)
         
         tabVCList[2].tabBarItem.title = "My Emotes"
-        tabVCList[2].tabBarItem.image = UIImage(named: "tongueOutEmoji")?.imageWithRenderingMode(.AlwaysOriginal)
+        tabVCList[2].tabBarItem.image = UIImage(named: "tongueOutEmoji")?.withRenderingMode(.alwaysOriginal)
         
         tabVCList[3].tabBarItem.title = "Account"
-        tabVCList[3].tabBarItem.image = UIImage(named: "gearEmoji")?.imageWithRenderingMode(.AlwaysOriginal)
+        tabVCList[3].tabBarItem.image = UIImage(named: "gearEmoji")?.withRenderingMode(.alwaysOriginal)
     }
     
-    func navControllerEmbeddedVC(viewController: UIViewController) -> UINavigationController {
+    func navControllerEmbeddedVC(_ viewController: UIViewController) -> UINavigationController {
         let navController = UINavigationController(rootViewController: viewController)
         styleNavigationController(navController)
         
         return navController
     }
     
-    func styleNavigationController(navController: UINavigationController) {
+    func styleNavigationController(_ navController: UINavigationController) {
         navController.navigationBar.barTintColor = blue
-        navController.navigationBar.tintColor = UIColor.whiteColor()
+        navController.navigationBar.tintColor = UIColor.white
         
-        navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
-        navController.navigationBar.translucent = false
+        navController.navigationBar.isTranslucent = false
     }
 }

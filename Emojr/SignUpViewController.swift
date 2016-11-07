@@ -52,28 +52,28 @@ class SignUpViewController: UIViewController {
         styleViewWithShadow(signUpButton)
     }
     
-    func styleViewWithShadow(view: UIView) {
-        view.layer.shadowColor = UIColor.blackColor().CGColor
+    func styleViewWithShadow(_ view: UIView) {
+        view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.3
-        view.layer.shadowOffset = CGSizeMake(0.0, 1.0)
+        view.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         view.layer.shadowRadius = 1.0
         view.layer.cornerRadius = 4.0
     }
     
-    func fadeInFieldBar(bar: UIView) {
-        UIView.animateWithDuration(0.3) {
+    func fadeInFieldBar(_ bar: UIView) {
+        UIView.animate(withDuration: 0.3, animations: {
             bar.backgroundColor = blueLight
-        }
+        }) 
     }
     
-    func fadeOutFieldBar(bar: UIView) {
-        UIView.animateWithDuration(0.3) {
+    func fadeOutFieldBar(_ bar: UIView) {
+        UIView.animate(withDuration: 0.3, animations: {
             bar.backgroundColor = offWhite
-        }
+        }) 
     }
     
     @IBAction func signUp() {
-        errorLabel.hidden = true
+        errorLabel.isHidden = true
         let (valid, message) = validSignupForm()
         
         if valid {
@@ -96,16 +96,16 @@ class SignUpViewController: UIViewController {
     
     func navigateToMainTab() {
         let tabVC = LoginManager().getMainTab(true)
-        self.navigationController?.presentViewController(tabVC, animated: true, completion: {
-            if let window = UIApplication.sharedApplication().delegate?.window {
+        self.navigationController?.present(tabVC, animated: true, completion: {
+            if let window = UIApplication.shared.delegate?.window {
                 window!.rootViewController = tabVC
             }
         })
     }
     
-    func displayError(message: String) {
+    func displayError(_ message: String) {
         errorLabel.text = message
-        errorLabel.hidden = false
+        errorLabel.isHidden = false
     }
     
     func validSignupForm() -> (Bool, String) {
@@ -135,33 +135,33 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    @IBAction func backgroundTapped(sender: AnyObject) {
+    @IBAction func backgroundTapped(_ sender: AnyObject) {
         self.view.endEditing(true);
     }
     
-    @IBAction func toLoginPressed(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(false)
+    @IBAction func toLoginPressed(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: false)
     }
 }
 
 extension SignUpViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         fadeInFieldBar(fieldViewDict[textField]!)
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         fadeOutFieldBar(fieldViewDict[textField]!)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true;
     }
 }
 
 extension SignUpViewController {
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }
 

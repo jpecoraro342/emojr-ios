@@ -22,12 +22,12 @@ class EmojiValidator : NSObject {
         complexEmoji = loadJsonAtPath(complexEmojiFilePath) as? Dictionary<String, Array<String>>
     }
     
-    func loadEmojiDictAtPath(path: String) -> Dictionary<String, String> {
+    func loadEmojiDictAtPath(_ path: String) -> Dictionary<String, String> {
         do {
-            let rawEmojiData = NSData(contentsOfURL: NSURL(fileURLWithPath: path))
+            let rawEmojiData = try? Data(contentsOf: URL(fileURLWithPath: path))
             
             if let data = rawEmojiData {
-                let emojiDict = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! Dictionary<String, String>
+                let emojiDict = try JSONSerialization.jsonObject(with: data, options: []) as! Dictionary<String, String>
                 
                 return emojiDict
             }
@@ -39,43 +39,43 @@ class EmojiValidator : NSObject {
         return [String:String]()
     }
     
-    func loadJsonAtPath(path: String) -> AnyObject {
+    func loadJsonAtPath(_ path: String) -> AnyObject {
         do {
-            let rawData = NSData(contentsOfURL: NSURL(fileURLWithPath: path))
+            let rawData = try? Data(contentsOf: URL(fileURLWithPath: path))
             
             if let data = rawData {
-                let jsonObj = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+                let jsonObj = try JSONSerialization.jsonObject(with: data, options: [])
                 
-                return jsonObj
+                return jsonObj as AnyObject
             }
         }
         catch {
             print("Error loading file at path: \(path)")
         }
         
-        return Dictionary<String, String>()
+        return Dictionary<String, String>() as AnyObject
     }
     
-    func isEmoji(emoji: String) -> Bool {
+    func isEmoji(_ emoji: String) -> Bool {
         return emojiWithEmojiKeys?[emoji] != nil
     }
     
-    func emojiForName(name: String) -> String? {
+    func emojiForName(_ name: String) -> String? {
         return emojiWithNameKeys?[name]
     }
     
-    func nameForEmoji(emoji: String) -> String? {
+    func nameForEmoji(_ emoji: String) -> String? {
         return emojiWithEmojiKeys?[emoji]
     }
     
-    func emojisForNameStartingWith(name: String) -> [String] {
+    func emojisForNameStartingWith(_ name: String) -> [String] {
         var emojis = [String]()
         
         guard let emojiDict = emojiWithNameKeys
             else { return emojis }
         
         for (emojiName, emoji) in emojiDict {
-            if emojiName.containsString(name.lowercaseString) {
+            if emojiName.contains(name.lowercased()) {
                 emojis.append(emoji)
             }
         }

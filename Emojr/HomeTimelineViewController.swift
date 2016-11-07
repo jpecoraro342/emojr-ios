@@ -24,19 +24,18 @@ class HomeTimelineViewController: TimelineViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.title = ""
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
         self.navigationItem.title = "Home"
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     override func rightBarButtonItem() -> UIBarButtonItem? {
-        let postButton = UIBarButtonItem(title: "📝   ", style: .Plain, target: self, action: #selector(postButtonTapped))
-        postButton.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFontOfSize(32)], forState: .Normal)
+        let postButton = UIBarButtonItem(title: "📝   ", style: .plain, target: self, action: #selector(postButtonTapped))
+        postButton.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 32)], for: UIControlState())
         
         return postButton
     }

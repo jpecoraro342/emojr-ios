@@ -20,42 +20,42 @@ class AccountViewController: UIViewController {
         self.usernameLabel.text = User.sharedInstance.username
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
     }
     
-    @IBAction func myFeedButtonTapped(sender: AnyObject) {
-        performSegueWithIdentifier(AccountToUserTimeline, sender: self)
+    @IBAction func myFeedButtonTapped(_ sender: AnyObject) {
+        performSegue(withIdentifier: AccountToUserTimeline, sender: self)
     }
     
-    @IBAction func addUsersButtonTapped(sender: AnyObject) {
+    @IBAction func addUsersButtonTapped(_ sender: AnyObject) {
         let addUserVC = AddUsersViewController()
         self.navigationController?.pushViewController(addUserVC, animated: true)
     }
     
-    @IBAction func followingButtonTapped(sender: AnyObject) {
+    @IBAction func followingButtonTapped(_ sender: AnyObject) {
         let followingVC = FollowingViewController()
         self.navigationController?.pushViewController(followingVC, animated: true)
     }
     
-    @IBAction func myFollowersButtonTapped(sender: AnyObject) {
+    @IBAction func myFollowersButtonTapped(_ sender: AnyObject) {
         let followerVC = FollowerViewController()
         self.navigationController?.pushViewController(followerVC, animated: true)
     }
     
-    @IBAction func logoutButtonTapped(sender: AnyObject) {
+    @IBAction func logoutButtonTapped(_ sender: AnyObject) {
         LoginManager().logout()
     }
 }
 
 extension AccountViewController {
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }

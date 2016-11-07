@@ -24,10 +24,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let username = UICKeyChainStore.stringForKey("com.currentuser.username", service: "com.emojr") {
+        if let username = UICKeyChainStore.string(forKey: "com.currentuser.username", service: "com.emojr") {
             usernameField.text = username
             
-            if let password = UICKeyChainStore.stringForKey("com.currentuser.password", service: "com.emojr") {
+            if let password = UICKeyChainStore.string(forKey: "com.currentuser.password", service: "com.emojr") {
                 passwordField.text = password
             }
         }
@@ -35,12 +35,12 @@ class LoginViewController: UIViewController {
         styleViews()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let username = UICKeyChainStore.stringForKey("com.currentuser.username", service: "com.emojr") {
+        if let username = UICKeyChainStore.string(forKey: "com.currentuser.username", service: "com.emojr") {
             usernameField.text = username
             
-            if let password = UICKeyChainStore.stringForKey("com.currentuser.password", service: "com.emojr") {
+            if let password = UICKeyChainStore.string(forKey: "com.currentuser.password", service: "com.emojr") {
                 passwordField.text = password
             }
         }
@@ -54,40 +54,40 @@ class LoginViewController: UIViewController {
         styleViewWithShadow(signInButton)
     }
     
-    func styleViewWithShadow(view: UIView) {
-        view.layer.shadowColor = UIColor.blackColor().CGColor
+    func styleViewWithShadow(_ view: UIView) {
+        view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.3
-        view.layer.shadowOffset = CGSizeMake(0.0, 1.0)
+        view.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         view.layer.shadowRadius = 1.0
         view.layer.cornerRadius = 4.0
     }
     
-    func fadeInFieldBar(bar: UIView) {
-        UIView.animateWithDuration(0.3) { 
+    func fadeInFieldBar(_ bar: UIView) {
+        UIView.animate(withDuration: 0.3, animations: { 
             bar.backgroundColor = blueLight
-        }
+        }) 
     }
     
-    func fadeOutFieldBar(bar: UIView) {
-        UIView.animateWithDuration(0.3) {
+    func fadeOutFieldBar(_ bar: UIView) {
+        UIView.animate(withDuration: 0.3, animations: {
             bar.backgroundColor = offWhite
-        }
+        }) 
     }
     
     func disableUI() {
-        signInButton.enabled = false
-        signUpButton.enabled = false
+        signInButton.isEnabled = false
+        signUpButton.isEnabled = false
         SVProgressHUD.show()
     }
     
     func enableUI() {
-        signInButton.enabled = true
-        signUpButton.enabled = true
+        signInButton.isEnabled = true
+        signUpButton.isEnabled = true
         SVProgressHUD.dismiss()
     }
     
     @IBAction func signIn() {
-        errorLabel.hidden = true
+        errorLabel.isHidden = true
         let (valid, message) = validLoginForm()
         
         if valid {
@@ -111,15 +111,15 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func displayError(message: String) {
+    func displayError(_ message: String) {
         errorLabel.text = message
-        errorLabel.hidden = false
+        errorLabel.isHidden = false
     }
     
     func navigateToMainTab() {
         let tabVC = LoginManager().getMainTab(true)
-        self.navigationController?.presentViewController(tabVC, animated: true, completion: {
-            if let window = UIApplication.sharedApplication().delegate?.window {
+        self.navigationController?.present(tabVC, animated: true, completion: {
+            if let window = UIApplication.shared.delegate?.window {
                 window!.rootViewController = tabVC
                 window?.makeKeyAndVisible()
             }
@@ -129,7 +129,7 @@ class LoginViewController: UIViewController {
     @IBAction func signUp() {
         UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.username", service: "com.emojr")
         UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
-        self.performSegueWithIdentifier(LoginToSignup, sender: self)
+        self.performSegue(withIdentifier: LoginToSignup, sender: self)
     }
     
     func validLoginForm() -> (Bool, String) {
@@ -148,13 +148,13 @@ class LoginViewController: UIViewController {
         return (true, "Success")
     }
     
-    @IBAction func backgroundTapped(sender: AnyObject) {
+    @IBAction func backgroundTapped(_ sender: AnyObject) {
         self.view.endEditing(true);
     }
 }
 
 extension LoginViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.isEqual(usernameField) {
             fadeInFieldBar(usernameView)
         } else {
@@ -162,7 +162,7 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.isEqual(usernameField) {
             fadeOutFieldBar(usernameView)
         } else {
@@ -170,14 +170,14 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true;
     }
 }
 
 extension LoginViewController {
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }

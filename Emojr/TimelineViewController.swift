@@ -14,7 +14,7 @@ class TimelineViewController: UIViewController {
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), for: UIControlEvents.valueChanged)
         
         return refreshControl
     }()
@@ -24,7 +24,7 @@ class TimelineViewController: UIViewController {
     var emoteView: EmoteView?
     var fadeView: UIView?
     var reacting = false
-    var reactionInfo : (id: String?, index: NSIndexPath?)
+    var reactionInfo : (id: String?, index: IndexPath?)
     
     var selectedUserData : UserData?
     
@@ -32,6 +32,8 @@ class TimelineViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "Timeline"
         
         layoutTableView()
         createViews()
@@ -42,7 +44,7 @@ class TimelineViewController: UIViewController {
         refreshData()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
 
@@ -70,7 +72,7 @@ class TimelineViewController: UIViewController {
         timelineTableView.dataSource = tableDataSource;
         timelineTableView.rowHeight = 120;
         
-        timelineTableView.registerNib(UINib(nibName: "TimelineTableViewCell", bundle:nil), forCellReuseIdentifier: TimelineCellIdentifier)
+        timelineTableView.register(UINib(nibName: "TimelineTableViewCell", bundle:nil), forCellReuseIdentifier: TimelineCellIdentifier)
     }
     
     func setupLongTapGesture() {
@@ -98,7 +100,7 @@ class TimelineViewController: UIViewController {
         emoteView?.frame = frame
         
         fadeView = UIView(frame: self.view.frame)
-        fadeView?.backgroundColor = UIColor.blackColor()
+        fadeView?.backgroundColor = UIColor.black
         fadeView?.alpha = 0.0
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(TimelineViewController.dismissPostForm))
@@ -113,7 +115,7 @@ class TimelineViewController: UIViewController {
         print("refresh")
     }
     
-    func reactToPostWithId(id: String, index: NSIndexPath) {
+    func reactToPostWithId(_ id: String, index: IndexPath) {
         guard let _ = User.sharedInstance.id
             else { return } // TODO: Display warning banner
         
@@ -121,7 +123,7 @@ class TimelineViewController: UIViewController {
         displayPostForm(true)
     }
     
-    func displayPostForm(reacting: Bool) {        
+    func displayPostForm(_ reacting: Bool) {        
         emoteView?.setButtonTitle(reacting)
         self.reacting = reacting
         
@@ -131,31 +133,31 @@ class TimelineViewController: UIViewController {
         self.navigationController?.view.addSubview(fadeView!)
         self.navigationController?.view.addSubview(emoteView!)
         
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.fadeView?.alpha = 0.6
             
             var frame = self.emoteView?.frame
             frame!.origin.x = 0
             self.emoteView?.frame = frame!
-        }) { (completed) in
+        }, completion: { (completed) in
             self.emoteView?.emojiField.becomeFirstResponder()
-        }
+        }) 
     }
     
     func dismissPostForm() {
-        UIView.animateWithDuration(0.4, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             self.fadeView?.alpha = 0.0
             
             var frame = self.emoteView?.frame
             frame!.origin.x = self.view.frame.width
             self.emoteView?.frame = frame!
-        }) { (completed) in
+        }, completion: { (completed) in
             self.emoteView?.removeFromSuperview()
             self.fadeView?.removeFromSuperview()
-        }
+        }) 
     }
     
-    func postFormReturnedPost(post: String) {
+    func postFormReturnedPost(_ post: String) {
         dismissPostForm()
         
         if reacting {
@@ -165,7 +167,7 @@ class TimelineViewController: UIViewController {
         }
     }
     
-    func postPost(post: String) {
+    func postPost(_ post: String) {
         networkFacade.createPost(User.sharedInstance.id!, post: post)
         { [weak self](error, post) in
             guard var newPost = post
@@ -179,7 +181,7 @@ class TimelineViewController: UIViewController {
         }
     }
     
-    func postReaction(post: String) {
+    func postReaction(_ post: String) {
         if let id = reactionInfo.id {
             networkFacade.reactToPost(User.sharedInstance.id!, postId: id, reaction: post)
             { [weak self](error, reaction) in
@@ -187,7 +189,7 @@ class TimelineViewController: UIViewController {
                     else {return }
                 
                 if let strongSelf = self {
-                    let cell = strongSelf.timelineTableView.cellForRowAtIndexPath(strongSelf.reactionInfo.index!) as! TimelineTableViewCell
+                    let cell = strongSelf.timelineTableView.cellForRow(at: strongSelf.reactionInfo.index!) as! TimelineTableViewCell
                     cell.addReaction(post)
                     strongSelf.reactionInfo = (nil, nil)
                 }
@@ -195,16 +197,16 @@ class TimelineViewController: UIViewController {
         }
     }
     
-    @IBAction func postButtonTapped(sender: AnyObject) {
+    @IBAction func postButtonTapped(_ sender: AnyObject) {
         self.displayPostForm(false)
     }
 }
 
 extension TimelineViewController {
-    func longTapOnCell(sender: UILongPressGestureRecognizer) {
-        if sender.state == .Began {
-            let location = sender.locationInView(self.timelineTableView)
-            let indexPath = self.timelineTableView.indexPathForRowAtPoint(location)
+    func longTapOnCell(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            let location = sender.location(in: self.timelineTableView)
+            let indexPath = self.timelineTableView.indexPathForRow(at: location)
             
             if let index = indexPath {
                 longPressOnIndex(index.row)
@@ -212,15 +214,15 @@ extension TimelineViewController {
         }
     }
     
-    func longPressOnIndex(index: Int) {
+    func longPressOnIndex(_ index: Int) {
         let userSelected = tableDataSource.posts[index].user
         
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         if let user = userSelected {
-            let viewUserPageAction = UIAlertAction(title: "View \(user.username!) Feed", style: .Default) { (action: UIAlertAction) in
+            let viewUserPageAction = UIAlertAction(title: "View \(user.username!)'s Feed", style: .default) { (action: UIAlertAction) in
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let userTimelineVC = storyboard.instantiateViewControllerWithIdentifier(UserTimelineVCIdentifier) as! UserTimelineViewController
+                let userTimelineVC = storyboard.instantiateViewController(withIdentifier: UserTimelineVCIdentifier) as! UserTimelineViewController
                 userTimelineVC.userData = user
                 self.navigationController?.pushViewController(userTimelineVC, animated: true)
             }
@@ -228,16 +230,16 @@ extension TimelineViewController {
             alertController.addAction(viewUserPageAction)
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancel)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
 }
 
 extension TimelineViewController : TimelineTableViewDelegate {
-    func cellSelectedInTable(tableView: UITableView, indexPath: NSIndexPath) {
+    func cellSelectedInTable(_ tableView: UITableView, indexPath: IndexPath) {
         let userForSelectedPost = tableDataSource.posts[indexPath.row].user
         
         if let user = userForSelectedPost {
@@ -247,10 +249,10 @@ extension TimelineViewController : TimelineTableViewDelegate {
         }
         
         reactToPostWithId(tableDataSource.posts[indexPath.row].id!, index: indexPath)
-        timelineTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        timelineTableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func loadingCellDisplayed(cell: LoadingTableViewCell) {
+    func loadingCellDisplayed(_ cell: LoadingTableViewCell) {
         // cell.startRefreshAnimation()
     }
     
@@ -260,7 +262,7 @@ extension TimelineViewController : TimelineTableViewDelegate {
 }
 
 extension TimelineViewController {
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }

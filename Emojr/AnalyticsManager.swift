@@ -13,11 +13,11 @@ class AnalyticsManager: NSObject {
     
     static let sharedInstance = AnalyticsManager()
     
-    func setupUser(user: UserData) {
+    func setupUser(_ user: UserData) {
         setupCrashlyticsUser(user)
     }
     
-    private func setupCrashlyticsUser(user: UserData) {
+    fileprivate func setupCrashlyticsUser(_ user: UserData) {
         Crashlytics.sharedInstance().setUserIdentifier(user.id)
         Crashlytics.sharedInstance().setUserName(user.username)
     }

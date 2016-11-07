@@ -13,15 +13,15 @@ extension String {
     func isAllEmoji() -> Bool {
         
         let set = NSMutableCharacterSet()
-        set.formUnionWithCharacterSet(NSCharacterSet.alphanumericCharacterSet())
-        set.formUnionWithCharacterSet(NSCharacterSet.symbolCharacterSet())
-        set.formUnionWithCharacterSet(NSCharacterSet.punctuationCharacterSet())
-        set.formUnionWithCharacterSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        set.formUnion(with: CharacterSet.alphanumerics)
+        set.formUnion(with: CharacterSet.symbols)
+        set.formUnion(with: CharacterSet.punctuationCharacters)
+        set.formUnion(with: CharacterSet.whitespacesAndNewlines)
         
         for character in self.characters {
             let units = [unichar](String(character).utf16)
             for unit in units {
-                if set.characterIsMember(unit) {
+                if set.contains(UnicodeScalar(unit)) {
                     return false
                 }
             }

@@ -22,15 +22,15 @@ class TimelineTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func configureWithPost(post: Post) {
+    func configureWithPost(_ post: Post) {
         self.post = post
         usernameLabel.text = post.user!.username
         statusImageLabel.text = post.post
-        timestampLabel.text = timeDisplayForTimestamp(post.created ?? NSDate())
+        timestampLabel.text = timeDisplayForTimestamp(post.created as Date? ?? Date())
         reactions = post.reactions
         configureReactions()
     }
@@ -45,7 +45,7 @@ class TimelineTableViewCell: UITableViewCell {
         reactionsLabel.text = reactionString
     }
     
-    func addReaction(reaction: String) {
+    func addReaction(_ reaction: String) {
         if let currentString = reactionsLabel.text {
             var newReactionString = currentString
             newReactionString += reaction
@@ -55,8 +55,8 @@ class TimelineTableViewCell: UITableViewCell {
         }
     }
     
-    func timeDisplayForTimestamp(date: NSDate) -> String {
-        let past = NSDate().timeIntervalSinceDate(date)
+    func timeDisplayForTimestamp(_ date: Date) -> String {
+        let past = Date().timeIntervalSince(date)
         
         let pastInt = Int(past)
         

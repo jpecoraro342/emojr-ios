@@ -11,7 +11,7 @@ import UIKit
 class EmojiTextFieldInputManager: NSObject {
     let emojiValidator = EmojiValidator()
     
-    func updatedStringForEmojiField(oldText : String, newText : String, changedText : String) -> String {
+    func updatedStringForEmojiField(_ oldText : String, newText : String, changedText : String) -> String {
         if emojiValidator.isEmoji(changedText) {
             return removeNonEmojis(newText)
         }
@@ -19,7 +19,7 @@ class EmojiTextFieldInputManager: NSObject {
         return newText
     }
     
-    func emojiSearchString(text: String) -> String? {
+    func emojiSearchString(_ text: String) -> String? {
         var stringWithNoEmoji = ""
         
         text.characters.forEach { (c) in
@@ -31,7 +31,7 @@ class EmojiTextFieldInputManager: NSObject {
         return stringWithNoEmoji == "" ? nil : stringWithNoEmoji
     }
     
-    func removeNonEmojis(text: String) -> String {
+    func removeNonEmojis(_ text: String) -> String {
         var stringWithOnlyEmoji = ""
         
         text.characters.forEach { (c) in

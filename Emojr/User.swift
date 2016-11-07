@@ -25,16 +25,16 @@ class User : NSObject {
     
     var manuallyLoggedOut: Bool {
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "manuallyLoggedOut")
+            UserDefaults.standard.set(newValue, forKey: "manuallyLoggedOut")
         }
         get {
-            return NSUserDefaults.standardUserDefaults().boolForKey("manuallyLoggedOut")
+            return UserDefaults.standard.bool(forKey: "manuallyLoggedOut")
         }
     }
     
     let networkFacade = NetworkFacade()
     
-    func configureWithUserData(data: UserData) {
+    func configureWithUserData(_ data: UserData) {
         manuallyLoggedOut = false
         isLoggedIn = true
         
@@ -81,11 +81,11 @@ class User : NSObject {
         });
     }
     
-    func stopFollowing(userId: String) {
+    func stopFollowing(_ userId: String) {
         self.following[userId] = false;
     }
     
-    func startFollowing(userId: String) {
+    func startFollowing(_ userId: String) {
         self.following[userId] = true;
     }
     

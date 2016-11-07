@@ -16,13 +16,13 @@ class InitialSetupViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.activityIndicator.hidden = true
+        self.activityIndicator.isHidden = true
         self.activityIndicator.stopAnimating()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         attemptLogin()

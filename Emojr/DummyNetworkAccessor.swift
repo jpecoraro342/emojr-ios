@@ -25,24 +25,24 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
     }
     
     // GET
-    func isUsernameAvailable(username: String, completionBlock: BooleanClosure?) {
+    func isUsernameAvailable(_ username: String, completionBlock: BooleanClosure?) {
         if let _ = usernameDictionary[username] {
-            completionBlock?(success: false)
+            completionBlock?(false)
             return
         }
         
-        completionBlock?(success: true)
+        completionBlock?(true)
     }
     
-    func getUsers(searchString: String?=nil, completionBlock: UserArrayClosure?) {
-        completionBlock?(error: nil, list: Array(userDictionary.values))
+    func getUsers(_ searchString: String?=nil, completionBlock: UserArrayClosure?) {
+        completionBlock?(nil, Array(userDictionary.values))
     }
     
-    func getAllFollowing(userId: String, completionBlock: UserArrayClosure?) {
-        completionBlock?(error: nil, list: userFollowingDictionary[userId])
+    func getAllFollowing(_ userId: String, completionBlock: UserArrayClosure?) {
+        completionBlock?(nil, userFollowingDictionary[userId])
     }
     
-    func getAllFollowers(userId: String, completionBlock: UserArrayClosure?) {
+    func getAllFollowers(_ userId: String, completionBlock: UserArrayClosure?) {
         var followers = [UserData]();
         
         for (user, followingList) in userFollowingDictionary {
@@ -55,19 +55,19 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
             }
         }
         
-        completionBlock?(error: nil, list: followers)
+        completionBlock?(nil, followers)
     }
     
     // func getAllPosts(completionBlock: PostArrayClosure);
-    func getPost(postId: String, completionBlock: PostClosure?) {
-        completionBlock?(error: nil, post: postDictionary[postId])
+    func getPost(_ postId: String, completionBlock: PostClosure?) {
+        completionBlock?(nil, postDictionary[postId])
     }
     
-    func getDiscoverPosts(userId: String?=nil, completionBlock: PostArrayClosure?) {
-        completionBlock?(error: nil, list: Array(postDictionary.values))
+    func getDiscoverPosts(_ userId: String?=nil, completionBlock: PostArrayClosure?) {
+        completionBlock?(nil, Array(postDictionary.values))
     }
     
-    func getAllPostsFromUser(userId: String, completionBlock: PostArrayClosure?) {
+    func getAllPostsFromUser(_ userId: String, completionBlock: PostArrayClosure?) {
         var posts = [Post]();
         
         for (_, post) in postDictionary {
@@ -76,58 +76,58 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
             }
         }
         
-        completionBlock?(error: nil, list: posts)
+        completionBlock?(nil, posts)
     }
     
-    func getAllFollowingPosts(userId: String, completionBlock: PostArrayClosure?) {
-        completionBlock?(error: nil, list: Array(postDictionary.values))
+    func getAllFollowingPosts(_ userId: String, completionBlock: PostArrayClosure?) {
+        completionBlock?(nil, Array(postDictionary.values))
     }
     
     // POST
-    func startFollowingUser(userId: String, userIdToFollow: String, completionBlock: BooleanClosure?) {
+    func startFollowingUser(_ userId: String, userIdToFollow: String, completionBlock: BooleanClosure?) {
         var followingList = userFollowingDictionary[userId]
         let userToFollow = userDictionary[userIdToFollow]!
         
         if followingList!.contains(userToFollow) {
-            completionBlock?(success: false)
+            completionBlock?(false)
         }
         else {
             followingList?.append(userToFollow)
             userFollowingDictionary[userId] = followingList
-            completionBlock?(success: true)
+            completionBlock?(true)
         }
     }
     
-    func signUpUser(username: String, password: String, fullname: String, completionBlock: UserDataClosure?) {
+    func signUpUser(_ username: String, password: String, fullname: String, completionBlock: UserDataClosure?) {
         if let _ = usernameDictionary[username] {
-            completionBlock?(error: defaultError, user: nil)
+            completionBlock?(defaultError, nil)
         }
         else {
             let newUser = UserData(username: username, fullname: fullname)
             userDictionary[newUser.id!] = newUser
             usernameDictionary[newUser.username!] = newUser
             userFollowingDictionary[newUser.id!] = [UserData]()
-            completionBlock?(error: nil, user: newUser)
+            completionBlock?(nil, newUser)
         }
     }
     
-    func signInUser(username: String, password: String, completionBlock: UserDataClosure?) {
+    func signInUser(_ username: String, password: String, completionBlock: UserDataClosure?) {
         if let user = usernameDictionary[username] {
-            completionBlock?(error: nil, user: user)
+            completionBlock?(nil, user)
         }
         else {
-            completionBlock?(error: defaultError, user: nil)
+            completionBlock?(defaultError, nil)
         }
     }
     
-    func createPost(userId: String, post: String, completionBlock: PostClosure?) {
-        let newPost = Post(user: userDictionary[userId]!, post: post, reactions: [Reaction](), created: NSDate(timeIntervalSinceNow: -60*60*3))
+    func createPost(_ userId: String, post: String, completionBlock: PostClosure?) {
+        let newPost = Post(user: userDictionary[userId]!, post: post, reactions: [Reaction](), created: Date(timeIntervalSinceNow: -60*60*3))
         postDictionary[newPost.id!] = newPost;
         
         completionBlock?(error: nil, post: newPost)
     }
     
-    func reactToPost(userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
+    func reactToPost(_ userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
         let newReaction = Reaction(user: userDictionary[userId]!, reaction: reaction)
         
         var post = postDictionary[postId]
@@ -137,12 +137,12 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         post?.reactions = reactionArr!
         postDictionary[postId] = post
         
-        completionBlock?(error: nil, reaction: newReaction);
+        completionBlock?(nil, newReaction);
     }
     
     // DELETE
     
-    func stopFollowingUser(userId: String, userIdToStopFollowing: String, completionBlock: BooleanClosure?) {
+    func stopFollowingUser(_ userId: String, userIdToStopFollowing: String, completionBlock: BooleanClosure?) {
         // TODO: Implement this
     }
     
@@ -180,7 +180,7 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         reactToPost(jacob.id!, postId: tempPost.id!, reaction: "👃🏼", completionBlock: nil)
     }
     
-    func URLStringWithExtension(urlExtension: String) -> String {
+    func URLStringWithExtension(_ urlExtension: String) -> String {
         return "\(baseURL)/\(urlExtension)";
     }
 }

@@ -17,7 +17,7 @@ class AddUsersViewController: UserListViewController {
         
         self.navigationItem.rightBarButtonItem = nil
         
-        (UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self])).tintColor = UIColor.whiteColor()
+        (UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])).tintColor = UIColor.white
         
         searchBar.tintColor = blue
         searchBar.delegate = self
@@ -27,16 +27,16 @@ class AddUsersViewController: UserListViewController {
         self.navigationItem.titleView = searchBar
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         searchBar.becomeFirstResponder()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = ""
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationItem.title = "Add Users"
         searchBar.endEditing(true)
@@ -46,7 +46,7 @@ class AddUsersViewController: UserListViewController {
         super.refreshData()
     }
     
-    func updateDataWithSearchString(searchString: String) {
+    func updateDataWithSearchString(_ searchString: String) {
         if searchString == "" {
             self.allUsers.removeAll()
             return
@@ -69,33 +69,33 @@ class AddUsersViewController: UserListViewController {
 
 extension AddUsersViewController: UISearchBarDelegate {
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        self.navigationController?.popViewControllerAnimated(true)
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.navigationController?.popViewController(animated: true)
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
     }
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
     }
     
-    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.setShowsCancelButton(true, animated: true)
         return true
     }
     
-    func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.setShowsCancelButton(false, animated: true)
         return true
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.updateDataWithSearchString(searchText)
     }
 }

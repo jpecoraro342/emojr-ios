@@ -22,49 +22,49 @@ class FollowUserManager: NSObject {
         self.networkFacade = networkFacade
     }
     
-    func startFollowingUser(userId: String, completionBlock: ((success: Bool) -> Void)?) {
+    func startFollowingUser(_ userId: String, completionBlock: ((_ success: Bool) -> Void)?) {
         networkFacade.startFollowingUser(User.sharedInstance.id!, userIdToFollow: userId) { (success) -> Void in
             completionBlock?(success: success)
         }
     }
     
-    func stopFollowingUser(userId: String, completionBlock: ((success: Bool) -> Void)?) {
+    func stopFollowingUser(_ userId: String, completionBlock: ((_ success: Bool) -> Void)?) {
         networkFacade.stopFollowingUser(User.sharedInstance.id!, userIdToStopFollowing: userId) { (success) -> Void in
             completionBlock?(success: success)
         }
     }
     
-    func askToFollowUser(user: UserData, presentingViewController: UIViewController, completionBlock: ((success: Bool) -> Void)?) {
-        let alertController = UIAlertController(title: "Follow \(user.username!)", message: "Are you sure you want to start following \(user.username!)?", preferredStyle: .Alert)
+    func askToFollowUser(_ user: UserData, presentingViewController: UIViewController, completionBlock: ((_ success: Bool) -> Void)?) {
+        let alertController = UIAlertController(title: "Follow \(user.username!)", message: "Are you sure you want to start following \(user.username!)?", preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             
         }
         alertController.addAction(cancelAction)
         
-        let OKAction = UIAlertAction(title: "Follow", style: .Default) { (action) in
+        let OKAction = UIAlertAction(title: "Follow", style: .default) { (action) in
             self.startFollowingUser(user.id!, completionBlock: completionBlock)
         }
         alertController.addAction(OKAction)
         
-        presentingViewController.presentViewController(alertController, animated: true) {
+        presentingViewController.present(alertController, animated: true) {
         }
     }
     
-    func askToStopFollowingUser(user: UserData, presentingViewController: UIViewController, completionBlock: ((success: Bool) -> Void)?) {
-        let alertController = UIAlertController(title: "Unfollow \(user.username!)", message: "Are you sure you want to stop following \(user.username!)?", preferredStyle: .Alert)
+    func askToStopFollowingUser(_ user: UserData, presentingViewController: UIViewController, completionBlock: ((_ success: Bool) -> Void)?) {
+        let alertController = UIAlertController(title: "Unfollow \(user.username!)", message: "Are you sure you want to stop following \(user.username!)?", preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             
         }
         alertController.addAction(cancelAction)
         
-        let OKAction = UIAlertAction(title: "Unfollow", style: .Destructive) { (action) in
+        let OKAction = UIAlertAction(title: "Unfollow", style: .destructive) { (action) in
             self.stopFollowingUser(user.id!, completionBlock: completionBlock)
         }
         alertController.addAction(OKAction)
         
-        presentingViewController.presentViewController(alertController, animated: true) {
+        presentingViewController.present(alertController, animated: true) {
         }
     }
 }

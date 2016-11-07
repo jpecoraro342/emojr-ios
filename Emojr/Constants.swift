@@ -10,17 +10,17 @@ import UIKit
 
 // MARK: Closure Defines
 
-typealias ErrorClosure = (error: NSError?) -> Void;
-typealias BooleanClosure = (success: Bool) -> Void;
-typealias UserDataClosure = (error: NSError?, user: UserData?) -> Void;
-typealias UserArrayClosure = (error: NSError?, list: Array<UserData>?) -> Void;
-typealias PostClosure = (error: NSError?, post: Post?) -> Void;
-typealias PostArrayClosure = (error: NSError?, list: Array<Post>?) -> Void;
-typealias ReactionClosure = (error: NSError?, reaction: Reaction?) -> Void;
-typealias ReactionArrayClosure = (error: NSError?, list: Array<Reaction>?) -> Void;
-typealias JsonClosure = (error: NSError?, jsonData: AnyObject?) -> Void;
-typealias DataClosure = (error: NSError?, data: NSData?) -> Void;
-typealias StringClosure = (error: NSError?, string: String?) -> Void;
+typealias ErrorClosure = (_ error: NSError?) -> Void;
+typealias BooleanClosure = (_ success: Bool) -> Void;
+typealias UserDataClosure = (_ error: NSError?, _ user: UserData?) -> Void;
+typealias UserArrayClosure = (_ error: NSError?, _ list: Array<UserData>?) -> Void;
+typealias PostClosure = (_ error: NSError?, _ post: Post?) -> Void;
+typealias PostArrayClosure = (_ error: NSError?, _ list: Array<Post>?) -> Void;
+typealias ReactionClosure = (_ error: NSError?, _ reaction: Reaction?) -> Void;
+typealias ReactionArrayClosure = (_ error: NSError?, _ list: Array<Reaction>?) -> Void;
+typealias JsonClosure = (_ error: NSError?, _ jsonData: AnyObject?) -> Void;
+typealias DataClosure = (_ error: NSError?, _ data: Data?) -> Void;
+typealias StringClosure = (_ error: NSError?, _ string: String?) -> Void;
 typealias VoidClosure = () -> Void
 
 // MARK: Color Scheme
@@ -64,9 +64,9 @@ let UserCellIdentifier = "UserCell"
 
 // MARK: File Paths
 
-let emojiNameKeysFilePath = NSBundle.mainBundle().pathForResource("emoji-name-keys", ofType: "json")!
-let emojiEmojiKeysFilePath = NSBundle.mainBundle().pathForResource("emoji-emoji-keys", ofType: "json")!
-let complexEmojiFilePath = NSBundle.mainBundle().pathForResource("emoji-complex", ofType: "json")!
+let emojiNameKeysFilePath = Bundle.main.path(forResource: "emoji-name-keys", ofType: "json")!
+let emojiEmojiKeysFilePath = Bundle.main.path(forResource: "emoji-emoji-keys", ofType: "json")!
+let complexEmojiFilePath = Bundle.main.path(forResource: "emoji-complex", ofType: "json")!
 
 // MARK:
 
@@ -76,7 +76,7 @@ let networkErrorDomain = "com.emojr.network";
 
 // MARK: Debug
 
-func randomStringWithLength (len : Int) -> NSString {
+func randomStringWithLength (_ len : Int) -> NSString {
     
     let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     
@@ -85,21 +85,21 @@ func randomStringWithLength (len : Int) -> NSString {
     for _ in 0 ..< len {
         let length = UInt32 (letters.length)
         let rand = arc4random_uniform(length)
-        randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
+        randomString.appendFormat("%C", letters.character(at: Int(rand)))
     }
     
     return randomString
 }
 
-let dateFormatter: NSDateFormatter = {
-    let formatter = NSDateFormatter()
-    formatter.locale = NSLocale.currentLocale()
+let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.locale = Locale.current
     formatter.dateFormat = "HH:mm:ss.SSS"
     return formatter
 }()
 
-func debugLog(message: String) {
-    dispatch_async(dispatch_get_main_queue(), {
-        print("\(dateFormatter.stringFromDate(NSDate())) | \(message)");
+func debugLog(_ message: String) {
+    DispatchQueue.main.async(execute: {
+        print("\(dateFormatter.string(from: Date())) | \(message)");
     });
 }

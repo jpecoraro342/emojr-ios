@@ -9,8 +9,8 @@
 import UIKit
 
 protocol EmojiKeyboardDelegate {
-    func emojiKeyBoarDidUseEmoji(emojiKeyBoard: EmojiKeyboard, emoji: String)
-    func emojiKeyBoardDidPressBackSpace(emojiKeyBoard: EmojiKeyboard)
+    func emojiKeyBoarDidUseEmoji(_ emojiKeyBoard: EmojiKeyboard, emoji: String)
+    func emojiKeyBoardDidPressBackSpace(_ emojiKeyBoard: EmojiKeyboard)
 }
 
 class EmojiKeyboard: NSObject {
@@ -28,43 +28,43 @@ class EmojiKeyboard: NSObject {
         return keyboardView!
     }
     
-    private func getEmojiKeyboard() -> AGEmojiKeyboardView {
-        let keyboardWidth = UIScreen.mainScreen().bounds.size.width
+    fileprivate func getEmojiKeyboard() -> AGEmojiKeyboardView {
+        let keyboardWidth = UIScreen.main.bounds.size.width
         let keyboardHeight: CGFloat = 500.0
         
-        let keyboardFrame = CGRectMake(0, 0, keyboardWidth, keyboardHeight)
+        let keyboardFrame = CGRect(x: 0, y: 0, width: keyboardWidth, height: keyboardHeight)
         let emojiKeyboard = AGEmojiKeyboardView(frame: keyboardFrame, dataSource: self)
-        emojiKeyboard.autoresizingMask = .FlexibleHeight
-        emojiKeyboard.delegate = self
-        emojiKeyboard.backgroundColor = blue
-        emojiKeyboard.segmentsBar.backgroundColor = UIColor.clearColor()
-        emojiKeyboard.segmentsBar.tintColor = offWhite
-        emojiKeyboard.segmentsBar.contentMode = .ScaleAspectFill
+        emojiKeyboard?.autoresizingMask = .flexibleHeight
+        emojiKeyboard?.delegate = self
+        emojiKeyboard?.backgroundColor = blue
+        emojiKeyboard?.segmentsBar.backgroundColor = UIColor.clear
+        emojiKeyboard?.segmentsBar.tintColor = offWhite
+        emojiKeyboard?.segmentsBar.contentMode = .scaleAspectFill
         
-        return emojiKeyboard
+        return emojiKeyboard!
     }
 }
 
 extension EmojiKeyboard : AGEmojiKeyboardViewDelegate {
-    func emojiKeyBoardView(emojiKeyBoardView: AGEmojiKeyboardView!, didUseEmoji emoji: String!) {
+    func emojiKeyBoardView(_ emojiKeyBoardView: AGEmojiKeyboardView!, didUseEmoji emoji: String!) {
         delegate?.emojiKeyBoarDidUseEmoji(self, emoji: emoji)
     }
     
-    func emojiKeyBoardViewDidPressBackSpace(emojiKeyBoardView: AGEmojiKeyboardView!) {
+    func emojiKeyBoardViewDidPressBackSpace(_ emojiKeyBoardView: AGEmojiKeyboardView!) {
         delegate?.emojiKeyBoardDidPressBackSpace(self)
     }
 }
 
 extension EmojiKeyboard : AGEmojiKeyboardViewDataSource {
-    func emojiKeyboardView(emojiKeyboardView: AGEmojiKeyboardView!, imageForSelectedCategory category: AGEmojiKeyboardViewCategoryImage) -> UIImage! {
+    func emojiKeyboardView(_ emojiKeyboardView: AGEmojiKeyboardView!, imageForSelectedCategory category: AGEmojiKeyboardViewCategoryImage) -> UIImage! {
         return emojiKeyboardImages[category.rawValue]
     }
     
-    func emojiKeyboardView(emojiKeyboardView: AGEmojiKeyboardView!, imageForNonSelectedCategory category: AGEmojiKeyboardViewCategoryImage) -> UIImage! {
+    func emojiKeyboardView(_ emojiKeyboardView: AGEmojiKeyboardView!, imageForNonSelectedCategory category: AGEmojiKeyboardViewCategoryImage) -> UIImage! {
         return emojiKeyboardImages[category.rawValue]
     }
     
-    func backSpaceButtonImageForEmojiKeyboardView(emojiKeyboardView: AGEmojiKeyboardView!) -> UIImage! {
+    func backSpaceButtonImage(for emojiKeyboardView: AGEmojiKeyboardView!) -> UIImage! {
         return UIImage(named: "backspace")
     }
 }

@@ -13,17 +13,17 @@ class LoadingTableViewCell: UITableViewCell {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     func isRefreshing() -> Bool {
-        return activityIndicator.isAnimating()
+        return activityIndicator.isAnimating
     }
     
     func startRefreshAnimation() {
-        activityIndicator.hidden = false
+        activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
     
     func stopRefreshAnimation() {
         activityIndicator.stopAnimating()
-        activityIndicator.hidden = true
+        activityIndicator.isHidden = true
     }
     
 }

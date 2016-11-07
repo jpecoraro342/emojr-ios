@@ -19,7 +19,7 @@ class UserListViewController: UIViewController {
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), for: UIControlEvents.valueChanged)
         
         return refreshControl
     }()
@@ -32,15 +32,15 @@ class UserListViewController: UIViewController {
         
         layoutTableView()
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(UserListViewController.navigateToAddBySearch))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(UserListViewController.navigateToAddBySearch))
         self.navigationItem.rightBarButtonItem = addButton
         
         refreshData()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,7 +62,7 @@ class UserListViewController: UIViewController {
         followingTableView.delegate = self;
         followingTableView.dataSource = self;
         followingTableView.rowHeight = 60;
-        followingTableView.registerNib(UINib(nibName: "UserTableViewCell", bundle:nil), forCellReuseIdentifier: UserCellIdentifier)
+        followingTableView.register(UINib(nibName: "UserTableViewCell", bundle:nil), forCellReuseIdentifier: UserCellIdentifier)
     }
     
     func refreshData() {
@@ -73,7 +73,7 @@ class UserListViewController: UIViewController {
         self.navigationController?.pushViewController(AddUsersViewController(), animated: true)
     }
     
-    func askToFollowUser(user: UserData) {
+    func askToFollowUser(_ user: UserData) {
         if followingUsers[user.id!] == true {
             // Nothing to do here, already following
         }
@@ -91,7 +91,7 @@ class UserListViewController: UIViewController {
         }
     }
     
-    func askToStopFollowingUser(user: UserData) {
+    func askToStopFollowingUser(_ user: UserData) {
         if followingUsers[user.id!] == false {
             // Nothing to do here, not currently following
         }
@@ -110,42 +110,42 @@ class UserListViewController: UIViewController {
     }
     
     
-    @IBAction func closeView(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeView(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension UserListViewController : UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = allUsers[indexPath.row]
         // if user.id != User.sharedInstance.id {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let userVC = storyboard.instantiateViewControllerWithIdentifier(UserTimelineVCIdentifier) as! UserTimelineViewController
+            let userVC = storyboard.instantiateViewController(withIdentifier: UserTimelineVCIdentifier) as! UserTimelineViewController
             
             userVC.userData = user
             
             self.navigationController?.pushViewController(userVC, animated: true)
         // }
         
-        followingTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        followingTableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let user = allUsers[indexPath.row];
         
         if followingUsers[user.id!] == true {
             // Currently following, show stop following rowaction
-            let unfollow = UITableViewRowAction(style: .Normal, title: "Unfollow") { action, index in
+            let unfollow = UITableViewRowAction(style: .normal, title: "Unfollow") { action, index in
                 self.askToStopFollowingUser(self.allUsers[indexPath.row])
             }
             
-            unfollow.backgroundColor = UIColor.redColor()
+            unfollow.backgroundColor = UIColor.red
             
             return [unfollow]
         }
         else {
             // Not following, show following rowaction
-            let follow = UITableViewRowAction(style: .Normal, title: "Follow") { action, index in
+            let follow = UITableViewRowAction(style: .normal, title: "Follow") { action, index in
                 self.askToFollowUser(self.allUsers[indexPath.row])
             }
             
@@ -155,7 +155,7 @@ extension UserListViewController : UITableViewDelegate {
         }
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if (User.sharedInstance.id! == allUsers[indexPath.row].id!) {
             return false
         }
@@ -164,20 +164,20 @@ extension UserListViewController : UITableViewDelegate {
 }
 
 extension UserListViewController : UITableViewDataSource {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.allUsers.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = followingTableView.dequeueReusableCellWithIdentifier(UserCellIdentifier) as! UserTableViewCell;
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = followingTableView.dequeueReusableCell(withIdentifier: UserCellIdentifier) as! UserTableViewCell;
         
         let user = allUsers[indexPath.row]
         
@@ -185,10 +185,10 @@ extension UserListViewController : UITableViewDataSource {
         cell.fullNameLabel.text = user.fullname
         
         if followingUsers[user.id!] == true {
-            cell.emojiFollowingLabel.hidden = false
+            cell.emojiFollowingLabel.isHidden = false
         }
         else {
-            cell.emojiFollowingLabel.hidden = true
+            cell.emojiFollowingLabel.isHidden = true
         }
         
         return cell;
@@ -196,7 +196,7 @@ extension UserListViewController : UITableViewDataSource {
 }
 
 extension UserListViewController {
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }

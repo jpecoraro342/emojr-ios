@@ -22,10 +22,10 @@ class EmoteView: UIView {
     var emojiKeyboard = EmojiKeyboard()
     
     class func instanceFromNib() -> EmoteView {
-        return UINib(nibName: "EmoteView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! EmoteView
+        return UINib(nibName: "EmoteView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! EmoteView
     }
     
-    func configureWithController(controller: TimelineViewController) {
+    func configureWithController(_ controller: TimelineViewController) {
         self.controller = controller
         emojiField.delegate = self
         configureEmojiKeyboard()
@@ -37,12 +37,12 @@ class EmoteView: UIView {
         emojiKeyboard.delegate = self
     }
     
-    func setButtonTitle(reacting: Bool) {
+    func setButtonTitle(_ reacting: Bool) {
         self.reacting = reacting
         if !reacting {
-            emoteButton.setTitle("Emote!", forState: .Normal)
+            emoteButton.setTitle("Emote!", for: UIControlState())
         } else {
-            emoteButton.setTitle("React!", forState: .Normal)
+            emoteButton.setTitle("React!", for: UIControlState())
         }
     }
     
@@ -50,10 +50,10 @@ class EmoteView: UIView {
         styleViewWithShadow(emoteButton)
     }
     
-    func styleViewWithShadow(view: UIView) {
-        view.layer.shadowColor = UIColor.blackColor().CGColor
+    func styleViewWithShadow(_ view: UIView) {
+        view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.3
-        view.layer.shadowOffset = CGSizeMake(0.0, 1.0)
+        view.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         view.layer.shadowRadius = 1.0
         view.layer.cornerRadius = 4.0
     }
@@ -70,54 +70,54 @@ class EmoteView: UIView {
         }
     }
     
-    func fadeInFieldBar(bar: UIView) {
-        UIView.animateWithDuration(0.3) {
+    func fadeInFieldBar(_ bar: UIView) {
+        UIView.animate(withDuration: 0.3, animations: {
             bar.backgroundColor = blueLight
-        }
+        }) 
     }
     
-    func fadeOutFieldBar(bar: UIView) {
-        UIView.animateWithDuration(0.3) {
+    func fadeOutFieldBar(_ bar: UIView) {
+        UIView.animate(withDuration: 0.3, animations: {
             bar.backgroundColor = offWhite
-        }
+        }) 
     }
 }
 
 extension EmoteView: UITextFieldDelegate {
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true;
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         fadeInFieldBar(textFieldBar)
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         fadeOutFieldBar(textFieldBar)
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return true
     }
 }
 
 extension EmoteView: EmojiKeyboardDelegate {
-    func emojiKeyBoarDidUseEmoji(emojiKeyBoard: EmojiKeyboard, emoji: String) {
+    func emojiKeyBoarDidUseEmoji(_ emojiKeyBoard: EmojiKeyboard, emoji: String) {
         if reacting {
             let newLength = (emojiField.text?.characters.count)! + 1
             if newLength <= 1 {
-                emojiField.text = emojiField.text?.stringByAppendingString(emoji)
+                emojiField.text = (emojiField.text?)! + emoji
             }
         } else {
-            emojiField.text = emojiField.text?.stringByAppendingString(emoji)
+            emojiField.text = (emojiField.text?)! + emoji
         }
     }
     
-    func emojiKeyBoardDidPressBackSpace(emojiKeyBoard: EmojiKeyboard) {
+    func emojiKeyBoardDidPressBackSpace(_ emojiKeyBoard: EmojiKeyboard) {
         if var text = emojiField.text {
             if text != "" {
-                text.removeAtIndex(text.endIndex.predecessor())
+                text.remove(at: text.characters.index(before: text.endIndex))
                 emojiField.text = text
             }
         }

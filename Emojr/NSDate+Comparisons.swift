@@ -8,29 +8,29 @@
 
 import Foundation
 
-extension NSDate {
+extension Date {
     
-    func isGreaterThanDate(dateToCompare : NSDate) -> Bool {
-        return self.compare(dateToCompare) == NSComparisonResult.OrderedDescending
+    func isGreaterThanDate(_ dateToCompare : Date) -> Bool {
+        return self.compare(dateToCompare) == ComparisonResult.orderedDescending
     }
     
     
-    func isLessThanDate(dateToCompare : NSDate) -> Bool {
-        return self.compare(dateToCompare) == NSComparisonResult.OrderedAscending
+    func isLessThanDate(_ dateToCompare : Date) -> Bool {
+        return self.compare(dateToCompare) == ComparisonResult.orderedAscending
     }
     
-    func addDays(daysToAdd : Int) -> NSDate
+    func addDays(_ daysToAdd : Int) -> Date
     {
-        let secondsInDays : NSTimeInterval = Double(daysToAdd) * 60 * 60 * 24
+        let secondsInDays : TimeInterval = Double(daysToAdd) * 60 * 60 * 24
         
-        return self.dateByAddingTimeInterval(secondsInDays)
+        return self.addingTimeInterval(secondsInDays)
     }
     
     
-    func addHours(hoursToAdd : Int) -> NSDate
+    func addHours(_ hoursToAdd : Int) -> Date
     {
-        let secondsInHours : NSTimeInterval = Double(hoursToAdd) * 60 * 60
+        let secondsInHours : TimeInterval = Double(hoursToAdd) * 60 * 60
         
-        return self.dateByAddingTimeInterval(secondsInHours)
+        return self.addingTimeInterval(secondsInHours)
     }
 }

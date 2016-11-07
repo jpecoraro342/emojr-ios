@@ -12,7 +12,7 @@ import Alamofire
 class RestNetworkAccessor: NSObject, NetworkingAccessor {
     
     // GET
-    func getUsers(searchString: String?=nil, completionBlock: UserArrayClosure?) {
+    func getUsers(_ searchString: String?=nil, completionBlock: UserArrayClosure?) {
         var parameters: Dictionary<String, String>?
         
         if let search = searchString {
@@ -37,7 +37,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
-    func getAllFollowing(userId: String, completionBlock: UserArrayClosure?) {
+    func getAllFollowing(_ userId: String, completionBlock: UserArrayClosure?) {
         Alamofire.request(.GET, URLStringWithExtension("following/\(userId)"))
             .responseJSON { response in
                 var friends : Array<UserData> = Array<UserData>();
@@ -56,7 +56,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
-    func getAllFollowers(userId: String, completionBlock: UserArrayClosure?) {
+    func getAllFollowers(_ userId: String, completionBlock: UserArrayClosure?) {
         Alamofire.request(.GET, URLStringWithExtension("followers/\(userId)"))
             .responseJSON { response in
                 var friends : Array<UserData> = Array<UserData>();
@@ -76,7 +76,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
     }
     
     // func getAllPosts(completionBlock: PostArrayClosure);
-    func getPost(postId: String, completionBlock: PostClosure?) {
+    func getPost(_ postId: String, completionBlock: PostClosure?) {
         Alamofire.request(.GET, URLStringWithExtension("post/\(postId)"))
             .responseJSON { response in
                 if let json = response.result.value {
@@ -88,7 +88,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
-    func getDiscoverPosts(userId: String?=nil, completionBlock: PostArrayClosure?) {
+    func getDiscoverPosts(_ userId: String?=nil, completionBlock: PostArrayClosure?) {
         var parameters: Dictionary<String, String>?
         
         if let id = userId {
@@ -113,7 +113,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
-    func getAllPostsFromUser(userId: String, completionBlock: PostArrayClosure?) {
+    func getAllPostsFromUser(_ userId: String, completionBlock: PostArrayClosure?) {
         Alamofire.request(.GET, URLStringWithExtension("posts/user/\(userId)"))
             .responseJSON { response in
                 var posts : Array<Post> = Array<Post>();
@@ -132,7 +132,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
-    func getAllFollowingPosts(userId: String, completionBlock: PostArrayClosure?) {
+    func getAllFollowingPosts(_ userId: String, completionBlock: PostArrayClosure?) {
         Alamofire.request(.GET, URLStringWithExtension("posts/following/\(userId)"))
             .responseJSON { response in
                 var posts : Array<Post> = Array<Post>();
@@ -152,8 +152,8 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
     }
     
     // POST
-    func isUsernameAvailable(username: String, completionBlock: BooleanClosure?) {
-        Alamofire.request(.POST, URLStringWithExtension("user/available"), parameters: ["username" : username], encoding: .JSON)
+    func isUsernameAvailable(_ username: String, completionBlock: BooleanClosure?) {
+        Alamofire.request(.POST, URLStringWithExtension("user/available"), parameters: ["username" : username], encoding: .json)
             .responseJSON { response in
                 if let json = response.result.value {
                     completionBlock?(success: (json["available"] as String) as! Bool);
@@ -164,7 +164,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
-    func startFollowingUser(userId: String, userIdToFollow: String, completionBlock: BooleanClosure?) {
+    func startFollowingUser(_ userId: String, userIdToFollow: String, completionBlock: BooleanClosure?) {
         let parameters = [ "followerUserId" : userId, "followingUserId" : userIdToFollow]
         Alamofire.request(.POST, URLStringWithExtension("follow"), parameters: parameters)
             .responseJSON { response in
@@ -177,9 +177,9 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
-    func signUpUser(username: String, password: String, fullname: String, completionBlock: UserDataClosure?) {
+    func signUpUser(_ username: String, password: String, fullname: String, completionBlock: UserDataClosure?) {
         let parameters = ["username" : username, "password" : password, "fullname" : fullname]
-        Alamofire.request(.POST, URLStringWithExtension("user/signup"), parameters: parameters, encoding: .JSON)
+        Alamofire.request(.POST, URLStringWithExtension("user/signup"), parameters: parameters, encoding: .json)
             .responseJSON { response in
                 if let json = response.result.value {
                     completionBlock?(error: nil, user: UserData(fromJson: json as! Dictionary<String, AnyObject>));
@@ -190,9 +190,9 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
-    func signInUser(username: String, password: String, completionBlock: UserDataClosure?) {
+    func signInUser(_ username: String, password: String, completionBlock: UserDataClosure?) {
         let parameters = ["username" : username, "password" : password]
-        Alamofire.request(.POST, URLStringWithExtension("user/signin"), parameters: parameters, encoding: .JSON)
+        Alamofire.request(.POST, URLStringWithExtension("user/signin"), parameters: parameters, encoding: .json)
             .responseJSON { response in
                 if let json = response.result.value {
                     completionBlock?(error: nil, user: UserData(fromJson: json as! Dictionary<String, AnyObject>));
@@ -203,7 +203,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
-    func createPost(userId: String, post: String, completionBlock: PostClosure?) {
+    func createPost(_ userId: String, post: String, completionBlock: PostClosure?) {
         let parameters = ["userid" : userId, "post" : post]
         Alamofire.request(.POST, URLStringWithExtension("post"), parameters: parameters)
             .responseJSON { response in
@@ -216,9 +216,9 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
-    func reactToPost(userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
+    func reactToPost(_ userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
         let parameters = ["userid" : userId, "postid" : postId, "reaction" : reaction]
-        Alamofire.request(.POST, URLStringWithExtension("reaction"), parameters: parameters, encoding: .JSON)
+        Alamofire.request(.POST, URLStringWithExtension("reaction"), parameters: parameters, encoding: .json)
             .responseJSON { response in
                 if let json = response.result.value {
                     completionBlock?(error: nil, reaction: Reaction(fromJson: json as! Dictionary<String, AnyObject>));
@@ -231,7 +231,7 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
     
     // DELETE
     
-    func stopFollowingUser(userId: String, userIdToStopFollowing: String, completionBlock: BooleanClosure?) {
+    func stopFollowingUser(_ userId: String, userIdToStopFollowing: String, completionBlock: BooleanClosure?) {
         let parameters = [ "followerUserId" : userId, "followingUserId" : userIdToStopFollowing]
         Alamofire.request(.DELETE, URLStringWithExtension("follow"), parameters: parameters)
             .responseJSON { response in
@@ -246,11 +246,11 @@ class RestNetworkAccessor: NSObject, NetworkingAccessor {
     
     // Utility
     
-    func URLStringWithExtension(urlExtension: String) -> String {
+    func URLStringWithExtension(_ urlExtension: String) -> String {
         return "\(baseURL)/\(urlExtension)";
     }
     
-    func verboseNetworkLog(response: Response<AnyObject, NSError>) {
+    func verboseNetworkLog(_ response: Response<AnyObject, NSError>) {
         print(response.request)  // original URL request
         print(response.response) // URL response
         print(response.data)     // server data

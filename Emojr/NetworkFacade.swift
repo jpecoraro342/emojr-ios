@@ -23,61 +23,61 @@ class NetworkFacade : NSObject {
     }
     
     // GET
-    func isUsernameAvailable(username: String, completionBlock: BooleanClosure?) {
+    func isUsernameAvailable(_ username: String, completionBlock: BooleanClosure?) {
         dataAccessor.isUsernameAvailable(username, completionBlock: completionBlock)
     }
     
-    func getUsers(searchString: String?=nil, completionBlock: UserArrayClosure?) {
+    func getUsers(_ searchString: String?=nil, completionBlock: UserArrayClosure?) {
         dataAccessor.getUsers(searchString, completionBlock: completionBlock)
     }
     
-    func getAllFollowing(userId: String, completionBlock: UserArrayClosure?) {
+    func getAllFollowing(_ userId: String, completionBlock: UserArrayClosure?) {
         dataAccessor.getAllFollowing(userId, completionBlock: completionBlock)
     }
     
-    func getAllFollowers(userId: String, completionBlock: UserArrayClosure?) {
+    func getAllFollowers(_ userId: String, completionBlock: UserArrayClosure?) {
         dataAccessor.getAllFollowers(userId, completionBlock: completionBlock)
     }
     
-    func getPost(postId: String, completionBlock: PostClosure?) {
+    func getPost(_ postId: String, completionBlock: PostClosure?) {
         dataAccessor.getPost(postId, completionBlock: completionBlock)
     }
     
-    func getDiscoverPosts(userId: String?=nil, completionBlock: PostArrayClosure?) {
+    func getDiscoverPosts(_ userId: String?=nil, completionBlock: PostArrayClosure?) {
         dataAccessor.getDiscoverPosts(userId, completionBlock: completionBlock)
     }
     
-    func getAllPostsFromUser(userId: String, completionBlock: PostArrayClosure?) {
+    func getAllPostsFromUser(_ userId: String, completionBlock: PostArrayClosure?) {
         dataAccessor.getAllPostsFromUser(userId, completionBlock: completionBlock)
     }
     
-    func getAllFollowingPosts(userId: String, completionBlock: PostArrayClosure?) {
+    func getAllFollowingPosts(_ userId: String, completionBlock: PostArrayClosure?) {
         dataAccessor.getAllFollowingPosts(userId, completionBlock: completionBlock)
     }
     
     // POST
-    func startFollowingUser(userId: String, userIdToFollow: String, completionBlock: BooleanClosure?) {
+    func startFollowingUser(_ userId: String, userIdToFollow: String, completionBlock: BooleanClosure?) {
         dataAccessor.startFollowingUser(userId, userIdToFollow: userIdToFollow, completionBlock: completionBlock)
     }
     
-    func signUpUser(username: String, password: String, fullname: String, completionBlock: UserDataClosure?) {
+    func signUpUser(_ username: String, password: String, fullname: String, completionBlock: UserDataClosure?) {
         dataAccessor.signUpUser(username, password: password, fullname: fullname, completionBlock: completionBlock)
     }
     
-    func signInUser(username: String, password: String, completionBlock: UserDataClosure?) {
+    func signInUser(_ username: String, password: String, completionBlock: UserDataClosure?) {
         dataAccessor.signInUser(username, password: password, completionBlock: completionBlock)
     }
     
-    func createPost(userId: String, post: String, completionBlock: PostClosure?) {
+    func createPost(_ userId: String, post: String, completionBlock: PostClosure?) {
         dataAccessor.createPost(userId, post: post, completionBlock: completionBlock)
     }
     
-    func reactToPost(userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
+    func reactToPost(_ userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
         dataAccessor.reactToPost(userId, postId: postId, reaction: reaction, completionBlock: completionBlock)
     }
     
     // DELETE
-    func stopFollowingUser(userId: String, userIdToStopFollowing: String, completionBlock: BooleanClosure?) {
+    func stopFollowingUser(_ userId: String, userIdToStopFollowing: String, completionBlock: BooleanClosure?) {
         dataAccessor.stopFollowingUser(userId, userIdToStopFollowing: userIdToStopFollowing, completionBlock: completionBlock)
     }
 }

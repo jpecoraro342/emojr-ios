@@ -9,7 +9,7 @@
 import UIKit
 
 protocol EmojiSearchViewControllerDelegate {
-    func didSelectEmoji(emoji: String);
+    func didSelectEmoji(_ emoji: String);
 }
 
 class EmojiSearchViewController: UIViewController {
@@ -43,10 +43,10 @@ class EmojiSearchViewController: UIViewController {
         emojiTableView.delegate = self;
         emojiTableView.dataSource = self;
         emojiTableView.rowHeight = 60;
-        emojiTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "EmojiListCell")
+        emojiTableView.register(UITableViewCell.self, forCellReuseIdentifier: "EmojiListCell")
     }
     
-    func updateEmojiSearchWithString(oldText : String, newText : String, changedText : String) -> String {
+    func updateEmojiSearchWithString(_ oldText : String, newText : String, changedText : String) -> String {
         let updatedTextFieldValue = emojiTextManager.updatedStringForEmojiField(oldText, newText: newText, changedText: changedText)
         let searchString = emojiTextManager.emojiSearchString(updatedTextFieldValue)
         
@@ -62,28 +62,28 @@ class EmojiSearchViewController: UIViewController {
 }
 
 extension EmojiSearchViewController : UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        emojiTableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        emojiTableView.deselectRow(at: indexPath, animated: true)
         let emoji = emojiList[indexPath.row]
         delegate?.didSelectEmoji(emoji)
     }
 }
 
 extension EmojiSearchViewController : UITableViewDataSource {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.emojiList.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = emojiTableView.dequeueReusableCellWithIdentifier("EmojiListCell")!;
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = emojiTableView.dequeueReusableCell(withIdentifier: "EmojiListCell")!;
         
         let emoji = emojiList[indexPath.row]
         
@@ -94,44 +94,44 @@ extension EmojiSearchViewController : UITableViewDataSource {
 }
 
 extension EmojiSearchViewController : UITextFieldDelegate {
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         
     }
     
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 //        print("Current Text - \"\(textField.text!)\"")
 //        print("Replacement Text - \"\(string)\"")
 //        print("Range - \(range.location)-\(range.length)")
         
-        let newText = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         textField.text = updateEmojiSearchWithString(textField.text!, newText: newText, changedText: string)
         
         return false
     }
     
-    func textFieldShouldClear(textField: UITextField) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         return true
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true
     }
 }
 
 extension EmojiSearchViewController {
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }

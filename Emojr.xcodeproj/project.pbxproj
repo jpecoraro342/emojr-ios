@@ -12,8 +12,6 @@
 		15313C3F1CC9921400745760 /* FollowUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313C3E1CC9921400745760 /* FollowUserManager.swift */; };
 		15313DC51D0749E2006E738A /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313DC41D0749E2006E738A /* DiscoverViewController.swift */; };
 		15313DC71D07B0FF006E738A /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313DC61D07B0FF006E738A /* UserListViewController.swift */; };
-		15313DC91D07B2BE006E738A /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15313DC81D07B2BE006E738A /* SnapKit.framework */; };
-		15313DCA1D07B2BE006E738A /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15313DC81D07B2BE006E738A /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15313DCC1D07B54F006E738A /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15313DCB1D07B54F006E738A /* UserTableViewCell.xib */; };
 		15313DCE1D07B5D3006E738A /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313DCD1D07B5D3006E738A /* UserTableViewCell.swift */; };
 		15313DD41D07C34C006E738A /* AddUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15313DD31D07C34C006E738A /* AddUsersViewController.swift */; };
@@ -26,8 +24,6 @@
 		1546D3A01CA61A5100D8ECC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1546D39E1CA61A5100D8ECC5 /* Main.storyboard */; };
 		1546D3A21CA61A5100D8ECC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1546D3A11CA61A5100D8ECC5 /* Assets.xcassets */; };
 		1546D3A51CA61A5100D8ECC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1546D3A31CA61A5100D8ECC5 /* LaunchScreen.storyboard */; };
-		1546D3B41CA61D2B00D8ECC5 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1546D3AE1CA61D2B00D8ECC5 /* SVProgressHUD.framework */; };
-		1546D3B51CA61D2B00D8ECC5 /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1546D3AE1CA61D2B00D8ECC5 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		157079101CA6299500043676 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570790F1CA6299500043676 /* User.swift */; };
 		1589F8871D1CEFDE00451912 /* EmojiValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1589F8861D1CEFDE00451912 /* EmojiValidator.swift */; };
 		1589F88C1D1CF0C400451912 /* emoji-complex.json in Resources */ = {isa = PBXBuildFile; fileRef = 1589F8881D1CF0C400451912 /* emoji-complex.json */; };
@@ -44,10 +40,6 @@
 		1589F8A81D278BA300451912 /* EmojiTextFieldManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1589F8A71D278BA300451912 /* EmojiTextFieldManagerTests.swift */; };
 		1589F8AA1D2792C300451912 /* EmojiTextFieldInputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1589F8A91D2792C300451912 /* EmojiTextFieldInputManager.swift */; };
 		1589F8AB1D2792F400451912 /* EmojiTextFieldInputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1589F8A91D2792C300451912 /* EmojiTextFieldInputManager.swift */; };
-		15AA50071CA637570066CAB9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AA50051CA637570066CAB9 /* Alamofire.framework */; };
-		15AA50081CA637570066CAB9 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15AA50051CA637570066CAB9 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		15AA50091CA637570066CAB9 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AA50061CA637570066CAB9 /* SwiftyJSON.framework */; };
-		15AA500A1CA637570066CAB9 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15AA50061CA637570066CAB9 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		15AA50101CA637780066CAB9 /* NetworkFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA500B1CA637780066CAB9 /* NetworkFacade.swift */; };
 		15AA50111CA637780066CAB9 /* NetworkingAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA500C1CA637780066CAB9 /* NetworkingAccessor.swift */; };
 		15AA50121CA637780066CAB9 /* NetworkObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA500D1CA637780066CAB9 /* NetworkObjects.swift */; };
@@ -95,10 +87,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1546D3B51CA61D2B00D8ECC5 /* SVProgressHUD.framework in Embed Frameworks */,
-				15AA50081CA637570066CAB9 /* Alamofire.framework in Embed Frameworks */,
-				15AA500A1CA637570066CAB9 /* SwiftyJSON.framework in Embed Frameworks */,
-				15313DCA1D07B2BE006E738A /* SnapKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,7 +99,6 @@
 		15313C3E1CC9921400745760 /* FollowUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowUserManager.swift; sourceTree = "<group>"; };
 		15313DC41D0749E2006E738A /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		15313DC61D07B0FF006E738A /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
-		15313DC81D07B2BE006E738A /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		15313DCB1D07B54F006E738A /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		15313DCD1D07B5D3006E738A /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		15313DD31D07C34C006E738A /* AddUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUsersViewController.swift; sourceTree = "<group>"; };
@@ -128,7 +115,6 @@
 		1546D3A11CA61A5100D8ECC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1546D3A41CA61A5100D8ECC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1546D3A61CA61A5100D8ECC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1546D3AE1CA61D2B00D8ECC5 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		1570790F1CA6299500043676 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1589F8861D1CEFDE00451912 /* EmojiValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiValidator.swift; sourceTree = "<group>"; };
 		1589F8881D1CF0C400451912 /* emoji-complex.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "emoji-complex.json"; sourceTree = "<group>"; };
@@ -141,8 +127,6 @@
 		1589F8A41D275F8900451912 /* EmojiSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiSearchViewController.swift; sourceTree = "<group>"; };
 		1589F8A71D278BA300451912 /* EmojiTextFieldManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiTextFieldManagerTests.swift; sourceTree = "<group>"; };
 		1589F8A91D2792C300451912 /* EmojiTextFieldInputManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiTextFieldInputManager.swift; sourceTree = "<group>"; };
-		15AA50051CA637570066CAB9 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		15AA50061CA637570066CAB9 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		15AA500B1CA637780066CAB9 /* NetworkFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkFacade.swift; sourceTree = "<group>"; };
 		15AA500C1CA637780066CAB9 /* NetworkingAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingAccessor.swift; sourceTree = "<group>"; };
 		15AA500D1CA637780066CAB9 /* NetworkObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkObjects.swift; sourceTree = "<group>"; };
@@ -180,11 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1546D3B41CA61D2B00D8ECC5 /* SVProgressHUD.framework in Frameworks */,
 				15CC551E1CEE9F14006ABFE3 /* Crashlytics.framework in Frameworks */,
-				15AA50071CA637570066CAB9 /* Alamofire.framework in Frameworks */,
-				15313DC91D07B2BE006E738A /* SnapKit.framework in Frameworks */,
-				15AA50091CA637570066CAB9 /* SwiftyJSON.framework in Frameworks */,
 				15CC551D1CEE9F14006ABFE3 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,12 +285,8 @@
 				6E18F6B41CAC439C00696CC5 /* AGEmojiKeyBoard */,
 				15454DEF1CA7E00900A520D1 /* UICKeyChainStore.h */,
 				15454DF01CA7E00900A520D1 /* UICKeyChainStore.m */,
-				15313DC81D07B2BE006E738A /* SnapKit.framework */,
 				15CC551B1CEE9F14006ABFE3 /* Fabric.framework */,
 				15CC551C1CEE9F14006ABFE3 /* Crashlytics.framework */,
-				15AA50051CA637570066CAB9 /* Alamofire.framework */,
-				15AA50061CA637570066CAB9 /* SwiftyJSON.framework */,
-				1546D3AE1CA61D2B00D8ECC5 /* SVProgressHUD.framework */,
 				15454DEE1CA7E00800A520D1 /* Emojr-Bridging-Header.h */,
 			);
 			name = Libraries;
@@ -440,15 +416,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Joseph Pecoraro";
 				TargetAttributes = {
 					1546D3961CA61A5100D8ECC5 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = CX87MDXJNH;
+						DevelopmentTeam = M2JNHSR23U;
+						LastSwiftMigration = 0810;
 					};
 					1589F8941D27556600451912 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0810;
 						TestTargetID = 1546D3961CA61A5100D8ECC5;
 					};
 				};
@@ -623,8 +601,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -667,8 +647,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -687,6 +669,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -698,6 +681,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = M2JNHSR23U;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -710,6 +694,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Emojr-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -720,6 +705,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = M2JNHSR23U;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -731,6 +717,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Emojr-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -744,6 +731,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.josephpecoraro.EmojrTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Emojr.app/Emojr";
 			};
 			name = Debug;
@@ -758,6 +746,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.josephpecoraro.EmojrTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Emojr.app/Emojr";
 			};
 			name = Release;
@@ -790,6 +779,7 @@
 				1589F89E1D27556600451912 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -14,7 +14,7 @@ class UserTimelineViewController: UIViewController {
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), for: UIControlEvents.valueChanged)
         
         return refreshControl
     }()
@@ -35,7 +35,7 @@ class UserTimelineViewController: UIViewController {
         
         navigationItem.title = userData?.username
         
-        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.systemFontOfSize(32)]
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.systemFont(ofSize: 32)]
         
         updateFollowButton()
         
@@ -45,11 +45,11 @@ class UserTimelineViewController: UIViewController {
     func updateFollowButton() {
         if userData?.id != User.sharedInstance.id {
             if User.sharedInstance.following[userData!.id!] == true {
-                let unfollowButton = UIBarButtonItem(title: "Unfollow", style: .Plain, target: self, action: #selector(UserTimelineViewController.stopFollowingUser))
+                let unfollowButton = UIBarButtonItem(title: "Unfollow", style: .plain, target: self, action: #selector(UserTimelineViewController.stopFollowingUser))
                 navigationItem.rightBarButtonItem = unfollowButton
             }
             else {
-                let followButton = UIBarButtonItem(title: "Follow", style: .Plain, target: self, action: #selector(UserTimelineViewController.followUser))
+                let followButton = UIBarButtonItem(title: "Follow", style: .plain, target: self, action: #selector(UserTimelineViewController.followUser))
                 navigationItem.rightBarButtonItem = followButton
             }
         }
@@ -82,7 +82,7 @@ class UserTimelineViewController: UIViewController {
         })
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
@@ -90,8 +90,8 @@ class UserTimelineViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func closeView(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeView(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func refreshData() {
@@ -112,12 +112,12 @@ class UserTimelineViewController: UIViewController {
 }
 
 extension UserTimelineViewController : TimelineTableViewDelegate {
-    func cellSelectedInTable(tableView: UITableView, indexPath: NSIndexPath) {
+    func cellSelectedInTable(_ tableView: UITableView, indexPath: IndexPath) {
         //reactToPostWithId(tableDataSource.posts[indexPath.row].id, index: indexPath)
-        timelineTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        timelineTableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func loadingCellDisplayed(cell: LoadingTableViewCell) {
+    func loadingCellDisplayed(_ cell: LoadingTableViewCell) {
         // TODO: Handle htis
     }
     
@@ -128,7 +128,7 @@ extension UserTimelineViewController : TimelineTableViewDelegate {
 }
 
 extension UserTimelineViewController {
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }

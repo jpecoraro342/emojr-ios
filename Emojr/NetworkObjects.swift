@@ -12,8 +12,8 @@ struct UserData: CustomStringConvertible, Equatable {
     var id: String?
     var username: String?
     var fullname: String?
-    var created: NSDate?
-    var lastmodified: NSDate?
+    var created: Date?
+    var lastmodified: Date?
     
     init(username: String, fullname: String?) {
         self.username = username
@@ -41,10 +41,10 @@ struct Post {
     var user: UserData?
     var post: String?
     var reactions: [Reaction]
-    var created: NSDate?
-    var lastmodified: NSDate?
+    var created: Date?
+    var lastmodified: Date?
     
-    init(user: UserData, post: String, reactions: [Reaction], created: NSDate) {
+    init(user: UserData, post: String, reactions: [Reaction], created: Date) {
         self.user = user
         self.post = post
         self.reactions = reactions
@@ -74,8 +74,8 @@ struct Reaction {
     var id: String?
     var user: UserData?
     var reaction: String?
-    var created: NSDate?
-    var lastmodified: NSDate?
+    var created: Date?
+    var lastmodified: Date?
 
     init(user: UserData, reaction: String) {
         self.user = user
@@ -94,7 +94,7 @@ struct Reaction {
     }
 }
 
-func jsonArrayToReactionArray(jsonArr: [AnyObject]) -> [Reaction] {
+func jsonArrayToReactionArray(_ jsonArr: [AnyObject]) -> [Reaction] {
     var reactArray = [Reaction]()
     
     for jsonDict in jsonArr {
@@ -104,18 +104,18 @@ func jsonArrayToReactionArray(jsonArr: [AnyObject]) -> [Reaction] {
     return reactArray
 }
 
-func dateFromString(dateString: String?) -> NSDate? {
+func dateFromString(_ dateString: String?) -> Date? {
     if let dateString = dateString {
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         
-        return dateFormatter.dateFromString(dateString)
+        return dateFormatter.date(from: dateString)
     }
     
     return nil;
 }
 
-func stringFromInt(optionalInt: Int?) -> String? {
+func stringFromInt(_ optionalInt: Int?) -> String? {
     if let value = optionalInt {
         return "\(value)";
     }
