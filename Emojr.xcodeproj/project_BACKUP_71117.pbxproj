@@ -492,12 +492,15 @@
 				15FD8BCC1DDC193B00E89FD0 /* emoji-emoji-keys.json in Resources */,
 				1546D3A51CA61A5100D8ECC5 /* LaunchScreen.storyboard in Resources */,
 				1546D3A21CA61A5100D8ECC5 /* Assets.xcassets in Resources */,
+<<<<<<< HEAD
 				1589F88E1D1CF0C400451912 /* emoji-name-keys.json in Resources */,
 				6EE3DF061DD87CD200E32BA2 /* NoDataView.xib in Resources */,
 				1589F88C1D1CF0C400451912 /* emoji-complex.json in Resources */,
 				1589F88D1D1CF0C400451912 /* emoji-emoji-keys.json in Resources */,
 				1589F88F1D1CF0C400451912 /* emoji-names.json in Resources */,
 				6E18F6B11CAC439000696CC5 /* EmojisList.plist in Resources */,
+=======
+>>>>>>> ba6cfdefde4d0a0332346705e8b7544a556912ed
 				1546D3A01CA61A5100D8ECC5 /* Main.storyboard in Resources */,
 				15FD8BCB1DDC193B00E89FD0 /* emoji-complex.json in Resources */,
 				15DDD0F71D09C4AD00E9649C /* TimelineTableViewCell.xib in Resources */,
@@ -680,7 +683,11 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+<<<<<<< HEAD
 				SWIFT_VERSION = 3.0.1;
+=======
+				SWIFT_VERSION = "";
+>>>>>>> ba6cfdefde4d0a0332346705e8b7544a556912ed
 			};
 			name = Debug;
 		};
@@ -719,8 +726,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+<<<<<<< HEAD
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0.1;
+=======
+				SWIFT_VERSION = "";
+>>>>>>> ba6cfdefde4d0a0332346705e8b7544a556912ed
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -745,7 +756,11 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Emojr-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+<<<<<<< HEAD
 				SWIFT_VERSION = 3.0;
+=======
+				SWIFT_VERSION = "";
+>>>>>>> ba6cfdefde4d0a0332346705e8b7544a556912ed
 			};
 			name = Debug;
 		};
@@ -768,7 +783,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Emojr-Bridging-Header.h";
+<<<<<<< HEAD
 				SWIFT_VERSION = 3.0;
+=======
+				SWIFT_VERSION = "";
+>>>>>>> ba6cfdefde4d0a0332346705e8b7544a556912ed
 			};
 			name = Release;
 		};
