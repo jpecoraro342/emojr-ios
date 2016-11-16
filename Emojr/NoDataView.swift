@@ -1,0 +1,9 @@
+//
+//  NoDataView.swift
+//  Emojr
+//
+//  Created by James on 11/13/16.
+//  Copyright © 2016 Joseph Pecoraro. All rights reserved.
+//
+
+import Foundation
