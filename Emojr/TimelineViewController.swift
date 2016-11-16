@@ -14,7 +14,7 @@ class TimelineViewController: UIViewController {
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refreshData), for: UIControlEvents.valueChanged)
         
         return refreshControl
     }()
@@ -22,9 +22,15 @@ class TimelineViewController: UIViewController {
     var tableDataSource: TimelineTableViewDataSource = TimelineTableViewDataSource()
     
     var emoteView: EmoteView?
+    var noDataView: NoDataView?
     var fadeView: UIView?
+    
     var reacting = false
     var reactionInfo : (id: String?, index: IndexPath?)
+    
+    var noDataMessage: String {
+        return "There aren't any posts here! Where'd they go?!"
+    }
     
     var selectedUserData : UserData?
     
@@ -53,13 +59,16 @@ class TimelineViewController: UIViewController {
     }
     
     func rightBarButtonItem() -> UIBarButtonItem? {
-        return nil
+        let postButton = UIBarButtonItem(title: "📝", style: .plain, target: self, action: #selector(postButtonTapped))
+        postButton.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 32)], for: UIControlState())
+        
+        return postButton
     }
     
     func layoutTableView() {
         view.addSubview(timelineTableView)
         
-        timelineTableView.snp_makeConstraints { (make) in
+        timelineTableView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.left.equalTo(self.view)
@@ -103,8 +112,21 @@ class TimelineViewController: UIViewController {
         fadeView?.backgroundColor = UIColor.black
         fadeView?.alpha = 0.0
         
+        noDataView = NoDataView.instanceFromNib()
+        noDataView?.messageLabel.text = noDataMessage
+        
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(TimelineViewController.dismissPostForm))
         emoteView?.addGestureRecognizer(recognizer)
+    }
+    
+    func displayNoDataView() {
+        if let noDataView = noDataView {
+            self.view.addSubview(noDataView)
+        }
+    }
+    
+    func removeNoDataView() {
+        noDataView?.removeFromSuperview()
     }
 
     func refreshData() {
@@ -116,8 +138,7 @@ class TimelineViewController: UIViewController {
     }
     
     func reactToPostWithId(_ id: String, index: IndexPath) {
-        guard let _ = User.sharedInstance.id
-            else { return } // TODO: Display warning banner
+        guard let userID = User.sharedInstance.id, id != userID else { return } // TODO: Display warning banner
         
         reactionInfo = (id, index)
         displayPostForm(true)
@@ -168,15 +189,17 @@ class TimelineViewController: UIViewController {
     }
     
     func postPost(_ post: String) {
-        networkFacade.createPost(User.sharedInstance.id!, post: post)
-        { [weak self](error, post) in
-            guard var newPost = post
-                else {return }
-            
-            if let strongSelf = self {
-                newPost.user = User.sharedInstance.userData
-                strongSelf.tableDataSource.insertPost(newPost)
-                strongSelf.timelineTableView.reloadData()
+        if let id = User.sharedInstance.id {
+            networkFacade.createPost(id, post: post)
+            { [weak self](error, post) in
+                guard var newPost = post
+                    else {return }
+                
+                if let strongSelf = self {
+                    newPost.user = User.sharedInstance.userData
+                    strongSelf.tableDataSource.insertPost(newPost)
+                    strongSelf.timelineTableView.reloadData()
+                }
             }
         }
     }
@@ -235,7 +258,6 @@ extension TimelineViewController {
         
         self.present(alertController, animated: true, completion: nil)
     }
-    
 }
 
 extension TimelineViewController : TimelineTableViewDelegate {

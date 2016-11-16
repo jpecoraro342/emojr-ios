@@ -24,13 +24,13 @@ class FollowUserManager: NSObject {
     
     func startFollowingUser(_ userId: String, completionBlock: ((_ success: Bool) -> Void)?) {
         networkFacade.startFollowingUser(User.sharedInstance.id!, userIdToFollow: userId) { (success) -> Void in
-            completionBlock?(success: success)
+            completionBlock?(success)
         }
     }
     
     func stopFollowingUser(_ userId: String, completionBlock: ((_ success: Bool) -> Void)?) {
         networkFacade.stopFollowingUser(User.sharedInstance.id!, userIdToStopFollowing: userId) { (success) -> Void in
-            completionBlock?(success: success)
+            completionBlock?(success)
         }
     }
     

@@ -63,7 +63,7 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         completionBlock?(nil, postDictionary[postId])
     }
     
-    func getDiscoverPosts(_ userId: String?=nil, completionBlock: PostArrayClosure?) {
+    func getDiscoverPosts(completionBlock: PostArrayClosure?) {
         completionBlock?(nil, Array(postDictionary.values))
     }
     
@@ -98,12 +98,12 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         }
     }
     
-    func signUpUser(_ username: String, password: String, fullname: String, completionBlock: UserDataClosure?) {
+    func signUpUser(_ username: String, password: String, completionBlock: UserDataClosure?) {
         if let _ = usernameDictionary[username] {
-            completionBlock?(defaultError, nil)
+            completionBlock?("It's dummy data, how did you screw it up?", nil)
         }
         else {
-            let newUser = UserData(username: username, fullname: fullname)
+            let newUser = UserData(username: username)
             userDictionary[newUser.id!] = newUser
             usernameDictionary[newUser.username!] = newUser
             userFollowingDictionary[newUser.id!] = [UserData]()
@@ -116,7 +116,7 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
             completionBlock?(nil, user)
         }
         else {
-            completionBlock?(defaultError, nil)
+            completionBlock?("It's dummy data, how did you screw it up?", nil)
         }
     }
     
@@ -124,7 +124,7 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         let newPost = Post(user: userDictionary[userId]!, post: post, reactions: [Reaction](), created: Date(timeIntervalSinceNow: -60*60*3))
         postDictionary[newPost.id!] = newPost;
         
-        completionBlock?(error: nil, post: newPost)
+        completionBlock?(nil, newPost)
     }
     
     func reactToPost(_ userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
@@ -149,9 +149,9 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
     // Utility
     
     func initializeDummyData() {
-        signUpUser("😎😈😎", password: "test", fullname: "Joe P", completionBlock: nil)
-        signUpUser("🍆", password: "test", fullname: "Jacob J", completionBlock: nil)
-        signUpUser("😌", password: "test", fullname: "Jimmy R", completionBlock: nil)
+        signUpUser("😎😈😎", password: "test", completionBlock: nil)
+        signUpUser("🍆", password: "test", completionBlock: nil)
+        signUpUser("😌", password: "test", completionBlock: nil)
         
         let joe = usernameDictionary["😎😈😎"]!
         let james = usernameDictionary["😌"]!

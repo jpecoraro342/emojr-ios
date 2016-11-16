@@ -26,7 +26,7 @@ class FollowerViewController: UserListViewController {
             else {
                 self.allUsers = list!
                 
-                self.followingTableView.reloadData()
+                self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
             }
         });

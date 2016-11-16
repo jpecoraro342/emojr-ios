@@ -17,7 +17,7 @@ protocol NetworkingAccessor {
     
     // func getAllPosts(completionBlock: PostArrayClosure);
     func getPost(_ postId: String, completionBlock: PostClosure?);
-    func getDiscoverPosts(_ userId: String?, completionBlock: PostArrayClosure?)
+    func getDiscoverPosts(completionBlock: PostArrayClosure?)
     func getAllPostsFromUser(_ userId: String, completionBlock: PostArrayClosure?);
     
     func getAllFollowingPosts(_ userId: String, completionBlock: PostArrayClosure?);
@@ -25,7 +25,7 @@ protocol NetworkingAccessor {
     // POST
     func startFollowingUser(_ userId: String, userIdToFollow: String, completionBlock: BooleanClosure?);
     
-    func signUpUser(_ username: String, password: String, fullname: String, completionBlock: UserDataClosure?);
+    func signUpUser(_ username: String, password: String, completionBlock: UserDataClosure?);
     func signInUser(_ username: String, password: String, completionBlock: UserDataClosure?);
     
     func createPost(_ userId: String, post: String, completionBlock: PostClosure?);

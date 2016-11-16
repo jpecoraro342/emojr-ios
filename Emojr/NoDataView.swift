@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+class NoDataView: UIView {
+    @IBOutlet weak var messageLabel: UILabel!
+    
+    class func instanceFromNib() -> NoDataView {
+        return UINib(nibName: "NoDataView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! NoDataView
+    }
+}

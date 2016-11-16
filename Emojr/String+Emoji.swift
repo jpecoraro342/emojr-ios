@@ -11,18 +11,19 @@ import Foundation
 extension String {
     
     func isAllEmoji() -> Bool {
-        
-        let set = NSMutableCharacterSet()
-        set.formUnion(with: CharacterSet.alphanumerics)
-        set.formUnion(with: CharacterSet.symbols)
-        set.formUnion(with: CharacterSet.punctuationCharacters)
-        set.formUnion(with: CharacterSet.whitespacesAndNewlines)
+        var set = CharacterSet.alphanumerics
+        set.formUnion(CharacterSet.alphanumerics)
+        set.formUnion(CharacterSet.symbols)
+        set.formUnion(CharacterSet.punctuationCharacters)
+        set.formUnion(CharacterSet.whitespacesAndNewlines)
         
         for character in self.characters {
             let units = [unichar](String(character).utf16)
             for unit in units {
-                if set.contains(UnicodeScalar(unit)) {
-                    return false
+                if let scalar = UnicodeScalar(unit) {
+                    if set.contains(scalar) {
+                        return false
+                    }
                 }
             }
         }

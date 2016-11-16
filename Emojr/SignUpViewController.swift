@@ -12,12 +12,10 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var usernameField: UITextField!
-    @IBOutlet weak var fullNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var dupPasswordField: UITextField!
     
     @IBOutlet weak var usernameView: UIView!
-    @IBOutlet weak var fullNameView: UIView!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var dupPasswordView: UIView!
     
@@ -28,24 +26,11 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if let username = UICKeyChainStore.stringForKey("com.currentuser.username", service: "com.emojr") {
-//            usernameField.text = username
-//            
-//            if let password = UICKeyChainStore.stringForKey("com.currentuser.password", service: "com.emojr") {
-//                passwordField.text = password
-//            }
-//        }
-        
         styleViews()
         
         fieldViewDict[usernameField] = usernameView
-        fieldViewDict[fullNameField] = fullNameView
         fieldViewDict[passwordField] = passwordView
         fieldViewDict[dupPasswordField] = dupPasswordView
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     func styleViews() {
@@ -77,9 +62,9 @@ class SignUpViewController: UIViewController {
         let (valid, message) = validSignupForm()
         
         if valid {
-            NetworkFacade.sharedInstance.signUpUser(usernameField.text!, password: passwordField.text!, fullname: fullNameField.text!) { (error, user) in
-                if let e = error {
-                    self.displayError(e.localizedDescription)
+            NetworkFacade.sharedInstance.signUpUser(usernameField.text!, password: passwordField.text!) { (errorString, user) in
+                if let errorString = errorString {
+                    self.displayError(errorString)
                 } else if let data = user {
                     User.sharedInstance.configureWithUserData(data)
                     
@@ -109,26 +94,17 @@ class SignUpViewController: UIViewController {
     }
     
     func validSignupForm() -> (Bool, String) {
-        if let username = usernameField.text {
-            if let password = passwordField.text {
-                if let fullname = fullNameField.text {
-                    if (username == "" || password == "" || fullname == "") {
-                        return (false, "Please fill out all fields!")
-                    }
-                    else {
-                        // TODO: plug in emoji validate
-                        
-                        if (passwordField.text != dupPasswordField.text) {
-                            return (false, "Passwords must match!")
-                        }
-                        
-                        return (true, "Success")
-                    }
-                } else {
-                    return (false, "Please fill out all fields!")
-                }
-            } else {
+        if let username = usernameField.text, let password = passwordField.text {
+            if (username == "" || password == "") {
                 return (false, "Please fill out all fields!")
+            } else {
+                // TODO: plug in emoji validate
+                
+                if (passwordField.text != dupPasswordField.text) {
+                    return (false, "Passwords must match!")
+                }
+                
+                return (true, "Success")
             }
         } else {
             return (false, "Please fill out all fields!")
@@ -140,7 +116,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func toLoginPressed(_ sender: AnyObject) {
-        self.navigationController?.popViewController(animated: false)
+        _ = self.navigationController?.popViewController(animated: false)
     }
 }
 

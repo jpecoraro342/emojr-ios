@@ -11,20 +11,17 @@ import Foundation
 struct UserData: CustomStringConvertible, Equatable {
     var id: String?
     var username: String?
-    var fullname: String?
     var created: Date?
     var lastmodified: Date?
     
-    init(username: String, fullname: String?) {
+    init(username: String) {
         self.username = username
-        self.fullname = fullname
         self.id = randomStringWithLength(8) as String
     }
     
     init(fromJson: Dictionary<String, AnyObject>) {
         id = stringFromInt(fromJson["pk_userid"] as? Int)
         username = fromJson["username"] as? String
-        fullname = fromJson["userfullname"] as? String
     }
     
     var description: String {

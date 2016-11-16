@@ -27,30 +27,32 @@ class LoginManager: NSObject {
         guard let password = UICKeyChainStore.string(forKey: "com.currentuser.password", service: "com.emojr")
             else { loadMainTab(false); return; }
         
-        login(username, password: password, activityIndicator: activityIndicator)
+        login(username, password: password, activityIndicator: activityIndicator) { (errorString, user) in
+            activityIndicator?.stopAnimating()
+            activityIndicator?.isHidden = true
+            
+            if let data = user {
+                User.sharedInstance.configureWithUserData(data)
+                
+                UICKeyChainStore.setString(username, forKey: "com.currentuser.username", service: "com.emojr")
+                UICKeyChainStore.setString(password, forKey: "com.currentuser.password", service: "com.emojr")
+                
+                self.loadMainTab(true)
+            } else {
+                self.loadMainTab(false)
+            }
+        }
     }
     
     func didLogIn() {
         
     }
     
-    func login(_ username: String, password: String, activityIndicator: UIActivityIndicatorView?=nil) {
+    func login(_ username: String, password: String, activityIndicator: UIActivityIndicatorView? = nil, completionHandler: UserDataClosure?) {
         activityIndicator?.isHidden = false
         activityIndicator?.startAnimating()
         
-        NetworkFacade.sharedInstance.signInUser(username, password: password) { (error, user) in
-            if let _ = error {
-                // TODO: Show unable to login banner
-                self.loadMainTab(false)
-            } else if let data = user {
-                User.sharedInstance.configureWithUserData(data)
-                
-                activityIndicator?.isHidden = true
-                activityIndicator?.stopAnimating()
-                
-                self.loadMainTab(true)
-            }
-        }
+        NetworkFacade.sharedInstance.signInUser(username, password: password, completionBlock: completionHandler)
     }
     
     func logout() {
@@ -87,7 +89,7 @@ class LoginManager: NSObject {
         
         let homeVC = navControllerEmbeddedVC(HomeTimelineViewController())
         let discoverVC = navControllerEmbeddedVC(DiscoverViewController())
-        let myEmotesVC = navControllerEmbeddedVC(storyboard.instantiateViewController(withIdentifier: UserTimelineVCIdentifier))
+        let myEmotesVC = navControllerEmbeddedVC(UserTimelineViewController())
         let accountVC = navControllerEmbeddedVC(storyboard.instantiateViewController(withIdentifier: AccountVCIdentifier))
         
         return [homeVC, discoverVC, myEmotesVC, accountVC]

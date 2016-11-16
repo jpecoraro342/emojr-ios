@@ -18,7 +18,7 @@ class TimelineTableViewDataSource: NSObject {
     var delegate: TimelineTableViewDelegate?
     var posts: [Post] = []
     
-    func configureWithPosts(_ posts: [Post], delegate: TimelineTableViewDelegate?=nil) {
+    func configureWithPosts(_ posts: [Post], delegate: TimelineTableViewDelegate? = nil) {
         self.posts = posts
         self.delegate = delegate
     }

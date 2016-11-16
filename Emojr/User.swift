@@ -14,7 +14,6 @@ class User : NSObject {
     
     var id: String?
     var username: String?
-    var fullname: String?
     
     var userData: UserData?
     
@@ -32,15 +31,12 @@ class User : NSObject {
         }
     }
     
-    let networkFacade = NetworkFacade()
-    
     func configureWithUserData(_ data: UserData) {
         manuallyLoggedOut = false
         isLoggedIn = true
         
         self.id = data.id
         self.username = data.username
-        self.fullname = data.fullname
         
         AnalyticsManager.sharedInstance.setupUser(data)
         self.userData = data
@@ -53,7 +49,7 @@ class User : NSObject {
         guard let userId = id
             else { return }
         
-        networkFacade.getAllFollowers(userId, completionBlock: { (error, list) -> Void in
+        NetworkFacade().getAllFollowers(userId, completionBlock: { (error, list) -> Void in
             if let err = error {
                 print(err)
             }
@@ -69,7 +65,7 @@ class User : NSObject {
         guard let userId = id
             else { return }
         
-        networkFacade.getAllFollowing(userId, completionBlock: { (error, list) -> Void in
+        NetworkFacade().getAllFollowing(userId, completionBlock: { (error, list) -> Void in
             if let err = error {
                 print(err)
             }
@@ -95,7 +91,6 @@ class User : NSObject {
         
         self.id = nil
         self.username = nil
-        self.fullname = nil
         self.userData = nil
     }
 }

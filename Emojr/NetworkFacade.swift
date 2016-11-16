@@ -16,7 +16,7 @@ class NetworkFacade : NSObject {
     
     override init() {
         // TODO: pass data accessor and socket to use in the init method
-        dataAccessor = RestNetworkAccessor();
+        dataAccessor = RestAccessor();
         // dataAccessor = DummyNetworkAccessor();
         
         super.init();
@@ -43,8 +43,8 @@ class NetworkFacade : NSObject {
         dataAccessor.getPost(postId, completionBlock: completionBlock)
     }
     
-    func getDiscoverPosts(_ userId: String?=nil, completionBlock: PostArrayClosure?) {
-        dataAccessor.getDiscoverPosts(userId, completionBlock: completionBlock)
+    func getDiscoverPosts(completionBlock: PostArrayClosure?) {
+        dataAccessor.getDiscoverPosts(completionBlock: completionBlock)
     }
     
     func getAllPostsFromUser(_ userId: String, completionBlock: PostArrayClosure?) {
@@ -60,8 +60,8 @@ class NetworkFacade : NSObject {
         dataAccessor.startFollowingUser(userId, userIdToFollow: userIdToFollow, completionBlock: completionBlock)
     }
     
-    func signUpUser(_ username: String, password: String, fullname: String, completionBlock: UserDataClosure?) {
-        dataAccessor.signUpUser(username, password: password, fullname: fullname, completionBlock: completionBlock)
+    func signUpUser(_ username: String, password: String, completionBlock: UserDataClosure?) {
+        dataAccessor.signUpUser(username, password: password, completionBlock: completionBlock)
     }
     
     func signInUser(_ username: String, password: String, completionBlock: UserDataClosure?) {
@@ -81,5 +81,3 @@ class NetworkFacade : NSObject {
         dataAccessor.stopFollowingUser(userId, userIdToStopFollowing: userIdToStopFollowing, completionBlock: completionBlock)
     }
 }
-
-

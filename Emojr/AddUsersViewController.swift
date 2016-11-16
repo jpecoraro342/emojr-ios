@@ -22,13 +22,7 @@ class AddUsersViewController: UserListViewController {
         searchBar.tintColor = blue
         searchBar.delegate = self
         
-        self.followingTableView.rowHeight = 60;
-        
         self.navigationItem.titleView = searchBar
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        searchBar.becomeFirstResponder()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -44,14 +38,21 @@ class AddUsersViewController: UserListViewController {
     
     override func refreshData() {
         super.refreshData()
+        
+        networkFacade.getUsers(nil, completionBlock: { (error, list) -> Void in
+            if let err = error {
+                print(err)
+            }
+            else {
+                self.allUsers = list!
+                
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+            }
+        });
     }
     
     func updateDataWithSearchString(_ searchString: String) {
-        if searchString == "" {
-            self.allUsers.removeAll()
-            return
-        }
-        
         self.refreshControl.beginRefreshing()
         networkFacade.getUsers(searchString, completionBlock: { (error, list) -> Void in
             if let err = error {
@@ -60,7 +61,7 @@ class AddUsersViewController: UserListViewController {
             else {
                 self.allUsers = list!
                 
-                self.followingTableView.reloadData()
+                self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
             }
         });
@@ -74,7 +75,7 @@ extension AddUsersViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {

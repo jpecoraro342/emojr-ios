@@ -11,7 +11,7 @@ import SnapKit
 
 class UserListViewController: UIViewController {
     
-    var followingTableView = UITableView()
+    var tableView = UITableView()
     
     var allUsers = [UserData]()
     
@@ -19,7 +19,7 @@ class UserListViewController: UIViewController {
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.refreshData), for: UIControlEvents.valueChanged)
         
         return refreshControl
     }()
@@ -48,21 +48,17 @@ class UserListViewController: UIViewController {
     }
     
     func layoutTableView() {
-        view.addSubview(followingTableView)
+        view.addSubview(tableView)
         
-        followingTableView.snp_makeConstraints { (make) in
-            make.top.equalTo(self.view)
-            make.bottom.equalTo(self.view)
-            make.left.equalTo(self.view)
-            make.right.equalTo(self.view)
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view)
         }
         
-        followingTableView.addSubview(refreshControl)
+        tableView.addSubview(refreshControl)
         
-        followingTableView.delegate = self;
-        followingTableView.dataSource = self;
-        followingTableView.rowHeight = 60;
-        followingTableView.register(UINib(nibName: "UserTableViewCell", bundle:nil), forCellReuseIdentifier: UserCellIdentifier)
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        tableView.register(UINib(nibName: "UserTableViewCell", bundle:nil), forCellReuseIdentifier: UserCellIdentifier)
     }
     
     func refreshData() {
@@ -74,15 +70,12 @@ class UserListViewController: UIViewController {
     }
     
     func askToFollowUser(_ user: UserData) {
-        if followingUsers[user.id!] == true {
-            // Nothing to do here, already following
-        }
-        else {
+        if followingUsers[user.id!] != true {
             followManager.askToFollowUser(user, presentingViewController: self, completionBlock: { (success) in
                 if (success) {
                     User.sharedInstance.startFollowing(user.id!)
                     self.followingUsers[user.id!] = true;
-                    self.followingTableView.reloadData()
+                    self.tableView.reloadData()
                 }
                 else {
                     print("unable to follow user")
@@ -92,15 +85,12 @@ class UserListViewController: UIViewController {
     }
     
     func askToStopFollowingUser(_ user: UserData) {
-        if followingUsers[user.id!] == false {
-            // Nothing to do here, not currently following
-        }
-        else {
+        if followingUsers[user.id!] != false {
             followManager.askToStopFollowingUser(user, presentingViewController: self, completionBlock: { (success) in
                 if (success) {
                     User.sharedInstance.stopFollowing(user.id!)
                     self.followingUsers[user.id!] = false;
-                    self.followingTableView.reloadData()
+                    self.tableView.reloadData()
                 }
                 else {
                     print("unable to stop following user")
@@ -127,7 +117,7 @@ extension UserListViewController : UITableViewDelegate {
             self.navigationController?.pushViewController(userVC, animated: true)
         // }
         
-        followingTableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -155,7 +145,7 @@ extension UserListViewController : UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
         if (User.sharedInstance.id! == allUsers[indexPath.row].id!) {
             return false
         }
@@ -177,12 +167,11 @@ extension UserListViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = followingTableView.dequeueReusableCell(withIdentifier: UserCellIdentifier) as! UserTableViewCell;
+        let cell = tableView.dequeueReusableCell(withIdentifier: UserCellIdentifier) as! UserTableViewCell;
         
         let user = allUsers[indexPath.row]
         
         cell.usernameLabel.text = user.username
-        cell.fullNameLabel.text = user.fullname
         
         if followingUsers[user.id!] == true {
             cell.emojiFollowingLabel.isHidden = false

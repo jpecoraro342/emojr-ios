@@ -107,10 +107,10 @@ extension EmoteView: EmojiKeyboardDelegate {
         if reacting {
             let newLength = (emojiField.text?.characters.count)! + 1
             if newLength <= 1 {
-                emojiField.text = (emojiField.text?)! + emoji
+                emojiField.text = (emojiField.text ?? "") + emoji
             }
         } else {
-            emojiField.text = (emojiField.text?)! + emoji
+            emojiField.text = (emojiField.text ?? "") + emoji
         }
     }
     

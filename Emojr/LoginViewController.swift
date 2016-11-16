@@ -24,19 +24,12 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let username = UICKeyChainStore.string(forKey: "com.currentuser.username", service: "com.emojr") {
-            usernameField.text = username
-            
-            if let password = UICKeyChainStore.string(forKey: "com.currentuser.password", service: "com.emojr") {
-                passwordField.text = password
-            }
-        }
-        
         styleViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         if let username = UICKeyChainStore.string(forKey: "com.currentuser.username", service: "com.emojr") {
             usernameField.text = username
             
@@ -44,10 +37,6 @@ class LoginViewController: UIViewController {
                 passwordField.text = password
             }
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     func styleViews() {
@@ -92,10 +81,11 @@ class LoginViewController: UIViewController {
         
         if valid {
             disableUI()
-            NetworkFacade.sharedInstance.signInUser(usernameField.text!, password: passwordField.text!) { (error, user) in
-                if let e = error {
-                    self.displayError(e.localizedDescription)
-                } else if let data = user {
+            LoginManager().login(usernameField.text!, password: passwordField.text!) { (errorString, data) in
+                if let errorString = errorString {
+                    self.enableUI()
+                    self.displayError(errorString)
+                } else if let data = data {
                     User.sharedInstance.configureWithUserData(data)
                     
                     UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.username", service: "com.emojr")
@@ -133,19 +123,15 @@ class LoginViewController: UIViewController {
     }
     
     func validLoginForm() -> (Bool, String) {
-        if let username = usernameField.text {
-            if let password = passwordField.text {
-                if (username == "" || password == "") {
-                    return (false, "Please fill out both fields!")
-                }
-            } else {
+        if let username = usernameField.text, let password = passwordField.text {
+            if (username == "" || password == "") {
                 return (false, "Please fill out both fields!")
+            } else {
+                return (true, "Success")
             }
         } else {
             return (false, "Please fill out both fields!")
         }
-        
-        return (true, "Success")
     }
     
     @IBAction func backgroundTapped(_ sender: AnyObject) {

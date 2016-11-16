@@ -10,17 +10,17 @@ import UIKit
 
 // MARK: Closure Defines
 
-typealias ErrorClosure = (_ error: NSError?) -> Void;
+typealias ErrorClosure = (_ error: Error?) -> Void;
 typealias BooleanClosure = (_ success: Bool) -> Void;
-typealias UserDataClosure = (_ error: NSError?, _ user: UserData?) -> Void;
-typealias UserArrayClosure = (_ error: NSError?, _ list: Array<UserData>?) -> Void;
-typealias PostClosure = (_ error: NSError?, _ post: Post?) -> Void;
-typealias PostArrayClosure = (_ error: NSError?, _ list: Array<Post>?) -> Void;
-typealias ReactionClosure = (_ error: NSError?, _ reaction: Reaction?) -> Void;
+typealias UserDataClosure = (_ errorString: String?, _ user: UserData?) -> Void;
+typealias UserArrayClosure = (_ error: Error?, _ list: Array<UserData>?) -> Void;
+typealias PostClosure = (_ error: Error?, _ post: Post?) -> Void;
+typealias PostArrayClosure = (_ error: Error?, _ list: Array<Post>?) -> Void;
+typealias ReactionClosure = (_ error: Error?, _ reaction: Reaction?) -> Void;
 typealias ReactionArrayClosure = (_ error: NSError?, _ list: Array<Reaction>?) -> Void;
-typealias JsonClosure = (_ error: NSError?, _ jsonData: AnyObject?) -> Void;
-typealias DataClosure = (_ error: NSError?, _ data: Data?) -> Void;
-typealias StringClosure = (_ error: NSError?, _ string: String?) -> Void;
+typealias JsonClosure = (_ error: Error?, _ jsonData: AnyObject?) -> Void;
+typealias DataClosure = (_ error: Error?, _ data: Data?) -> Void;
+typealias StringClosure = (_ error: Error?, _ string: String?) -> Void;
 typealias VoidClosure = () -> Void
 
 // MARK: Color Scheme

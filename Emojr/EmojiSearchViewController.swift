@@ -26,18 +26,11 @@ class EmojiSearchViewController: UIViewController {
         layoutTableView()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func layoutTableView() {
         view.addSubview(emojiTableView)
         
-        emojiTableView.snp_makeConstraints { (make) in
-            make.top.equalTo(self.view)
-            make.bottom.equalTo(self.view)
-            make.left.equalTo(self.view)
-            make.right.equalTo(self.view)
+        emojiTableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view)
         }
         
         emojiTableView.delegate = self;

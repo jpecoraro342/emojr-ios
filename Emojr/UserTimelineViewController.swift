@@ -8,38 +8,20 @@
 
 import UIKit
 
-class UserTimelineViewController: UIViewController {
+class UserTimelineViewController: TimelineViewController {
     
-    @IBOutlet weak var timelineTableView: UITableView!
-    
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(TimelineViewController.refreshData), for: UIControlEvents.valueChanged)
-        
-        return refreshControl
-    }()
-    
-    let networkFacade = NetworkFacade()
     let followManager = FollowUserManager()
     
-    var tableDataSource: TimelineTableViewDataSource = TimelineTableViewDataSource()
-    
     var userData: UserData? = User.sharedInstance.userData
+    
+    override var noDataMessage: String {
+        return "There aren't any posts here! Looks like you haven't posted anything yet, try tapping the 📝 button!"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        timelineTableView.delegate = tableDataSource
-        timelineTableView.dataSource = tableDataSource
-        timelineTableView.addSubview(refreshControl)
-        
-        navigationItem.title = userData?.username
-        
-        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.systemFont(ofSize: 32)]
-        
         updateFollowButton()
-        
-        refreshData()
     }
     
     func updateFollowButton() {
@@ -82,48 +64,38 @@ class UserTimelineViewController: UIViewController {
         })
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    @IBAction func closeView(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func refreshData() {
-        guard let user = userData
-            else { return }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.title = userData?.username
         
-        guard let userId = user.id
-            else { return }
+        refreshData()
+    }
+    
+    override func refreshData() {
+        super.refreshData()
+        
+        networkFacade.getAllPostsFromUser(User.sharedInstance.id!) { [weak self] (error, list) in
+            guard let posts = list
+                else { return }
+            
+            if let strongSelf = self {
+                strongSelf.tableDataSource.configureWithPosts(posts, delegate: self)
+                strongSelf.timelineTableView.reloadData()
+                strongSelf.refreshControl.endRefreshing()
                 
-        networkFacade.getAllPostsFromUser(userId) { (error, list) in
-            if let posts = list {
-                self.tableDataSource.configureWithPosts(posts, delegate: self)
-                self.timelineTableView.reloadData()
-                self.refreshControl.endRefreshing()
+                if posts.count == 0 {
+                    strongSelf.displayNoDataView()
+                } else {
+                    strongSelf.removeNoDataView()
+                }
             }
         }
     }
 }
 
-extension UserTimelineViewController : TimelineTableViewDelegate {
-    func cellSelectedInTable(_ tableView: UITableView, indexPath: IndexPath) {
-        //reactToPostWithId(tableDataSource.posts[indexPath.row].id, index: indexPath)
+extension UserTimelineViewController /*TimelineTableViewDelegate*/ {
+    override func cellSelectedInTable(_ tableView: UITableView, indexPath: IndexPath) {
         timelineTableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func loadingCellDisplayed(_ cell: LoadingTableViewCell) {
-        // TODO: Handle htis
-    }
-    
-    func shouldShowLoadingCell() -> Bool {
-        //TODO: Make this true and hangle loading cell
-        return false
     }
 }
 
