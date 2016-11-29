@@ -38,7 +38,7 @@ class User : NSObject {
         self.id = data.id
         self.username = data.username
         
-        AnalyticsManager.sharedInstance.setupUser(data)
+        AnalyticsManager.setupUser(data)
         self.userData = data
         
         updateFollowers()

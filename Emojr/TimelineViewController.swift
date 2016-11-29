@@ -46,16 +46,11 @@ class TimelineViewController: UIViewController {
         setupLongTapGesture()
         
         self.navigationItem.rightBarButtonItem = rightBarButtonItem()
-        
-        refreshData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshData()
     }
     
     func rightBarButtonItem() -> UIBarButtonItem? {
@@ -221,7 +216,20 @@ class TimelineViewController: UIViewController {
     }
     
     @IBAction func postButtonTapped(_ sender: AnyObject) {
-        self.displayPostForm(false)
+        if let _ = User.sharedInstance.id {
+            self.displayPostForm(false)
+        } else {
+            // TODO: Pop up a message "Log in to post emotes!"
+            let alert = UIAlertController(title: "Have an account?",
+                                          message: "Login to post your own emotes!",
+                                          preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK!", style: .default) { (action) in }
+            
+            alert.addAction(ok)
+            
+            present(alert, animated: true, completion: nil)
+        }
     }
 }
 
@@ -246,7 +254,7 @@ extension TimelineViewController {
             let viewUserPageAction = UIAlertAction(title: "View \(user.username!)'s Feed", style: .default) { (action: UIAlertAction) in
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let userTimelineVC = storyboard.instantiateViewController(withIdentifier: UserTimelineVCIdentifier) as! UserTimelineViewController
-                userTimelineVC.userData = user
+                userTimelineVC.user = user
                 self.navigationController?.pushViewController(userTimelineVC, animated: true)
             }
             
@@ -262,6 +270,8 @@ extension TimelineViewController {
 
 extension TimelineViewController : TimelineTableViewDelegate {
     func cellSelectedInTable(_ tableView: UITableView, indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         let userForSelectedPost = tableDataSource.posts[indexPath.row].user
         
         if let user = userForSelectedPost {
@@ -271,7 +281,6 @@ extension TimelineViewController : TimelineTableViewDelegate {
         }
         
         reactToPostWithId(tableDataSource.posts[indexPath.row].id!, index: indexPath)
-        timelineTableView.deselectRow(at: indexPath, animated: true)
     }
     
     func loadingCellDisplayed(_ cell: LoadingTableViewCell) {

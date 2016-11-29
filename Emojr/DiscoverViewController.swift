@@ -14,20 +14,14 @@ class DiscoverViewController: TimelineViewController {
         return "There aren't any posts here! Check you connection and hope more users show up soon!"
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
-        createViews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func refreshData() {
         super.refreshData()
         
         networkFacade.getDiscoverPosts() { [weak self] (error, list) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+            
             guard let posts = list
                 else { return }
             
@@ -48,7 +42,5 @@ class DiscoverViewController: TimelineViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = "Discover"
-        
-        refreshData()
     }
 }

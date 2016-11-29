@@ -20,7 +20,7 @@ struct UserData: CustomStringConvertible, Equatable {
     }
     
     init(fromJson: Dictionary<String, AnyObject>) {
-        id = stringFromInt(fromJson["pk_userid"] as? Int)
+        id = String(describing: fromJson["pk_userid"] as? Int)
         username = fromJson["username"] as? String
     }
     
@@ -50,7 +50,7 @@ struct Post {
     }
     
     init(fromJson: Dictionary<String, AnyObject>) {
-        id = stringFromInt(fromJson["pk_postid"] as? Int)
+        id = String(describing: fromJson["pk_postid"] as? Int)
         user = UserData(fromJson: fromJson)
         post = fromJson["post"] as? String
         created = dateFromString(fromJson["created"] as? String)
@@ -81,7 +81,7 @@ struct Reaction {
     }
     
     init(fromJson: Dictionary<String, AnyObject>) {
-        id = stringFromInt(fromJson["pk_reactionid"] as? Int)
+        id = String(describing: fromJson["pk_reactionid"] as? Int)
         user = UserData(fromJson: fromJson)
         reaction = fromJson["reaction"] as? String
     }
@@ -107,14 +107,6 @@ func dateFromString(_ dateString: String?) -> Date? {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         
         return dateFormatter.date(from: dateString)
-    }
-    
-    return nil;
-}
-
-func stringFromInt(_ optionalInt: Int?) -> String? {
-    if let value = optionalInt {
-        return "\(value)";
     }
     
     return nil;

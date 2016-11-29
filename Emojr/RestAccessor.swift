@@ -107,7 +107,6 @@ extension RestAccessor: NetworkingAccessor {
             })
     }
     
-    // func getAllPosts(completionBlock: PostArrayClosure);
     func getPost(_ postId: String, completionBlock: PostClosure?) {
         RestAccessor.sharedManager.request(Router.Post(postID: postId))
             .responseJSON(completionHandler: { response in

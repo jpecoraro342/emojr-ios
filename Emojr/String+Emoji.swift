@@ -9,7 +9,6 @@
 import Foundation
 
 extension String {
-    
     func isAllEmoji() -> Bool {
         var set = CharacterSet.alphanumerics
         set.formUnion(CharacterSet.alphanumerics)

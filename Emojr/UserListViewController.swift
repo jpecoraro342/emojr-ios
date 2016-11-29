@@ -75,6 +75,7 @@ class UserListViewController: UIViewController {
                 if (success) {
                     User.sharedInstance.startFollowing(user.id!)
                     self.followingUsers[user.id!] = true;
+                    self.refreshData()
                     self.tableView.reloadData()
                 }
                 else {
@@ -90,6 +91,7 @@ class UserListViewController: UIViewController {
                 if (success) {
                     User.sharedInstance.stopFollowing(user.id!)
                     self.followingUsers[user.id!] = false;
+                    self.refreshData()
                     self.tableView.reloadData()
                 }
                 else {
@@ -107,16 +109,6 @@ class UserListViewController: UIViewController {
 
 extension UserListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let user = allUsers[indexPath.row]
-        // if user.id != User.sharedInstance.id {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let userVC = storyboard.instantiateViewController(withIdentifier: UserTimelineVCIdentifier) as! UserTimelineViewController
-            
-            userVC.userData = user
-            
-            self.navigationController?.pushViewController(userVC, animated: true)
-        // }
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

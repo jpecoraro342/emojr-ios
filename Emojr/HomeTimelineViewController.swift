@@ -18,6 +18,10 @@ class HomeTimelineViewController: TimelineViewController {
         super.refreshData()
         
         networkFacade.getAllFollowingPosts(User.sharedInstance.id!) { [weak self] (error, list) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+            
             guard let posts = list
                 else { return }
             

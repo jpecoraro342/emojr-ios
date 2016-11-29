@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol EmojiKeyboardDelegate {
+protocol EmojiKeyboardDelegate: class {
     func emojiKeyBoarDidUseEmoji(_ emojiKeyBoard: EmojiKeyboard, emoji: String)
     func emojiKeyBoardDidPressBackSpace(_ emojiKeyBoard: EmojiKeyboard)
 }
@@ -16,7 +16,7 @@ protocol EmojiKeyboardDelegate {
 class EmojiKeyboard: NSObject {
     
     var keyboardView: AGEmojiKeyboardView?
-    var delegate: EmojiKeyboardDelegate?
+    weak var delegate: EmojiKeyboardDelegate?
     
     override init() {
         super.init()

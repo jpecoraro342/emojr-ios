@@ -9,7 +9,6 @@
 import Foundation
 
 extension Date {
-    
     func isGreaterThanDate(_ dateToCompare : Date) -> Bool {
         return self.compare(dateToCompare) == ComparisonResult.orderedDescending
     }

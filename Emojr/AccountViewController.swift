@@ -30,10 +30,6 @@ class AccountViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
-    @IBAction func myFeedButtonTapped(_ sender: AnyObject) {
-        performSegue(withIdentifier: AccountToUserTimeline, sender: self)
-    }
-    
     @IBAction func addUsersButtonTapped(_ sender: AnyObject) {
         let addUserVC = AddUsersViewController()
         self.navigationController?.pushViewController(addUserVC, animated: true)
