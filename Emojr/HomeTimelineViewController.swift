@@ -17,26 +17,7 @@ class HomeTimelineViewController: TimelineViewController {
     override func refreshData() {
         super.refreshData()
         
-        networkFacade.getAllFollowingPosts(User.sharedInstance.id!) { [weak self] (error, list) in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-            }
-            
-            guard let posts = list
-                else { return }
-            
-            if let strongSelf = self {
-                strongSelf.tableDataSource.configureWithPosts(posts, delegate: self)
-                strongSelf.timelineTableView.reloadData()
-                strongSelf.refreshControl.endRefreshing()
-                
-                if posts.count == 0 {
-                    strongSelf.displayNoDataView()
-                } else {
-                    strongSelf.removeNoDataView()
-                }
-            }
-        }
+        networkFacade.getAllFollowingPosts(User.sharedInstance.id!, completionBlock: self.handlePostResponse)
     }
     
     override func viewWillAppear(_ animated: Bool) {

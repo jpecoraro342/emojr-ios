@@ -8,6 +8,14 @@
 
 import UIKit
 
+extension UIView {
+    func constrainToEdges(of view: UIView, leftConstant: CGFloat = 0, topConstant: CGFloat = 0, rightConstant: CGFloat = 0, bottomConstant: CGFloat = 0) {
+        self.leftAnchor.constraint(equalTo: view.leftAnchor, constant: leftConstant).isActive = true
+        self.topAnchor.constraint(equalTo: view.topAnchor, constant: topConstant).isActive = true
+        self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: rightConstant).isActive = true
+        self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottomConstant).isActive = true
+    }
+}
 class TimelineViewController: UIViewController {
     
     var timelineTableView = UITableView()
@@ -63,12 +71,8 @@ class TimelineViewController: UIViewController {
     func layoutTableView() {
         view.addSubview(timelineTableView)
         
-        timelineTableView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view)
-            make.bottom.equalTo(self.view)
-            make.left.equalTo(self.view)
-            make.right.equalTo(self.view)
-        }
+        timelineTableView.translatesAutoresizingMaskIntoConstraints = false
+        timelineTableView.constrainToEdges(of: view)
         
         timelineTableView.addSubview(refreshControl)
         
@@ -92,14 +96,9 @@ class TimelineViewController: UIViewController {
     }
     
     func createViews() {
-        timelineTableView.addSubview(refreshControl)
-        
-        var frame = self.view.frame
-        frame.origin.y = 0
-        
         emoteView = EmoteView.instanceFromNib()
         emoteView?.configureWithController(self)
-        frame = self.view.frame
+        var frame = self.view.frame
         frame.origin.x = 0 - frame.width
         emoteView?.frame = frame
         
@@ -126,6 +125,25 @@ class TimelineViewController: UIViewController {
 
     func refreshData() {
         
+    }
+    
+    func handlePostResponse(_ error: Error?, _ list: Array<Post>?) {
+        if let error = error {
+            print("Error: \(error.localizedDescription)")
+        }
+        
+        guard let posts = list
+            else { return }
+        
+        self.tableDataSource.configureWithPosts(posts, delegate: self)
+        self.timelineTableView.reloadData()
+        self.refreshControl.endRefreshing()
+        
+        if posts.count == 0 {
+            self.displayNoDataView()
+        } else {
+            self.removeNoDataView()
+        }
     }
     
     func loadNewPage() {
@@ -216,7 +234,7 @@ class TimelineViewController: UIViewController {
     }
     
     @IBAction func postButtonTapped(_ sender: AnyObject) {
-        if let _ = User.sharedInstance.id {
+        if User.sharedInstance.isLoggedIn {
             self.displayPostForm(false)
         } else {
             // TODO: Pop up a message "Log in to post emotes!"
@@ -232,6 +250,8 @@ class TimelineViewController: UIViewController {
         }
     }
 }
+
+// MARK: - Long Tap Gesture
 
 extension TimelineViewController {
     func longTapOnCell(_ sender: UILongPressGestureRecognizer) {
@@ -252,8 +272,7 @@ extension TimelineViewController {
         
         if let user = userSelected {
             let viewUserPageAction = UIAlertAction(title: "View \(user.username!)'s Feed", style: .default) { (action: UIAlertAction) in
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let userTimelineVC = storyboard.instantiateViewController(withIdentifier: UserTimelineVCIdentifier) as! UserTimelineViewController
+                let userTimelineVC = UserTimelineViewController()
                 userTimelineVC.user = user
                 self.navigationController?.pushViewController(userTimelineVC, animated: true)
             }
@@ -267,6 +286,8 @@ extension TimelineViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 }
+
+// MARK: - TimelineTableViewDelegate
 
 extension TimelineViewController : TimelineTableViewDelegate {
     func cellSelectedInTable(_ tableView: UITableView, indexPath: IndexPath) {

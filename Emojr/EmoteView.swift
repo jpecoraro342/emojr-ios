@@ -15,7 +15,7 @@ class EmoteView: UIView {
     @IBOutlet weak var emoteButton: UIButton!
     @IBOutlet weak var textFieldBar: UIView!
 
-    var controller: TimelineViewController?
+    weak var controller: TimelineViewController?
     
     var reacting = false
     

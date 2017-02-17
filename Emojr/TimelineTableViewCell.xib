@@ -15,11 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GHr-fS-aH7" id="Gna-ox-ZdD">
-                <rect key="frame" x="0.0" y="0.0" width="600" height="119.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="600" height="119"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="😙🙏🏼🔑✊🏾🙃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9V-n0-fj4">
-                        <rect key="frame" x="8" y="8" width="110" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="😙🙏🏼🔑✊🏾🙃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9V-n0-fj4">
+                        <rect key="frame" x="8" y="8" width="544" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -30,8 +30,8 @@
                         <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="😙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98T-NJ-EzW">
-                        <rect key="frame" x="275" y="30" width="50" height="60"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98T-NJ-EzW">
+                        <rect key="frame" x="273" y="30" width="54" height="60"/>
                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -51,6 +51,7 @@
                     <constraint firstItem="v9V-n0-fj4" firstAttribute="leading" secondItem="Gna-ox-ZdD" secondAttribute="leading" constant="8" id="Cf6-2M-tUx"/>
                     <constraint firstItem="98T-NJ-EzW" firstAttribute="top" secondItem="Gna-ox-ZdD" secondAttribute="top" constant="30" id="TWM-ay-HUs"/>
                     <constraint firstAttribute="trailing" secondItem="bhj-hn-Pit" secondAttribute="trailing" constant="8" id="crK-Jd-VTl"/>
+                    <constraint firstItem="bhj-hn-Pit" firstAttribute="leading" relation="lessThanOrEqual" secondItem="v9V-n0-fj4" secondAttribute="trailing" constant="10" id="dJB-AG-Y0f"/>
                     <constraint firstAttribute="trailing" secondItem="AI3-S2-APE" secondAttribute="trailing" constant="10" id="dTi-o8-QfJ"/>
                     <constraint firstItem="98T-NJ-EzW" firstAttribute="centerX" secondItem="Gna-ox-ZdD" secondAttribute="centerX" id="eWV-0b-7CW"/>
                     <constraint firstItem="v9V-n0-fj4" firstAttribute="top" secondItem="Gna-ox-ZdD" secondAttribute="top" constant="8" id="gfg-Zp-rMF"/>

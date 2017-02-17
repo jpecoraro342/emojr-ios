@@ -24,11 +24,11 @@
                                 <constraint firstAttribute="width" constant="200" id="46g-z2-Rgd"/>
                                 <constraint firstAttribute="height" constant="50" id="eLg-M2-lmj"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
                             <textInputTraits key="textInputTraits"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </textField>

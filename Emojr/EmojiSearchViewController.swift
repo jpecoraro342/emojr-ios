@@ -29,9 +29,8 @@ class EmojiSearchViewController: UIViewController {
     func layoutTableView() {
         view.addSubview(emojiTableView)
         
-        emojiTableView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self.view)
-        }
+        emojiTableView.translatesAutoresizingMaskIntoConstraints = false
+        emojiTableView.constrainToEdges(of: view)
         
         emojiTableView.delegate = self;
         emojiTableView.dataSource = self;

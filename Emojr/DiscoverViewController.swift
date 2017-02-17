@@ -10,6 +10,13 @@ import UIKit
 
 class DiscoverViewController: TimelineViewController {
     
+    private lazy var searchButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "🔎", style: .plain, target: self, action: #selector(searchButtonTapped))
+        button.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 32)], for: UIControlState())
+        
+        return button
+    }()
+    
     override var noDataMessage: String {
         return "There aren't any posts here! Check you connection and hope more users show up soon!"
     }
@@ -17,30 +24,26 @@ class DiscoverViewController: TimelineViewController {
     override func refreshData() {
         super.refreshData()
         
-        networkFacade.getDiscoverPosts() { [weak self] (error, list) in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-            }
-            
-            guard let posts = list
-                else { return }
-            
-            if let strongSelf = self {
-                strongSelf.tableDataSource.configureWithPosts(posts, delegate: self)
-                strongSelf.timelineTableView.reloadData()
-                strongSelf.refreshControl.endRefreshing()
-                
-                if posts.count == 0 {
-                    strongSelf.displayNoDataView()
-                } else {
-                    strongSelf.removeNoDataView()
-                }
-            }
-        }
+        networkFacade.getDiscoverPosts(completionBlock: self.handlePostResponse)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = searchButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = "Discover"
+    }
+    
+    // MARK: - Action
+    
+    func searchButtonTapped(sender: UIBarButtonItem) {
+        if User.sharedInstance.isLoggedIn {
+            let addUserVC = AddUsersViewController()
+            self.navigationController?.pushViewController(addUserVC, animated: true)
+        }
     }
 }

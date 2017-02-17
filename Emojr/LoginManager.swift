@@ -89,10 +89,9 @@ class LoginManager: NSObject {
         
         let homeVC = navControllerEmbeddedVC(HomeTimelineViewController())
         let discoverVC = navControllerEmbeddedVC(DiscoverViewController())
-        let myEmotesVC = navControllerEmbeddedVC(UserTimelineViewController())
-        let accountVC = navControllerEmbeddedVC(storyboard.instantiateViewController(withIdentifier: AccountVCIdentifier))
+        let myEmotesVC = navControllerEmbeddedVC(storyboard.instantiateViewController(withIdentifier: AccountVCIdentifier))
         
-        return [homeVC, discoverVC, myEmotesVC, accountVC]
+        return [homeVC, discoverVC, myEmotesVC]
     }
     
     func getLoggedOutTabs() -> [UIViewController] {
@@ -101,23 +100,19 @@ class LoginManager: NSObject {
         let homeVC = storyboard.instantiateViewController(withIdentifier: LoginNavVCIdentifier)
         let discoverVC = navControllerEmbeddedVC(DiscoverViewController())
         let myEmotesVC = storyboard.instantiateViewController(withIdentifier: LoginNavVCIdentifier)
-        let accountVC = storyboard.instantiateViewController(withIdentifier: LoginNavVCIdentifier)
         
-        return [homeVC, discoverVC, myEmotesVC, accountVC]
+        return [homeVC, discoverVC, myEmotesVC]
     }
     
     func setVCTitlesAndIcons(_ tabVCList: [UIViewController]) {
         tabVCList[0].tabBarItem.title = "Home"
         tabVCList[0].tabBarItem.image = UIImage(named: "houseEmoji")?.withRenderingMode(.alwaysOriginal)
         
-        tabVCList[1].tabBarItem.title = "Discover"
+        tabVCList[1].tabBarItem.title = "Hot"
         tabVCList[1].tabBarItem.image = UIImage(named: "fireEmoji")?.withRenderingMode(.alwaysOriginal)
         
-        tabVCList[2].tabBarItem.title = "My Emotes"
+        tabVCList[2].tabBarItem.title = "Me"
         tabVCList[2].tabBarItem.image = UIImage(named: "tongueOutEmoji")?.withRenderingMode(.alwaysOriginal)
-        
-        tabVCList[3].tabBarItem.title = "Account"
-        tabVCList[3].tabBarItem.image = UIImage(named: "gearEmoji")?.withRenderingMode(.alwaysOriginal)
     }
     
     func navControllerEmbeddedVC(_ viewController: UIViewController) -> UINavigationController {

@@ -23,30 +23,15 @@ class UserTimelineViewController: TimelineViewController {
     override func refreshData() {
         super.refreshData()
         
-        networkFacade.getAllPostsFromUser(user?.id ?? User.sharedInstance.id!) { [weak self] (error, list) in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-            }
-            
-            guard let posts = list
-                else { return }
-            
-            if let strongSelf = self {
-                strongSelf.tableDataSource.configureWithPosts(posts, delegate: self)
-                strongSelf.timelineTableView.reloadData()
-                strongSelf.refreshControl.endRefreshing()
-                
-                if posts.count == 0 {
-                    strongSelf.displayNoDataView()
-                } else {
-                    strongSelf.removeNoDataView()
-                }
-            }
-        }
+        networkFacade.getAllPostsFromUser(user?.id ?? User.sharedInstance.id!, completionBlock: self.handlePostResponse)
+    }
+    
+    override func rightBarButtonItem() -> UIBarButtonItem? {
+        return nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.title = user?.id ?? User.sharedInstance.username!
+        self.navigationItem.title = user?.username ?? User.sharedInstance.username!
     }
 }

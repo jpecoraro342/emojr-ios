@@ -30,7 +30,7 @@ class TimelineTableViewCell: UITableViewCell {
         self.post = post
         usernameLabel.text = post.user!.username
         statusImageLabel.text = post.post
-        timestampLabel.text = timeDisplayForTimestamp(post.created as Date? ?? Date())
+        timestampLabel.text = (post.created != nil) ? timeDisplayForTimestamp(post.created!) : ""
         reactions = post.reactions
         configureReactions()
     }

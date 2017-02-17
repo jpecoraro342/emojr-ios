@@ -261,6 +261,10 @@ extension RestAccessor: NetworkingAccessor {
                     completionBlock?(nil, Post(fromJson: json as! Dictionary<String, AnyObject>));
                 }
                 else {
+                    if let error = response.result.error {
+                        print("Error: \(error)")
+                    }
+                    
                     completionBlock?(response.result.error, nil);
                 }
             })

@@ -11,6 +11,9 @@ import UIKit
 class AccountViewController: UIViewController {
     
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var feedContainerView: UIView!
+    
+    var myFeedViewController: TimelineViewController = UserTimelineViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +21,17 @@ class AccountViewController: UIViewController {
         self.navigationItem.title = "Account"
         
         self.usernameLabel.text = User.sharedInstance.username
+        
+        addChildViewController(myFeedViewController)
+        myFeedViewController.didMove(toParentViewController: self)
+        
+        feedContainerView.addSubview(myFeedViewController.view)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        myFeedViewController.view.frame = feedContainerView.bounds
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,11 +42,6 @@ class AccountViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
-    }
-    
-    @IBAction func addUsersButtonTapped(_ sender: AnyObject) {
-        let addUserVC = AddUsersViewController()
-        self.navigationController?.pushViewController(addUserVC, animated: true)
     }
     
     @IBAction func followingButtonTapped(_ sender: AnyObject) {

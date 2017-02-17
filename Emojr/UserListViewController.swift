@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class UserListViewController: UIViewController {
     
@@ -50,9 +49,8 @@ class UserListViewController: UIViewController {
     func layoutTableView() {
         view.addSubview(tableView)
         
-        tableView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self.view)
-        }
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.constrainToEdges(of: view)
         
         tableView.addSubview(refreshControl)
         
