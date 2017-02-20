@@ -51,7 +51,9 @@ extension RestAccessor: NetworkingAccessor {
                     
                     let json = response.result.value
                     for jsonUser in json as! Array<Dictionary<String, AnyObject>> {
-                        friends.append(UserData(fromJson: jsonUser));
+                        if let userData = UserData(fromJson: jsonUser) {
+                            friends.append(userData);
+                        }
                     }
                     
                     completionBlock?(nil, friends);
@@ -73,7 +75,9 @@ extension RestAccessor: NetworkingAccessor {
                     
                     let json = response.result.value
                     for jsonUser in json as! Array<Dictionary<String, AnyObject>> {
-                        friends.append(UserData(fromJson: jsonUser));
+                        if let userData = UserData(fromJson: jsonUser) {
+                            friends.append(userData);
+                        }
                     }
                     
                     completionBlock?(nil, friends);
@@ -96,7 +100,9 @@ extension RestAccessor: NetworkingAccessor {
                     let json = response.result.value
                     
                     for jsonUser in json as! Array<Dictionary<String, AnyObject>> {
-                        friends.append(UserData(fromJson: jsonUser));
+                        if let userData = UserData(fromJson: jsonUser) {
+                            friends.append(userData);
+                        }
                     }
                     
                     completionBlock?(nil, friends);
@@ -134,7 +140,9 @@ extension RestAccessor: NetworkingAccessor {
                     
                     let json = response.result.value
                     for jsonPost in json as! Array<Dictionary<String, AnyObject>> {
-                        posts.append(Post(fromJson: jsonPost));
+                        if let post = Post(fromJson: jsonPost) {
+                            posts.append(post);
+                        }
                     }
                     
                     completionBlock?(nil, posts);
@@ -156,7 +164,9 @@ extension RestAccessor: NetworkingAccessor {
                     
                     let json = response.result.value
                     for jsonPost in json as! Array<Dictionary<String, AnyObject>> {
-                        posts.append(Post(fromJson: jsonPost));
+                        if let post = Post(fromJson: jsonPost) {
+                            posts.append(post);
+                        }
                     }
                     
                     completionBlock?(nil, posts);
@@ -178,7 +188,9 @@ extension RestAccessor: NetworkingAccessor {
                     
                     let json = response.result.value
                     for jsonPost in json as! Array<Dictionary<String, AnyObject>> {
-                        posts.append(Post(fromJson: jsonPost));
+                        if let post = Post(fromJson: jsonPost) {
+                            posts.append(post);
+                        }
                     }
                     
                     completionBlock?(nil, posts);

@@ -19,8 +19,10 @@ struct UserData: CustomStringConvertible, Equatable {
         self.id = randomStringWithLength(8) as String
     }
     
-    init(fromJson: Dictionary<String, AnyObject>) {
-        id = String(describing: fromJson["pk_userid"] as? Int)
+    init?(fromJson: Dictionary<String, AnyObject>) {
+        guard let userID = fromJson["pk_userid"] as? Int else { return nil }
+        
+        id = String(describing: userID)
         username = fromJson["username"] as? String
     }
     
@@ -49,8 +51,10 @@ struct Post {
         self.id = randomStringWithLength(8) as String
     }
     
-    init(fromJson: Dictionary<String, AnyObject>) {
-        id = String(describing: fromJson["pk_postid"] as? Int)
+    init?(fromJson: Dictionary<String, AnyObject>) {
+        guard let postID = fromJson["pk_postid"] as? Int else { return nil }
+        id = String(describing: postID)
+        
         user = UserData(fromJson: fromJson)
         post = fromJson["post"] as? String
         created = dateFromString(fromJson["created"] as? String)

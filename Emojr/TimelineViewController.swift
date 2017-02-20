@@ -151,11 +151,28 @@ class TimelineViewController: UIViewController {
         print("refresh")
     }
     
-    func reactToPostWithId(_ id: String, index: IndexPath) {
-        guard let userID = User.sharedInstance.id, id != userID else { return } // TODO: Display warning banner
-        
-        reactionInfo = (id, index)
-        displayPostForm(true)
+    func reactToPostWithId(at indexPath: IndexPath) {
+        if User.sharedInstance.isLoggedIn {
+            let selectedPost = tableDataSource.posts[indexPath.row]
+            
+            guard let user = selectedPost.user, let id = user.id, id != User.sharedInstance.id else {
+                return;
+            }
+            
+            reactionInfo = (id, indexPath)
+            displayPostForm(true)
+        } else {
+            // TODO: Pop up a message "Log in to post emotes!"
+            let alert = UIAlertController(title: "Have an account?",
+                                          message: "Login to react to posts!",
+                                          preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "OK!", style: .default) { (action) in }
+            
+            alert.addAction(ok)
+            
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     func displayPostForm(_ reacting: Bool) {        
@@ -219,8 +236,9 @@ class TimelineViewController: UIViewController {
     }
     
     func postReaction(_ post: String) {
-        if let id = reactionInfo.id {
-            networkFacade.reactToPost(User.sharedInstance.id!, postId: id, reaction: post)
+        if let id = reactionInfo.id,
+            let userId = User.sharedInstance.id{
+            networkFacade.reactToPost(userId, postId: id, reaction: post)
             { [weak self](error, reaction) in
                 guard let _ = reaction
                     else {return }
@@ -294,15 +312,7 @@ extension TimelineViewController : TimelineTableViewDelegate {
     func cellSelectedInTable(_ tableView: UITableView, indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let userForSelectedPost = tableDataSource.posts[indexPath.row].user
-        
-        if let user = userForSelectedPost {
-            if (user.id == User.sharedInstance.id) {
-                return;
-            }
-        }
-        
-        reactToPostWithId(tableDataSource.posts[indexPath.row].id!, index: indexPath)
+        reactToPostWithId(at: indexPath)
     }
     
     func loadingCellDisplayed(_ cell: LoadingTableViewCell) {
