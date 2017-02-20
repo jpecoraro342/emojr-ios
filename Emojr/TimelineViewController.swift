@@ -62,7 +62,8 @@ class TimelineViewController: UIViewController {
     }
     
     func rightBarButtonItem() -> UIBarButtonItem? {
-        let postButton = UIBarButtonItem(title: "📝", style: .plain, target: self, action: #selector(postButtonTapped))
+        let buttonImage = #imageLiteral(resourceName: "writeEmoji").withRenderingMode(.alwaysOriginal)
+        let postButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(postButtonTapped))
         postButton.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 32)], for: UIControlState())
         
         return postButton

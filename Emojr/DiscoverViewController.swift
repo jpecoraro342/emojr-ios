@@ -11,7 +11,8 @@ import UIKit
 class DiscoverViewController: TimelineViewController {
     
     private lazy var searchButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "🔎", style: .plain, target: self, action: #selector(searchButtonTapped))
+        let buttonImage = #imageLiteral(resourceName: "searchEmoji").withRenderingMode(.alwaysOriginal)
+        let button = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(searchButtonTapped))
         button.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 32)], for: UIControlState())
         
         return button

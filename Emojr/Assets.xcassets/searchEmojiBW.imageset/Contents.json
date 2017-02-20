@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "face.pdf",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "searchEmojiBW.pdf",
       "scale" : "2x"
     },
     {

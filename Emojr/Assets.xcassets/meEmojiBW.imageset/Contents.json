@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "uhoh.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "meBW.pdf",
       "scale" : "2x"
     },
     {

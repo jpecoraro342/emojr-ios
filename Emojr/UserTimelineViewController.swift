@@ -14,7 +14,7 @@ class UserTimelineViewController: TimelineViewController {
     
     override var noDataMessage: String {
         if user == nil {
-            return "There aren't any posts here! Looks like you haven't posted anything yet, try tapping the 📝 button!"
+            return "There aren't any posts here! Looks like you haven't posted anything yet!"
         } else {
             return "This user doesn't have any posts! Tell them to get postin'!"
         }
