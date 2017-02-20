@@ -63,11 +63,11 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         completionBlock?(nil, postDictionary[postId])
     }
     
-    func getDiscoverPosts(completionBlock: PostArrayClosure?) {
+    func getDiscoverPosts(lastCreatedDate: Date?, completionBlock: PostArrayClosure?) {
         completionBlock?(nil, Array(postDictionary.values))
     }
     
-    func getAllPostsFromUser(_ userId: String, completionBlock: PostArrayClosure?) {
+    func getAllPostsFromUser(_ userId: String, lastCreatedDate: Date?, completionBlock: PostArrayClosure?) {
         var posts = [Post]();
         
         for (_, post) in postDictionary {
@@ -79,7 +79,7 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         completionBlock?(nil, posts)
     }
     
-    func getAllFollowingPosts(_ userId: String, completionBlock: PostArrayClosure?) {
+    func getAllFollowingPosts(_ userId: String, lastCreatedDate: Date?, completionBlock: PostArrayClosure?) {
         completionBlock?(nil, Array(postDictionary.values))
     }
     

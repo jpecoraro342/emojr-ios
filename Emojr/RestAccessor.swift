@@ -129,8 +129,8 @@ extension RestAccessor: NetworkingAccessor {
             })
     }
     
-    func getDiscoverPosts(completionBlock: PostArrayClosure?) {
-        RestAccessor.sharedManager.request(Router.DiscoverPosts)
+    func getDiscoverPosts(lastCreatedDate: Date?, completionBlock: PostArrayClosure?) {
+        RestAccessor.sharedManager.request(Router.DiscoverPosts(lastCreatedDate: lastCreatedDate))
             .responseJSON(completionHandler: { response in
                 var posts : Array<Post> = Array<Post>();
                 
@@ -153,8 +153,8 @@ extension RestAccessor: NetworkingAccessor {
             })
     }
     
-    func getAllPostsFromUser(_ userId: String, completionBlock: PostArrayClosure?) {
-        RestAccessor.sharedManager.request(Router.UserPosts(userID: userId))
+    func getAllPostsFromUser(_ userId: String, lastCreatedDate: Date?, completionBlock: PostArrayClosure?) {
+        RestAccessor.sharedManager.request(Router.UserPosts(userID: userId, lastCreatedDate: lastCreatedDate))
             .responseJSON(completionHandler: { response in
                 var posts : Array<Post> = Array<Post>();
                 
@@ -177,8 +177,8 @@ extension RestAccessor: NetworkingAccessor {
             })
     }
     
-    func getAllFollowingPosts(_ userId: String, completionBlock: PostArrayClosure?) {
-        RestAccessor.sharedManager.request(Router.FollowingPosts(userID: userId))
+    func getAllFollowingPosts(_ userId: String, lastCreatedDate: Date?, completionBlock: PostArrayClosure?) {
+        RestAccessor.sharedManager.request(Router.FollowingPosts(userID: userId, lastCreatedDate: lastCreatedDate))
             .responseJSON(completionHandler: { response in
                 var posts : Array<Post> = Array<Post>();
                 

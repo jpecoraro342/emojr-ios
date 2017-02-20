@@ -13,7 +13,7 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var feedContainerView: UIView!
     
-    var myFeedViewController: TimelineViewController = UserTimelineViewController()
+    var myFeedViewController: TimelineViewController = TimelineViewController(with: .user(user: nil))
     
     override func viewDidLoad() {
         super.viewDidLoad()

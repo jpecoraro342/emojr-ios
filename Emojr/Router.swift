@@ -21,9 +21,9 @@ enum Router: URLRequestConvertible {
         
         // Posts
         case Post(postID: String)
-        case DiscoverPosts
-        case UserPosts(userID: String)
-        case FollowingPosts(userID: String)
+        case DiscoverPosts(lastCreatedDate: Date?)
+        case UserPosts(userID: String, lastCreatedDate: Date?)
+        case FollowingPosts(userID: String, lastCreatedDate: Date?)
     
     // - POST
     
@@ -67,12 +67,27 @@ enum Router: URLRequestConvertible {
             return "/followers/\(userID)"
         case .Post(let postID):
             return "/post/\(postID)"
-        case .DiscoverPosts:
-            return "/posts/discover"
-        case .UserPosts(let userID):
-            return "/posts/user/\(userID)"
-        case .FollowingPosts(let userID):
-            return "/posts/following/\(userID)"
+        case .DiscoverPosts(let lastCreatedDate):
+            if lastCreatedDate != nil {
+                let dateString = String(describing: lastCreatedDate!.timeIntervalSince1970)
+                return "/posts/discover?fromDate=\(dateString)"
+            } else {
+                return "/posts/discover"
+            }
+        case .UserPosts(let userID, let lastCreatedDate):
+            if lastCreatedDate != nil {
+                let dateString = String(describing: lastCreatedDate!.timeIntervalSince1970)
+                return "/posts/user/\(userID)?fromDate=\(dateString)"
+            } else {
+                return "/posts/user/\(userID)"
+            }
+        case .FollowingPosts(let userID, let lastCreatedDate):
+            if lastCreatedDate != nil {
+                let dateString = String(describing: lastCreatedDate!.timeIntervalSince1970)
+                return "/posts/following/\(userID)?fromDate=\(dateString)"
+            } else {
+                return "/posts/following/\(userID)"
+            }
         case .UsernameAvailable:
             return "/user/available"
         case .FollowUser:

@@ -43,16 +43,16 @@ class NetworkFacade : NSObject {
         dataAccessor.getPost(postId, completionBlock: completionBlock)
     }
     
-    func getDiscoverPosts(completionBlock: PostArrayClosure?) {
-        dataAccessor.getDiscoverPosts(completionBlock: completionBlock)
+    func getDiscoverPosts(lastCreatedDate: Date?, completionBlock: PostArrayClosure?) {
+        dataAccessor.getDiscoverPosts(lastCreatedDate: lastCreatedDate, completionBlock: completionBlock)
     }
     
-    func getAllPostsFromUser(_ userId: String, completionBlock: PostArrayClosure?) {
-        dataAccessor.getAllPostsFromUser(userId, completionBlock: completionBlock)
+    func getAllPostsFromUser(_ userId: String, lastCreatedDate: Date?, completionBlock: PostArrayClosure?) {
+        dataAccessor.getAllPostsFromUser(userId, lastCreatedDate: lastCreatedDate, completionBlock: completionBlock)
     }
     
-    func getAllFollowingPosts(_ userId: String, completionBlock: PostArrayClosure?) {
-        dataAccessor.getAllFollowingPosts(userId, completionBlock: completionBlock)
+    func getAllFollowingPosts(_ userId: String, lastCreatedDate: Date?, completionBlock: PostArrayClosure?) {
+        dataAccessor.getAllFollowingPosts(userId, lastCreatedDate: lastCreatedDate, completionBlock: completionBlock)
     }
     
     // POST

@@ -16,6 +16,7 @@ extension UIView {
         self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottomConstant).isActive = true
     }
 }
+
 class TimelineViewController: UIViewController {
     
     var timelineTableView = UITableView()
@@ -27,7 +28,10 @@ class TimelineViewController: UIViewController {
         return refreshControl
     }()
     
-    var tableDataSource: TimelineTableViewDataSource = TimelineTableViewDataSource()
+    var tableDataSource: TimelineTableViewDataSource
+    var type: Timeline
+    
+    var user: UserData?
     
     var emoteView: EmoteView?
     var noDataView: NoDataView?
@@ -36,18 +40,30 @@ class TimelineViewController: UIViewController {
     var reacting = false
     var reactionInfo : (id: String?, index: IndexPath?)
     
-    var noDataMessage: String {
-        return "There aren't any posts here! Where'd they go?!"
-    }
+    var noDataMessage: String = "There aren't any posts here! Where'd they go?!"
     
     var selectedUserData : UserData?
     
     let networkFacade = NetworkFacade()
     
+    init(with type: Timeline) {
+        self.type = type
+        tableDataSource = type.dataSource
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        self.navigationItem.title = type.navigationTitle
+        self.noDataMessage = type.noDataMessage
+        
+        tableDataSource.delegate = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.title = "Timeline"
         
         layoutTableView()
         createViews()
@@ -62,11 +78,15 @@ class TimelineViewController: UIViewController {
     }
     
     func rightBarButtonItem() -> UIBarButtonItem? {
-        let buttonImage = #imageLiteral(resourceName: "writeEmoji").withRenderingMode(.alwaysOriginal)
-        let postButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(postButtonTapped))
-        postButton.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 32)], for: UIControlState())
-        
-        return postButton
+        if case .user = type {
+            return nil
+        } else {
+            let buttonImage = #imageLiteral(resourceName: "writeEmoji").withRenderingMode(.alwaysOriginal)
+            let postButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(postButtonTapped))
+            postButton.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 32)], for: UIControlState())
+            
+            return postButton
+        }
     }
     
     func layoutTableView() {
@@ -82,6 +102,8 @@ class TimelineViewController: UIViewController {
         timelineTableView.rowHeight = 120;
         
         timelineTableView.register(UINib(nibName: "TimelineTableViewCell", bundle:nil), forCellReuseIdentifier: TimelineCellIdentifier)
+        
+        timelineTableView.register(UINib(nibName: "LoadingTableViewCell", bundle:nil), forCellReuseIdentifier: LoadingCellIdentifier)
     }
     
     func setupLongTapGesture() {
@@ -125,30 +147,15 @@ class TimelineViewController: UIViewController {
     }
 
     func refreshData() {
-        
-    }
-    
-    func handlePostResponse(_ error: Error?, _ list: Array<Post>?) {
-        if let error = error {
-            print("Error: \(error.localizedDescription)")
-        }
-        
-        guard let posts = list
-            else { return }
-        
-        self.tableDataSource.configureWithPosts(posts, delegate: self)
-        self.timelineTableView.reloadData()
-        self.refreshControl.endRefreshing()
-        
-        if posts.count == 0 {
-            self.displayNoDataView()
-        } else {
-            self.removeNoDataView()
+        if let dataSource = tableDataSource as? PostsDataSource {
+            dataSource.getFirstPage()
         }
     }
     
-    func loadNewPage() {
-        print("refresh")
+    func loadNextPage() {
+        if let dataSource = tableDataSource as? PostsDataSource {
+            dataSource.getNextPage()
+        }
     }
     
     func reactToPostWithId(at indexPath: IndexPath) {
@@ -162,16 +169,7 @@ class TimelineViewController: UIViewController {
             reactionInfo = (id, indexPath)
             displayPostForm(true)
         } else {
-            // TODO: Pop up a message "Log in to post emotes!"
-            let alert = UIAlertController(title: "Have an account?",
-                                          message: "Login to react to posts!",
-                                          preferredStyle: .alert)
-            
-            let ok = UIAlertAction(title: "OK!", style: .default) { (action) in }
-            
-            alert.addAction(ok)
-            
-            present(alert, animated: true, completion: nil)
+            presentLoginAlert(forReaction: true)
         }
     }
     
@@ -256,17 +254,28 @@ class TimelineViewController: UIViewController {
         if User.sharedInstance.isLoggedIn {
             self.displayPostForm(false)
         } else {
-            // TODO: Pop up a message "Log in to post emotes!"
-            let alert = UIAlertController(title: "Have an account?",
-                                          message: "Login to post your own emotes!",
-                                          preferredStyle: .alert)
-            
-            let ok = UIAlertAction(title: "OK!", style: .default) { (action) in }
-            
-            alert.addAction(ok)
-            
-            present(alert, animated: true, completion: nil)
+            presentLoginAlert(forReaction: false)
         }
+    }
+    
+    func presentLoginAlert(forReaction: Bool) {
+        let message = forReaction ? "Login to react to posts!" : "Log in to post your own emotes!"
+        
+        let alert = UIAlertController(title: "Have an account?",
+                                      message: message,
+                                      preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) in }
+        
+        alert.addAction(cancel)
+        
+        let login = UIAlertAction(title: "Log In", style: .default) { (action) in
+            self.tabBarController?.selectedIndex = 2
+        }
+        
+        alert.addAction(login)
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -291,7 +300,7 @@ extension TimelineViewController {
         
         if let user = userSelected {
             let viewUserPageAction = UIAlertAction(title: "View \(user.username!)'s Feed", style: .default) { (action: UIAlertAction) in
-                let userTimelineVC = UserTimelineViewController()
+                let userTimelineVC = TimelineViewController(with: .user(user: user))
                 userTimelineVC.user = user
                 self.navigationController?.pushViewController(userTimelineVC, animated: true)
             }
@@ -316,16 +325,24 @@ extension TimelineViewController : TimelineTableViewDelegate {
     }
     
     func loadingCellDisplayed(_ cell: LoadingTableViewCell) {
-        // cell.startRefreshAnimation()
+        cell.startRefreshAnimation()
+        loadNextPage()
     }
     
     func shouldShowLoadingCell() -> Bool {
-        return false
+        return !tableDataSource.endOfData
     }
-}
-
-extension TimelineViewController {
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return .lightContent
+    
+    func dataSourceGotData(dataChanged: Bool) {
+        if dataChanged {
+            self.timelineTableView.reloadData()
+            self.refreshControl.endRefreshing()
+            
+            if self.tableDataSource.posts.count == 0 {
+                self.displayNoDataView()
+            } else {
+                self.removeNoDataView()
+            }
+        }
     }
 }

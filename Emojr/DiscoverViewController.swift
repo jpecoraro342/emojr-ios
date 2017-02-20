@@ -18,25 +18,18 @@ class DiscoverViewController: TimelineViewController {
         return button
     }()
     
-    override var noDataMessage: String {
-        return "There aren't any posts here! Check you connection and hope more users show up soon!"
+    init() {
+        super.init(with: .discover)
     }
     
-    override func refreshData() {
-        super.refreshData()
-        
-        networkFacade.getDiscoverPosts(completionBlock: self.handlePostResponse)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = searchButton
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.title = "Discover"
     }
     
     // MARK: - Action

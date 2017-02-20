@@ -87,7 +87,7 @@ class LoginManager: NSObject {
     func getLoggedInTabs() -> [UIViewController] {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let homeVC = navControllerEmbeddedVC(HomeTimelineViewController())
+        let homeVC = navControllerEmbeddedVC(TimelineViewController(with: .home))
         let discoverVC = navControllerEmbeddedVC(DiscoverViewController())
         let myEmotesVC = navControllerEmbeddedVC(storyboard.instantiateViewController(withIdentifier: AccountVCIdentifier))
         

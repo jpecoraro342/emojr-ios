@@ -17,10 +17,10 @@ protocol NetworkingAccessor {
     
     // func getAllPosts(completionBlock: PostArrayClosure);
     func getPost(_ postId: String, completionBlock: PostClosure?);
-    func getDiscoverPosts(completionBlock: PostArrayClosure?)
-    func getAllPostsFromUser(_ userId: String, completionBlock: PostArrayClosure?);
+    func getDiscoverPosts(lastCreatedDate: Date?, completionBlock: PostArrayClosure?)
+    func getAllPostsFromUser(_ userId: String, lastCreatedDate: Date?, completionBlock: PostArrayClosure?);
     
-    func getAllFollowingPosts(_ userId: String, completionBlock: PostArrayClosure?);
+    func getAllFollowingPosts(_ userId: String, lastCreatedDate: Date?, completionBlock: PostArrayClosure?);
     
     // POST
     func startFollowingUser(_ userId: String, userIdToFollow: String, completionBlock: BooleanClosure?);

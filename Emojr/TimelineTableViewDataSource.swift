@@ -7,20 +7,71 @@
 //
 
 import UIKit
+import Alamofire
 
 protocol TimelineTableViewDelegate {
     func cellSelectedInTable(_ tableView: UITableView, indexPath: IndexPath)
     func loadingCellDisplayed(_ cell: LoadingTableViewCell)
     func shouldShowLoadingCell() -> Bool
+    func dataSourceGotData(dataChanged: Bool)
 }
 
 class TimelineTableViewDataSource: NSObject {
     var delegate: TimelineTableViewDelegate?
-    var posts: [Post] = []
+    private(set) var posts: [Post] = []
     
-    func configureWithPosts(_ posts: [Post], delegate: TimelineTableViewDelegate? = nil) {
-        self.posts = posts
-        self.delegate = delegate
+    private var loading = false
+    var endOfData = false
+    var lastCreatedDate: Date?
+    
+    func getPosts(withRequest request: URLRequestConvertible, shouldRefresh: Bool) {
+        if !loading {
+            loading = true
+            
+            if !endOfData || shouldRefresh {
+                RestAccessor.sharedManager.request(request)
+                    .responseJSON(completionHandler: { response in
+                        var newPosts : Array<Post> = Array<Post>();
+                        
+                        if (response.result.isSuccess
+                            && (response.response?.statusCode)! >= 200
+                            && (response.response?.statusCode)! <= 300) {
+                            
+                            let json = response.result.value
+                            for jsonPost in json as! Array<Dictionary<String, AnyObject>> {
+                                if let post = Post(fromJson: jsonPost) {
+                                    newPosts.append(post);
+                                }
+                            }
+                            
+                            if shouldRefresh {
+                                self.posts = newPosts
+                            } else {
+                                self.addPosts(newPosts)
+                            }
+                            
+                            if newPosts.count < 100 {
+                                self.endOfData = true
+                            } else {
+                                self.endOfData = false
+                            }
+                            
+                            self.sortPostsByDate()
+                            
+                            self.lastCreatedDate = self.posts.last?.created
+                            
+                            self.loading = false
+                            
+                            self.delegate?.dataSourceGotData(dataChanged: true)
+                        }
+                        else {
+                            self.loading = false
+                            
+                            self.delegate?.dataSourceGotData(dataChanged: false)
+                        }
+                    })
+            }
+        }
     }
     
     func addPosts(_ newPosts: [Post]) {
@@ -28,7 +79,7 @@ class TimelineTableViewDataSource: NSObject {
     }
     
     func sortPostsByDate() {
-        posts.sort(by: {$0.created!.isGreaterThanDate($1.created!)})
+        posts.sort(by: {$0.created! > $1.created!})
     }
     
     func insertPost(_ newPost: Post) {
@@ -60,12 +111,7 @@ extension TimelineTableViewDataSource : UITableViewDelegate {
 
 extension TimelineTableViewDataSource : UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        if delegate != nil {
-            return delegate!.shouldShowLoadingCell() ? 2 : 1
-        }
-        else {
-            return 1;
-        }
+        return endOfData ? 1 : 2
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
