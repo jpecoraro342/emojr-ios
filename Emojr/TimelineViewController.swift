@@ -227,7 +227,8 @@ class TimelineViewController: UIViewController {
                 if let strongSelf = self {
                     newPost.user = User.sharedInstance.userData
                     strongSelf.tableDataSource.insertPost(newPost)
-                    strongSelf.timelineTableView.reloadData()
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    strongSelf.timelineTableView.insertRows(at: [indexPath], with: .top)
                 }
             }
         }
