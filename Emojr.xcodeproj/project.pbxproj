@@ -31,7 +31,7 @@
 		1589F8A01D275C5600451912 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA50151CA6383A0066CAB9 /* Constants.swift */; };
 		1589F8A11D275C7800451912 /* NetworkObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA500D1CA637780066CAB9 /* NetworkObjects.swift */; };
 		1589F8A21D275CA800451912 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA50181CA6392F0066CAB9 /* UIColor+Hex.swift */; };
-		1589F8A31D275CAB00451912 /* NSDate+Comparisons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFF5E1CA7F35A0067B7CC /* NSDate+Comparisons.swift */; };
+		1589F8A31D275CAB00451912 /* Date+Comparisons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFF5E1CA7F35A0067B7CC /* Date+Comparisons.swift */; };
 		1589F8A51D275F8900451912 /* EmojiSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1589F8A41D275F8900451912 /* EmojiSearchViewController.swift */; };
 		1589F8A81D278BA300451912 /* EmojiTextFieldManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1589F8A71D278BA300451912 /* EmojiTextFieldManagerTests.swift */; };
 		1589F8AA1D2792C300451912 /* EmojiTextFieldInputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1589F8A91D2792C300451912 /* EmojiTextFieldInputManager.swift */; };
@@ -59,8 +59,9 @@
 		15FD8BCF1DDC193B00E89FD0 /* EmojisList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD8BCA1DDC193B00E89FD0 /* EmojisList.plist */; };
 		6E142CCF1E5A98FE00DCF755 /* TimelineEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E142CCE1E5A98FE00DCF755 /* TimelineEnum.swift */; };
 		6E142CD21E5A9ED700DCF755 /* PostsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E142CD11E5A9ED700DCF755 /* PostsDataSource.swift */; };
+		6E142CD41E5AE20A00DCF755 /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E142CD31E5AE20A00DCF755 /* Date+ISO8601.swift */; };
 		6E5DBF721CABC494004D3088 /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5DBF711CABC494004D3088 /* String+Emoji.swift */; };
-		6EBDFF5F1CA7F35A0067B7CC /* NSDate+Comparisons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFF5E1CA7F35A0067B7CC /* NSDate+Comparisons.swift */; };
+		6EBDFF5F1CA7F35A0067B7CC /* Date+Comparisons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFF5E1CA7F35A0067B7CC /* Date+Comparisons.swift */; };
 		6ECCD7951CA714FA00F53AD5 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */; };
 		6ECCD7971CA7152400F53AD5 /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD7961CA7152400F53AD5 /* TimelineTableViewCell.swift */; };
 		6ECCD79C1CA72C7600F53AD5 /* EmoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD79B1CA72C7600F53AD5 /* EmoteView.swift */; };
@@ -160,8 +161,9 @@
 		15FD8BCA1DDC193B00E89FD0 /* EmojisList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EmojisList.plist; sourceTree = "<group>"; };
 		6E142CCE1E5A98FE00DCF755 /* TimelineEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineEnum.swift; sourceTree = "<group>"; };
 		6E142CD11E5A9ED700DCF755 /* PostsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsDataSource.swift; sourceTree = "<group>"; };
+		6E142CD31E5AE20A00DCF755 /* Date+ISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+ISO8601.swift"; sourceTree = "<group>"; };
 		6E5DBF711CABC494004D3088 /* String+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
-		6EBDFF5E1CA7F35A0067B7CC /* NSDate+Comparisons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Comparisons.swift"; sourceTree = "<group>"; };
+		6EBDFF5E1CA7F35A0067B7CC /* Date+Comparisons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Comparisons.swift"; sourceTree = "<group>"; };
 		6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		6ECCD7961CA7152400F53AD5 /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
 		6ECCD79B1CA72C7600F53AD5 /* EmoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoteView.swift; sourceTree = "<group>"; };
@@ -355,7 +357,8 @@
 			isa = PBXGroup;
 			children = (
 				15AA50181CA6392F0066CAB9 /* UIColor+Hex.swift */,
-				6EBDFF5E1CA7F35A0067B7CC /* NSDate+Comparisons.swift */,
+				6EBDFF5E1CA7F35A0067B7CC /* Date+Comparisons.swift */,
+				6E142CD31E5AE20A00DCF755 /* Date+ISO8601.swift */,
 				6E5DBF711CABC494004D3088 /* String+Emoji.swift */,
 			);
 			name = "Class Extensions";
@@ -561,10 +564,11 @@
 				15454DF11CA7E00900A520D1 /* UICKeyChainStore.m in Sources */,
 				15313DD41D07C34C006E738A /* AddUsersViewController.swift in Sources */,
 				6EF1EF471CB4D4A400992A2F /* TimelineTableViewDataSource.swift in Sources */,
+				6E142CD41E5AE20A00DCF755 /* Date+ISO8601.swift in Sources */,
 				6EE3DEF31DD80B8E00E32BA2 /* RestAccessor.swift in Sources */,
 				15313DCE1D07B5D3006E738A /* UserTableViewCell.swift in Sources */,
 				15AA50111CA637780066CAB9 /* NetworkingAccessor.swift in Sources */,
-				6EBDFF5F1CA7F35A0067B7CC /* NSDate+Comparisons.swift in Sources */,
+				6EBDFF5F1CA7F35A0067B7CC /* Date+Comparisons.swift in Sources */,
 				15454DF91CA80CAC00A520D1 /* SignUpViewController.swift in Sources */,
 				1589F8871D1CEFDE00451912 /* EmojiValidator.swift in Sources */,
 				15AA50101CA637780066CAB9 /* NetworkFacade.swift in Sources */,
@@ -589,7 +593,7 @@
 				1589F89F1D27597D00451912 /* EmojiValidator.swift in Sources */,
 				1589F8A01D275C5600451912 /* Constants.swift in Sources */,
 				1589F8A81D278BA300451912 /* EmojiTextFieldManagerTests.swift in Sources */,
-				1589F8A31D275CAB00451912 /* NSDate+Comparisons.swift in Sources */,
+				1589F8A31D275CAB00451912 /* Date+Comparisons.swift in Sources */,
 				1589F8A11D275C7800451912 /* NetworkObjects.swift in Sources */,
 				1589F8AB1D2792F400451912 /* EmojiTextFieldInputManager.swift in Sources */,
 				1589F8A21D275CA800451912 /* UIColor+Hex.swift in Sources */,

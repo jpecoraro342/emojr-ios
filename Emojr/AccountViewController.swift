@@ -12,6 +12,8 @@ class AccountViewController: UIViewController {
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var feedContainerView: UIView!
+    @IBOutlet weak var settingsButtonStack: UIStackView!
+    @IBOutlet weak var settingsButton: UIButton!
     
     var myFeedViewController: TimelineViewController = TimelineViewController(with: .user(user: nil))
     
@@ -55,12 +57,30 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func logoutButtonTapped(_ sender: AnyObject) {
-        LoginManager().logout()
+        let alert = UIAlertController(title: "Are you sure you want to log out?",
+                                      message: nil,
+                                      preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) in }
+        
+        alert.addAction(cancel)
+        
+        let login = UIAlertAction(title: "Log Out", style: .destructive) { (action) in
+            LoginManager().logout()
+        }
+        
+        alert.addAction(login)
+        
+        present(alert, animated: true, completion: nil)
     }
-}
-
-extension AccountViewController {
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return .lightContent
+    
+    @IBAction func settingsButtonTapped(_ sender: AnyObject) {
+        for view in settingsButtonStack.arrangedSubviews {
+            if view !== settingsButton {
+                UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
+                    view.isHidden = !view.isHidden
+                }, completion: nil)
+            }
+        }
     }
 }

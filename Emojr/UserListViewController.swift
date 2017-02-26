@@ -173,9 +173,3 @@ extension UserListViewController : UITableViewDataSource {
         return cell;
     }
 }
-
-extension UserListViewController {
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return .lightContent
-    }
-}

@@ -157,11 +157,11 @@ class DummyNetworkAccessor: NSObject, NetworkingAccessor {
         let james = usernameDictionary["😌"]!
         let jacob = usernameDictionary["🍆"]!
         
-        startFollowingUser(james.id!, userIdToFollow: "🍆", completionBlock: nil)
-        startFollowingUser(jacob.id!, userIdToFollow: "😌", completionBlock: nil)
+        startFollowingUser(james.id!, userIdToFollow: jacob.id!, completionBlock: nil)
+        startFollowingUser(jacob.id!, userIdToFollow: james.id!, completionBlock: nil)
         
-        startFollowingUser(james.id!, userIdToFollow: "😎😈😎", completionBlock: nil)
-        startFollowingUser(jacob.id!, userIdToFollow: "😎😈😎", completionBlock: nil)
+        startFollowingUser(james.id!, userIdToFollow: joe.id!, completionBlock: nil)
+        startFollowingUser(jacob.id!, userIdToFollow: joe.id!, completionBlock: nil)
         
         var postId = ""
         

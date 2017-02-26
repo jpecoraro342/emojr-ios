@@ -108,12 +108,10 @@ class LoginViewController: UIViewController {
     
     func navigateToMainTab() {
         let tabVC = LoginManager().getMainTab(true)
-        self.navigationController?.present(tabVC, animated: true, completion: {
-            if let window = UIApplication.shared.delegate?.window {
-                window!.rootViewController = tabVC
-                window?.makeKeyAndVisible()
-            }
-        })
+        if let window = UIApplication.shared.delegate?.window {
+            window!.rootViewController = tabVC
+            window?.makeKeyAndVisible()
+        }
     }
     
     @IBAction func signUp() {

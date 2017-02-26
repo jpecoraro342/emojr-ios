@@ -40,9 +40,12 @@ class TimelineViewController: UIViewController {
     var reacting = false
     var reactionInfo : (id: String?, index: IndexPath?)
     
+    var firstLoad = true
     var noDataMessage: String = "There aren't any posts here! Where'd they go?!"
     
     var selectedUserData : UserData?
+    
+    var loadingCellRefreshControl: UIActivityIndicatorView?
     
     let networkFacade = NetworkFacade()
     
@@ -183,7 +186,12 @@ class TimelineViewController: UIViewController {
         self.navigationController?.view.addSubview(fadeView!)
         self.navigationController?.view.addSubview(emoteView!)
         
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       usingSpringWithDamping: 0.6,
+                       initialSpringVelocity: 2,
+                       options: .curveEaseOut,
+                       animations: {
             self.fadeView?.alpha = 0.6
             
             var frame = self.emoteView?.frame
@@ -191,20 +199,25 @@ class TimelineViewController: UIViewController {
             self.emoteView?.frame = frame!
         }, completion: { (completed) in
             self.emoteView?.emojiField.becomeFirstResponder()
-        }) 
+        })
     }
     
     func dismissPostForm() {
-        UIView.animate(withDuration: 0.4, animations: {
+        UIView.animate(withDuration: 0.2,
+                       delay: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 4,
+                       options: .curveEaseIn,
+                       animations: {
             self.fadeView?.alpha = 0.0
             
             var frame = self.emoteView?.frame
-            frame!.origin.x = self.view.frame.width
+            frame!.origin.x = self.view.frame.width + 30
             self.emoteView?.frame = frame!
         }, completion: { (completed) in
             self.emoteView?.removeFromSuperview()
             self.fadeView?.removeFromSuperview()
-        }) 
+        })
     }
     
     func postFormReturnedPost(_ post: String) {
@@ -326,8 +339,13 @@ extension TimelineViewController : TimelineTableViewDelegate {
     }
     
     func loadingCellDisplayed(_ cell: LoadingTableViewCell) {
-        cell.startRefreshAnimation()
-        loadNextPage()
+        if !firstLoad {
+            loadingCellRefreshControl = cell.activityIndicator
+            loadingCellRefreshControl?.startAnimating()
+            loadNextPage()
+        } else {
+            firstLoad = false
+        }
     }
     
     func shouldShowLoadingCell() -> Bool {
@@ -336,13 +354,14 @@ extension TimelineViewController : TimelineTableViewDelegate {
     
     func dataSourceGotData(dataChanged: Bool) {
         if dataChanged {
-            self.timelineTableView.reloadData()
-            self.refreshControl.endRefreshing()
+            timelineTableView.reloadData()
+            refreshControl.endRefreshing()
+            loadingCellRefreshControl?.stopAnimating()
             
-            if self.tableDataSource.posts.count == 0 {
-                self.displayNoDataView()
+            if tableDataSource.posts.count == 0 {
+                displayNoDataView()
             } else {
-                self.removeNoDataView()
+                removeNoDataView()
             }
         }
     }

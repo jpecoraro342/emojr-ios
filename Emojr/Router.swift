@@ -68,26 +68,41 @@ enum Router: URLRequestConvertible {
         case .Post(let postID):
             return "/post/\(postID)"
         case .DiscoverPosts(let lastCreatedDate):
+            var pathString = "/posts/discover"
+            
             if lastCreatedDate != nil {
-                let dateString = String(describing: lastCreatedDate!.timeIntervalSince1970)
-                return "/posts/discover?fromDate=\(dateString)"
-            } else {
-                return "/posts/discover"
+                var dateString = lastCreatedDate!.iso8601
+                dateString = dateString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+                pathString += "/\(dateString)"
             }
+            
+            return pathString
         case .UserPosts(let userID, let lastCreatedDate):
+            let pathString = "/posts/user/\(userID)"
+            var components = URLComponents(string: pathString)
+            
             if lastCreatedDate != nil {
-                let dateString = String(describing: lastCreatedDate!.timeIntervalSince1970)
-                return "/posts/user/\(userID)?fromDate=\(dateString)"
+                var dateString = lastCreatedDate!.iso8601
+                dateString = dateString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+                components?.queryItems = [URLQueryItem(name: "fromDate", value: dateString)]
             } else {
-                return "/posts/user/\(userID)"
+                components?.queryItems = nil
             }
-        case .FollowingPosts(let userID, let lastCreatedDate):
+            
+            return components!.string!
+        case .FollowingPosts(let userID, let lastCreatedDate):            
+            let pathString = "/posts/following/\(userID)"
+            var components = URLComponents(string: pathString)
+            
             if lastCreatedDate != nil {
-                let dateString = String(describing: lastCreatedDate!.timeIntervalSince1970)
-                return "/posts/following/\(userID)?fromDate=\(dateString)"
+                var dateString = lastCreatedDate!.iso8601
+                dateString = dateString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+                components?.queryItems = [URLQueryItem(name: "fromDate", value: dateString)]
             } else {
-                return "/posts/following/\(userID)"
+                components?.queryItems = nil
             }
+            
+            return components!.string!
         case .UsernameAvailable:
             return "/user/available"
         case .FollowUser:
