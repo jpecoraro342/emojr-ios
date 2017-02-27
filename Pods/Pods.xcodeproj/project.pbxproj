@@ -1,0 +1,753 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02FA3473CCE0C972AC4ECEE3D5DCB39F /* Pods-EmojrTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DF23998F611840FF6D9B83106873E0 /* Pods-EmojrTests-dummy.m */; };
+		0AD3E6CBE936951C68DF31B1BE7D758A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		5BD8273AD9DD93FED3B3FFDF69EF4AE5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		ACA22DC52F9EDCC517ED4BD940607FE5 /* Pods-Emojr-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 089DA9CF8A69E893C823B45FA5340E05 /* Pods-Emojr-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B17684A01815C92A3956923A0BA7C048 /* Pods-EmojrTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 69C61EBA9D549188F989BFB587EB3B23 /* Pods-EmojrTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C38325D65285E5DB99B307E55094317A /* Pods-Emojr-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B8AB3BF5F8EEBB5E5994B9C94F2B6622 /* Pods-Emojr-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089DA9CF8A69E893C823B45FA5340E05 /* Pods-Emojr-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Emojr-umbrella.h"; sourceTree = "<group>"; };
+		1923EBD01BDB65A7F61C93585904286C /* Pods-Emojr-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Emojr-acknowledgements.plist"; sourceTree = "<group>"; };
+		1B932929E48F20BF93E5335627357DFF /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		24DBF5C3C9CD7CCFEE4D16C4BFACEAAD /* Pods-Emojr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Emojr.debug.xcconfig"; sourceTree = "<group>"; };
+		2DE517E0EEE80403B1403387C68A3479 /* Pods-Emojr.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Emojr.modulemap"; sourceTree = "<group>"; };
+		40B64AEE29DFF34FBEDB8A67C648984C /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Frameworks/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		4CFB730F221B92269FCA3830744B8C4E /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Frameworks/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		53E6BE885DF53DC23D3E28B7AA88B68A /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		55BF965454299965287DB3FC88E216A7 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignIn.framework; path = Frameworks/GoogleSignIn.framework; sourceTree = "<group>"; };
+		57DF23998F611840FF6D9B83106873E0 /* Pods-EmojrTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EmojrTests-dummy.m"; sourceTree = "<group>"; };
+		64D79AA360922C4128BE9F3A396008BB /* Pods-Emojr-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Emojr-frameworks.sh"; sourceTree = "<group>"; };
+		69C61EBA9D549188F989BFB587EB3B23 /* Pods-EmojrTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-EmojrTests-umbrella.h"; sourceTree = "<group>"; };
+		75626B20615B332AB85E20E822EF3786 /* Pods-EmojrTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EmojrTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		84A9A3EC868AD6844D716010A840253D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85A7A053B64B601F010779F111FAD171 /* Pods-EmojrTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-EmojrTests.modulemap"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E25EDAB904A41CF25B0D2B60EDDC764 /* Pods-EmojrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EmojrTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A4EF7E0C2DFD078EE40B583E3F4F57BF /* Pods-Emojr-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Emojr-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A5548B1D32F57D9DF49E81AE267D5D6A /* Pods_EmojrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_EmojrTests.framework; path = "Pods-EmojrTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A68CC6318E50C70E1C201FADA0CE50C8 /* Firebase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = Analytics/Sources/Firebase.h; sourceTree = "<group>"; };
+		AC50682C8F234E6D5EA2AE5589600928 /* Pods-EmojrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EmojrTests.release.xcconfig"; sourceTree = "<group>"; };
+		B4D520B9EF8D8459474BFB80B4087EDF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5D11A139AE66218026B0E88ABC8D6D3 /* Pods-EmojrTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EmojrTests-resources.sh"; sourceTree = "<group>"; };
+		B8AB3BF5F8EEBB5E5994B9C94F2B6622 /* Pods-Emojr-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Emojr-dummy.m"; sourceTree = "<group>"; };
+		C08EEAA0242E89965DB23C4D2B5480FA /* FIRInstanceID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceID.h; path = Sources/FIRInstanceID.h; sourceTree = "<group>"; };
+		C2B6EEFF504D9B2726F0AB8C98FF19D9 /* GoogleParsingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleParsingUtilities.framework; path = Frameworks/GoogleParsingUtilities.framework; sourceTree = "<group>"; };
+		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CF294DE7AE7B7CE4997FFC481D605B5A /* GoogleSignIn.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = Resources/GoogleSignIn.bundle; sourceTree = "<group>"; };
+		D3AC303C66BF0D1267C5941B31CE8ADD /* GoogleAppUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppUtilities.framework; path = Frameworks/GoogleAppUtilities.framework; sourceTree = "<group>"; };
+		DB214FC517A8ABD6EB97397B906ECDEA /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleNetworkingUtilities.framework; path = Frameworks/GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
+		E157183013F80C0114E8831198FDCF38 /* Pods-EmojrTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EmojrTests-frameworks.sh"; sourceTree = "<group>"; };
+		EE4B3A92BD05759CFB62685834CF8295 /* Pods_Emojr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Emojr.framework; path = "Pods-Emojr.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F269C105BA54E842D345A4EF313231B8 /* Pods-Emojr-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Emojr-resources.sh"; sourceTree = "<group>"; };
+		F2DC52ECFF0D0A6A04A4AFA19B638828 /* Pods-EmojrTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EmojrTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		F3CE7CB2BFE205D9C9B1DF0605907A8C /* FirebaseAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAuth.framework; path = Frameworks/frameworks/FirebaseAuth.framework; sourceTree = "<group>"; };
+		F4E37A77F57A9E930FE9AC4D36FA6033 /* GoogleAuthUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAuthUtilities.framework; path = Frameworks/GoogleAuthUtilities.framework; sourceTree = "<group>"; };
+		FA25BA2C7CD0C02D860FE3AD719F9793 /* Pods-Emojr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Emojr.release.xcconfig"; sourceTree = "<group>"; };
+		FD3D4A0686F5D9FAA73DBC76EF0932DE /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Frameworks/GoogleUtilities.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2B91B117B1C137859937087CEB924D9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BD8273AD9DD93FED3B3FFDF69EF4AE5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE10A5C44AF852281BDC7483B2D242ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0AD3E6CBE936951C68DF31B1BE7D758A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		187BEA798009ECE136CDEF099523DA5B /* GoogleAppUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				5318529A3AB839E64AF8E64A0C3527FC /* Frameworks */,
+			);
+			name = GoogleAppUtilities;
+			path = GoogleAppUtilities;
+			sourceTree = "<group>";
+		};
+		19EBCA35B69386BC534916B60428BB4B /* FirebaseAuth */ = {
+			isa = PBXGroup;
+			children = (
+				F3888BE913CA750F3167F6A619FAD4D9 /* Frameworks */,
+			);
+			name = FirebaseAuth;
+			path = FirebaseAuth;
+			sourceTree = "<group>";
+		};
+		2A678235D871CBC3DA2C7F424C967CB3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				53E6BE885DF53DC23D3E28B7AA88B68A /* FirebaseAnalytics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2CB7E93FDECF076F3417E3F924B569E9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4E37A77F57A9E930FE9AC4D36FA6033 /* GoogleAuthUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B7AC456E8753ACFC105FA75AC9F56A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2B6EEFF504D9B2726F0AB8C98FF19D9 /* GoogleParsingUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		40C221758567A87E13AC60AAB7B7BBE2 /* FirebaseAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				2A678235D871CBC3DA2C7F424C967CB3 /* Frameworks */,
+			);
+			name = FirebaseAnalytics;
+			path = FirebaseAnalytics;
+			sourceTree = "<group>";
+		};
+		452EE192D9EC94C26351C309E097D861 /* Pods-EmojrTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4D520B9EF8D8459474BFB80B4087EDF /* Info.plist */,
+				85A7A053B64B601F010779F111FAD171 /* Pods-EmojrTests.modulemap */,
+				75626B20615B332AB85E20E822EF3786 /* Pods-EmojrTests-acknowledgements.markdown */,
+				F2DC52ECFF0D0A6A04A4AFA19B638828 /* Pods-EmojrTests-acknowledgements.plist */,
+				57DF23998F611840FF6D9B83106873E0 /* Pods-EmojrTests-dummy.m */,
+				E157183013F80C0114E8831198FDCF38 /* Pods-EmojrTests-frameworks.sh */,
+				B5D11A139AE66218026B0E88ABC8D6D3 /* Pods-EmojrTests-resources.sh */,
+				69C61EBA9D549188F989BFB587EB3B23 /* Pods-EmojrTests-umbrella.h */,
+				9E25EDAB904A41CF25B0D2B60EDDC764 /* Pods-EmojrTests.debug.xcconfig */,
+				AC50682C8F234E6D5EA2AE5589600928 /* Pods-EmojrTests.release.xcconfig */,
+			);
+			name = "Pods-EmojrTests";
+			path = "Target Support Files/Pods-EmojrTests";
+			sourceTree = "<group>";
+		};
+		4D3C19C670344DC408A94A9AC97575D6 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				FDEF41844E6E47B59CC129A34B9D9597 /* Analytics */,
+			);
+			name = Firebase;
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		5318529A3AB839E64AF8E64A0C3527FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3AC303C66BF0D1267C5941B31CE8ADD /* GoogleAppUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				B6B5BF0B160CEF2F8E8766822031D7C6 /* Pods */,
+				C0EE759A1668FF24260477168F24D9A2 /* Products */,
+				D4406304643C7DD94CB5ADACD34C68FE /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		886FFDCD76A15BE185A7A9CC0D6F17BF /* FirebaseInstanceID */ = {
+			isa = PBXGroup;
+			children = (
+				C08EEAA0242E89965DB23C4D2B5480FA /* FIRInstanceID.h */,
+				B2E7E009FE9A9FC6F69C64349B8B21B0 /* Frameworks */,
+			);
+			name = FirebaseInstanceID;
+			path = FirebaseInstanceID;
+			sourceTree = "<group>";
+		};
+		8A4E5CF9813C32ED5A7CAE3A9BD7B0C9 /* GoogleAuthUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				2CB7E93FDECF076F3417E3F924B569E9 /* Frameworks */,
+			);
+			name = GoogleAuthUtilities;
+			path = GoogleAuthUtilities;
+			sourceTree = "<group>";
+		};
+		8C875846BB009E9CDB35B5A94E014863 /* GoogleUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				E95C45AFAAA665031E292DF2AAED2040 /* Frameworks */,
+			);
+			name = GoogleUtilities;
+			path = GoogleUtilities;
+			sourceTree = "<group>";
+		};
+		93AEE2B5F6F82AD474449508080B06A1 /* GoogleParsingUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				3B7AC456E8753ACFC105FA75AC9F56A2 /* Frameworks */,
+			);
+			name = GoogleParsingUtilities;
+			path = GoogleParsingUtilities;
+			sourceTree = "<group>";
+		};
+		A88BF8297E0A8EC3E0271AB0C95D3A56 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CF294DE7AE7B7CE4997FFC481D605B5A /* GoogleSignIn.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		A9F968B8EAD817EE3CB0D6829A53FA80 /* GoogleSignIn */ = {
+			isa = PBXGroup;
+			children = (
+				F37F76D1C0A55080D31C2F6EDE106FE1 /* Frameworks */,
+				A88BF8297E0A8EC3E0271AB0C95D3A56 /* Resources */,
+			);
+			name = GoogleSignIn;
+			path = GoogleSignIn;
+			sourceTree = "<group>";
+		};
+		B2E7E009FE9A9FC6F69C64349B8B21B0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1B932929E48F20BF93E5335627357DFF /* FirebaseInstanceID.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5962183BAA36226BE92F53116DB63F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB214FC517A8ABD6EB97397B906ECDEA /* GoogleNetworkingUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B6B5BF0B160CEF2F8E8766822031D7C6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4D3C19C670344DC408A94A9AC97575D6 /* Firebase */,
+				40C221758567A87E13AC60AAB7B7BBE2 /* FirebaseAnalytics */,
+				19EBCA35B69386BC534916B60428BB4B /* FirebaseAuth */,
+				886FFDCD76A15BE185A7A9CC0D6F17BF /* FirebaseInstanceID */,
+				187BEA798009ECE136CDEF099523DA5B /* GoogleAppUtilities */,
+				8A4E5CF9813C32ED5A7CAE3A9BD7B0C9 /* GoogleAuthUtilities */,
+				C25C348794D335793983913F424D6344 /* GoogleInterchangeUtilities */,
+				C7CC77DB98B9E17207381A7D786C132D /* GoogleNetworkingUtilities */,
+				93AEE2B5F6F82AD474449508080B06A1 /* GoogleParsingUtilities */,
+				A9F968B8EAD817EE3CB0D6829A53FA80 /* GoogleSignIn */,
+				E87AF42B57E3F44E050D6F31262D3031 /* GoogleSymbolUtilities */,
+				8C875846BB009E9CDB35B5A94E014863 /* GoogleUtilities */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0EE759A1668FF24260477168F24D9A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EE4B3A92BD05759CFB62685834CF8295 /* Pods_Emojr.framework */,
+				A5548B1D32F57D9DF49E81AE267D5D6A /* Pods_EmojrTests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C25C348794D335793983913F424D6344 /* GoogleInterchangeUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				F1D744AEE847176C6C6CACAD143401A7 /* Frameworks */,
+			);
+			name = GoogleInterchangeUtilities;
+			path = GoogleInterchangeUtilities;
+			sourceTree = "<group>";
+		};
+		C7CC77DB98B9E17207381A7D786C132D /* GoogleNetworkingUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				B5962183BAA36226BE92F53116DB63F4 /* Frameworks */,
+			);
+			name = GoogleNetworkingUtilities;
+			path = GoogleNetworkingUtilities;
+			sourceTree = "<group>";
+		};
+		C9BD33A3A9D77E71A6B0734D70D13FE6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4CFB730F221B92269FCA3830744B8C4E /* GoogleSymbolUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4406304643C7DD94CB5ADACD34C68FE /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				DCC57DEB5DEC72EFC651A3324432A15B /* Pods-Emojr */,
+				452EE192D9EC94C26351C309E097D861 /* Pods-EmojrTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		DCC57DEB5DEC72EFC651A3324432A15B /* Pods-Emojr */ = {
+			isa = PBXGroup;
+			children = (
+				84A9A3EC868AD6844D716010A840253D /* Info.plist */,
+				2DE517E0EEE80403B1403387C68A3479 /* Pods-Emojr.modulemap */,
+				A4EF7E0C2DFD078EE40B583E3F4F57BF /* Pods-Emojr-acknowledgements.markdown */,
+				1923EBD01BDB65A7F61C93585904286C /* Pods-Emojr-acknowledgements.plist */,
+				B8AB3BF5F8EEBB5E5994B9C94F2B6622 /* Pods-Emojr-dummy.m */,
+				64D79AA360922C4128BE9F3A396008BB /* Pods-Emojr-frameworks.sh */,
+				F269C105BA54E842D345A4EF313231B8 /* Pods-Emojr-resources.sh */,
+				089DA9CF8A69E893C823B45FA5340E05 /* Pods-Emojr-umbrella.h */,
+				24DBF5C3C9CD7CCFEE4D16C4BFACEAAD /* Pods-Emojr.debug.xcconfig */,
+				FA25BA2C7CD0C02D860FE3AD719F9793 /* Pods-Emojr.release.xcconfig */,
+			);
+			name = "Pods-Emojr";
+			path = "Target Support Files/Pods-Emojr";
+			sourceTree = "<group>";
+		};
+		E87AF42B57E3F44E050D6F31262D3031 /* GoogleSymbolUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				C9BD33A3A9D77E71A6B0734D70D13FE6 /* Frameworks */,
+			);
+			name = GoogleSymbolUtilities;
+			path = GoogleSymbolUtilities;
+			sourceTree = "<group>";
+		};
+		E95C45AFAAA665031E292DF2AAED2040 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD3D4A0686F5D9FAA73DBC76EF0932DE /* GoogleUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F1D744AEE847176C6C6CACAD143401A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				40B64AEE29DFF34FBEDB8A67C648984C /* GoogleInterchangeUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F37F76D1C0A55080D31C2F6EDE106FE1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55BF965454299965287DB3FC88E216A7 /* GoogleSignIn.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F3888BE913CA750F3167F6A619FAD4D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3CE7CB2BFE205D9C9B1DF0605907A8C /* FirebaseAuth.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDEF41844E6E47B59CC129A34B9D9597 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				A68CC6318E50C70E1C201FADA0CE50C8 /* Firebase.h */,
+			);
+			name = Analytics;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3FBFF060357A764938C66E20FF54A04D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACA22DC52F9EDCC517ED4BD940607FE5 /* Pods-Emojr-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B123283D6876CCF6A72EBD75C355F3D1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B17684A01815C92A3956923A0BA7C048 /* Pods-EmojrTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9D8D825585414F5AF73553FC84E0E5FF /* Pods-Emojr */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66096855C76A0B87E42D978363FFE741 /* Build configuration list for PBXNativeTarget "Pods-Emojr" */;
+			buildPhases = (
+				0E33ABCC6506CE5E8011E803E3B29FDA /* Sources */,
+				EE10A5C44AF852281BDC7483B2D242ED /* Frameworks */,
+				3FBFF060357A764938C66E20FF54A04D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Emojr";
+			productName = "Pods-Emojr";
+			productReference = EE4B3A92BD05759CFB62685834CF8295 /* Pods_Emojr.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9F75D9C879BE30ADBE1CC8C813EFFF07 /* Pods-EmojrTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCB671235CBBC692E55FEC3167A2959F /* Build configuration list for PBXNativeTarget "Pods-EmojrTests" */;
+			buildPhases = (
+				B5A8C0795E6B7BF06A83BBD79E005AFB /* Sources */,
+				2B91B117B1C137859937087CEB924D9B /* Frameworks */,
+				B123283D6876CCF6A72EBD75C355F3D1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-EmojrTests";
+			productName = "Pods-EmojrTests";
+			productReference = A5548B1D32F57D9DF49E81AE267D5D6A /* Pods_EmojrTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = C0EE759A1668FF24260477168F24D9A2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9D8D825585414F5AF73553FC84E0E5FF /* Pods-Emojr */,
+				9F75D9C879BE30ADBE1CC8C813EFFF07 /* Pods-EmojrTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0E33ABCC6506CE5E8011E803E3B29FDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C38325D65285E5DB99B307E55094317A /* Pods-Emojr-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5A8C0795E6B7BF06A83BBD79E005AFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02FA3473CCE0C972AC4ECEE3D5DCB39F /* Pods-EmojrTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		818C1D642F301D621143DA25FADC6C2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA25BA2C7CD0C02D860FE3AD719F9793 /* Pods-Emojr.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Emojr/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Emojr/Pods-Emojr.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Emojr;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8EDC14D78458FCA976E128A27F3875B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24DBF5C3C9CD7CCFEE4D16C4BFACEAAD /* Pods-Emojr.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Emojr/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Emojr/Pods-Emojr.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Emojr;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8F10A7BCE303735D42EED416F7A53505 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC50682C8F234E6D5EA2AE5589600928 /* Pods-EmojrTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-EmojrTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-EmojrTests/Pods-EmojrTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_EmojrTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A809FE1BB1D2F46F920E33F9B6CD3BC9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E25EDAB904A41CF25B0D2B60EDDC764 /* Pods-EmojrTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-EmojrTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-EmojrTests/Pods-EmojrTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_EmojrTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AADB9822762AD81BBAE83335B2AB1EB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B1B5EB0850F98CB5AECDB015B690777F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1B5EB0850F98CB5AECDB015B690777F /* Debug */,
+				AADB9822762AD81BBAE83335B2AB1EB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66096855C76A0B87E42D978363FFE741 /* Build configuration list for PBXNativeTarget "Pods-Emojr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EDC14D78458FCA976E128A27F3875B5 /* Debug */,
+				818C1D642F301D621143DA25FADC6C2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FCB671235CBBC692E55FEC3167A2959F /* Build configuration list for PBXNativeTarget "Pods-EmojrTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A809FE1BB1D2F46F920E33F9B6CD3BC9 /* Debug */,
+				8F10A7BCE303735D42EED416F7A53505 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

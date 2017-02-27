@@ -57,11 +57,13 @@
 		15FD8BCD1DDC193B00E89FD0 /* emoji-name-keys.json in Resources */ = {isa = PBXBuildFile; fileRef = 15FD8BC81DDC193B00E89FD0 /* emoji-name-keys.json */; };
 		15FD8BCE1DDC193B00E89FD0 /* emoji-names.json in Resources */ = {isa = PBXBuildFile; fileRef = 15FD8BC91DDC193B00E89FD0 /* emoji-names.json */; };
 		15FD8BCF1DDC193B00E89FD0 /* EmojisList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15FD8BCA1DDC193B00E89FD0 /* EmojisList.plist */; };
+		4D1345B8681520699561FC55 /* Pods_EmojrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143BF52EB5C506BFE45E825B /* Pods_EmojrTests.framework */; };
 		6E142CCF1E5A98FE00DCF755 /* TimelineEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E142CCE1E5A98FE00DCF755 /* TimelineEnum.swift */; };
 		6E142CD21E5A9ED700DCF755 /* PostsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E142CD11E5A9ED700DCF755 /* PostsDataSource.swift */; };
 		6E142CD41E5AE20A00DCF755 /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E142CD31E5AE20A00DCF755 /* Date+ISO8601.swift */; };
 		6E5DBF721CABC494004D3088 /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5DBF711CABC494004D3088 /* String+Emoji.swift */; };
 		6EBDFF5F1CA7F35A0067B7CC /* Date+Comparisons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFF5E1CA7F35A0067B7CC /* Date+Comparisons.swift */; };
+		6EC717931E63A69B008F5A29 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EC717921E63A69B008F5A29 /* GoogleService-Info.plist */; };
 		6ECCD7951CA714FA00F53AD5 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */; };
 		6ECCD7971CA7152400F53AD5 /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD7961CA7152400F53AD5 /* TimelineTableViewCell.swift */; };
 		6ECCD79C1CA72C7600F53AD5 /* EmoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD79B1CA72C7600F53AD5 /* EmoteView.swift */; };
@@ -78,6 +80,7 @@
 		6EE3DF061DD87CD200E32BA2 /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EE3DF041DD87CD200E32BA2 /* NoDataView.xib */; };
 		6EE3DF081DD87DFC00E32BA2 /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3DF071DD87DFC00E32BA2 /* NoDataView.swift */; };
 		6EF1EF471CB4D4A400992A2F /* TimelineTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF1EF461CB4D4A400992A2F /* TimelineTableViewDataSource.swift */; };
+		8B32C938F62C9A11B9585182 /* Pods_Emojr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C23387040CD72F4BABA8108 /* Pods_Emojr.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +110,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		143BF52EB5C506BFE45E825B /* Pods_EmojrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmojrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15313C3A1CC94C9200745760 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		15313C3C1CC9814A00745760 /* MainTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		15313C3E1CC9921400745760 /* FollowUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowUserManager.swift; sourceTree = "<group>"; };
@@ -159,11 +163,16 @@
 		15FD8BC81DDC193B00E89FD0 /* emoji-name-keys.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "emoji-name-keys.json"; sourceTree = "<group>"; };
 		15FD8BC91DDC193B00E89FD0 /* emoji-names.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "emoji-names.json"; sourceTree = "<group>"; };
 		15FD8BCA1DDC193B00E89FD0 /* EmojisList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EmojisList.plist; sourceTree = "<group>"; };
+		37062FCADB52429ED592A680 /* Pods-Emojr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emojr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Emojr/Pods-Emojr.release.xcconfig"; sourceTree = "<group>"; };
+		38BD419BFA916E0C88BF8161 /* Pods-EmojrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmojrTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EmojrTests/Pods-EmojrTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4C23387040CD72F4BABA8108 /* Pods_Emojr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emojr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66A3FCCC4D254503579CAF9F /* Pods-EmojrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmojrTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmojrTests/Pods-EmojrTests.release.xcconfig"; sourceTree = "<group>"; };
 		6E142CCE1E5A98FE00DCF755 /* TimelineEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineEnum.swift; sourceTree = "<group>"; };
 		6E142CD11E5A9ED700DCF755 /* PostsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsDataSource.swift; sourceTree = "<group>"; };
 		6E142CD31E5AE20A00DCF755 /* Date+ISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+ISO8601.swift"; sourceTree = "<group>"; };
 		6E5DBF711CABC494004D3088 /* String+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
 		6EBDFF5E1CA7F35A0067B7CC /* Date+Comparisons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Comparisons.swift"; sourceTree = "<group>"; };
+		6EC717921E63A69B008F5A29 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		6ECCD7961CA7152400F53AD5 /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
 		6ECCD79B1CA72C7600F53AD5 /* EmoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoteView.swift; sourceTree = "<group>"; };
@@ -177,6 +186,7 @@
 		6EE3DF051DD87CD200E32BA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoDataView.xib; sourceTree = "<group>"; };
 		6EE3DF071DD87DFC00E32BA2 /* NoDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
 		6EF1EF461CB4D4A400992A2F /* TimelineTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewDataSource.swift; sourceTree = "<group>"; };
+		8E85AC212451C31A7B846FDE /* Pods-Emojr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emojr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Emojr/Pods-Emojr.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +199,7 @@
 				6EE3DEFC1DD83A0E00E32BA2 /* Alamofire.framework in Frameworks */,
 				15CC551D1CEE9F14006ABFE3 /* Fabric.framework in Frameworks */,
 				6EE3DF001DD83A0E00E32BA2 /* SVProgressHUD.framework in Frameworks */,
+				8B32C938F62C9A11B9585182 /* Pods_Emojr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +207,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D1345B8681520699561FC55 /* Pods_EmojrTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +282,8 @@
 				1546D3B91CA61D3100D8ECC5 /* Libraries */,
 				1589F8961D27556600451912 /* EmojrTests */,
 				1546D3981CA61A5100D8ECC5 /* Products */,
+				21C029389D7F4BC81C793A80 /* Pods */,
+				17FABC812C92CBE40D6301F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -299,6 +313,7 @@
 				15FD8BC51DDC193B00E89FD0 /* Emoji Files */,
 				1546D3A11CA61A5100D8ECC5 /* Assets.xcassets */,
 				1546D3A61CA61A5100D8ECC5 /* Info.plist */,
+				6EC717921E63A69B008F5A29 /* GoogleService-Info.plist */,
 			);
 			path = Emojr;
 			sourceTree = "<group>";
@@ -376,6 +391,26 @@
 			path = "Emoji Files";
 			sourceTree = "<group>";
 		};
+		17FABC812C92CBE40D6301F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C23387040CD72F4BABA8108 /* Pods_Emojr.framework */,
+				143BF52EB5C506BFE45E825B /* Pods_EmojrTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		21C029389D7F4BC81C793A80 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8E85AC212451C31A7B846FDE /* Pods-Emojr.debug.xcconfig */,
+				37062FCADB52429ED592A680 /* Pods-Emojr.release.xcconfig */,
+				38BD419BFA916E0C88BF8161 /* Pods-EmojrTests.debug.xcconfig */,
+				66A3FCCC4D254503579CAF9F /* Pods-EmojrTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6E142CD01E5A9EC500DCF755 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,11 +449,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1546D3A91CA61A5100D8ECC5 /* Build configuration list for PBXNativeTarget "Emojr" */;
 			buildPhases = (
+				4539D3649E6EFD186953F6F9 /* [CP] Check Pods Manifest.lock */,
 				1546D3931CA61A5100D8ECC5 /* Sources */,
 				1546D3941CA61A5100D8ECC5 /* Frameworks */,
 				1546D3951CA61A5100D8ECC5 /* Resources */,
 				1546D3B81CA61D2B00D8ECC5 /* Embed Frameworks */,
 				15CC551A1CEE9EE3006ABFE3 /* Fabric */,
+				0B3765682AA81B159230CF39 /* [CP] Embed Pods Frameworks */,
+				AF9F152FDC3FB2A7A107F8AB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -433,9 +471,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1589F89C1D27556600451912 /* Build configuration list for PBXNativeTarget "EmojrTests" */;
 			buildPhases = (
+				83686BFAF70DA59A22C65A4E /* [CP] Check Pods Manifest.lock */,
 				1589F8911D27556600451912 /* Sources */,
 				1589F8921D27556600451912 /* Frameworks */,
 				1589F8931D27556600451912 /* Resources */,
+				52DAAA567A5B19F6DA756D0B /* [CP] Embed Pods Frameworks */,
+				1FF5C8732336FA3311507C2E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -506,6 +547,7 @@
 				15FD8BCF1DDC193B00E89FD0 /* EmojisList.plist in Resources */,
 				15DDD0F51D09C49200E9649C /* LoadingTableViewCell.xib in Resources */,
 				15FD8BCD1DDC193B00E89FD0 /* emoji-name-keys.json in Resources */,
+				6EC717931E63A69B008F5A29 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +561,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0B3765682AA81B159230CF39 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Emojr/Pods-Emojr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		15CC551A1CEE9EE3006ABFE3 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -532,6 +589,81 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run bc5e9fdae5e6c365f923beed5be212502f96ee6f 278babad2054756050bd504ea6d98fb8f437ab11cbc8f6b5de37ee8c7ba8c770";
+		};
+		1FF5C8732336FA3311507C2E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EmojrTests/Pods-EmojrTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4539D3649E6EFD186953F6F9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		52DAAA567A5B19F6DA756D0B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EmojrTests/Pods-EmojrTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83686BFAF70DA59A22C65A4E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AF9F152FDC3FB2A7A107F8AB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Emojr/Pods-Emojr-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -728,6 +860,7 @@
 		};
 		1546D3AA1CA61A5100D8ECC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E85AC212451C31A7B846FDE /* Pods-Emojr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -752,6 +885,7 @@
 		};
 		1546D3AB1CA61A5100D8ECC5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37062FCADB52429ED592A680 /* Pods-Emojr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -775,6 +909,7 @@
 		};
 		1589F89D1D27556600451912 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38BD419BFA916E0C88BF8161 /* Pods-EmojrTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -790,6 +925,7 @@
 		};
 		1589F89E1D27556600451912 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66A3FCCC4D254503579CAF9F /* Pods-EmojrTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
