@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignUpViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var dupPasswordField: UITextField!
     
     @IBOutlet weak var usernameView: UIView!
+    @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var dupPasswordView: UIView!
     
@@ -62,18 +65,23 @@ class SignUpViewController: UIViewController {
         let (valid, message) = validSignupForm()
         
         if valid {
-            NetworkFacade.sharedInstance.signUpUser(usernameField.text!, password: passwordField.text!) { (errorString, user) in
-                if let errorString = errorString {
-                    self.displayError(errorString)
-                } else if let data = user {
-                    User.sharedInstance.configureWithUserData(data)
+            NetworkFacade.sharedInstance.signUpUser(usernameField.text!,
+                                                    password: passwordField.text!,
+                                                    completionBlock: { (errorString, userData) in
+                
+                if let errorMessage = errorString {
                     
-                    UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.username", service: "com.emojr")
+                    self.displayError(errorMessage)
+                    
+                } else if let userData = userData {
+                    User.sharedInstance.configureWithUserData(userData)
+                    
+                    UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.email", service: "com.emojr")
                     UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
                     
                     self.navigateToMainTab()
                 }
-            }
+            })
         } else {
             displayError(message)
         }
@@ -94,8 +102,12 @@ class SignUpViewController: UIViewController {
     }
     
     func validSignupForm() -> (Bool, String) {
-        if let username = usernameField.text, let password = passwordField.text {
-            if (username == "" || password == "") {
+        if let username = usernameField.text,
+            let email = emailField.text,
+            let password = passwordField.text,
+            let dupPassword = dupPasswordField.text {
+            
+            if (username == "" || email == "" || password == "" || dupPassword == "") {
                 return (false, "Please fill out all fields!")
             } else {
                 // TODO: plug in emoji validate

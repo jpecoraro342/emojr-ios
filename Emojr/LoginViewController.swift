@@ -30,8 +30,8 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let username = UICKeyChainStore.string(forKey: "com.currentuser.username", service: "com.emojr") {
-            usernameField.text = username
+        if let email = UICKeyChainStore.string(forKey: "com.currentuser.email", service: "com.emojr") {
+            usernameField.text = email
             
             if let password = UICKeyChainStore.string(forKey: "com.currentuser.password", service: "com.emojr") {
                 passwordField.text = password
@@ -85,12 +85,7 @@ class LoginViewController: UIViewController {
                 if let errorString = errorString {
                     self.enableUI()
                     self.displayError(errorString)
-                } else if let data = data {
-                    User.sharedInstance.configureWithUserData(data)
-                    
-                    UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.username", service: "com.emojr")
-                    UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
-                    
+                } else if let _ = data {
                     self.enableUI()
                     self.navigateToMainTab()
                 }
@@ -115,7 +110,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUp() {
-        UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.username", service: "com.emojr")
+        UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.email", service: "com.emojr")
         UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
         self.performSegue(withIdentifier: LoginToSignup, sender: self)
     }

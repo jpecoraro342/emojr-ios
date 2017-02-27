@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginManager: NSObject {
     
@@ -21,20 +22,20 @@ class LoginManager: NSObject {
             return
         }
         
-        guard let username = UICKeyChainStore.string(forKey: "com.currentuser.username", service: "com.emojr")
+        guard let email = UICKeyChainStore.string(forKey: "com.currentuser.email", service: "com.emojr")
             else { loadMainTab(false); return; }
         
         guard let password = UICKeyChainStore.string(forKey: "com.currentuser.password", service: "com.emojr")
             else { loadMainTab(false); return; }
         
-        login(username, password: password, activityIndicator: activityIndicator) { (errorString, user) in
+        login(email, password: password, activityIndicator: activityIndicator) { (errorString, user) in
             activityIndicator?.stopAnimating()
             activityIndicator?.isHidden = true
             
             if let data = user {
                 User.sharedInstance.configureWithUserData(data)
                 
-                UICKeyChainStore.setString(username, forKey: "com.currentuser.username", service: "com.emojr")
+                UICKeyChainStore.setString(email, forKey: "com.currentuser.email", service: "com.emojr")
                 UICKeyChainStore.setString(password, forKey: "com.currentuser.password", service: "com.emojr")
                 
                 self.loadMainTab(true)
@@ -48,11 +49,23 @@ class LoginManager: NSObject {
         
     }
     
-    func login(_ username: String, password: String, activityIndicator: UIActivityIndicatorView? = nil, completionHandler: UserDataClosure?) {
+    func login(_ email: String, password: String, activityIndicator: UIActivityIndicatorView? = nil, completionHandler: UserDataClosure?) {
         activityIndicator?.isHidden = false
         activityIndicator?.startAnimating()
         
-        NetworkFacade.sharedInstance.signInUser(username, password: password, completionBlock: completionHandler)
+        NetworkFacade.sharedInstance.signInUser(email, password: password) { (errorString, userData) in
+            activityIndicator?.stopAnimating()
+            activityIndicator?.isHidden = true
+            
+            if let userData = userData {
+                User.sharedInstance.configureWithUserData(userData)
+                
+                UICKeyChainStore.setString(email, forKey: "com.currentuser.email", service: "com.emojr")
+                UICKeyChainStore.setString(password, forKey: "com.currentuser.password", service: "com.emojr")
+            }
+            
+            completionHandler?(errorString, userData)
+        }
     }
     
     func logout() {

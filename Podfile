@@ -7,6 +7,7 @@ target 'Emojr' do
   # Pods for Emojr
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
   pod 'GoogleSignIn'
 
   target 'EmojrTests' do

@@ -16,8 +16,9 @@ class NetworkFacade : NSObject {
     
     override init() {
         // TODO: pass data accessor and socket to use in the init method
-        dataAccessor = RestAccessor();
-        // dataAccessor = DummyNetworkAccessor();
+        //dataAccessor = RestAccessor();
+        //dataAccessor = DummyNetworkAccessor();
+        dataAccessor = FirebaseAccessor()
         
         super.init();
     }
