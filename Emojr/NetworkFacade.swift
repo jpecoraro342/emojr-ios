@@ -61,12 +61,12 @@ class NetworkFacade : NSObject {
         dataAccessor.startFollowingUser(userId, userIdToFollow: userIdToFollow, completionBlock: completionBlock)
     }
     
-    func signUpUser(_ username: String, password: String, completionBlock: UserDataClosure?) {
-        dataAccessor.signUpUser(username, password: password, completionBlock: completionBlock)
+    func signUpUser(_ username: String, email: String, password: String, completionBlock: UserDataClosure?) {
+        dataAccessor.signUpUser(username, email: email, password: password, completionBlock: completionBlock)
     }
     
-    func signInUser(_ username: String, password: String, completionBlock: UserDataClosure?) {
-        dataAccessor.signInUser(username, password: password, completionBlock: completionBlock)
+    func signInUser(_ email: String, password: String, completionBlock: UserDataClosure?) {
+        dataAccessor.signInUser(email, password: password, completionBlock: completionBlock)
     }
     
     func createPost(_ userId: String, post: String, completionBlock: PostClosure?) {

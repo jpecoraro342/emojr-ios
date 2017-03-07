@@ -32,6 +32,7 @@ class SignUpViewController: UIViewController {
         styleViews()
         
         fieldViewDict[usernameField] = usernameView
+        fieldViewDict[emailField] = emailView
         fieldViewDict[passwordField] = passwordView
         fieldViewDict[dupPasswordField] = dupPasswordView
     }
@@ -66,6 +67,7 @@ class SignUpViewController: UIViewController {
         
         if valid {
             NetworkFacade.sharedInstance.signUpUser(usernameField.text!,
+                                                    email: emailField.text!,
                                                     password: passwordField.text!,
                                                     completionBlock: { (errorString, userData) in
                 
@@ -76,7 +78,7 @@ class SignUpViewController: UIViewController {
                 } else if let userData = userData {
                     User.sharedInstance.configureWithUserData(userData)
                     
-                    UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.email", service: "com.emojr")
+                    UICKeyChainStore.setString(self.emailField.text, forKey: "com.currentuser.email", service: "com.emojr")
                     UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
                     
                     self.navigateToMainTab()

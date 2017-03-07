@@ -17,6 +17,7 @@ protocol TimelineTableViewDelegate {
 }
 
 class TimelineTableViewDataSource: NSObject {
+    let networkFacade = NetworkFacade()
     var delegate: TimelineTableViewDelegate?
     private(set) var posts: [Post] = []
     
@@ -24,46 +25,76 @@ class TimelineTableViewDataSource: NSObject {
     var endOfData = false
     var lastEvaluatedKey: String?
     
-    func getPosts(withRequest request: URLRequestConvertible, shouldRefresh: Bool) {
+    var type: Timeline
+    
+    init(with type: Timeline) {
+        self.type = type
+    }
+    
+    func getFirstPage() {
+        lastEvaluatedKey = nil
+        getPosts(shouldRefresh: true)
+    }
+    
+    func getNextPage() {
+        getPosts(shouldRefresh: false)
+    }
+    
+    func getPosts(shouldRefresh: Bool) {
         // TODO: Move to a new way of determining which type of posts to grab. Send user id and Bool for following or user's?
         if !loading {
             loading = true
             
-            if !endOfData || shouldRefresh {
-                NetworkFacade().getDiscoverPosts(lastEvaluatedKey: lastEvaluatedKey, completionBlock: { error, posts in
-                    guard let newPosts = posts else {
-                        self.loading = false
-                        
-                        self.delegate?.dataSourceGotData(dataChanged: false)
-                        
-                        return
+            let completionHandler: (Error?, [Post]?) -> Void = { error, posts in
+                guard let newPosts = posts else {
+                    self.loading = false
+                    
+                    self.delegate?.dataSourceGotData(dataChanged: false)
+                    
+                    return
+                }
+                
+                if error == nil {
+                    
+                    if shouldRefresh {
+                        self.posts = newPosts
+                    } else {
+                        self.addPosts(newPosts)
                     }
                     
-                    if error == nil {
-                        
-                        if shouldRefresh {
-                            self.posts = newPosts
-                        } else {
-                            self.addPosts(newPosts)
-                        }
-                        
-                        if newPosts.count < 100 {
-                            self.endOfData = true
-                        } else {
-                            self.endOfData = false
-                        }
-                        
-                        self.lastEvaluatedKey = self.posts.last?.key
-                        self.loading = false
-                        
-                        self.delegate?.dataSourceGotData(dataChanged: true)
+                    if newPosts.count < 100 {
+                        self.endOfData = true
+                    } else {
+                        self.endOfData = false
                     }
-                    else {
-                        self.loading = false
-                        
-                        self.delegate?.dataSourceGotData(dataChanged: false)
+                    
+                    self.lastEvaluatedKey = self.posts.last?.key
+                    self.loading = false
+                    
+                    self.delegate?.dataSourceGotData(dataChanged: true)
+                } else {
+                    self.loading = false
+                    
+                    self.delegate?.dataSourceGotData(dataChanged: false)
+                }
+            }
+            
+            if !endOfData || shouldRefresh {
+                switch type {
+                case .home:
+                    networkFacade.getAllFollowingPosts(User.sharedInstance.id!,
+                                                       lastEvaluatedKey: lastEvaluatedKey,
+                                                       completionBlock: completionHandler)
+                case .discover:
+                    networkFacade.getDiscoverPosts(lastEvaluatedKey: lastEvaluatedKey,
+                                                   completionBlock: completionHandler)
+                case .user(let user):
+                    if let userID = user?.id {
+                        networkFacade.getAllPostsFromUser(userID,
+                                                          lastEvaluatedKey: lastEvaluatedKey,
+                                                          completionBlock: completionHandler)
                     }
-                })
+                }
             }
         }
     }

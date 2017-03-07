@@ -41,17 +41,6 @@ extension Timeline {
     }
     
     var dataSource: TimelineTableViewDataSource {
-        switch self {
-        case .home:
-            let source = FollowingPostsDataSource()
-            source.user = User.sharedInstance.userData
-            return source
-        case .discover:
-            return DiscoverPostsDataSource()
-        case .user(let user):
-            let source = UserPostsDataSource()
-            source.user = user ?? User.sharedInstance.userData
-            return source
-        }
+        return TimelineTableViewDataSource(with: self)
     }
 }

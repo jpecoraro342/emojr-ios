@@ -71,7 +71,7 @@
                                                 </constraints>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -132,7 +132,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="BVH-mB-wU0"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -175,7 +175,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="96M-3E-zec"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -249,7 +249,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="5dw-cD-zv8"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -399,14 +399,14 @@
                                             <constraint firstAttribute="height" constant="4" id="hvy-EH-gtW"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n6z-ao-8AM">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n6z-ao-8AM">
                                         <rect key="frame" x="10" y="0.0" width="285" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="9fd-39-hUX"/>
                                         </constraints>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                 <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -449,7 +449,7 @@
                                             <constraint firstAttribute="height" constant="40" id="iWq-uy-QBA"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                 <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -517,13 +517,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="WQR-eo-QTw"/>
                     <connections>
+                        <outlet property="emailField" destination="n6z-ao-8AM" id="jPD-EI-6ye"/>
+                        <outlet property="emailView" destination="sWv-02-vFX" id="YYa-BW-Kjm"/>
                         <outlet property="errorLabel" destination="1Yu-N0-7kM" id="zVe-S7-rlX"/>
                         <outlet property="passwordField" destination="zIE-H9-c5z" id="cvT-59-d5x"/>
                         <outlet property="passwordView" destination="bFA-f4-6yl" id="ab6-yN-huC"/>
                         <outlet property="signInButton" destination="1m2-fc-sGo" id="Zu5-hA-kLK"/>
                         <outlet property="signUpButton" destination="7LM-9b-llB" id="SCT-SZ-ilu"/>
-                        <outlet property="usernameField" destination="n6z-ao-8AM" id="b9o-Hx-loT"/>
-                        <outlet property="usernameView" destination="sWv-02-vFX" id="34e-gI-HPx"/>
                         <segue destination="Nh8-eE-qb5" kind="show" identifier="LoginToSignup" animates="NO" id="o1k-mb-mga"/>
                     </connections>
                 </viewController>

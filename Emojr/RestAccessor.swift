@@ -129,7 +129,9 @@ extension RestAccessor: NetworkingAccessor {
             })
     }
     
-    func getDiscoverPosts(lastCreatedDate: Date?, completionBlock: PostArrayClosure?) {
+    func getDiscoverPosts(lastEvaluatedKey: String?, completionBlock: PostArrayClosure?) {
+        let lastCreatedDate = dateFromString(lastEvaluatedKey)
+        
         RestAccessor.sharedManager.request(Router.DiscoverPosts(lastCreatedDate: lastCreatedDate))
             .responseJSON(completionHandler: { response in
                 var posts : Array<Post> = Array<Post>();
@@ -153,7 +155,9 @@ extension RestAccessor: NetworkingAccessor {
             })
     }
     
-    func getAllPostsFromUser(_ userId: String, lastCreatedDate: Date?, completionBlock: PostArrayClosure?) {
+    func getAllPostsFromUser(_ userId: String, lastEvaluatedKey: String?, completionBlock: PostArrayClosure?) {
+        let lastCreatedDate = dateFromString(lastEvaluatedKey)
+        
         RestAccessor.sharedManager.request(Router.UserPosts(userID: userId, lastCreatedDate: lastCreatedDate))
             .responseJSON(completionHandler: { response in
                 var posts : Array<Post> = Array<Post>();
@@ -177,7 +181,9 @@ extension RestAccessor: NetworkingAccessor {
             })
     }
     
-    func getAllFollowingPosts(_ userId: String, lastCreatedDate: Date?, completionBlock: PostArrayClosure?) {
+    func getAllFollowingPosts(_ userId: String, lastEvaluatedKey: String?, completionBlock: PostArrayClosure?) {
+        let lastCreatedDate = dateFromString(lastEvaluatedKey)
+        
         RestAccessor.sharedManager.request(Router.FollowingPosts(userID: userId, lastCreatedDate: lastCreatedDate))
             .responseJSON(completionHandler: { response in
                 var posts : Array<Post> = Array<Post>();
@@ -231,7 +237,7 @@ extension RestAccessor: NetworkingAccessor {
             })
     }
     
-    func signUpUser(_ username: String, password: String, completionBlock: UserDataClosure?) {
+    func signUpUser(_ username: String, email: String, password: String, completionBlock: UserDataClosure?) {
         RestAccessor.sharedManager.request(Router.SignUp(username: username, password: password))
             .responseJSON(completionHandler: { response in
                 if (response.result.isSuccess

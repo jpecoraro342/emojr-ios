@@ -13,9 +13,9 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var errorLabel: UILabel!
     
-    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var usernameView: UIView!
+    @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var passwordView: UIView!
     
     @IBOutlet weak var signInButton: UIButton!
@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if let email = UICKeyChainStore.string(forKey: "com.currentuser.email", service: "com.emojr") {
-            usernameField.text = email
+            emailField.text = email
             
             if let password = UICKeyChainStore.string(forKey: "com.currentuser.password", service: "com.emojr") {
                 passwordField.text = password
@@ -81,7 +81,7 @@ class LoginViewController: UIViewController {
         
         if valid {
             disableUI()
-            LoginManager().login(usernameField.text!, password: passwordField.text!) { (errorString, data) in
+            LoginManager().login(emailField.text!, password: passwordField.text!) { (errorString, data) in
                 if let errorString = errorString {
                     self.enableUI()
                     self.displayError(errorString)
@@ -110,13 +110,13 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUp() {
-        UICKeyChainStore.setString(self.usernameField.text, forKey: "com.currentuser.email", service: "com.emojr")
+        UICKeyChainStore.setString(self.emailField.text, forKey: "com.currentuser.email", service: "com.emojr")
         UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
         self.performSegue(withIdentifier: LoginToSignup, sender: self)
     }
     
     func validLoginForm() -> (Bool, String) {
-        if let username = usernameField.text, let password = passwordField.text {
+        if let username = emailField.text, let password = passwordField.text {
             if (username == "" || password == "") {
                 return (false, "Please fill out both fields!")
             } else {
@@ -134,16 +134,16 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.isEqual(usernameField) {
-            fadeInFieldBar(usernameView)
+        if textField === emailField {
+            fadeInFieldBar(emailView)
         } else {
             fadeInFieldBar(passwordView)
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.isEqual(usernameField) {
-            fadeOutFieldBar(usernameView)
+        if textField === emailField {
+            fadeOutFieldBar(emailView)
         } else {
             fadeOutFieldBar(passwordView)
         }

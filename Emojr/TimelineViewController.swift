@@ -8,46 +8,32 @@
 
 import UIKit
 
-extension UIView {
-    func constrainToEdges(of view: UIView, leftConstant: CGFloat = 0, topConstant: CGFloat = 0, rightConstant: CGFloat = 0, bottomConstant: CGFloat = 0) {
-        self.leftAnchor.constraint(equalTo: view.leftAnchor, constant: leftConstant).isActive = true
-        self.topAnchor.constraint(equalTo: view.topAnchor, constant: topConstant).isActive = true
-        self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: rightConstant).isActive = true
-        self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottomConstant).isActive = true
-    }
-}
-
 class TimelineViewController: UIViewController {
     
+    let networkFacade = NetworkFacade()
+    
     var timelineTableView = UITableView()
-    
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(self.refreshData), for: UIControlEvents.valueChanged)
-        
-        return refreshControl
-    }()
-    
-    var tableDataSource: TimelineTableViewDataSource
-    var type: Timeline
-    
-    var user: UserData?
-    
     var emoteView: EmoteView?
     var noDataView: NoDataView?
     var fadeView: UIView?
     
-    var reacting = false
-    var reactionInfo : (id: String?, index: IndexPath?)
+    lazy var refreshControl: UIRefreshControl = {
+        $0.addTarget(self, action: #selector(self.refreshData), for: UIControlEvents.valueChanged)
+        return $0
+    }(UIRefreshControl())
     
+    var tableDataSource: TimelineTableViewDataSource
+    var type: Timeline
     var firstLoad = true
     var noDataMessage: String = "There aren't any posts here! Where'd they go?!"
-    
-    var selectedUserData : UserData?
+    var user: UserData?
     
     var loadingCellRefreshControl: UIActivityIndicatorView?
     
-    let networkFacade = NetworkFacade()
+    var reacting = false
+    var reactionInfo : (id: String?, index: IndexPath?)
+    
+    var selectedUserData : UserData?
     
     init(with type: Timeline) {
         self.type = type
@@ -150,15 +136,11 @@ class TimelineViewController: UIViewController {
     }
 
     func refreshData() {
-        if let dataSource = tableDataSource as? PostsDataSource {
-            dataSource.getFirstPage()
-        }
+        tableDataSource.getFirstPage()
     }
     
     func loadNextPage() {
-        if let dataSource = tableDataSource as? PostsDataSource {
-            dataSource.getNextPage()
-        }
+        tableDataSource.getNextPage()
     }
     
     func reactToPostWithId(at indexPath: IndexPath) {
