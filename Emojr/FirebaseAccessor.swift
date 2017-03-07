@@ -177,8 +177,8 @@ class FirebaseAccessor: NetworkingAccessor {
     func reactToPost(_ userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?) {
         let newReactionRef = database.child("reactions/\(postId)").childByAutoId()
         
-        newReactionRef.setValue(["userID": userId])
-        newReactionRef.setValue(["text": reaction])
+        newReactionRef.setValue(["userID": userId,
+                                 "text": reaction])
         
         let newReaction = Reaction(id: newReactionRef.key,
                                    userID: User.sharedInstance.userData!.id,
