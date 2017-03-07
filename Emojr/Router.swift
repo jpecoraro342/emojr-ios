@@ -21,9 +21,9 @@ enum Router: URLRequestConvertible {
         
         // Posts
         case Post(postID: String)
-        case DiscoverPosts(lastCreatedDate: Date?)
-        case UserPosts(userID: String, lastCreatedDate: Date?)
-        case FollowingPosts(userID: String, lastCreatedDate: Date?)
+        case DiscoverPosts(lastEvaluatedKey: String?)
+        case UserPosts(userID: String, lastEvaluatedKey: String?)
+        case FollowingPosts(userID: String, lastEvaluatedKey: String?)
     
     // - POST
     

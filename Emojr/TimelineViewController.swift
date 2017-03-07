@@ -234,11 +234,10 @@ class TimelineViewController: UIViewController {
         if let id = User.sharedInstance.id {
             networkFacade.createPost(id, post: post)
             { [weak self](error, post) in
-                guard var newPost = post
+                guard let newPost = post
                     else {return }
                 
                 if let strongSelf = self {
-                    newPost.user = User.sharedInstance.userData
                     strongSelf.tableDataSource.insertPost(newPost)
                     let indexPath = IndexPath(row: 0, section: 0)
                     strongSelf.timelineTableView.insertRows(at: [indexPath], with: .top)
@@ -249,7 +248,7 @@ class TimelineViewController: UIViewController {
     
     func postReaction(_ post: String) {
         if let id = reactionInfo.id,
-            let userId = User.sharedInstance.id{
+            let userId = User.sharedInstance.id {
             networkFacade.reactToPost(userId, postId: id, reaction: post)
             { [weak self](error, reaction) in
                 guard let _ = reaction

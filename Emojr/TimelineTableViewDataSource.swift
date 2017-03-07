@@ -22,64 +22,54 @@ class TimelineTableViewDataSource: NSObject {
     
     private var loading = false
     var endOfData = false
-    var lastCreatedDate: Date?
+    var lastEvaluatedKey: String?
     
     func getPosts(withRequest request: URLRequestConvertible, shouldRefresh: Bool) {
+        // TODO: Move to a new way of determining which type of posts to grab. Send user id and Bool for following or user's?
         if !loading {
             loading = true
             
             if !endOfData || shouldRefresh {
-                RestAccessor.sharedManager.request(request)
-                    .responseJSON(completionHandler: { response in
-                        var newPosts : Array<Post> = Array<Post>();
+                NetworkFacade().getDiscoverPosts(lastEvaluatedKey: lastEvaluatedKey, completionBlock: { error, posts in
+                    guard let newPosts = posts else {
+                        self.loading = false
                         
-                        if (response.result.isSuccess
-                            && (response.response?.statusCode)! >= 200
-                            && (response.response?.statusCode)! <= 300) {
-                            
-                            let json = response.result.value
-                            for jsonPost in json as! Array<Dictionary<String, AnyObject>> {
-                                if let post = Post(fromJson: jsonPost) {
-                                    newPosts.append(post);
-                                }
-                            }
-                            
-                            if shouldRefresh {
-                                self.posts = newPosts
-                            } else {
-                                self.addPosts(newPosts)
-                            }
-                            
-                            if newPosts.count < 100 {
-                                self.endOfData = true
-                            } else {
-                                self.endOfData = false
-                            }
-                            
-                            self.sortPostsByDate()
-                            
-                            self.lastCreatedDate = self.posts.last?.created
-                            
-                            self.loading = false
-                            
-                            self.delegate?.dataSourceGotData(dataChanged: true)
+                        self.delegate?.dataSourceGotData(dataChanged: false)
+                        
+                        return
+                    }
+                    
+                    if error == nil {
+                        
+                        if shouldRefresh {
+                            self.posts = newPosts
+                        } else {
+                            self.addPosts(newPosts)
                         }
-                        else {
-                            self.loading = false
-                            
-                            self.delegate?.dataSourceGotData(dataChanged: false)
+                        
+                        if newPosts.count < 100 {
+                            self.endOfData = true
+                        } else {
+                            self.endOfData = false
                         }
-                    })
+                        
+                        self.lastEvaluatedKey = self.posts.last?.key
+                        self.loading = false
+                        
+                        self.delegate?.dataSourceGotData(dataChanged: true)
+                    }
+                    else {
+                        self.loading = false
+                        
+                        self.delegate?.dataSourceGotData(dataChanged: false)
+                    }
+                })
             }
         }
     }
     
     func addPosts(_ newPosts: [Post]) {
         self.posts.append(contentsOf: newPosts)
-    }
-    
-    func sortPostsByDate() {
-        posts.sort(by: {$0.created! > $1.created!})
     }
     
     func insertPost(_ newPost: Post) {

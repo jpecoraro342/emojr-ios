@@ -17,16 +17,16 @@ protocol NetworkingAccessor {
     
     // func getAllPosts(completionBlock: PostArrayClosure);
     func getPost(_ postId: String, completionBlock: PostClosure?);
-    func getDiscoverPosts(lastCreatedDate: Date?, completionBlock: PostArrayClosure?)
-    func getAllPostsFromUser(_ userId: String, lastCreatedDate: Date?, completionBlock: PostArrayClosure?);
+    func getDiscoverPosts(lastEvaluatedKey: String?, completionBlock: PostArrayClosure?)
+    func getAllPostsFromUser(_ userId: String, lastEvaluatedKey: String?, completionBlock: PostArrayClosure?);
     
-    func getAllFollowingPosts(_ userId: String, lastCreatedDate: Date?, completionBlock: PostArrayClosure?);
+    func getAllFollowingPosts(_ userId: String, lastEvaluatedKey: String?, completionBlock: PostArrayClosure?);
     
     // POST
     func startFollowingUser(_ userId: String, userIdToFollow: String, completionBlock: BooleanClosure?);
     
-    func signUpUser(_ username: String, password: String, completionBlock: UserDataClosure?);
-    func signInUser(_ username: String, password: String, completionBlock: UserDataClosure?);
+    func signUpUser(_ username: String, email: String, password: String, completionBlock: UserDataClosure?);
+    func signInUser(_ email: String, password: String, completionBlock: UserDataClosure?);
     
     func createPost(_ userId: String, post: String, completionBlock: PostClosure?);
     func reactToPost(_ userId: String, postId: String, reaction: String, completionBlock: ReactionClosure?);

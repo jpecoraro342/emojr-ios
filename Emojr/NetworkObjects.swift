@@ -7,16 +7,16 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 struct UserData: CustomStringConvertible, Equatable {
     var id: String?
     var username: String?
     var created: Date?
-    var lastmodified: Date?
     
-    init(username: String) {
+    init(username: String, id: String) {
         self.username = username
-        self.id = randomStringWithLength(8) as String
+        self.id = id
     }
     
     init?(fromJson: Dictionary<String, AnyObject>) {
@@ -36,24 +36,23 @@ func ==(lhs: UserData, rhs: UserData) -> Bool {
 }
 
 struct Post {
-    var id: String?
+    var key: String?
     var user: UserData?
     var post: String?
     var reactions: [Reaction]
     var created: Date?
-    var lastmodified: Date?
     
-    init(user: UserData, post: String, reactions: [Reaction], created: Date) {
+    init(key: String?, user: UserData?, post: String?, reactions: [Reaction], created: String?) {
         self.user = user
         self.post = post
         self.reactions = reactions
-        self.created = created
-        self.id = randomStringWithLength(8) as String
+        self.created = dateFromString(created)
+        self.key = key
     }
     
     init?(fromJson: Dictionary<String, AnyObject>) {
         guard let postID = fromJson["pk_postid"] as? Int else { return nil }
-        id = String(describing: postID)
+        key = String(describing: postID)
         
         user = UserData(fromJson: fromJson)
         post = fromJson["post"] as? String
@@ -67,32 +66,51 @@ struct Post {
     }
     
     var description: String {
-        return "post: \(post) id: \(id)"
+        return "post: \(post) id: \(key)"
     }
 }
 
 struct Reaction {
     var id: String?
-    var user: UserData?
+    var userID: String?
     var reaction: String?
     var created: Date?
-    var lastmodified: Date?
 
-    init(user: UserData, reaction: String) {
-        self.user = user
+    init(id: String?, userID: String?, reaction: String?, created: Date? = nil) {
+        self.userID = userID
         self.reaction = reaction
-        self.id = randomStringWithLength(8) as String
+        self.id = id
+        self.created = created
     }
     
     init(fromJson: Dictionary<String, AnyObject>) {
         id = String(describing: fromJson["pk_reactionid"] as? Int)
-        user = UserData(fromJson: fromJson)
+        userID = UserData(fromJson: fromJson)?.id
         reaction = fromJson["reaction"] as? String
     }
     
     var description: String {
         return "reaction: \(reaction) id: \(id)"
     }
+}
+
+func reactions(from snapshots: [FIRDataSnapshot]) -> [Reaction] {
+    var reactions: [Reaction] = []
+    
+    for snapshot in snapshots {
+        if let reactionData = snapshot.value as? [String: AnyObject],
+            let reactionText = reactionData["text"] as? String,
+            let userID = reactionData["userID"] as? String {
+            
+            let reaction = Reaction(id: snapshot.key,
+                                    userID: userID,
+                                    reaction: reactionText)
+            
+            reactions.append(reaction)
+        }
+    }
+    
+    return reactions
 }
 
 func jsonArrayToReactionArray(_ jsonArr: [AnyObject]) -> [Reaction] {
