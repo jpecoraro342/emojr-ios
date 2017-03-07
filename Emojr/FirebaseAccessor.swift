@@ -156,13 +156,14 @@ class FirebaseAccessor: NetworkingAccessor {
         
         let user = User.sharedInstance
         
-        newPostRef.setValue(["userID": user.id ?? ""])
-        newPostRef.setValue(["username": user.username ?? ""])
-        newPostRef.setValue(["text": post])
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         let created = dateFormatter.string(from: Date())
+        
+        newPostRef.setValue(["userID": user.id ?? "",
+                             "username": user.username ?? "",
+                             "text": post,
+                             "created": created])
         
         let newPost = Post(key: newPostRef.key,
                            user: user.userData!,

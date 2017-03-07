@@ -41,7 +41,6 @@ class TimelineTableViewDataSource: NSObject {
     }
     
     func getPosts(shouldRefresh: Bool) {
-        // TODO: Move to a new way of determining which type of posts to grab. Send user id and Bool for following or user's?
         if !loading {
             loading = true
             

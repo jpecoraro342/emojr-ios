@@ -119,6 +119,7 @@ class TimelineViewController: UIViewController {
         fadeView?.alpha = 0.0
         
         noDataView = NoDataView.instanceFromNib()
+        noDataView?.translatesAutoresizingMaskIntoConstraints = false
         noDataView?.messageLabel.text = noDataMessage
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(TimelineViewController.dismissPostForm))
@@ -128,6 +129,7 @@ class TimelineViewController: UIViewController {
     func displayNoDataView() {
         if let noDataView = noDataView {
             self.view.addSubview(noDataView)
+            noDataView.constrainToEdges(of: view)
         }
     }
     
