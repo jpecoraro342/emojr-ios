@@ -59,11 +59,12 @@ class TimelineViewController: UIViewController {
         setupLongTapGesture()
         
         self.navigationItem.rightBarButtonItem = rightBarButtonItem()
+        
+        refreshData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refreshData()
     }
     
     func rightBarButtonItem() -> UIBarButtonItem? {

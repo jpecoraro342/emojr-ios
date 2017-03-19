@@ -48,7 +48,7 @@ class TimelineTableViewDataSource: NSObject {
                 guard let newPosts = posts else {
                     self.loading = false
                     
-                    self.delegate?.dataSourceGotData(dataChanged: false)
+                    self.delegate?.dataSourceGotData(dataChanged: shouldRefresh)
                     
                     return
                 }
@@ -92,8 +92,14 @@ class TimelineTableViewDataSource: NSObject {
                         networkFacade.getAllPostsFromUser(userID,
                                                           lastEvaluatedKey: lastEvaluatedKey,
                                                           completionBlock: completionHandler)
+                    } else {
+                        print("User TimelineTable had no user data")
+                        
+                        delegate?.dataSourceGotData(dataChanged: false)
                     }
                 }
+            } else {
+                self.loading = false
             }
         }
     }

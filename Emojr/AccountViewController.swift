@@ -15,25 +15,27 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var settingsButtonStack: UIStackView!
     @IBOutlet weak var settingsButton: UIButton!
     
-    var myFeedViewController: TimelineViewController = TimelineViewController(with: .user(user: nil))
+    var myFeedViewController: TimelineViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = "Account"
         
+        myFeedViewController = TimelineViewController(with: .user(user: User.sharedInstance.userData))
+        
         self.usernameLabel.text = User.sharedInstance.username
         
-        addChildViewController(myFeedViewController)
-        myFeedViewController.didMove(toParentViewController: self)
+        addChildViewController(myFeedViewController!)
+        myFeedViewController!.didMove(toParentViewController: self)
         
-        feedContainerView.addSubview(myFeedViewController.view)
+        feedContainerView.addSubview(myFeedViewController!.view)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        myFeedViewController.view.frame = feedContainerView.bounds
+        myFeedViewController?.view.frame = feedContainerView.bounds
     }
     
     override func viewWillAppear(_ animated: Bool) {
