@@ -25,6 +25,22 @@ class FirebaseAccessor: NetworkingAccessor {
     // GET
     func getUsers(_ searchString: String?, completionBlock: UserArrayClosure?) {
         // TODO: Figure out how to scalably search all users for a name
+        
+        database.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.getUsers(from: snapshot, withCallback: { (error, users) in
+                if let error = error {
+                    print("Error getting all users")
+                    completionBlock?(error, nil)
+                    return
+                } else if let users = users {
+                    let filteredUsers = users.filter {
+                        (searchString != nil && $0.username != nil) ? $0.username!.contains(searchString!) : true
+                    }
+                    
+                    completionBlock?(nil, filteredUsers)
+                }
+            })
+        })
     }
     
     func getAllFollowing(_ userId: String, completionBlock: UserArrayClosure?) {

@@ -13,8 +13,7 @@ class UserListViewController: UIViewController {
     var tableView = UITableView()
     
     var allUsers = [UserData]()
-    
-    var followingUsers = Dictionary<String, Bool>()
+    var shownUsers = [UserData]()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -31,8 +30,7 @@ class UserListViewController: UIViewController {
         
         layoutTableView()
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(UserListViewController.navigateToAddBySearch))
-        self.navigationItem.rightBarButtonItem = addButton
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem()
         
         refreshData()
     }
@@ -44,6 +42,12 @@ class UserListViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func rightBarButtonItem() -> UIBarButtonItem? {
+        return UIBarButtonItem(barButtonSystemItem: .add,
+                                            target: self,
+                                            action: #selector(navigateToAddBySearch))
     }
     
     func layoutTableView() {
@@ -60,7 +64,21 @@ class UserListViewController: UIViewController {
     }
     
     func refreshData() {
-        followingUsers = User.sharedInstance.following
+        networkFacade.getUsers { (error, users) in
+            if let error = error {
+                print(error)
+            } else {
+                self.allUsers = users ?? []
+                self.updateShownUsers()
+            }
+        }
+    }
+    
+    func updateShownUsers() {
+        shownUsers = allUsers
+        
+        tableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     func navigateToAddBySearch() {
@@ -68,11 +86,10 @@ class UserListViewController: UIViewController {
     }
     
     func askToFollowUser(_ user: UserData) {
-        if followingUsers[user.id!] != true {
+        if !User.sharedInstance.isFollowing(user: user) {
             followManager.askToFollowUser(user, presentingViewController: self, completionBlock: { (success) in
                 if (success) {
                     User.sharedInstance.startFollowing(user.id!)
-                    self.followingUsers[user.id!] = true;
                     self.refreshData()
                     self.tableView.reloadData()
                 }
@@ -84,11 +101,10 @@ class UserListViewController: UIViewController {
     }
     
     func askToStopFollowingUser(_ user: UserData) {
-        if followingUsers[user.id!] != false {
+        if User.sharedInstance.isFollowing(user: user) {
             followManager.askToStopFollowingUser(user, presentingViewController: self, completionBlock: { (success) in
                 if (success) {
                     User.sharedInstance.stopFollowing(user.id!)
-                    self.followingUsers[user.id!] = false;
                     self.refreshData()
                     self.tableView.reloadData()
                 }
@@ -111,12 +127,12 @@ extension UserListViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let user = allUsers[indexPath.row];
+        let user = shownUsers[indexPath.row];
         
-        if followingUsers[user.id!] == true {
+        if User.sharedInstance.isFollowing(user: user) {
             // Currently following, show stop following rowaction
             let unfollow = UITableViewRowAction(style: .normal, title: "Unfollow") { action, index in
-                self.askToStopFollowingUser(self.allUsers[indexPath.row])
+                self.askToStopFollowingUser(user)
             }
             
             unfollow.backgroundColor = UIColor.red
@@ -126,7 +142,7 @@ extension UserListViewController : UITableViewDelegate {
         else {
             // Not following, show following rowaction
             let follow = UITableViewRowAction(style: .normal, title: "Follow") { action, index in
-                self.askToFollowUser(self.allUsers[indexPath.row])
+                self.askToFollowUser(user)
             }
             
             follow.backgroundColor = blue;
@@ -136,7 +152,7 @@ extension UserListViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
-        if (User.sharedInstance.id! == allUsers[indexPath.row].id!) {
+        if (User.sharedInstance.id! == shownUsers[indexPath.row].id!) {
             return false
         }
         return true
@@ -153,17 +169,17 @@ extension UserListViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.allUsers.count
+        return self.shownUsers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserCellIdentifier) as! UserTableViewCell;
         
-        let user = allUsers[indexPath.row]
+        let user = shownUsers[indexPath.row]
         
         cell.usernameLabel.text = user.username
         
-        if followingUsers[user.id!] == true {
+        if User.sharedInstance.isFollowing(user: user) {
             cell.emojiFollowingLabel.isHidden = false
         }
         else {

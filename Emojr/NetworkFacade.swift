@@ -23,9 +23,6 @@ class NetworkFacade : NSObject {
     }
     
     // GET
-    func isUsernameAvailable(_ username: String, completionBlock: BooleanClosure?) {
-        dataAccessor.isUsernameAvailable(username, completionBlock: completionBlock)
-    }
     
     func getUsers(_ searchString: String?=nil, completionBlock: UserArrayClosure?) {
         dataAccessor.getUsers(searchString, completionBlock: completionBlock)

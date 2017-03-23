@@ -78,19 +78,23 @@ class User : NSObject {
     }
     
     func stopFollowing(_ userId: String) {
-        self.following[userId] = false;
+        following[userId] = false;
     }
     
     func startFollowing(_ userId: String) {
-        self.following[userId] = true;
+        following[userId] = true;
+    }
+    
+    func isFollowing(user: UserData) -> Bool {
+        return following[user.id!] == true
     }
     
     func logout() {
         manuallyLoggedOut = true
         isLoggedIn = false
         
-        self.id = nil
-        self.username = nil
-        self.userData = nil
+        id = nil
+        username = nil
+        userData = nil
     }
 }

@@ -11,18 +11,12 @@ import UIKit
 class AddUsersViewController: UserListViewController {
     
     var searchBar = UISearchBar()
+    var searchString: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem = nil
-        
-        (UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])).tintColor = UIColor.white
-        
-        searchBar.tintColor = blue
-        searchBar.delegate = self
-        
-        self.navigationItem.titleView = searchBar
+        setupSearchBar()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -36,35 +30,19 @@ class AddUsersViewController: UserListViewController {
         searchBar.endEditing(true)
     }
     
-    override func refreshData() {
-        super.refreshData()
-        
-        networkFacade.getUsers(nil, completionBlock: { (error, list) -> Void in
-            if let err = error {
-                print(err)
-            }
-            else {
-                self.allUsers = list!
-                
-                self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
-            }
-        });
+    override func rightBarButtonItem() -> UIBarButtonItem? {
+        return nil
     }
     
-    func updateDataWithSearchString(_ searchString: String) {
-        self.refreshControl.beginRefreshing()
-        networkFacade.getUsers(searchString, completionBlock: { (error, list) -> Void in
-            if let err = error {
-                print(err)
-            }
-            else {
-                self.allUsers = list!
-                
-                self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
-            }
-        });
+    func setupSearchBar() {
+        searchBar.tintColor = blue
+        searchBar.delegate = self
+        
+        navigationItem.titleView = searchBar
+    }
+    
+    override func updateShownUsers() {
+        shownUsers = allUsers.filter { (searchString != nil) ? $0.username!.contains(searchString!) : true }
     }
 }
 
@@ -97,6 +75,6 @@ extension AddUsersViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.updateDataWithSearchString(searchText)
+        updateShownUsers()
     }
 }
