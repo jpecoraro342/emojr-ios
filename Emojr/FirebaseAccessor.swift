@@ -23,24 +23,24 @@ class FirebaseAccessor: NetworkingAccessor {
     let auth = FIRAuth.auth()
     
     // GET
-    func isUsernameAvailable(_ username: String, completionBlock: BooleanClosure?) {
-        
-    }
-    
     func getUsers(_ searchString: String?, completionBlock: UserArrayClosure?) {
-        
+        // TODO: Figure out how to scalably search all users for a name
     }
     
     func getAllFollowing(_ userId: String, completionBlock: UserArrayClosure?) {
-        
+        database.child("follows/\(userId)").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.getUsers(from: snapshot, withCallback: completionBlock)
+        })
     }
     
     func getAllFollowers(_ userId: String, completionBlock: UserArrayClosure?) {
-        
+        database.child("followers/\(userId)").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.getUsers(from: snapshot, withCallback: completionBlock)
+        })
     }
     
     func getPost(_ postId: String, completionBlock: PostClosure?) {
-        let postRef = database.child("posts/\(postId)")
+        let postRef = database.child("allPosts/\(postId)")
         
         postRef.observeSingleEvent(of: .value, with: { snapshot in
             self.buildPost(from: snapshot, withCallback: completionBlock)
@@ -48,68 +48,65 @@ class FirebaseAccessor: NetworkingAccessor {
     }
     
     func getDiscoverPosts(lastEvaluatedKey: String?, completionBlock: PostArrayClosure?) {
-        getAllPosts(fromKey: lastEvaluatedKey, withCallback: completionBlock)
+        let postsRef = database.child("allPosts").queryOrderedByKey()
+        
+        postsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.getPosts(from: snapshot, withCallback: completionBlock)
+        })
     }
     
     func getAllPostsFromUser(_ userId: String, lastEvaluatedKey: String?, completionBlock: PostArrayClosure?) {
-        let filterBlock: FilterBlock = { posts in
-            posts.filter { $0.user?.id == userId }
-        }
+        let postsRef = database.child("userPosts/\(userId)").queryOrderedByKey()
         
-        getAllPosts(fromKey: lastEvaluatedKey, andManipulateWith: filterBlock, withCallback: completionBlock)
+        postsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.getPosts(from: snapshot, withCallback: completionBlock)
+        })
     }
     
     func getAllFollowingPosts(_ userId: String, lastEvaluatedKey: String?, completionBlock: PostArrayClosure?) {
-        let followRef = database.child("follows/\(userId)")
-        followRef.observeSingleEvent(of: .value, with: { snapshot in
-            guard let children = snapshot.children.allObjects as? [FIRDataSnapshot] else {
-                let error = NSError(domain: "Firebase", code: 404, userInfo: nil)
-                completionBlock?(error, nil)
-                return
-            }
-            
-            var keys: [String] = []
-            
-            for child in children {
-                keys.append(child.key)
-            }
-            
-            let filterBlock: FilterBlock = { posts in
-                posts.filter { keys.contains($0.user?.id ?? "") }
-            }
-            
-            self.getAllPosts(fromKey: lastEvaluatedKey, andManipulateWith: filterBlock, withCallback: completionBlock)
+        let postsRef = database.child("timeline/\(userId)").queryOrderedByKey()
+        
+        postsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.getPosts(from: snapshot, withCallback: completionBlock)
         })
     }
     
     // POST
     func startFollowingUser(_ userId: String, userIdToFollow: String, completionBlock: BooleanClosure?) {
-        let newFollowRef = self.database.child("follows/\(userId)")
+        self.database.child("follows/\(userId)/\(userIdToFollow)").setValue(true)
         
-        newFollowRef.setValue([userIdToFollow: true])
+        self.database.child("followers/\(userIdToFollow)/\(userId)").setValue(true)
     }
     
     func signUpUser(_ username: String, email: String, password: String, completionBlock: UserDataClosure?) {
-        auth?.createUser(withEmail: email, password: password, completion: { (user, error) in
-            if let error = error {
-                print("Error creating user: \(error.localizedDescription)")
-                completionBlock?("Couldn't sign up! Please try again.", nil)
-            } else if let user = user {
-                let request = user.profileChangeRequest()
-                request.displayName = username
-                request.commitChanges(completion: { (error) in
+        self.database.child("usernames/\(username)").observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.value is NSNull {
+                self.auth?.createUser(withEmail: email, password: password, completion: { (user, error) in
                     if let error = error {
-                        print("Error setting username: \(error.localizedDescription)")
+                        print("Error creating user: \(error.localizedDescription)")
+                        completionBlock?("Couldn't sign up! Please try again.", nil)
+                    } else if let user = user {
+                        let request = user.profileChangeRequest()
+                        request.displayName = username
+                        request.commitChanges(completion: { (error) in
+                            if let error = error {
+                                print("Error setting username: \(error.localizedDescription)")
+                            }
+                        })
+                        
+                        self.database.child("usernames/\(username)").setValue(user.uid)
+                        self.database.child("users/\(user.uid)").setValue(username)
+                        
+                        let user = UserData(username: username, id: user.uid)
+                        
+                        completionBlock?(nil, user)
+                    } else {
+                        print("Unknown error creating user")
+                        completionBlock?("Couldn't sign up! Please try again.", nil)
                     }
                 })
-                
-                let user = UserData(username: username, id: user.uid)
-                
-                completionBlock?(nil, user)
-                
             } else {
-                 print("Unknown error creating user")
-                completionBlock?("Couldn't sign up! Please try again.", nil)
+                completionBlock?("Username taken! Please choose another.", nil)
             }
         })
     }
@@ -132,18 +129,40 @@ class FirebaseAccessor: NetworkingAccessor {
     }
     
     func createPost(_ userId: String, post: String, completionBlock: PostClosure?) {
-        let newPostRef = database.child("posts").childByAutoId()
-        
         let user = User.sharedInstance
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         let created = dateFormatter.string(from: Date())
         
-        newPostRef.setValue(["userID": user.id ?? "",
-                             "username": user.username ?? "",
-                             "text": post,
-                             "created": created])
+        let postValue: [String: AnyObject] = ["userID": user.id as AnyObject? ?? "" as AnyObject,
+                                              "username": user.username as AnyObject? ?? "" as AnyObject,
+                                              "text": post as AnyObject,
+                                              "created": created as AnyObject]
+        
+        let newPostRef = database.child("allPosts").childByAutoId()
+        let followersRef = database.child("followers/\(userId)")
+        
+        followersRef.observeSingleEvent(of: .value, with: { snapshot in
+            var fanoutObject: [String: AnyObject] = [:]
+            
+            // Add post to each of the user's follower's timeline
+            let followersData = snapshot.value as? [String: AnyObject]
+            if let followers = followersData?.keys {
+                followers.forEach {
+                    fanoutObject["/timeline/\($0)/\(newPostRef.key)"] = postValue as AnyObject?
+                }
+            }
+            
+            // Add post to the all posts list for Discover
+            fanoutObject["allPosts/\(newPostRef.key)"] = postValue as AnyObject?
+            
+            // Add post to the posting user's feed
+            fanoutObject["userPosts/\(userId)/\(newPostRef.key)"] = postValue as AnyObject?
+            
+            // Update all values in the fanout dictionary
+            self.database.updateChildValues(fanoutObject)
+        })
         
         let newPost = Post(key: newPostRef.key,
                            user: user.userData!,
@@ -170,28 +189,45 @@ class FirebaseAccessor: NetworkingAccessor {
     
     // DELETE
     func stopFollowingUser(_ userId: String, userIdToStopFollowing: String, completionBlock: BooleanClosure?) {
-        let newFollowRef = self.database.child("follows/\(userId)/\(userIdToStopFollowing)")
+        database.child("follows/\(userId)/\(userIdToStopFollowing)").removeValue()
         
-        newFollowRef.removeValue()
+        database.child("followers//\(userIdToStopFollowing)/\(userId)").removeValue()
     }
 
     // MARK: - Helpers
     
-    func postsQuery(withKey lastEvaluatedKey: String?) -> FIRDatabaseQuery {
-        let postsRef = database.child("posts")
+    private func getUsers(from snapshot: FIRDataSnapshot, withCallback callback: UserArrayClosure?) {
+        var returnUsers: [UserData] = []
         
-        var query = postsRef.queryOrderedByKey()
-        var pageSize = Constants.pageSize
-        
-        if let lastEvaluatedKey = lastEvaluatedKey {
-            query = query.queryStarting(atValue: lastEvaluatedKey)
-            pageSize += 1
+        guard let children = snapshot.children.allObjects as? [FIRDataSnapshot] else {
+            callback?(NSError(domain: "Firebase", code: 404, userInfo: nil), nil)
+            return
         }
         
-        return query.queryLimited(toFirst: pageSize)
+        let group = DispatchGroup()
+        
+        for child in children {
+            group.enter()
+            
+            var thisUser = UserData(username: "", id: child.key)
+            
+            database.child("users/\(child.key)").observeSingleEvent(of: .value, with: { (usernameSnapshot) in
+                if let username = usernameSnapshot.value as? String {
+                    thisUser.username = username
+                    
+                    returnUsers.append(thisUser)
+                }
+                
+                group.leave()
+            })
+        }
+        
+        group.notify(queue: DispatchQueue.main, execute: {
+            callback?(nil, returnUsers)
+        })
     }
     
-    func buildPost(from snapshot: FIRDataSnapshot, withCallback callback: PostClosure?) {
+    private func buildPost(from snapshot: FIRDataSnapshot, withCallback callback: PostClosure?) {
         if let postData = snapshot.value as? [String : AnyObject],
             let userID = postData["userID"] as? String,
             let username = postData["username"] as? String,
@@ -219,64 +255,36 @@ class FirebaseAccessor: NetworkingAccessor {
         }
     }
     
-    private func getAllPosts(fromKey lastEvaluatedKey: String?,
-                             andManipulateWith filterBlock: FilterBlock? = nil,
-                             withCallback completionBlock: PostArrayClosure?) {
+    private func getPosts(from snapshot: FIRDataSnapshot, withCallback callback: PostArrayClosure?) {
         
         var returnPosts: [Post] = []
         
-        postsQuery(withKey: lastEvaluatedKey).observeSingleEvent(of: .value, with: { (snapshot) in
-            guard var children = snapshot.children.allObjects as? [FIRDataSnapshot] else {
-                let error = NSError(domain: "Firebase", code: 404, userInfo: nil)
-                completionBlock?(error, nil)
-                return
-            }
+        guard let children = snapshot.children.allObjects as? [FIRDataSnapshot] else {
+            callback?(NSError(domain: "Firebase", code: 404, userInfo: nil), nil)
+            return
+        }
+        
+        let group = DispatchGroup()
+        
+        for child in children {
+            group.enter()
             
-            if (lastEvaluatedKey != nil) && !children.isEmpty {
-                children.removeFirst()
-            }
-            
-            let group = DispatchGroup()
-            
-            for child in children {
-                if let postData = child.value as? [String : AnyObject],
-                    let userID = postData["userID"] as? String,
-                    let username = postData["username"] as? String,
-                    let postText = postData["text"] as? String,
-                    let created = postData["created"] as? String {
-                    
-                    group.enter()
-                    
-                    var post = Post(key: child.key,
-                                    user: UserData(username: username, id: userID),
-                                    post: postText,
-                                    reactions: [],
-                                    created: created)
-                    
-                    self.database.child("reactions/\(child.key)")
-                        .queryOrderedByKey()
-                        .observeSingleEvent(of: .value, with: { (snapshot) in
-                            guard let children = snapshot.children.allObjects as? [FIRDataSnapshot] else {
-                                group.leave()
-                                return
-                            }
-                            
-                            post.reactions = reactions(from: children)
-                            
-                            returnPosts.insert(post, at: 0)
-                            
-                            group.leave()
-                        })
-                }
-            }
-            
-            group.notify(queue: DispatchQueue.main, execute: {
-                if let filter = filterBlock {
-                    returnPosts = filter(returnPosts)
+            buildPost(from: child, withCallback: { (error, post) in
+                
+                if let post = post {
+                    returnPosts.insert(post, at: 0)
                 }
                 
-                completionBlock?(nil, returnPosts)
+                if let error = error {
+                    print("Error building post: \(error.localizedDescription)")
+                }
+                
+                group.leave()
             })
+        }
+        
+        group.notify(queue: DispatchQueue.main, execute: {
+            callback?(nil, returnPosts)
         })
     }
 }

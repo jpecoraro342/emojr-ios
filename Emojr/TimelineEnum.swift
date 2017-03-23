@@ -29,7 +29,7 @@ extension Timeline {
         case .home:
             return "There aren't any posts here! Try following some more users to see their posts!"
         case .discover:
-            return "There aren't any posts here! Check you connection and hope more users show up soon!"
+            return "There aren't any posts here! Check your connection and hope more users show up soon!"
         case .user(let user):
             if user == nil {
                 return "There aren't any posts here! Looks like you haven't posted anything yet!"

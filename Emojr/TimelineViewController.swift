@@ -67,6 +67,14 @@ class TimelineViewController: UIViewController {
         super.viewWillAppear(animated)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if noDataView?.superview != nil {
+            refreshData()
+        }
+    }
+    
     func rightBarButtonItem() -> UIBarButtonItem? {
         if case .user = type {
             return nil
@@ -150,7 +158,7 @@ class TimelineViewController: UIViewController {
         if User.sharedInstance.isLoggedIn {
             let selectedPost = tableDataSource.posts[indexPath.row]
             
-            guard let user = selectedPost.user, let id = user.id, id != User.sharedInstance.id else {
+            guard let user = selectedPost.user, let id = selectedPost.key, user.id != User.sharedInstance.id else {
                 return;
             }
             
