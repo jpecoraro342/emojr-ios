@@ -17,18 +17,8 @@ class FollowerViewController: UserListViewController {
     }
 
     override func refreshData() {
-        super.refreshData()
+        refreshControl.beginRefreshing()
         
-        networkFacade.getAllFollowers(User.sharedInstance.id!, completionBlock: { (error, list) -> Void in
-            if let err = error {
-                print(err)
-            }
-            else {
-                self.allUsers = list!
-                
-                self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
-            }
-        });
+        networkFacade.getAllFollowers(User.sharedInstance.id!, completionBlock: userResponseHandler)
     }
 }

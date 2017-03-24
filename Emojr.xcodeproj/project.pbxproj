@@ -58,8 +58,8 @@
 		6E142CCF1E5A98FE00DCF755 /* TimelineEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E142CCE1E5A98FE00DCF755 /* TimelineEnum.swift */; };
 		6E142CD41E5AE20A00DCF755 /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E142CD31E5AE20A00DCF755 /* Date+ISO8601.swift */; };
 		6E5DBF721CABC494004D3088 /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5DBF711CABC494004D3088 /* String+Emoji.swift */; };
+		6EB38E571E84359300DE986C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EB38E561E84359300DE986C /* GoogleService-Info.plist */; };
 		6EBDFF5F1CA7F35A0067B7CC /* Date+Comparisons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFF5E1CA7F35A0067B7CC /* Date+Comparisons.swift */; };
-		6EC717931E63A69B008F5A29 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EC717921E63A69B008F5A29 /* GoogleService-Info.plist */; };
 		6EC717951E63C3B7008F5A29 /* FirebaseAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC717941E63C3B7008F5A29 /* FirebaseAccessor.swift */; };
 		6EC717971E6E9606008F5A29 /* UIView+ConstrainEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC717961E6E9606008F5A29 /* UIView+ConstrainEdges.swift */; };
 		6ECCD7951CA714FA00F53AD5 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */; };
@@ -167,8 +167,8 @@
 		6E142CCE1E5A98FE00DCF755 /* TimelineEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineEnum.swift; sourceTree = "<group>"; };
 		6E142CD31E5AE20A00DCF755 /* Date+ISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+ISO8601.swift"; sourceTree = "<group>"; };
 		6E5DBF711CABC494004D3088 /* String+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
+		6EB38E561E84359300DE986C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6EBDFF5E1CA7F35A0067B7CC /* Date+Comparisons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Comparisons.swift"; sourceTree = "<group>"; };
-		6EC717921E63A69B008F5A29 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6EC717941E63C3B7008F5A29 /* FirebaseAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAccessor.swift; sourceTree = "<group>"; };
 		6EC717961E6E9606008F5A29 /* UIView+ConstrainEdges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ConstrainEdges.swift"; sourceTree = "<group>"; };
 		6ECCD7941CA714FA00F53AD5 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 				15FD8BC51DDC193B00E89FD0 /* Emoji Files */,
 				1546D3A11CA61A5100D8ECC5 /* Assets.xcassets */,
 				1546D3A61CA61A5100D8ECC5 /* Info.plist */,
-				6EC717921E63A69B008F5A29 /* GoogleService-Info.plist */,
+				6EB38E561E84359300DE986C /* GoogleService-Info.plist */,
 			);
 			path = Emojr;
 			sourceTree = "<group>";
@@ -545,7 +545,7 @@
 				15FD8BCF1DDC193B00E89FD0 /* EmojisList.plist in Resources */,
 				15DDD0F51D09C49200E9649C /* LoadingTableViewCell.xib in Resources */,
 				15FD8BCD1DDC193B00E89FD0 /* emoji-name-keys.json in Resources */,
-				6EC717931E63A69B008F5A29 /* GoogleService-Info.plist in Resources */,
+				6EB38E571E84359300DE986C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

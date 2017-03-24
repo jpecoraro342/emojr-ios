@@ -31,6 +31,10 @@ class UserListViewController: UIViewController {
         layoutTableView()
         
         self.navigationItem.rightBarButtonItem = rightBarButtonItem()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         refreshData()
     }
@@ -38,10 +42,6 @@ class UserListViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     func rightBarButtonItem() -> UIBarButtonItem? {
@@ -64,13 +64,17 @@ class UserListViewController: UIViewController {
     }
     
     func refreshData() {
-        networkFacade.getUsers { (error, users) in
-            if let error = error {
-                print(error)
-            } else {
-                self.allUsers = users ?? []
-                self.updateShownUsers()
-            }
+        refreshControl.beginRefreshing()
+        
+        networkFacade.getUsers(completionBlock: userResponseHandler)
+    }
+    
+    func userResponseHandler(_ error: Error?, _ list: [UserData]?) {
+        if let error = error {
+            print(error)
+        } else {
+            self.allUsers = list ?? []
+            self.updateShownUsers()
         }
     }
     

@@ -43,6 +43,7 @@ class AddUsersViewController: UserListViewController {
     
     override func updateShownUsers() {
         shownUsers = allUsers.filter { (searchString != nil) ? $0.username!.contains(searchString!) : true }
+        tableView.reloadData()
     }
 }
 

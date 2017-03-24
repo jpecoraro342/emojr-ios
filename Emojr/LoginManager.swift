@@ -22,9 +22,6 @@ class LoginManager: NSObject {
             return
         }
         
-        loadMainTab(false)
-        return
-        
         guard let email = UICKeyChainStore.string(forKey: "com.currentuser.email", service: "com.emojr")
             else { loadMainTab(false); return; }
         
