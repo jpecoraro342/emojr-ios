@@ -8,11 +8,28 @@
 
 import UIKit
 
+extension UILabel {
+    func setLineHeight(height: CGFloat) {
+        let text = self.text
+        if let text = text {
+            let string = NSMutableAttributedString(string: text)
+            let style = NSMutableParagraphStyle()
+            style.lineSpacing = height
+            
+            string.addAttribute(NSParagraphStyleAttributeName,
+                                value: style,
+                                range: NSRange(location: 0, length: text.characters.count))
+            
+            self.attributedText = string
+        }
+    }
+}
+
 class AccountViewController: UIViewController {
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var feedContainerView: UIView!
-    @IBOutlet weak var settingsButtonStack: UIStackView!
+    @IBOutlet weak var settingsButtonView: UIView!
     @IBOutlet weak var settingsButton: UIButton!
     
     var myFeedViewController: TimelineViewController?
@@ -30,6 +47,10 @@ class AccountViewController: UIViewController {
         myFeedViewController!.didMove(toParentViewController: self)
         
         feedContainerView.addSubview(myFeedViewController!.view)
+        
+        settingsButtonView.layer.cornerRadius = 10.0
+        settingsButtonView.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
+        settingsButtonView.layer.borderWidth = 3.5
     }
     
     override func viewDidLayoutSubviews() {
@@ -74,15 +95,5 @@ class AccountViewController: UIViewController {
         alert.addAction(login)
         
         present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func settingsButtonTapped(_ sender: AnyObject) {
-        for view in settingsButtonStack.arrangedSubviews {
-            if view !== settingsButton {
-                UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
-                    view.isHidden = !view.isHidden
-                }, completion: nil)
-            }
-        }
     }
 }

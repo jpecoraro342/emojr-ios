@@ -72,6 +72,7 @@ class UserListViewController: UIViewController {
     func userResponseHandler(_ error: Error?, _ list: [UserData]?) {
         if let error = error {
             print(error)
+            refreshControl.endRefreshing()
         } else {
             self.allUsers = list ?? []
             self.updateShownUsers()

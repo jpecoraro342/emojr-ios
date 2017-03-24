@@ -42,7 +42,10 @@ class AddUsersViewController: UserListViewController {
     }
     
     override func updateShownUsers() {
-        shownUsers = allUsers.filter { (searchString != nil) ? $0.username!.contains(searchString!) : true }
+        shownUsers = allUsers.filter {
+            (searchString != nil && searchString != "") ? $0.username!.contains(searchString!) : true
+        }
+        refreshControl.endRefreshing()
         tableView.reloadData()
     }
 }
@@ -76,6 +79,7 @@ extension AddUsersViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchString = searchText
         updateShownUsers()
     }
 }

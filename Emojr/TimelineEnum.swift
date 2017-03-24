@@ -31,7 +31,7 @@ extension Timeline {
         case .discover:
             return "There aren't any posts here! Check your connection and hope more users show up soon!"
         case .user(let user):
-            if user == nil {
+            if user?.id == User.sharedInstance.id {
                 return "There aren't any posts here! Looks like you haven't posted anything yet!"
             } else {
                 return "This user doesn't have any posts! Tell them to get postin'!"
