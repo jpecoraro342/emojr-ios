@@ -17,15 +17,19 @@ class AddUsersViewController: UserListViewController {
         super.viewDidLoad()
         
         setupSearchBar()
+        
+        noDataMessage = "No usernames match this search!"
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         navigationItem.title = ""
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
         navigationItem.title = "Add Users"
         searchBar.endEditing(true)
     }
