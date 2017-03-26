@@ -51,6 +51,12 @@ class AddUsersViewController: UserListViewController {
         }
         refreshControl.endRefreshing()
         tableView.reloadData()
+        
+        if shownUsers.count == 0 {
+            displayNoDataView()
+        } else {
+            removeNoDataView()
+        }
     }
 }
 
