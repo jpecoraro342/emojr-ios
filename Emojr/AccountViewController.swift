@@ -48,9 +48,7 @@ class AccountViewController: UIViewController {
         
         feedContainerView.addSubview(myFeedViewController!.view)
         
-        settingsButtonView.layer.cornerRadius = 10.0
-        settingsButtonView.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
-        settingsButtonView.layer.borderWidth = 3.5
+        
     }
     
     override func viewDidLayoutSubviews() {
