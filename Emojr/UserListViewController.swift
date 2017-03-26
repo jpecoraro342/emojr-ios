@@ -22,6 +22,16 @@ class UserListViewController: UIViewController {
         return refreshControl
     }()
     
+    lazy var noDataView: NoDataView = {
+        let view = NoDataView.instanceFromNib()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.messageLabel.text = self.noDataMessage
+        
+        return view
+    }()
+    
+    var noDataMessage = "No users here!"
+    
     let networkFacade = NetworkFacade()
     let followManager = FollowUserManager()
     
@@ -84,6 +94,12 @@ class UserListViewController: UIViewController {
         
         tableView.reloadData()
         refreshControl.endRefreshing()
+        
+        if shownUsers.count == 0 {
+            displayNoDataView()
+        } else {
+            removeNoDataView()
+        }
     }
     
     func navigateToAddBySearch() {
@@ -120,6 +136,14 @@ class UserListViewController: UIViewController {
         }
     }
     
+    func displayNoDataView() {
+        self.view.addSubview(noDataView)
+        noDataView.constrainToEdges(of: view)
+    }
+    
+    func removeNoDataView() {
+        noDataView.removeFromSuperview()
+    }
     
     @IBAction func closeView(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)

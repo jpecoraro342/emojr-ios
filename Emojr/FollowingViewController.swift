@@ -13,7 +13,8 @@ class FollowingViewController: UserListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Following"
+        navigationItem.title = "Following"
+        noDataMessage = "You're not following anyone yet!"
     }
     
     override func refreshData() {

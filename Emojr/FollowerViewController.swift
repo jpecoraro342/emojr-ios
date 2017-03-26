@@ -13,7 +13,8 @@ class FollowerViewController: UserListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Followers"
+        navigationItem.title = "Followers"
+        noDataMessage = "No followers yet!"
     }
 
     override func refreshData() {
