@@ -92,6 +92,8 @@ class FirebaseAccessor: NetworkingAccessor {
         self.database.child("follows/\(userId)/\(userIdToFollow)").setValue(true)
         
         self.database.child("followers/\(userIdToFollow)/\(userId)").setValue(true)
+        
+        completionBlock?(true)
     }
     
     func signUpUser(_ username: String, email: String, password: String, completionBlock: UserDataClosure?) {
@@ -208,6 +210,8 @@ class FirebaseAccessor: NetworkingAccessor {
         database.child("follows/\(userId)/\(userIdToStopFollowing)").removeValue()
         
         database.child("followers//\(userIdToStopFollowing)/\(userId)").removeValue()
+        
+        completionBlock?(true)
     }
 
     // MARK: - Helpers

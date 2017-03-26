@@ -153,31 +153,53 @@ class UserListViewController: UIViewController {
 extension UserListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
         let user = shownUsers[indexPath.row];
         
+        if user.username! != User.sharedInstance.username! {
+            showActionSheet(for: user)
+        }
+    }
+    
+    func showActionSheet(for user: UserData) {
+        let actionSheet = UIAlertController(title: "What would you like to do?",
+                                            message: nil,
+                                            preferredStyle: .actionSheet)
+        
+        var followActionTitle: String?
+        var followActionBlock: ((UIAlertAction) -> Void)?
+        
         if User.sharedInstance.isFollowing(user: user) {
-            // Currently following, show stop following rowaction
-            let unfollow = UITableViewRowAction(style: .normal, title: "Unfollow") { action, index in
+            followActionTitle = "Unfollow \(user.username!)?"
+            
+            followActionBlock = { action in
                 self.askToStopFollowingUser(user)
             }
+        } else {
+            followActionTitle = "Follow \(user.username!)?"
             
-            unfollow.backgroundColor = UIColor.red
-            
-            return [unfollow]
-        }
-        else {
-            // Not following, show following rowaction
-            let follow = UITableViewRowAction(style: .normal, title: "Follow") { action, index in
+            followActionBlock = { action in
                 self.askToFollowUser(user)
             }
-            
-            follow.backgroundColor = blue;
-            
-            return [follow]
         }
+        
+        let followAction = UIAlertAction(title: followActionTitle,
+                                         style: .default,
+                                         handler: followActionBlock)
+        actionSheet.addAction(followAction)
+        
+        let viewUserPageAction = UIAlertAction(title: "View \(user.username!)'s Feed", style: .default) { (action: UIAlertAction) in
+            let userTimelineVC = TimelineViewController(with: .user(user: user))
+            userTimelineVC.user = user
+            self.navigationController?.pushViewController(userTimelineVC, animated: true)
+        }
+        
+        actionSheet.addAction(viewUserPageAction)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        actionSheet.addAction(cancel)
+        
+        self.present(actionSheet, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
