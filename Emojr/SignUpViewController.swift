@@ -116,15 +116,17 @@ class SignUpViewController: UIViewController {
             
             if (username == "" || email == "" || password == "" || dupPassword == "") {
                 return (false, "Please fill out all fields!")
-            } else {
-                // TODO: plug in emoji validate
-                
-                if (passwordField.text != dupPasswordField.text) {
-                    return (false, "Passwords must match!")
-                }
-                
-                return (true, "Success")
             }
+            
+            if (passwordField.text != dupPasswordField.text) {
+                return (false, "Passwords must match!")
+            }
+            
+            if !username.containsOnlyEmoji {
+                return (false, "Usernames must be emoji-only!")
+            }
+                
+            return (true, "Success")
         } else {
             return (false, "Please fill out all fields!")
         }
@@ -146,6 +148,14 @@ extension SignUpViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         fadeOutFieldBar(fieldViewDict[textField]!)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField === usernameField {
+            return string.containsOnlyEmoji
+        }
+        
+        return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
