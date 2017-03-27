@@ -27,9 +27,10 @@ typealias VoidClosure = () -> Void
 
 // TODO: Redefine Color Scheme
 
-let blueLight = UIColor(hexString: "6FE7DD");
-let blue = UIColor(hexString: "3490DE");
-let offWhite = UIColor(hexString: "fefefe");
+let blueLight = UIColor(hexString: "75F6EB")
+let blue = UIColor(hexString: "3490DE")
+let offWhite = UIColor(hexString: "fefefe")
+let offBlack = UIColor(hexString: "#404040")
 
 let emojiKeyboardImages: [UIImage] = [UIImage(named: "recentCategory")!,
                                       UIImage(named: "faceCategory")!,

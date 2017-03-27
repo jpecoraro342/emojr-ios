@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import SVProgressHUD
 
 class SignUpViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
@@ -66,6 +67,8 @@ class SignUpViewController: UIViewController {
         let (valid, message) = validSignupForm()
         
         if valid {
+            SVProgressHUD.show()
+            
             NetworkFacade.sharedInstance.signUpUser(usernameField.text!,
                                                     email: emailField.text!,
                                                     password: passwordField.text!,
@@ -74,6 +77,7 @@ class SignUpViewController: UIViewController {
                 if let errorMessage = errorString {
                     
                     self.displayError(errorMessage)
+                    SVProgressHUD.dismiss()
                     
                 } else if let userData = userData {
                     User.sharedInstance.configureWithUserData(userData)
@@ -81,21 +85,22 @@ class SignUpViewController: UIViewController {
                     UICKeyChainStore.setString(self.emailField.text, forKey: "com.currentuser.email", service: "com.emojr")
                     UICKeyChainStore.setString(self.passwordField.text, forKey: "com.currentuser.password", service: "com.emojr")
                     
+                    SVProgressHUD.dismiss()
+                    
                     self.navigateToMainTab()
                 }
             })
         } else {
             displayError(message)
+            SVProgressHUD.dismiss()
         }
     }
     
     func navigateToMainTab() {
         let tabVC = LoginManager().getMainTab(true)
-        self.navigationController?.present(tabVC, animated: true, completion: {
-            if let window = UIApplication.shared.delegate?.window {
-                window!.rootViewController = tabVC
-            }
-        })
+        if let window = UIApplication.shared.delegate?.window {
+            window!.rootViewController = tabVC
+        }
     }
     
     func displayError(_ message: String) {
@@ -130,7 +135,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func toLoginPressed(_ sender: AnyObject) {
-        _ = self.navigationController?.popViewController(animated: false)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 }
 
