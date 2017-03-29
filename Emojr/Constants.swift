@@ -39,6 +39,13 @@ let emojiKeyboardImages: [UIImage] = [UIImage(named: "recentCategory")!,
                                       UIImage(named: "carCategory")!,
                                       UIImage(named: "characterCategory")!]
 
+// Keychain Keys
+
+let serviceKey = "com.emojr"
+let emailKey = "com.currentuser.email"
+let passwordKey = "com.currentuser.password"
+
+
 // MARK: Segue Identifiers
 
 let LoginToSignup = "LoginToSignup"
@@ -101,6 +108,6 @@ let dateFormatter: DateFormatter = {
 
 func debugLog(_ message: String) {
     DispatchQueue.main.async(execute: {
-        print("\(dateFormatter.string(from: Date())) | \(message)");
+        log.debug("\(dateFormatter.string(from: Date())) | \(message)");
     });
 }

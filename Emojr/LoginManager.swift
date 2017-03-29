@@ -10,7 +10,6 @@ import UIKit
 import FirebaseAuth
 
 class LoginManager: NSObject {
-    
     func attemptLogin(_ activityIndicator: UIActivityIndicatorView?=nil) {
         if User.sharedInstance.manuallyLoggedOut {
             loadMainTab(false)
@@ -22,10 +21,10 @@ class LoginManager: NSObject {
             return
         }
         
-        guard let email = UICKeyChainStore.string(forKey: "com.currentuser.email", service: "com.emojr")
+        guard let email = UICKeyChainStore.string(forKey: emailKey, service: serviceKey)
             else { loadMainTab(false); return; }
         
-        guard let password = UICKeyChainStore.string(forKey: "com.currentuser.password", service: "com.emojr")
+        guard let password = UICKeyChainStore.string(forKey: passwordKey, service: serviceKey)
             else { loadMainTab(false); return; }
         
         login(email, password: password, activityIndicator: activityIndicator) { (errorString, user) in
@@ -35,11 +34,14 @@ class LoginManager: NSObject {
             if let data = user {
                 User.sharedInstance.configureWithUserData(data)
                 
-                UICKeyChainStore.setString(email, forKey: "com.currentuser.email", service: "com.emojr")
-                UICKeyChainStore.setString(password, forKey: "com.currentuser.password", service: "com.emojr")
+                UICKeyChainStore.setString(email, forKey: emailKey, service: serviceKey)
+                UICKeyChainStore.setString(password, forKey: passwordKey, service: serviceKey)
                 
                 self.loadMainTab(true)
             } else {
+                log.warning("Unable to sign in user, clearing saved email/password. Error Message: \(errorString)")
+                UICKeyChainStore.removeItem(forKey: emailKey, service: serviceKey)
+                UICKeyChainStore.removeItem(forKey: passwordKey, service: serviceKey)
                 self.loadMainTab(false)
             }
         }
@@ -60,8 +62,8 @@ class LoginManager: NSObject {
             if let userData = userData {
                 User.sharedInstance.configureWithUserData(userData)
                 
-                UICKeyChainStore.setString(email, forKey: "com.currentuser.email", service: "com.emojr")
-                UICKeyChainStore.setString(password, forKey: "com.currentuser.password", service: "com.emojr")
+                UICKeyChainStore.setString(email, forKey: emailKey, service: serviceKey)
+                UICKeyChainStore.setString(password, forKey: passwordKey, service: serviceKey)
             }
             
             completionHandler?(errorString, userData)

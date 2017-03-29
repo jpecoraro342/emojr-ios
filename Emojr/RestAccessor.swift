@@ -280,7 +280,7 @@ extension RestAccessor: NetworkingAccessor {
                 }
                 else {
                     if let error = response.result.error {
-                        print("Error: \(error)")
+                        log.debug("Error: \(error)")
                     }
                     
                     completionBlock?(response.result.error, nil);

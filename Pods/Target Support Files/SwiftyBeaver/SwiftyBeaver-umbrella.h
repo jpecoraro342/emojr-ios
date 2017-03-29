@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_EmojrTestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_EmojrTestsVersionString[];
+FOUNDATION_EXPORT double SwiftyBeaverVersionNumber;
+FOUNDATION_EXPORT const unsigned char SwiftyBeaverVersionString[];
 

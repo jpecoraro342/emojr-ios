@@ -29,7 +29,7 @@ class FirebaseAccessor: NetworkingAccessor {
         database.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
             self.getUsers(from: snapshot, withCallback: { (error, users) in
                 if let error = error {
-                    print("Error getting all users")
+                    log.debug("Error getting all users")
                     completionBlock?(error, nil)
                     return
                 } else if let users = users {
@@ -101,14 +101,14 @@ class FirebaseAccessor: NetworkingAccessor {
             if snapshot.value is NSNull {
                 self.auth?.createUser(withEmail: email, password: password, completion: { (user, error) in
                     if let error = error {
-                        print("Error creating user: \(error.localizedDescription)")
+                        log.debug("Error creating user: \(error.localizedDescription)")
                         completionBlock?("Couldn't sign up! Please try again.", nil)
                     } else if let user = user {
                         let request = user.profileChangeRequest()
                         request.displayName = username
                         request.commitChanges(completion: { (error) in
                             if let error = error {
-                                print("Error setting username: \(error.localizedDescription)")
+                                log.debug("Error setting username: \(error.localizedDescription)")
                             }
                         })
                         
@@ -119,7 +119,7 @@ class FirebaseAccessor: NetworkingAccessor {
                         
                         completionBlock?(nil, user)
                     } else {
-                        print("Unknown error creating user")
+                        log.debug("Unknown error creating user")
                         completionBlock?("Couldn't sign up! Please try again.", nil)
                     }
                 })
@@ -132,7 +132,7 @@ class FirebaseAccessor: NetworkingAccessor {
     func signInUser(_ email: String, password: String, completionBlock: UserDataClosure?) {
         auth?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if let error = error {
-                print("Error creating user: \(error.localizedDescription)")
+                log.debug("Error signing in user: \(error.localizedDescription)")
                 
                 completionBlock?("Couldn't sign in! Are you trying to sign up instead?", nil)
             } else if let user = user {
@@ -140,7 +140,7 @@ class FirebaseAccessor: NetworkingAccessor {
                 
                 completionBlock?(nil, user)
             } else {
-                print("Unknown error creating user")
+                log.debug("Unknown error signing in user")
                 completionBlock?("Couldn't sign in! Please try again.", nil)
             }
         })
@@ -296,7 +296,7 @@ class FirebaseAccessor: NetworkingAccessor {
                 }
                 
                 if let error = error {
-                    print("Error building post: \(error.localizedDescription)")
+                    log.debug("Error building post: \(error.localizedDescription)")
                 }
                 
                 group.leave()

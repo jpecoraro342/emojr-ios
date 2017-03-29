@@ -51,7 +51,7 @@ class User : NSObject {
         
         NetworkFacade().getAllFollowers(userId, completionBlock: { (error, list) -> Void in
             if let err = error {
-                print(err)
+                log.debug(err)
             }
             else {
                 for user in list! {
@@ -67,7 +67,7 @@ class User : NSObject {
         
         NetworkFacade().getAllFollowing(userId, completionBlock: { (error, list) -> Void in
             if let err = error {
-                print(err)
+                log.debug(err)
             }
             else {
                 for user in list! {

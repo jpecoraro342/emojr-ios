@@ -33,7 +33,7 @@ class EmojiValidator : NSObject {
             }
         }
         catch {
-            print("Error loading emoji file at path: \(path)")
+            log.debug("Error loading emoji file at path: \(path)")
         }
         
         return [String:String]()
@@ -50,7 +50,7 @@ class EmojiValidator : NSObject {
             }
         }
         catch {
-            print("Error loading file at path: \(path)")
+            log.debug("Error loading file at path: \(path)")
         }
         
         return Dictionary<String, String>() as AnyObject

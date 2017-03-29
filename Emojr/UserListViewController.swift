@@ -81,7 +81,7 @@ class UserListViewController: UIViewController {
     
     func userResponseHandler(_ error: Error?, _ list: [UserData]?) {
         if let error = error {
-            print(error)
+            log.debug(error)
             refreshControl.endRefreshing()
         } else {
             self.allUsers = list ?? []
@@ -115,7 +115,7 @@ class UserListViewController: UIViewController {
                     self.tableView.reloadData()
                 }
                 else {
-                    print("unable to follow user")
+                    log.debug("unable to follow user")
                 }
             })
         }
@@ -130,7 +130,7 @@ class UserListViewController: UIViewController {
                     self.tableView.reloadData()
                 }
                 else {
-                    print("unable to stop following user")
+                    log.debug("unable to stop following user")
                 }
             })
         }

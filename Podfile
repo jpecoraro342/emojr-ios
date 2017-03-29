@@ -9,6 +9,7 @@ target 'Emojr' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'GoogleSignIn'
+  pod 'SwiftyBeaver'
 
   target 'EmojrTests' do
     inherit! :search_paths

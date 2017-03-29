@@ -103,9 +103,9 @@ extension EmojiSearchViewController : UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        print("Current Text - \"\(textField.text!)\"")
-//        print("Replacement Text - \"\(string)\"")
-//        print("Range - \(range.location)-\(range.length)")
+//        log.debug("Current Text - \"\(textField.text!)\"")
+//        log.debug("Replacement Text - \"\(string)\"")
+//        log.debug("Range - \(range.location)-\(range.length)")
         
         let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         textField.text = updateEmojiSearchWithString(textField.text!, newText: newText, changedText: string)

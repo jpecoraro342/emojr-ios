@@ -93,7 +93,7 @@ class TimelineTableViewDataSource: NSObject {
                                                           lastEvaluatedKey: lastEvaluatedKey,
                                                           completionBlock: completionHandler)
                     } else {
-                        print("User TimelineTable had no user data")
+                        log.debug("User TimelineTable had no user data")
                         
                         delegate?.dataSourceGotData(dataChanged: false)
                     }
