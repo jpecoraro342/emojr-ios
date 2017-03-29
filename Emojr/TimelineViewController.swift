@@ -99,6 +99,8 @@ class TimelineViewController: UIViewController {
         timelineTableView.dataSource = tableDataSource;
         timelineTableView.rowHeight = 120;
         
+        timelineTableView.tableFooterView = UIView(frame: .zero)
+        
         timelineTableView.register(UINib(nibName: "TimelineTableViewCell", bundle:nil), forCellReuseIdentifier: TimelineCellIdentifier)
         
         timelineTableView.register(UINib(nibName: "LoadingTableViewCell", bundle:nil), forCellReuseIdentifier: LoadingCellIdentifier)

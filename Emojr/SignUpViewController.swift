@@ -75,7 +75,6 @@ class SignUpViewController: UIViewController {
                                                     completionBlock: { (errorString, userData) in
                 
                 if let errorMessage = errorString {
-                    
                     self.displayError(errorMessage)
                     SVProgressHUD.dismiss()
                     

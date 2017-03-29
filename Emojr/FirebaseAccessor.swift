@@ -102,7 +102,7 @@ class FirebaseAccessor: NetworkingAccessor {
                 self.auth?.createUser(withEmail: email, password: password, completion: { (user, error) in
                     if let error = error {
                         log.debug("Error creating user: \(error.localizedDescription)")
-                        completionBlock?("Couldn't sign up! Please try again.", nil)
+                        completionBlock?("Couldn't sign up! \(error.localizedDescription )", nil)
                     } else if let user = user {
                         let request = user.profileChangeRequest()
                         request.displayName = username

@@ -68,6 +68,8 @@ class UserListViewController: UIViewController {
         
         tableView.addSubview(refreshControl)
         
+        tableView.tableFooterView = UIView(frame: .zero)
+        
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.register(UINib(nibName: "UserTableViewCell", bundle:nil), forCellReuseIdentifier: UserCellIdentifier)
@@ -81,7 +83,7 @@ class UserListViewController: UIViewController {
     
     func userResponseHandler(_ error: Error?, _ list: [UserData]?) {
         if let error = error {
-            log.debug(error)
+            log.error(error)
             refreshControl.endRefreshing()
         } else {
             self.allUsers = list ?? []
