@@ -122,6 +122,8 @@
 		15313DCD1D07B5D3006E738A /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		15313DD31D07C34C006E738A /* AddUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUsersViewController.swift; sourceTree = "<group>"; };
 		15313DD51D08934B006E738A /* InitialSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialSetupViewController.swift; sourceTree = "<group>"; };
+		153299C41E8B63F7003E0935 /* emoji-parser.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = "emoji-parser.py"; path = "../emoji-parser.py"; sourceTree = "<group>"; };
+		153299C51E8B63F7003E0935 /* emoji.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = emoji.json; path = ../emoji.json; sourceTree = "<group>"; };
 		15454DEE1CA7E00800A520D1 /* Emojr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Emojr-Bridging-Header.h"; sourceTree = "<group>"; };
 		15454DEF1CA7E00900A520D1 /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICKeyChainStore.h; path = Emojr/UICKeyChainStore.h; sourceTree = "<group>"; };
 		15454DF01CA7E00900A520D1 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICKeyChainStore.m; path = Emojr/UICKeyChainStore.m; sourceTree = "<group>"; };
@@ -275,6 +277,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		153299C61E8B642E003E0935 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				153299C41E8B63F7003E0935 /* emoji-parser.py */,
+				153299C51E8B63F7003E0935 /* emoji.json */,
+			);
+			name = Parser;
+			sourceTree = "<group>";
+		};
 		1546D38E1CA61A5100D8ECC5 = {
 			isa = PBXGroup;
 			children = (
@@ -309,9 +320,8 @@
 				6EEB42DF1E85043F009C8852 /* User Feeds */,
 				15313DCF1D07BE4B006E738A /* Account */,
 				1589F8851D1CEFBE00451912 /* EmojiKeyboard */,
-				15DDD1111D0A34FF00E9649C /* EmojiKeyboard */,
+				15DDD1111D0A34FF00E9649C /* DeprecatedEmojiKeyboard */,
 				1546D39E1CA61A5100D8ECC5 /* Main.storyboard */,
-				15FD8BC51DDC193B00E89FD0 /* Emoji Files */,
 				1546D3A31CA61A5100D8ECC5 /* LaunchScreen.storyboard */,
 				1546D3A11CA61A5100D8ECC5 /* Assets.xcassets */,
 				6EB38E561E84359300DE986C /* GoogleService-Info.plist */,
@@ -352,6 +362,7 @@
 		1589F8851D1CEFBE00451912 /* EmojiKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				15FD8BC51DDC193B00E89FD0 /* Emoji Files */,
 				1589F8861D1CEFDE00451912 /* EmojiValidator.swift */,
 				1589F8A41D275F8900451912 /* EmojiSearchViewController.swift */,
 				1589F8A91D2792C300451912 /* EmojiTextFieldInputManager.swift */,
@@ -381,19 +392,20 @@
 			name = "Class Extensions";
 			sourceTree = "<group>";
 		};
-		15DDD1111D0A34FF00E9649C /* EmojiKeyboard */ = {
+		15DDD1111D0A34FF00E9649C /* DeprecatedEmojiKeyboard */ = {
 			isa = PBXGroup;
 			children = (
 				15DDD1081D0A040E00E9649C /* EmojiKeyboard.swift */,
 				15DDD1121D0A352200E9649C /* EmojiCell.swift */,
 				15DDD1141D0A357200E9649C /* Emojis.swift */,
 			);
-			name = EmojiKeyboard;
+			name = DeprecatedEmojiKeyboard;
 			sourceTree = "<group>";
 		};
 		15FD8BC51DDC193B00E89FD0 /* Emoji Files */ = {
 			isa = PBXGroup;
 			children = (
+				153299C61E8B642E003E0935 /* Parser */,
 				15FD8BC61DDC193B00E89FD0 /* emoji-complex.json */,
 				15FD8BC71DDC193B00E89FD0 /* emoji-emoji-keys.json */,
 				15FD8BC81DDC193B00E89FD0 /* emoji-name-keys.json */,
