@@ -9,6 +9,9 @@
 import Foundation
 
 class EmojiValidator : NSObject {
+    let emojiNameKeysFilePath = Bundle.main.path(forResource: "emoji-name-keys", ofType: "json")!
+    let emojiEmojiKeysFilePath = Bundle.main.path(forResource: "emoji-emoji-keys", ofType: "json")!
+    let complexEmojiFilePath = Bundle.main.path(forResource: "emoji-complex", ofType: "json")!
     
     var emojiWithEmojiKeys : [String:String]? = nil
     var emojiWithNameKeys : [String:String]? = nil
@@ -16,27 +19,9 @@ class EmojiValidator : NSObject {
     
     override init() {
         super.init()
-        
-        emojiWithEmojiKeys = loadEmojiDictAtPath(emojiEmojiKeysFilePath)
-        emojiWithNameKeys = loadEmojiDictAtPath(emojiNameKeysFilePath)
-        complexEmoji = loadJsonAtPath(complexEmojiFilePath) as? Dictionary<String, Array<String>>
-    }
-    
-    func loadEmojiDictAtPath(_ path: String) -> Dictionary<String, String> {
-        do {
-            let rawEmojiData = try? Data(contentsOf: URL(fileURLWithPath: path))
-            
-            if let data = rawEmojiData {
-                let emojiDict = try JSONSerialization.jsonObject(with: data, options: []) as! Dictionary<String, String>
-                
-                return emojiDict
-            }
-        }
-        catch {
-            log.debug("Error loading emoji file at path: \(path)")
-        }
-        
-        return [String:String]()
+        emojiWithEmojiKeys = loadJsonAtPath(emojiEmojiKeysFilePath) as? [String:String]
+        emojiWithNameKeys = loadJsonAtPath(emojiNameKeysFilePath) as? [String:String]
+        complexEmoji = loadJsonAtPath(complexEmojiFilePath) as? [String:[String]]
     }
     
     func loadJsonAtPath(_ path: String) -> AnyObject {

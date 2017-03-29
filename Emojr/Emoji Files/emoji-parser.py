@@ -16,7 +16,6 @@ with open('emoji.json') as emoji_file:
     emoji_names = []
 
     for emoji_name in all_emoji:
-    	# unicode_sequence = ''.join(map(lambda emoji : unichar(int(emoji, 16)), all_emoji[emoji_name]["unicode"].split("-")))
     	unicode_sequence = "\u{" + all_emoji[emoji_name]["unicode"].replace("-", "}\u{") + "}"
 
     	emoji_emoji_keys[unicode_sequence] = emoji_name
