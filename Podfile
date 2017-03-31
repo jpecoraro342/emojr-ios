@@ -10,6 +10,11 @@ target 'Emojr' do
   pod 'Firebase/Database'
   pod 'GoogleSignIn'
   pod 'SwiftyBeaver'
+  pod 'Alamofire'
+  pod 'SVProgressHUD'
+  pod 'SwiftyJSON'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
   target 'EmojrTests' do
     inherit! :search_paths
