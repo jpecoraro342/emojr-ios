@@ -47,8 +47,19 @@ class AddUsersViewController: UserListViewController {
     
     override func updateShownUsers() {
         shownUsers = allUsers.filter {
-            (searchString != nil && searchString != "") ? $0.username!.contains(searchString!) : true
+            if let username = $0.username {
+                if username == User.sharedInstance.username! {
+                    return false
+                }
+                
+                if let searchString = searchString, searchString != "" {
+                    return username.contains(searchString)
+                }
+            }
+            
+            return true
         }
+        
         refreshControl.endRefreshing()
         tableView.reloadData()
         
