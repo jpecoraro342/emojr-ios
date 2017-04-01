@@ -39,7 +39,7 @@ class LoginManager: NSObject {
                 
                 self.loadMainTab(true)
             } else {
-                log.warning("Unable to sign in user, clearing saved email/password. Error Message: \(errorString)")
+                log.warning("Unable to sign in user, clearing saved email/password. Error Message: \(errorString ?? "No description")")
                 UICKeyChainStore.removeItem(forKey: emailKey, service: serviceKey)
                 UICKeyChainStore.removeItem(forKey: passwordKey, service: serviceKey)
                 self.loadMainTab(false)

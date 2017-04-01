@@ -27,7 +27,7 @@ struct UserData: CustomStringConvertible, Equatable {
     }
     
     var description: String {
-        return "username: \(username) id: \(id)"
+        return "username: \(username ?? "nil") id: \(id ?? "nil")"
     }
 }
 
@@ -66,7 +66,7 @@ struct Post {
     }
     
     var description: String {
-        return "post: \(post) id: \(key)"
+        return "post: \(post ?? "nil") id: \(key ?? "nil")"
     }
 }
 
@@ -90,7 +90,7 @@ struct Reaction {
     }
     
     var description: String {
-        return "reaction: \(reaction) id: \(id)"
+        return "reaction: \(reaction ?? "nil") id: \(id ?? "nil")"
     }
 }
 
