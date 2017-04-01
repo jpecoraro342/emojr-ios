@@ -18,6 +18,16 @@ class EmojiKeyboard: NSObject {
     var keyboardView: AGEmojiKeyboardView?
     weak var delegate: EmojiKeyboardDelegate?
     
+    let emojiKeyboardImages: [UIImage] = [UIImage(named: "recentCategory")!,
+                                          UIImage(named: "smileysCategory")!,
+                                          UIImage(named: "animalsCategory")!,
+                                          UIImage(named: "foodCategory")!,
+                                          UIImage(named: "activityCategory")!,
+                                          UIImage(named: "travelCategory")!,
+                                          UIImage(named: "objectsCategory")!,
+                                          UIImage(named: "symbolsCategory")!,
+                                          UIImage(named: "flagsCategory")!]
+    
     override init() {
         super.init()
         
@@ -31,7 +41,6 @@ class EmojiKeyboard: NSObject {
     fileprivate func getEmojiKeyboard() -> AGEmojiKeyboardView {
         let keyboardWidth = UIScreen.main.bounds.size.width
         let keyboardHeight: CGFloat = 500.0
-        
         let keyboardFrame = CGRect(x: 0, y: 0, width: keyboardWidth, height: keyboardHeight)
         let emojiKeyboard = AGEmojiKeyboardView(frame: keyboardFrame, dataSource: self)
         emojiKeyboard?.autoresizingMask = .flexibleHeight

@@ -42,7 +42,7 @@ NSString *const RecentUsedEmojiCharactersKey = @"RecentUsedEmojiCharactersKey";
 }
 
 - (NSString *)categoryNameAtIndex:(NSUInteger)index {
-  NSArray *categoryList = @[segmentRecentName, @"People", @"Objects", @"Nature", @"Places", @"Symbols"];
+  NSArray *categoryList = @[segmentRecentName, @"Smileys", @"Animals", @"Food", @"Activity", @"Travel", @"Objects", @"Symbols", @"Flags"];
   return categoryList[index];
 }
 
@@ -66,7 +66,7 @@ NSString *const RecentUsedEmojiCharactersKey = @"RecentUsedEmojiCharactersKey";
   dispatch_once(&onceToken, ^{
     array = [NSMutableArray array];
     for (AGEmojiKeyboardViewCategoryImage i = AGEmojiKeyboardViewCategoryImageRecent;
-         i <= AGEmojiKeyboardViewCategoryImageCharacters;
+         i <= AGEmojiKeyboardViewCategoryImageFlags;
          ++i) {
       [array addObject:[self.dataSource emojiKeyboardView:self imageForSelectedCategory:i]];
     }
@@ -80,7 +80,7 @@ NSString *const RecentUsedEmojiCharactersKey = @"RecentUsedEmojiCharactersKey";
   dispatch_once(&onceToken, ^{
     array = [NSMutableArray array];
     for (AGEmojiKeyboardViewCategoryImage i = AGEmojiKeyboardViewCategoryImageRecent;
-         i <= AGEmojiKeyboardViewCategoryImageCharacters;
+         i <= AGEmojiKeyboardViewCategoryImageFlags;
          ++i) {
       [array addObject:[self.dataSource emojiKeyboardView:self imageForNonSelectedCategory:i]];
     }
