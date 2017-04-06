@@ -236,6 +236,8 @@ class TimelineViewController: UIViewController {
                     strongSelf.tableDataSource.insertPost(newPost)
                     let indexPath = IndexPath(row: 0, section: 0)
                     strongSelf.timelineTableView.insertRows(at: [indexPath], with: .top)
+                    
+                    Analytics.log(log: .post(userID: id))
                 }
             }
         }
@@ -253,6 +255,8 @@ class TimelineViewController: UIViewController {
                     let cell = strongSelf.timelineTableView.cellForRow(at: strongSelf.reactionInfo.index!) as! TimelineTableViewCell
                     cell.addReaction(post)
                     strongSelf.reactionInfo = (nil, nil)
+                    
+                    Analytics.log(log: .reaction(userID: id))
                 }
             }
         }

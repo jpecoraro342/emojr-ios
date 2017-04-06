@@ -9,6 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import PubNub
 import Firebase
 import SwiftyBeaver
 
@@ -25,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         console.minLevel = .debug
         log.addDestination(console)
         
-        Fabric.with([Crashlytics.self])
+        Fabric.with([Crashlytics.self, PubNub.self])
         
         FIRApp.configure()
         
@@ -60,5 +61,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         (UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])).tintColor = UIColor.white
     }
 
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        PushManager.instance.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        PushManager.instance.application(application, didFailToRegisterForRemoteNotificationsWithError: error)
+    }
 }
 

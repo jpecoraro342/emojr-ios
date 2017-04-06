@@ -14,6 +14,7 @@ target 'Emojr' do
   pod 'SVProgressHUD'
   pod 'SwiftyJSON'
   pod 'Fabric'
+  pod 'PubNub/Fabric'
   pod 'Crashlytics'
 
   target 'EmojrTests' do

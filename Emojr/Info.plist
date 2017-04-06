@@ -20,20 +20,33 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>Fabric</key>
-	<dict>
-		<key>APIKey</key>
-		<string>bc5e9fdae5e6c365f923beed5be212502f96ee6f</string>
-		<key>Kits</key>
-		<array>
-			<dict>
-				<key>KitInfo</key>
-				<dict/>
-				<key>KitName</key>
-				<string>Crashlytics</string>
-			</dict>
-		</array>
-	</dict>
+    <key>Fabric</key>
+    <dict>
+        <key>APIKey</key>
+        <string>bc5e9fdae5e6c365f923beed5be212502f96ee6f</string>
+        <key>Kits</key>
+        <array>
+            <dict>
+                <key>KitInfo</key>
+                <dict/>
+                <key>KitName</key>
+                <string>Crashlytics</string>
+            </dict>
+            <dict>
+                <key>KitInfo</key>
+                <dict>
+                    <key>publish-key</key>
+                    <string>pub-c-76eb5937-2fd7-422a-b6e4-0b20b8c173b7</string>
+                    <key>subscribe-key</key>
+                    <string>sub-c-149489c8-1a8e-11e7-9093-0619f8945a4f</string>
+                    <key>secret-key</key>
+                    <string>sec-c-MTJkZmVhY2ItYTU0MS00ODQxLTk4ZjYtN2NjOTEwNDgyZDdl</string>
+                </dict>
+                <key>KitName</key>
+                <string>PubNub</string>
+            </dict>
+        </array>
+    </dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

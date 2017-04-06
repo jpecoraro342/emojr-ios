@@ -76,24 +76,26 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signIn() {
-        errorLabel.isHidden = true
-        let (valid, message) = validLoginForm()
+        PushManager.instance.publishAnnouncement(message: ["Hello":"Hello"])
         
-        if valid {
-            disableUI()
-            LoginManager().login(emailField.text!, password: passwordField.text!) { (errorString, data) in
-                if let errorString = errorString {
-                    self.enableUI()
-                    self.displayError(errorString)
-                } else if let _ = data {
-                    self.enableUI()
-                    self.navigateToMainTab()
-                }
-            }
-        } else {
-            self.enableUI()
-            displayError(message)
-        }
+//        errorLabel.isHidden = true
+//        let (valid, message) = validLoginForm()
+//        
+//        if valid {
+//            disableUI()
+//            LoginManager().login(emailField.text!, password: passwordField.text!) { (errorString, data) in
+//                if let errorString = errorString {
+//                    self.enableUI()
+//                    self.displayError(errorString)
+//                } else if let _ = data {
+//                    self.enableUI()
+//                    self.navigateToMainTab()
+//                }
+//            }
+//        } else {
+//            self.enableUI()
+//            displayError(message)
+//        }
     }
     
     func displayError(_ message: String) {
