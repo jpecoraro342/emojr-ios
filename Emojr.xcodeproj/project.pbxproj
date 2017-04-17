@@ -156,6 +156,7 @@
 		66A3FCCC4D254503579CAF9F /* Pods-EmojrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmojrTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmojrTests/Pods-EmojrTests.release.xcconfig"; sourceTree = "<group>"; };
 		6E142CCE1E5A98FE00DCF755 /* TimelineEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineEnum.swift; sourceTree = "<group>"; };
 		6E142CD31E5AE20A00DCF755 /* Date+ISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+ISO8601.swift"; sourceTree = "<group>"; };
+		6E377D1A1EA0B0CB00182BA9 /* Emojr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Emojr.entitlements; sourceTree = "<group>"; };
 		6E5DBF711CABC494004D3088 /* String+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
 		6EB38E561E84359300DE986C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6EBDFF5E1CA7F35A0067B7CC /* Date+Comparisons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Comparisons.swift"; sourceTree = "<group>"; };
@@ -278,6 +279,7 @@
 		1546D3991CA61A5100D8ECC5 /* Emojr */ = {
 			isa = PBXGroup;
 			children = (
+				6E377D1A1EA0B0CB00182BA9 /* Emojr.entitlements */,
 				1546D39A1CA61A5100D8ECC5 /* AppDelegate.swift */,
 				6ECE9DF61E9614E600EC4796 /* PubNubManager.swift */,
 				15313DD11D07BF3E006E738A /* Utilities */,
@@ -491,6 +493,11 @@
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = M2JNHSR23U;
 						LastSwiftMigration = 0810;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					1589F8941D27556600451912 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -854,6 +861,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Emojr/Emojr.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -868,6 +876,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.josephpecoraro.Emojr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PUBNUB_PUBLISH_KEY = "pub-c-4c50089f-9ccd-4aee-ae13-7b6fcd0f0be9";
+				PUBNUB_SECRET_KEY = "sec-c-M2E2MGY2MDEtMWU2NC00YjQ1LTk3M2UtMGY4MWFiYTY2ZTgw";
+				PUBNUB_SUBSCRIBE_KEY = "sub-c-da244ef4-20e1-11e7-aca9-02ee2ddab7fe";
 				SWIFT_OBJC_BRIDGING_HEADER = "Emojr-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -880,6 +891,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Emojr/Emojr.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = M2JNHSR23U;
@@ -893,6 +905,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.josephpecoraro.Emojr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PUBNUB_PUBLISH_KEY = "pub-c-76eb5937-2fd7-422a-b6e4-0b20b8c173b7";
+				PUBNUB_SECRET_KEY = "sec-c-MTJkZmVhY2ItYTU0MS00ODQxLTk4ZjYtN2NjOTEwNDgyZDdl";
+				PUBNUB_SUBSCRIBE_KEY = "sub-c-149489c8-1a8e-11e7-9093-0619f8945a4f";
 				SWIFT_OBJC_BRIDGING_HEADER = "Emojr-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

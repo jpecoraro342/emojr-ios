@@ -36,11 +36,11 @@
                 <key>KitInfo</key>
                 <dict>
                     <key>publish-key</key>
-                    <string>pub-c-76eb5937-2fd7-422a-b6e4-0b20b8c173b7</string>
+                    <string>$(PUBNUB_PUBLISH_KEY)</string>
                     <key>subscribe-key</key>
-                    <string>sub-c-149489c8-1a8e-11e7-9093-0619f8945a4f</string>
+                    <string>$(PUBNUB_SUBSCRIBE_KEY)</string>
                     <key>secret-key</key>
-                    <string>sec-c-MTJkZmVhY2ItYTU0MS00ODQxLTk4ZjYtN2NjOTEwNDgyZDdl</string>
+                    <string>$(PUBNUB_SECRET_KEY)</string>
                 </dict>
                 <key>KitName</key>
                 <string>PubNub</string>

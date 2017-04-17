@@ -66,11 +66,9 @@ class PushManager: NSObject, PNObjectEventListener {
         self.client?.publish(message, toChannel: "announcements", withCompletion: { (status) -> Void in
             
             if !status.isError {
-                
                 print("Message successfully published to specified channel.")
             }
             else{
-                
                 print("Handle message publish error.")
                 
                 // Check 'category' property
@@ -84,6 +82,15 @@ class PushManager: NSObject, PNObjectEventListener {
     }
     
     func client(client: PubNub!, didReceiveMessage message: PNMessageResult!) {
+        
+        let messageData = message.data.message
+//        if messageData is Dictionary {
+//
+//        }
+
+    //    let cipherKey = client.currentConfiguration().cipherKey
+//        var messagePayload = 
+        
         
         
         // Handle new message stored in message.data.message
