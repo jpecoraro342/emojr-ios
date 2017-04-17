@@ -17,10 +17,19 @@ class TimelineViewController: UIViewController {
     var noDataView: NoDataView?
     var fadeView: UIView?
     
+    var refreshControlView = PTRAnimationView(frame: .zero)
     lazy var refreshControl: UIRefreshControl = {
-        $0.addTarget(self, action: #selector(self.refreshData), for: UIControlEvents.valueChanged)
-        return $0
-    }(UIRefreshControl())
+        let view = UIRefreshControl()
+        view.backgroundColor = .clear
+        view.tintColor = .clear
+        self.refreshControlView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(self.refreshControlView)
+        self.refreshControlView.constrainToEdges(of: view)
+        
+        view.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        
+        return view
+    }()
     
     var tableDataSource: TimelineTableViewDataSource
     var type: Timeline
@@ -93,8 +102,6 @@ class TimelineViewController: UIViewController {
         timelineTableView.translatesAutoresizingMaskIntoConstraints = false
         timelineTableView.constrainToEdges(of: view)
         
-        timelineTableView.addSubview(refreshControl)
-        
         timelineTableView.delegate = tableDataSource;
         timelineTableView.dataSource = tableDataSource;
         timelineTableView.rowHeight = 120;
@@ -135,6 +142,23 @@ class TimelineViewController: UIViewController {
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(TimelineViewController.dismissPostForm))
         emoteView?.addGestureRecognizer(recognizer)
+        
+//        refresh = BreakOutToRefreshView(scrollView: timelineTableView)
+//        refresh?.refreshDelegate = self
+//        
+//        // configure the colors of the refresh view
+//        refresh?.scenebackgroundColor = UIColor(hue: 0.68, saturation: 0.9, brightness: 0.3, alpha: 1.0)
+//        refresh?.paddleColor = .lightGray
+//        refresh?.ballColor = .white
+//        refresh?.blockColors = [UIColor(hue: 0.17, saturation: 0.9, brightness: 1.0, alpha: 1.0), UIColor(hue: 0.17, saturation: 0.7, brightness: 1.0, alpha: 1.0), UIColor(hue: 0.17, saturation: 0.5, brightness: 1.0, alpha: 1.0)]
+        
+        
+        if #available(iOS 10.0, *) {
+            timelineTableView.refreshControl = refreshControl
+        } else {
+            timelineTableView.addSubview(refreshControl)
+        }
+        
     }
     
     func displayNoDataView() {
@@ -349,6 +373,7 @@ extension TimelineViewController : TimelineTableViewDelegate {
     func dataSourceGotData(dataChanged: Bool) {
         if dataChanged {
             timelineTableView.reloadData()
+            refreshControlView.stop()
             refreshControl.endRefreshing()
             loadingCellRefreshControl?.stopAnimating()
             
@@ -358,5 +383,16 @@ extension TimelineViewController : TimelineTableViewDelegate {
                 removeNoDataView()
             }
         }
+    }
+    
+    func scrollViewDidScroll() {
+        if refreshControl.isRefreshing {
+            refreshControlView.start()
+        }
+    }
+}
+extension TimelineViewController: BreakOutToRefreshDelegate {
+    func refreshViewDidRefresh(_ refreshView: BreakOutToRefreshView) {
+        refreshData()
     }
 }

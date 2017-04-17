@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 
 protocol TimelineTableViewDelegate {
+    func scrollViewDidScroll()
     func cellSelectedInTable(_ tableView: UITableView, indexPath: IndexPath)
     func loadingCellDisplayed(_ cell: LoadingTableViewCell)
     func shouldShowLoadingCell() -> Bool
@@ -131,6 +132,10 @@ extension TimelineTableViewDataSource : UITableViewDelegate {
             
             delegate?.loadingCellDisplayed(refreshCell)
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.scrollViewDidScroll()
     }
 }
 
