@@ -37,6 +37,7 @@
 		1546D3A21CA61A5100D8ECC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1546D3A11CA61A5100D8ECC5 /* Assets.xcassets */; };
 		1546D3A51CA61A5100D8ECC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1546D3A31CA61A5100D8ECC5 /* LaunchScreen.storyboard */; };
 		157079101CA6299500043676 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1570790F1CA6299500043676 /* User.swift */; };
+		157664201EA5A22600CCD586 /* EmojiTextInputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1576641F1EA5A22600CCD586 /* EmojiTextInputVC.swift */; };
 		1589F8871D1CEFDE00451912 /* EmojiValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1589F8861D1CEFDE00451912 /* EmojiValidator.swift */; };
 		1589F8981D27556600451912 /* EmojiValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1589F8971D27556600451912 /* EmojiValidationTests.swift */; };
 		1589F89F1D27597D00451912 /* EmojiValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1589F8861D1CEFDE00451912 /* EmojiValidator.swift */; };
@@ -149,6 +150,7 @@
 		1546D3A41CA61A5100D8ECC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1546D3A61CA61A5100D8ECC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1570790F1CA6299500043676 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1576641F1EA5A22600CCD586 /* EmojiTextInputVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiTextInputVC.swift; sourceTree = "<group>"; };
 		1589F8861D1CEFDE00451912 /* EmojiValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiValidator.swift; sourceTree = "<group>"; };
 		1589F8951D27556600451912 /* EmojrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmojrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1589F8971D27556600451912 /* EmojiValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiValidationTests.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				1589F8861D1CEFDE00451912 /* EmojiValidator.swift */,
 				1589F8A41D275F8900451912 /* EmojiSearchViewController.swift */,
 				1589F8A91D2792C300451912 /* EmojiTextFieldInputManager.swift */,
+				1576641F1EA5A22600CCD586 /* EmojiTextInputVC.swift */,
 			);
 			name = EmojiKeyboard;
 			sourceTree = "<group>";
@@ -732,6 +735,7 @@
 				15313DC51D0749E2006E738A /* DiscoverViewController.swift in Sources */,
 				6ECCD7971CA7152400F53AD5 /* TimelineTableViewCell.swift in Sources */,
 				15AA50191CA6392F0066CAB9 /* UIColor+Hex.swift in Sources */,
+				157664201EA5A22600CCD586 /* EmojiTextInputVC.swift in Sources */,
 				6EC717971E6E9606008F5A29 /* UIView+ConstrainEdges.swift in Sources */,
 				15454DF31CA7EAF900A520D1 /* FollowingViewController.swift in Sources */,
 				15313C3F1CC9921400745760 /* FollowUserManager.swift in Sources */,

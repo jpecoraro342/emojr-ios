@@ -28,6 +28,7 @@ class EmojiValidationTests: XCTestCase {
         XCTAssertTrue(emojiValidator!.isEmoji("📳"))
         XCTAssertTrue(emojiValidator!.isEmoji("🕰"))
         XCTAssertTrue(emojiValidator!.isEmoji("🕝"))
+        XCTAssertTrue(emojiValidator!.isEmoji("❤️"))
     }
     
     

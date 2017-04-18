@@ -85,6 +85,13 @@ extension EmojiSearchViewController : UITableViewDataSource {
     }
 }
 
+extension EmojiSearchViewController : EmojiSearchViewControllerDelegate {
+    func didSelectEmoji(_ emoji: String) {
+        let oldText = targetTextfield?.text ?? ""
+        let _ = updateEmojiSearchWithString(oldText, newText: oldText + emoji, changedText: emoji)
+    }
+}
+
 extension EmojiSearchViewController : UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
