@@ -121,15 +121,15 @@ class LoginManager: NSObject {
     
     func setVCTitlesAndIcons(_ tabVCList: [UIViewController]) {
         tabVCList[0].tabBarItem.title = "Home"
-        tabVCList[0].tabBarItem.image = UIImage(named: "homeEmojiBW")?.withRenderingMode(.alwaysOriginal)
+        tabVCList[0].tabBarItem.image = UIImage(named: "homeEmojiBW")
         tabVCList[0].tabBarItem.selectedImage = UIImage(named: "homeEmoji")?.withRenderingMode(.alwaysOriginal)
         
         tabVCList[1].tabBarItem.title = "Hot"
-        tabVCList[1].tabBarItem.image = UIImage(named: "hotEmojiBW")?.withRenderingMode(.alwaysOriginal)
+        tabVCList[1].tabBarItem.image = UIImage(named: "hotEmojiBW")
         tabVCList[1].tabBarItem.selectedImage = UIImage(named: "hotEmoji")?.withRenderingMode(.alwaysOriginal)
         
         tabVCList[2].tabBarItem.title = "Me"
-        tabVCList[2].tabBarItem.image = UIImage(named: "meEmojiBW")?.withRenderingMode(.alwaysOriginal)
+        tabVCList[2].tabBarItem.image = UIImage(named: "meEmojiBW")
         tabVCList[2].tabBarItem.selectedImage = UIImage(named: "meEmoji")?.withRenderingMode(.alwaysOriginal)
     }
     
