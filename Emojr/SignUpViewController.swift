@@ -25,6 +25,8 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var signUpButton: UIButton!
     
+    let emojiSearchVC = EmojiSearchViewController()
+    
     var fieldViewDict = Dictionary<UITextField, UIView>()
     
     override func viewDidLoad() {
@@ -143,6 +145,10 @@ class SignUpViewController: UIViewController {
 extension SignUpViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         fadeInFieldBar(fieldViewDict[textField]!)
+        
+        if textField.isEqual(usernameField) {
+            present(EmojiTextInputVC(), animated: true, completion: nil)
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

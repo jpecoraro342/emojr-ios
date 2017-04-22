@@ -28,6 +28,7 @@ class EmojiValidationTests: XCTestCase {
         XCTAssertTrue(emojiValidator!.isEmoji("📳"))
         XCTAssertTrue(emojiValidator!.isEmoji("🕰"))
         XCTAssertTrue(emojiValidator!.isEmoji("🕝"))
+        XCTAssertTrue(emojiValidator!.isEmoji("❤️"))
     }
     
     
@@ -52,7 +53,7 @@ class EmojiValidationTests: XCTestCase {
         let arrows = ["⏬", "↙️", "▶️", "⬅️", "↖️", "📩", "🔀", "⤴️", "↕️", "↘️", "⬇️", "🔄", "⏫", "➡️", "🔃", "🏹", "↪️", "⤵️", "🔽", "↩️", "↗️", "🔼", "↔️", "⬆️", "◀️"]
         let emojiSearchArrows = emojiValidator!.emojisForNameStartingWith("arrow")
         
-        XCTAssertEqual(arrows, emojiSearchArrows)
+        XCTAssertCon(arrows, emojiSearchArrows)
         
     }
     
