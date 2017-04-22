@@ -9,8 +9,7 @@
 import UIKit
 import Alamofire
 
-protocol TimelineTableViewDelegate {
-    func scrollViewDidScroll()
+protocol TimelineTableViewDelegate: UIScrollViewDelegate {
     func cellSelectedInTable(_ tableView: UITableView, indexPath: IndexPath)
     func loadingCellDisplayed(_ cell: LoadingTableViewCell)
     func shouldShowLoadingCell() -> Bool
@@ -135,7 +134,15 @@ extension TimelineTableViewDataSource : UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        delegate?.scrollViewDidScroll()
+        delegate?.scrollViewDidScroll?(scrollView)
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        delegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        delegate?.scrollViewWillBeginDragging?(scrollView)
     }
 }
 

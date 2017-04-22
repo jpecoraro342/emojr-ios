@@ -80,6 +80,7 @@
 		6EE3DEF31DD80B8E00E32BA2 /* RestAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3DEF21DD80B8E00E32BA2 /* RestAccessor.swift */; };
 		6EE3DF061DD87CD200E32BA2 /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EE3DF041DD87CD200E32BA2 /* NoDataView.xib */; };
 		6EE3DF081DD87DFC00E32BA2 /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3DF071DD87DFC00E32BA2 /* NoDataView.swift */; };
+		6EE8313D1EABF7C90026FEBB /* EmojiFlippinRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE8313C1EABF7C90026FEBB /* EmojiFlippinRefreshControl.swift */; };
 		6EEB42E11E850CA5009C8852 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEB42E01E850CA5009C8852 /* GradientView.swift */; };
 		6EF1EF471CB4D4A400992A2F /* TimelineTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF1EF461CB4D4A400992A2F /* TimelineTableViewDataSource.swift */; };
 		6EFFE45B1E8F41F300DEC38B /* PTRAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFFE45A1E8F41F300DEC38B /* PTRAnimationView.swift */; };
@@ -186,6 +187,7 @@
 		6EE3DEF21DD80B8E00E32BA2 /* RestAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestAccessor.swift; sourceTree = "<group>"; };
 		6EE3DF051DD87CD200E32BA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoDataView.xib; sourceTree = "<group>"; };
 		6EE3DF071DD87DFC00E32BA2 /* NoDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
+		6EE8313C1EABF7C90026FEBB /* EmojiFlippinRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiFlippinRefreshControl.swift; sourceTree = "<group>"; };
 		6EEB42E01E850CA5009C8852 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		6EF1EF461CB4D4A400992A2F /* TimelineTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewDataSource.swift; sourceTree = "<group>"; };
 		6EFFE45A1E8F41F300DEC38B /* PTRAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTRAnimationView.swift; sourceTree = "<group>"; };
@@ -266,17 +268,9 @@
 				6EE3DF041DD87CD200E32BA2 /* NoDataView.xib */,
 				6EE3DF071DD87DFC00E32BA2 /* NoDataView.swift */,
 				6EFFE45A1E8F41F300DEC38B /* PTRAnimationView.swift */,
+				6EE8313C1EABF7C90026FEBB /* EmojiFlippinRefreshControl.swift */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		153299C61E8B642E003E0935 /* Parser */ = {
-			isa = PBXGroup;
-			children = (
-				153299C41E8B63F7003E0935 /* emoji-parser.py */,
-				153299C51E8B63F7003E0935 /* emoji.json */,
-			);
-			name = Parser;
 			sourceTree = "<group>";
 		};
 		1546D38E1CA61A5100D8ECC5 = {
@@ -690,6 +684,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15DDD1061D0A034500E9649C /* AGEmojiKeyBoardView.m in Sources */,
+				6EE8313D1EABF7C90026FEBB /* EmojiFlippinRefreshControl.swift in Sources */,
 				15454DF71CA808BB00A520D1 /* FollowerViewController.swift in Sources */,
 				6ECCD7A21CA7724F00F53AD5 /* LoginViewController.swift in Sources */,
 				15313C3B1CC94C9200745760 /* AccountViewController.swift in Sources */,

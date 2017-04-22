@@ -17,19 +17,15 @@ class TimelineViewController: UIViewController {
     var noDataView: NoDataView?
     var fadeView: UIView?
     
-    var refreshControlView = PTRAnimationView(frame: .zero)
-    lazy var refreshControl: UIRefreshControl = {
-        let view = UIRefreshControl()
-        view.backgroundColor = .clear
-        view.tintColor = .clear
-        self.refreshControlView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(self.refreshControlView)
-        self.refreshControlView.constrainToEdges(of: view)
+    var refreshControl: BreakOutToRefreshView?
+    
+    func breakoutRefreshControl() -> BreakOutToRefreshView {
+        let view = BreakOutToRefreshView(scrollView: self.timelineTableView)
         
-        view.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        view.refreshDelegate = self
         
         return view
-    }()
+    }
     
     var tableDataSource: TimelineTableViewDataSource
     var type: Timeline
@@ -72,16 +68,22 @@ class TimelineViewController: UIViewController {
         refreshData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        refreshControl = breakoutRefreshControl()
+        timelineTableView.addSubview(refreshControl!)
         
         if noDataView?.superview != nil {
             refreshData()
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        refreshControl?.removeFromSuperview()
+        refreshControl = nil
     }
     
     func rightBarButtonItem() -> UIBarButtonItem? {
@@ -142,23 +144,6 @@ class TimelineViewController: UIViewController {
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(TimelineViewController.dismissPostForm))
         emoteView?.addGestureRecognizer(recognizer)
-        
-//        refresh = BreakOutToRefreshView(scrollView: timelineTableView)
-//        refresh?.refreshDelegate = self
-//        
-//        // configure the colors of the refresh view
-//        refresh?.scenebackgroundColor = UIColor(hue: 0.68, saturation: 0.9, brightness: 0.3, alpha: 1.0)
-//        refresh?.paddleColor = .lightGray
-//        refresh?.ballColor = .white
-//        refresh?.blockColors = [UIColor(hue: 0.17, saturation: 0.9, brightness: 1.0, alpha: 1.0), UIColor(hue: 0.17, saturation: 0.7, brightness: 1.0, alpha: 1.0), UIColor(hue: 0.17, saturation: 0.5, brightness: 1.0, alpha: 1.0)]
-        
-        
-        if #available(iOS 10.0, *) {
-            timelineTableView.refreshControl = refreshControl
-        } else {
-            timelineTableView.addSubview(refreshControl)
-        }
-        
     }
     
     func displayNoDataView() {
@@ -373,9 +358,8 @@ extension TimelineViewController : TimelineTableViewDelegate {
     func dataSourceGotData(dataChanged: Bool) {
         if dataChanged {
             timelineTableView.reloadData()
-            refreshControlView.stop()
-            refreshControl.endRefreshing()
             loadingCellRefreshControl?.stopAnimating()
+            refreshControl?.endRefreshing()
             
             if tableDataSource.posts.count == 0 {
                 displayNoDataView()
@@ -384,13 +368,22 @@ extension TimelineViewController : TimelineTableViewDelegate {
             }
         }
     }
+}
+
+extension TimelineViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        refreshControl?.scrollViewDidScroll(scrollView)
+    }
     
-    func scrollViewDidScroll() {
-        if refreshControl.isRefreshing {
-            refreshControlView.start()
-        }
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        refreshControl?.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        refreshControl?.scrollViewWillBeginDragging(scrollView)
     }
 }
+
 extension TimelineViewController: BreakOutToRefreshDelegate {
     func refreshViewDidRefresh(_ refreshView: BreakOutToRefreshView) {
         refreshData()
