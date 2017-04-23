@@ -25,7 +25,7 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var signUpButton: UIButton!
     
-    let emojiSearchVC = EmojiSearchViewController()
+    let emojiSearchView = EmojiSearchView()
     
     var fieldViewDict = Dictionary<UITextField, UIView>()
     
@@ -33,6 +33,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         
         styleViews()
+        setupUsernameField()
         
         fieldViewDict[usernameField] = usernameView
         fieldViewDict[emailField] = emailView
@@ -42,6 +43,10 @@ class SignUpViewController: UIViewController {
     
     func styleViews() {
         styleViewWithShadow(signUpButton)
+    }
+    
+    func setupUsernameField() {
+        emojiSearchView.linkTextfield(textfield: usernameField)
     }
     
     func styleViewWithShadow(_ view: UIView) {
@@ -145,10 +150,6 @@ class SignUpViewController: UIViewController {
 extension SignUpViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         fadeInFieldBar(fieldViewDict[textField]!)
-        
-        if textField.isEqual(usernameField) {
-            present(EmojiTextInputVC(), animated: true, completion: nil)
-        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -156,16 +157,11 @@ extension SignUpViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField === usernameField {
-            return string.containsOnlyEmoji
-        }
-        
-        return true
+        return emojiSearchView.textField(_: textField, shouldChangeCharactersIn: range, replacementString: string)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true;
+        return emojiSearchView.textFieldShouldReturn(_: textField)
     }
 }
 

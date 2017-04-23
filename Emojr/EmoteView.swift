@@ -19,7 +19,7 @@ class EmoteView: UIView {
     
     var reacting = false
     
-    var emojiKeyboard = EmojiKeyboard()
+    var emojiSearchView = EmojiSearchView()
     
     class func instanceFromNib() -> EmoteView {
         return UINib(nibName: "EmoteView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! EmoteView
@@ -28,13 +28,13 @@ class EmoteView: UIView {
     func configureWithController(_ controller: TimelineViewController) {
         self.controller = controller
         emojiField.delegate = self
+        emojiField.autocorrectionType = .no
         configureEmojiKeyboard()
         styleViews()
     }
     
     func configureEmojiKeyboard() {
-        emojiField.inputView = emojiKeyboard.getKeyboardView()
-        emojiKeyboard.delegate = self
+        emojiSearchView.linkTextfield(textfield: emojiField)
     }
     
     func setButtonTitle(_ reacting: Bool) {
@@ -85,8 +85,7 @@ class EmoteView: UIView {
 
 extension EmoteView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true;
+        return emojiSearchView.textFieldShouldReturn(_: textField)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -98,7 +97,7 @@ extension EmoteView: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return true
+        return emojiSearchView.textField(textField, shouldChangeCharactersIn: range, replacementString: string)
     }
 }
 

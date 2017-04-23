@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -489,14 +488,6 @@
                                     <constraint firstAttribute="width" constant="170" id="rFw-Q3-x3T"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVn-i6-o7C" customClass="PTRAnimationView" customModule="Emojr" customModuleProvider="target">
-                                <rect key="frame" x="40" y="519" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="k1d-dv-9bN"/>
-                                    <constraint firstAttribute="width" constant="240" id="po6-6y-MXO"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156862745098" green="0.56470588235294117" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -510,9 +501,7 @@
                             <constraint firstItem="7LM-9b-llB" firstAttribute="top" secondItem="1m2-fc-sGo" secondAttribute="bottom" constant="10" id="GQg-0T-lPC"/>
                             <constraint firstAttribute="trailing" secondItem="cir-f6-KIy" secondAttribute="trailing" constant="40" id="IhW-zp-4La"/>
                             <constraint firstItem="cir-f6-KIy" firstAttribute="top" secondItem="1Yu-N0-7kM" secondAttribute="bottom" constant="15" id="QUE-Ww-3FP"/>
-                            <constraint firstItem="cVn-i6-o7C" firstAttribute="leading" secondItem="P5F-zt-6cr" secondAttribute="leadingMargin" constant="24" id="QaL-90-ecy"/>
                             <constraint firstItem="1Yu-N0-7kM" firstAttribute="centerX" secondItem="P5F-zt-6cr" secondAttribute="centerX" id="SdE-tL-xrB"/>
-                            <constraint firstItem="enI-Gz-dFe" firstAttribute="top" secondItem="cVn-i6-o7C" secondAttribute="bottom" constant="20" id="Yj7-Rd-ket"/>
                             <constraint firstItem="bqa-wO-6P3" firstAttribute="centerX" secondItem="P5F-zt-6cr" secondAttribute="centerX" id="bJX-yl-wJo"/>
                             <constraint firstItem="1m2-fc-sGo" firstAttribute="top" secondItem="bqa-wO-6P3" secondAttribute="top" id="bd5-at-9Q1"/>
                             <constraint firstAttribute="trailing" secondItem="1m2-fc-sGo" secondAttribute="trailing" constant="80" id="e0O-qu-TXn"/>
@@ -730,7 +719,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="256" height="256"/>
+        <image name="logo" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TPS-7a-w2u"/>

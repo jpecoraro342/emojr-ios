@@ -13,4 +13,24 @@ extension UIView {
         self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: rightConstant).isActive = true
         self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottomConstant).isActive = true
     }
+    
+    func constrainToTop(of view: UIView, leftConstant: CGFloat = 0, topConstant: CGFloat = 0, rightConstant: CGFloat = 0, heightConstant: CGFloat? = nil) {
+        self.leftAnchor.constraint(equalTo: view.leftAnchor, constant: leftConstant).isActive = true
+        self.topAnchor.constraint(equalTo: view.topAnchor, constant: topConstant).isActive = true
+        self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: rightConstant).isActive = true
+        
+        if let heightConstant = heightConstant {
+            self.heightAnchor.constraint(equalToConstant: heightConstant).isActive = true
+        }
+    }
+    
+    func constrainToBottom(of view: UIView, leftConstant: CGFloat = 0, bottomConstant: CGFloat = 0, rightConstant: CGFloat = 0, heightConstant: CGFloat? = nil) {
+        self.leftAnchor.constraint(equalTo: view.leftAnchor, constant: leftConstant).isActive = true
+        self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottomConstant).isActive = true
+        self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: rightConstant).isActive = true
+        
+        if let heightConstant = heightConstant {
+            self.heightAnchor.constraint(equalToConstant: heightConstant).isActive = true
+        }
+    }
 }
