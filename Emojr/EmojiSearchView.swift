@@ -17,13 +17,14 @@ class EmojiSearchView: UIView {
     fileprivate var targetTextField: UITextField?
     
     lazy fileprivate var emojiCollectionView: UICollectionView = {
-        let frame = CGRect(x: 0, y: 30, width: UIScreen.main.bounds.width, height: 60)
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50)
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 30, height: 30)
+        layout.itemSize = CGSize(width: 50, height: 50)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         
         let view = UICollectionView(frame: frame, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -115,10 +116,6 @@ extension EmojiSearchView : UITextFieldDelegate {
         return false
     }
     
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        return true
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.text = emojiTextManager.removeNonEmojis(textField.text ?? "")
         textField.resignFirstResponder()
@@ -141,18 +138,15 @@ extension EmojiSearchView: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDataSource
 
 extension EmojiSearchView: UICollectionViewDataSource {
-    //1
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    //2
     func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
         return self.emojiList.count
     }
     
-    //3
     func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCollectionCell",
@@ -164,12 +158,17 @@ extension EmojiSearchView: UICollectionViewDataSource {
                 label.text = emoji
             }
         } else {
-            let frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-            let label = UILabel(frame: frame)
+            let label = UILabel()
+            label.translatesAutoresizingMaskIntoConstraints = false
             label.text = emoji
-            label.font = .boldSystemFont(ofSize: 25.0)
+            label.font = UIFont.systemFont(ofSize: 40)
             
             cell.contentView.addSubview(label)
+            label.constrainToEdges(of: cell.contentView,
+                                   leftConstant: 2,
+                                   topConstant: 2,
+                                   rightConstant: 2,
+                                   bottomConstant: 2)
         }
         
         return cell
