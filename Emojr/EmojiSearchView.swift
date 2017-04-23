@@ -31,7 +31,7 @@ class EmojiSearchView: UIView {
         view.dataSource = self
         view.delegate = self
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(hexString: "CBCCD1")
         
         view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "EmojiCollectionCell")
         
@@ -41,7 +41,7 @@ class EmojiSearchView: UIView {
     fileprivate let noDataLabel = UILabel()
     lazy fileprivate var noDataView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(hexString: "CBCCD1")
         
         self.noDataLabel.translatesAutoresizingMaskIntoConstraints = false
         self.noDataLabel.textAlignment = .center
