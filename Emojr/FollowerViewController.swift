@@ -13,6 +13,7 @@ class FollowerViewController: UserListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = nil
         navigationItem.title = "Followers"
         noDataMessage = "No followers yet!"
     }

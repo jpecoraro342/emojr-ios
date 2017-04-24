@@ -34,8 +34,11 @@ class FollowUserManager: NSObject {
         }
     }
     
-    func askToFollowUser(_ user: UserData, presentingViewController: UIViewController, completionBlock: ((_ success: Bool) -> Void)?) {
-        let alertController = UIAlertController(title: "Follow \(user.username!)", message: "Are you sure you want to start following \(user.username!)?", preferredStyle: .alert)
+    func askToFollowUser(_ user: UserData?, presentingViewController: UIViewController, completionBlock: ((_ success: Bool) -> Void)?) {
+        guard let user = user
+            else { return }
+        
+        let alertController = UIAlertController(title: "Follow \(user.username ?? "")", message: "Are you sure you want to start following \(user.username ?? "")?", preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             
@@ -51,8 +54,11 @@ class FollowUserManager: NSObject {
         }
     }
     
-    func askToStopFollowingUser(_ user: UserData, presentingViewController: UIViewController, completionBlock: ((_ success: Bool) -> Void)?) {
-        let alertController = UIAlertController(title: "Unfollow \(user.username!)", message: "Are you sure you want to stop following \(user.username!)?", preferredStyle: .alert)
+    func askToStopFollowingUser(_ user: UserData?, presentingViewController: UIViewController, completionBlock: ((_ success: Bool) -> Void)?) {
+        guard let user = user
+            else { return }
+        
+        let alertController = UIAlertController(title: "Unfollow \(user.username ?? "")", message: "Are you sure you want to stop following \(user.username ?? "")?", preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             

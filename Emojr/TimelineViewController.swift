@@ -19,6 +19,8 @@ class TimelineViewController: UIViewController {
     
     var refreshControl: BreakOutToRefreshView?
     
+    let followUserManager = FollowUserManager()
+    
     func breakoutRefreshControl() -> BreakOutToRefreshView {
         let view = BreakOutToRefreshView(scrollView: self.timelineTableView)
         
@@ -87,8 +89,15 @@ class TimelineViewController: UIViewController {
     }
     
     func rightBarButtonItem() -> UIBarButtonItem? {
-        if case .user = type {
-            return nil
+        if case .user(let user) = type {
+            if user?.id != User.sharedInstance.id {
+                if User.sharedInstance.following[user?.id ?? ""] == true {
+                    return UIBarButtonItem(title: "Unfollow", style: .plain, target: self, action: #selector(TimelineViewController.stopFollowingUser))
+                }
+                else {
+                    return UIBarButtonItem(title: "Follow", style: .plain, target: self, action: #selector(TimelineViewController.followUser))
+                }
+            }
         } else {
             let buttonImage = #imageLiteral(resourceName: "writeEmoji").withRenderingMode(.alwaysOriginal)
             let postButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(postButtonTapped))
@@ -96,6 +105,8 @@ class TimelineViewController: UIViewController {
             
             return postButton
         }
+        
+        return nil
     }
     
     func layoutTableView() {
@@ -294,6 +305,50 @@ class TimelineViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+}
+
+// MARK: - Follow
+
+extension TimelineViewController {
+    func updateFollowButton() {
+        navigationItem.rightBarButtonItem = rightBarButtonItem()
+    }
+    
+    func followUser() {
+        switch type {
+        case .user(let user):
+            followUserManager.askToFollowUser(user, presentingViewController: self, completionBlock: { (success) in
+                if (success) {
+                    User.sharedInstance.startFollowing((user?.id)!)
+                    self.updateFollowButton()
+                }
+                else {
+                    // TODO:
+                    log.error("could not stop follow user")
+                }
+            })
+        default: break
+        }
+    }
+    
+    func stopFollowingUser() {
+        switch type {
+        case .user(let user):
+            followUserManager.askToStopFollowingUser(user, presentingViewController: self, completionBlock: { (success) in
+                if (success) {
+                    User.sharedInstance.stopFollowing((user?.id)!)
+                    print("Successfully unfollowed user")
+                    self.updateFollowButton()
+                }
+                else {
+                    // TODO:
+                    log.error("could not stop following user")
+                }
+            })
+        default: break
+        }
+    }
+
 }
 
 // MARK: - Long Tap Gesture

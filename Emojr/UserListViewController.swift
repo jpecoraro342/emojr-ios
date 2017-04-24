@@ -92,13 +92,7 @@ class UserListViewController: UIViewController {
     }
     
     func updateShownUsers() {
-        shownUsers = allUsers.filter {
-            if let username = $0.username, username != User.sharedInstance.username! {
-                return false
-            }
-            
-            return true
-        }
+        shownUsers = allUsers.filter { $0.username != User.sharedInstance.username! }
         
         tableView.reloadData()
         refreshControl.endRefreshing()
