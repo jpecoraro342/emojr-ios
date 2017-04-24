@@ -18,7 +18,7 @@ extension Timeline {
         case .home:
             return "Home"
         case .discover:
-            return "Discover"
+            return "Hot"
         case .user(let user):
             return user?.username ?? User.sharedInstance.username!
         }

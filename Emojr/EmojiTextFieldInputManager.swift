@@ -32,14 +32,16 @@ class EmojiTextFieldInputManager: NSObject {
     }
     
     func removeNonEmojis(_ text: String) -> String {
-        var stringWithOnlyEmoji = ""
+        return text.emojiString
         
-        text.characters.forEach { (c) in
-            if emojiValidator.isEmoji("\(c)") {
-                stringWithOnlyEmoji.append(c)
-            }
-        }
-        
-        return stringWithOnlyEmoji
+//        var stringWithOnlyEmoji = ""
+//        
+//        text.characters.forEach { (c) in
+//            if emojiValidator.isEmoji("\(c)") {
+//                stringWithOnlyEmoji.append(c)
+//            }
+//        }
+//        
+//        return stringWithOnlyEmoji
     }
 }

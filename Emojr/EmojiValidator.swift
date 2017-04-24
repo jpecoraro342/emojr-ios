@@ -42,7 +42,8 @@ class EmojiValidator : NSObject {
     }
     
     func isEmoji(_ emoji: String) -> Bool {
-        return emojiWithEmojiKeys?[emoji] != nil
+        return emoji.isSingleEmoji
+        // return emojiWithEmojiKeys?[emoji] != nil
     }
     
     func emojiForName(_ name: String) -> String? {

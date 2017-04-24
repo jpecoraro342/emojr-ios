@@ -346,6 +346,7 @@
 		1589F8851D1CEFBE00451912 /* EmojiKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				6E5DBF711CABC494004D3088 /* String+Emoji.swift */,
 				15FD8BC51DDC193B00E89FD0 /* Emoji Files */,
 				1589F8861D1CEFDE00451912 /* EmojiValidator.swift */,
 				1589F8A41D275F8900451912 /* EmojiSearchViewController.swift */,
@@ -372,7 +373,6 @@
 				15AA50181CA6392F0066CAB9 /* UIColor+Hex.swift */,
 				6EBDFF5E1CA7F35A0067B7CC /* Date+Comparisons.swift */,
 				6E142CD31E5AE20A00DCF755 /* Date+ISO8601.swift */,
-				6E5DBF711CABC494004D3088 /* String+Emoji.swift */,
 				6EC717961E6E9606008F5A29 /* UIView+ConstrainEdges.swift */,
 			);
 			name = "Class Extensions";
@@ -522,7 +522,7 @@
 				TargetAttributes = {
 					1546D3961CA61A5100D8ECC5 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = M2JNHSR23U;
+						DevelopmentTeam = CX87MDXJNH;
 						LastSwiftMigration = 0810;
 					};
 					1589F8941D27556600451912 = {
@@ -829,7 +829,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -870,7 +870,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -888,13 +888,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = M2JNHSR23U;
+				DEVELOPMENT_TEAM = CX87MDXJNH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Emojr/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.josephpecoraro.Emojr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -913,13 +914,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = M2JNHSR23U;
+				DEVELOPMENT_TEAM = CX87MDXJNH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Emojr/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.josephpecoraro.Emojr;
 				PRODUCT_NAME = "$(TARGET_NAME)";

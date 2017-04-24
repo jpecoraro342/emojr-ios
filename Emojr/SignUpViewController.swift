@@ -157,11 +157,19 @@ extension SignUpViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return emojiSearchView.textField(_: textField, shouldChangeCharactersIn: range, replacementString: string)
+        if textField == usernameField {
+            return emojiSearchView.textField(_: textField, shouldChangeCharactersIn: range, replacementString: string)
+        }
+        
+        return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return emojiSearchView.textFieldShouldReturn(_: textField)
+        if textField == usernameField {
+            return emojiSearchView.textFieldShouldReturn(_: textField)
+        }
+        
+        return true
     }
 }
 
