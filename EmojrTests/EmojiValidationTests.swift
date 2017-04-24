@@ -50,11 +50,10 @@ class EmojiValidationTests: XCTestCase {
     }
     
     func testCanFindMultipleEmojisFromStringPrefix() {
-        let arrows = ["⏬", "↙️", "▶️", "⬅️", "↖️", "📩", "🔀", "⤴️", "↕️", "↘️", "⬇️", "🔄", "⏫", "➡️", "🔃", "🏹", "↪️", "⤵️", "🔽", "↩️", "↗️", "🔼", "↔️", "⬆️", "◀️"]
+        let arrows = ["⏩", "↖", "➡️", "⤵", "⬅️", "⏪", "🔚", "↘", "⬇️", "◀", "↔️", "🏹", "🔜", "🔛", "🔽", "🔼", "⤴️", "➡", "💘", "⤵️", "↪", "⤴", "↘️", "🔃", "⏯", "↩", "⏭", "⬆️", "⬆", "🔀", "⬅", "▶", "🔙", "🔂", "⬇", "↕", "↙", "↩️", "🔄", "⏮", "📩", "↕️", "🔁", "↗️", "↪️", "⏫", "↖️", "↗", "⏬", "📲", "↙️", "🔝", "↔"]
         let emojiSearchArrows = emojiValidator!.emojisForNameStartingWith("arrow")
         
-        XCTAssertCon(arrows, emojiSearchArrows)
-        
+        XCTAssertEqual(arrows, emojiSearchArrows)
     }
     
     func testNoEmojisForString() {
