@@ -1,0 +1,36 @@
+{
+  "rules": {
+    "allPosts": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "followers": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "follows": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "reactions": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "timeline": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "userPosts": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "usernames": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "users": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    }
+  }
+}
