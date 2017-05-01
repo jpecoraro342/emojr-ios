@@ -162,13 +162,17 @@ extension EmojiSearchView: UICollectionViewDataSource {
             label.translatesAutoresizingMaskIntoConstraints = false
             label.text = emoji
             label.font = UIFont.systemFont(ofSize: 40)
+            label.adjustsFontSizeToFitWidth = true
             
-            cell.contentView.addSubview(label)
-            label.constrainToEdges(of: cell.contentView,
-                                   leftConstant: 2,
-                                   topConstant: 2,
-                                   rightConstant: 2,
-                                   bottomConstant: 2)
+            let contentView = UIView()
+            contentView.translatesAutoresizingMaskIntoConstraints = false
+            cell.contentView.addSubview(contentView)
+            contentView.constrainToEdges(of: cell.contentView)
+            
+            contentView.addSubview(label)
+            label.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
+            label.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
+            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         }
         
         return cell
