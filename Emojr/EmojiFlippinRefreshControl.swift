@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 open class EmojiFlippinRefreshControl: UIRefreshControl {
     
@@ -15,15 +16,31 @@ open class EmojiFlippinRefreshControl: UIRefreshControl {
      */
     open fileprivate(set) var isRefreshControlAnimating = false
     
-    var refreshCheckTimer: Timer?
+    fileprivate var emojiLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 40.0)
+        
+        label.text = Emojis().randomEmoji()
+        
+        return label
+    }()
     
-    fileprivate var refreshContainerView: PTRAnimationView!
-    fileprivate var overlayView: UIView!
-    fileprivate var shadowView: ShadowView = {
-        let view = ShadowView()
-        view.shadowPercentage = 0.2
+    fileprivate lazy var refreshContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.clipsToBounds = true
+
+        view.addSubview(self.emojiLabel)
+        self.emojiLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        self.emojiLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
         return view
     }()
+    
+    fileprivate var overlayView: UIView!
+    
+    fileprivate var refreshTimer: Timer?
     
     /**
      Use init(frame:) instead
@@ -49,7 +66,8 @@ open class EmojiFlippinRefreshControl: UIRefreshControl {
     }
     
     deinit {
-        refreshCheckTimer?.invalidate()
+        refreshTimer?.invalidate()
+        emojiLabel.stopRotating()
     }
     
     /**
@@ -65,9 +83,11 @@ open class EmojiFlippinRefreshControl: UIRefreshControl {
         let pullRatio = min(max(pullDistance, 0.0), 140.0) / 140.0;
         
         overlayView.alpha = 1 - pullRatio
-        shadowView.frame = self.bounds
         
         refreshBounds.size.height = pullDistance;
+        
+        let rotation = CGFloat.pi * 2.0 * pullRatio
+        emojiLabel.transform = CGAffineTransform(rotationAngle: rotation)
         
         _ = [self.refreshContainerView, self.overlayView].map({$0.frame = refreshBounds});
         
@@ -77,19 +97,21 @@ open class EmojiFlippinRefreshControl: UIRefreshControl {
         }
     }
     
+    override open func endRefreshing() {
+        super.endRefreshing()
+        isRefreshControlAnimating = false
+    }
+    
+    open func randomize() {
+        emojiLabel.text = Emojis().randomEmoji()
+    }
 }
 
 private extension EmojiFlippinRefreshControl {
     func setupRefreshControl() {
-        
-        refreshContainerView = PTRAnimationView(frame: self.bounds)
-        
         overlayView = UIView(frame: self.bounds)
         overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         
-        shadowView.frame = self.bounds
-        
-        refreshContainerView.clipsToBounds = true
         tintColor = UIColor.clear
         
         addSubview(self.refreshContainerView)
@@ -98,38 +120,28 @@ private extension EmojiFlippinRefreshControl {
     func animateRefreshView() {
         isRefreshControlAnimating = true
         
-        refreshCheckTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(checkRefreshing), userInfo: nil, repeats: false)
-        
-        refreshContainerView.start()
-    }
-    
-    @objc func checkRefreshing() {
-        if (!self.isRefreshing) {
-            refreshContainerView.stop()
-            isRefreshControlAnimating = false
-        }
+        emojiLabel.startRotating()
     }
 }
 
-private class ShadowView: UIView {
-    var gradient: CAGradientLayer!
-    var shadowPercentage = 0.0
-    
-    override func layoutSubviews() {
-        clipsToBounds = true
-        var frame = self.frame
-        let offset = frame.size.height * CGFloat(shadowPercentage)
-        frame.size.height = offset
-        if (gradient == nil) {
-            gradient = CAGradientLayer()
-            gradient.frame = frame
-            gradient.colors = [
-                UIColor.black.withAlphaComponent(0.6).cgColor,
-                UIColor.black.withAlphaComponent(0.15).cgColor,
-                UIColor.clear.cgColor]
-            self.layer.insertSublayer(self.gradient, at:0)
-        } else {
-            gradient.frame = frame
+extension UIView {
+    func startRotating(duration: Double = 1) {
+        let kAnimationKey = "rotation"
+        
+        if self.layer.animation(forKey: kAnimationKey) == nil {
+            let animate = CABasicAnimation(keyPath: "transform.rotation")
+            animate.duration = duration
+            animate.repeatCount = Float.infinity
+            animate.fromValue = 0.0
+            animate.toValue = Float.pi * 2.0
+            self.layer.add(animate, forKey: kAnimationKey)
+        }
+    }
+    func stopRotating() {
+        let kAnimationKey = "rotation"
+        
+        if self.layer.animation(forKey: kAnimationKey) != nil {
+            self.layer.removeAnimation(forKey: kAnimationKey)
         }
     }
 }

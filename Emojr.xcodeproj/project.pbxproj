@@ -84,7 +84,7 @@
 		6EE831431EAC0BB00026FEBB /* EmojiSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE831421EAC0BB00026FEBB /* EmojiSearchView.swift */; };
 		6EEB42E11E850CA5009C8852 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEB42E01E850CA5009C8852 /* GradientView.swift */; };
 		6EF1EF471CB4D4A400992A2F /* TimelineTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF1EF461CB4D4A400992A2F /* TimelineTableViewDataSource.swift */; };
-		6EFFE45B1E8F41F300DEC38B /* PTRAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFFE45A1E8F41F300DEC38B /* PTRAnimationView.swift */; };
+		6EFFE45B1E8F41F300DEC38B /* EmojiSlotMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFFE45A1E8F41F300DEC38B /* EmojiSlotMachine.swift */; };
 		8B32C938F62C9A11B9585182 /* Pods_Emojr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C23387040CD72F4BABA8108 /* Pods_Emojr.framework */; };
 /* End PBXBuildFile section */
 
@@ -192,7 +192,7 @@
 		6EE831421EAC0BB00026FEBB /* EmojiSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiSearchView.swift; sourceTree = "<group>"; };
 		6EEB42E01E850CA5009C8852 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		6EF1EF461CB4D4A400992A2F /* TimelineTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewDataSource.swift; sourceTree = "<group>"; };
-		6EFFE45A1E8F41F300DEC38B /* PTRAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTRAnimationView.swift; sourceTree = "<group>"; };
+		6EFFE45A1E8F41F300DEC38B /* EmojiSlotMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiSlotMachine.swift; sourceTree = "<group>"; };
 		8E85AC212451C31A7B846FDE /* Pods-Emojr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emojr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Emojr/Pods-Emojr.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -269,7 +269,7 @@
 				15DDD0F61D09C4AD00E9649C /* TimelineTableViewCell.xib */,
 				6EE3DF041DD87CD200E32BA2 /* NoDataView.xib */,
 				6EE3DF071DD87DFC00E32BA2 /* NoDataView.swift */,
-				6EFFE45A1E8F41F300DEC38B /* PTRAnimationView.swift */,
+				6EFFE45A1E8F41F300DEC38B /* EmojiSlotMachine.swift */,
 				6EE8313C1EABF7C90026FEBB /* EmojiFlippinRefreshControl.swift */,
 			);
 			name = Views;
@@ -730,7 +730,7 @@
 				6EC717951E63C3B7008F5A29 /* FirebaseAccessor.swift in Sources */,
 				1589F8A51D275F8900451912 /* EmojiSearchViewController.swift in Sources */,
 				15DDD0F31D08BF2400E9649C /* LoginManager.swift in Sources */,
-				6EFFE45B1E8F41F300DEC38B /* PTRAnimationView.swift in Sources */,
+				6EFFE45B1E8F41F300DEC38B /* EmojiSlotMachine.swift in Sources */,
 				15DDD1131D0A352200E9649C /* EmojiCell.swift in Sources */,
 				6EEB42E11E850CA5009C8852 /* GradientView.swift in Sources */,
 				6ECCD79C1CA72C7600F53AD5 /* EmoteView.swift in Sources */,

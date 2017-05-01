@@ -9,6 +9,14 @@
 import UIKit
 
 class Emojis: NSObject {
+    
+    func randomEmoji() -> String {
+        let randomAnimalIndex = Int(arc4random_uniform(UInt32((allEmojis["Animals"]!.count))))
+        let randomAnimal = allEmojis["Animals"]![randomAnimalIndex]
+        
+        return randomAnimal
+    }
+    
     let allEmojis = [
         "Smileys" :
             [

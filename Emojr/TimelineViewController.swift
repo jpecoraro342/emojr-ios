@@ -17,17 +17,17 @@ class TimelineViewController: UIViewController {
     var noDataView: NoDataView?
     var fadeView: UIView?
     
-    var refreshControl: BreakOutToRefreshView?
-    
     let followUserManager = FollowUserManager()
     
-    func breakoutRefreshControl() -> BreakOutToRefreshView {
-        let view = BreakOutToRefreshView(scrollView: self.timelineTableView)
+    lazy var refreshControl: EmojiFlippinRefreshControl = {
+        var frame = self.timelineTableView.frame
+        frame.size.height = 100
+        let view = EmojiFlippinRefreshControl(frame: frame)
         
-        view.refreshDelegate = self
+        view.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         
         return view
-    }
+    }()
     
     var tableDataSource: TimelineTableViewDataSource
     var type: Timeline
@@ -73,8 +73,7 @@ class TimelineViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        refreshControl = breakoutRefreshControl()
-        timelineTableView.addSubview(refreshControl!)
+        timelineTableView.addSubview(refreshControl)
         
         if noDataView?.superview != nil {
             refreshData()
@@ -84,8 +83,7 @@ class TimelineViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        refreshControl?.removeFromSuperview()
-        refreshControl = nil
+        refreshControl.removeFromSuperview()
     }
     
     func rightBarButtonItem() -> UIBarButtonItem? {
@@ -414,7 +412,7 @@ extension TimelineViewController : TimelineTableViewDelegate {
         if dataChanged {
             timelineTableView.reloadData()
             loadingCellRefreshControl?.stopAnimating()
-            refreshControl?.endRefreshing()
+            refreshControl.endRefreshing()
             
             if tableDataSource.posts.count == 0 {
                 displayNoDataView()
@@ -427,20 +425,10 @@ extension TimelineViewController : TimelineTableViewDelegate {
 
 extension TimelineViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        refreshControl?.scrollViewDidScroll(scrollView)
-    }
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        refreshControl?.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+        refreshControl.scrollViewDidScroll(scrollView)
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        refreshControl?.scrollViewWillBeginDragging(scrollView)
-    }
-}
-
-extension TimelineViewController: BreakOutToRefreshDelegate {
-    func refreshViewDidRefresh(_ refreshView: BreakOutToRefreshView) {
-        refreshData()
+        refreshControl.randomize()
     }
 }
