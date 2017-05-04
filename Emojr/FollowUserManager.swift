@@ -22,7 +22,13 @@ class FollowUserManager: NSObject {
         self.networkFacade = networkFacade
     }
     
-    func startFollowingUser(_ userId: String, completionBlock: ((_ success: Bool) -> Void)?) {
+    func startFollowing(user: UserData?, completionBlock: ((_ success: Bool) -> Void)?=nil) {
+        guard let userId = user?.id
+            else { return }
+        startFollowingUser(userId, completionBlock: completionBlock)
+    }
+    
+    func startFollowingUser(_ userId: String, completionBlock: ((_ success: Bool) -> Void)?=nil) {
         networkFacade.startFollowingUser(User.sharedInstance.id!, userIdToFollow: userId) { (success) -> Void in
             if success {
                 User.sharedInstance.startFollowing(userId)

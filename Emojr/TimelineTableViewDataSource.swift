@@ -148,7 +148,9 @@ extension TimelineTableViewDataSource : UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let user = posts[indexPath.row].user
         
-        return FollowUserManager().editActionFor(user: user)
+        return FollowUserManager().editActionFor(user: user, presentingViewController: nil, completionBlock: { _ in
+            tableView.setEditing(false, animated: true)
+        })
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

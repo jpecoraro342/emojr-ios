@@ -109,7 +109,7 @@ class UserListViewController: UIViewController {
     }
     
     func askToFollowUser(_ user: UserData) {
-        followManager.askToFollowUser(user, presentingViewController: self, completionBlock: followUserResultBlock)
+        followManager.startFollowing(user: user, completionBlock: followUserResultBlock)
     }
     
     func askToStopFollowingUser(_ user: UserData) {
@@ -117,10 +117,7 @@ class UserListViewController: UIViewController {
     }
     
     func followUserResultBlock(success: Bool) {
-        if (success) {
-            refreshData()
-            tableView.reloadData()
-        }
+        tableView.reloadData()
     }
     
     func displayNoDataView() {

@@ -315,16 +315,7 @@ extension TimelineViewController {
     func followUser() {
         switch type {
         case .user(let user):
-            followUserManager.askToFollowUser(user, presentingViewController: self, completionBlock: { (success) in
-                if (success) {
-                    User.sharedInstance.startFollowing((user?.id)!)
-                    self.updateFollowButton()
-                }
-                else {
-                    // TODO:
-                    log.error("could not stop follow user")
-                }
-            })
+            followUserManager.startFollowing(user: user, completionBlock: { _ in self.updateFollowButton() })
         default: break
         }
     }
@@ -332,17 +323,7 @@ extension TimelineViewController {
     func stopFollowingUser() {
         switch type {
         case .user(let user):
-            followUserManager.askToStopFollowingUser(user, presentingViewController: self, completionBlock: { (success) in
-                if (success) {
-                    User.sharedInstance.stopFollowing((user?.id)!)
-                    log.debug("Successfully unfollowed user")
-                    self.updateFollowButton()
-                }
-                else {
-                    // TODO:
-                    log.error("could not stop following user")
-                }
-            })
+            followUserManager.askToStopFollowingUser(user, presentingViewController: self, completionBlock: { _ in self.updateFollowButton() })
         default: break
         }
     }
