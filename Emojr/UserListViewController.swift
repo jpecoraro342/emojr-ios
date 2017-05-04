@@ -109,32 +109,17 @@ class UserListViewController: UIViewController {
     }
     
     func askToFollowUser(_ user: UserData) {
-        if !User.sharedInstance.isFollowing(user: user) {
-            followManager.askToFollowUser(user, presentingViewController: self, completionBlock: { (success) in
-                if (success) {
-                    User.sharedInstance.startFollowing(user.id!)
-                    self.refreshData()
-                    self.tableView.reloadData()
-                }
-                else {
-                    log.debug("unable to follow user")
-                }
-            })
-        }
+        followManager.askToFollowUser(user, presentingViewController: self, completionBlock: followUserResultBlock)
     }
     
     func askToStopFollowingUser(_ user: UserData) {
-        if User.sharedInstance.isFollowing(user: user) {
-            followManager.askToStopFollowingUser(user, presentingViewController: self, completionBlock: { (success) in
-                if (success) {
-                    User.sharedInstance.stopFollowing(user.id!)
-                    self.refreshData()
-                    self.tableView.reloadData()
-                }
-                else {
-                    log.debug("unable to stop following user")
-                }
-            })
+        followManager.askToStopFollowingUser(user, presentingViewController: self, completionBlock: followUserResultBlock)
+    }
+    
+    func followUserResultBlock(success: Bool) {
+        if (success) {
+            refreshData()
+            tableView.reloadData()
         }
     }
     
@@ -209,6 +194,18 @@ extension UserListViewController : UITableViewDelegate {
             return false
         }
         return true
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let user = shownUsers[indexPath.row]
+        
+        return followManager.editActionFor(user: user, presentingViewController: self, completionBlock: followUserResultBlock)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let user = shownUsers[indexPath.row]
+        
+        return User.sharedInstance.id != user.id
     }
 }
 

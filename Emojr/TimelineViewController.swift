@@ -335,7 +335,7 @@ extension TimelineViewController {
             followUserManager.askToStopFollowingUser(user, presentingViewController: self, completionBlock: { (success) in
                 if (success) {
                     User.sharedInstance.stopFollowing((user?.id)!)
-                    print("Successfully unfollowed user")
+                    log.debug("Successfully unfollowed user")
                     self.updateFollowButton()
                 }
                 else {

@@ -144,6 +144,22 @@ extension TimelineTableViewDataSource : UITableViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         delegate?.scrollViewWillBeginDragging?(scrollView)
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let user = posts[indexPath.row].user
+        
+        return FollowUserManager().editActionFor(user: user)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section != 0 {
+            return false
+        }
+        
+        let user = posts[indexPath.row].user
+        
+        return User.sharedInstance.id != user?.id
+    }
 }
 
 extension TimelineTableViewDataSource : UITableViewDataSource {
