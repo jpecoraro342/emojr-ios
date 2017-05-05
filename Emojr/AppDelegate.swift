@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         console.minLevel = .debug
         log.addDestination(console)
         
+        KeyboardCacher.cacheKeyboard(onNextRunloop: false, customInputView: EmojiSearchView())
+        
         Fabric.with([Crashlytics.self])
         
         FIRApp.configure()
