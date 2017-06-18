@@ -901,7 +901,7 @@
 				INFOPLIST_FILE = Emojr/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.josephpecoraro.Emojr;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamesrisberg.Emojr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Emojr-Bridging-Header.h";
@@ -927,7 +927,7 @@
 				INFOPLIST_FILE = Emojr/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.josephpecoraro.Emojr;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamesrisberg.Emojr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Emojr-Bridging-Header.h";
