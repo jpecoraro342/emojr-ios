@@ -22,7 +22,7 @@ class EmojiTextFieldInputManager: NSObject {
     func emojiSearchString(_ text: String) -> String? {
         var stringWithNoEmoji = ""
         
-        text.characters.forEach { (c) in
+        text.forEach { (c) in
             if !emojiValidator.isEmoji("\(c)") {
                 stringWithNoEmoji.append(c)
             }

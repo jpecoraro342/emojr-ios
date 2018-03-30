@@ -18,7 +18,7 @@ extension UILabel {
             
             string.addAttribute(NSAttributedStringKey.paragraphStyle,
                                 value: style,
-                                range: NSRange(location: 0, length: text.characters.count))
+                                range: NSRange(location: 0, length: text.count))
             
             self.attributedText = string
         }

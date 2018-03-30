@@ -94,7 +94,7 @@ struct Reaction {
     }
 }
 
-func reactions(from snapshots: [FIRDataSnapshot]) -> [Reaction] {
+func reactions(from snapshots: [DataSnapshot]) -> [Reaction] {
     var reactions: [Reaction] = []
     
     for snapshot in snapshots {

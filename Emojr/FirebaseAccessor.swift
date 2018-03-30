@@ -19,8 +19,8 @@ class FirebaseAccessor: NetworkingAccessor {
     
     static let shared = FirebaseAccessor()
     
-    let database = FIRDatabase.database().reference()
-    let auth = FIRAuth.auth()
+    let database = Database.database().reference()
+    let auth = Auth.auth()
     
     // GET
     func getUsers(_ searchString: String?, completionBlock: UserArrayClosure?) {
@@ -99,12 +99,12 @@ class FirebaseAccessor: NetworkingAccessor {
     func signUpUser(_ username: String, email: String, password: String, completionBlock: UserDataClosure?) {
         self.database.child("usernames/\(username)").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.value is NSNull {
-                self.auth?.createUser(withEmail: email, password: password, completion: { (user, error) in
+                self.auth.createUser(withEmail: email, password: password, completion: { (user, error) in
                     if let error = error {
                         log.debug("Error creating user: \(error.localizedDescription)")
                         completionBlock?("Couldn't sign up! \(error.localizedDescription )", nil)
                     } else if let user = user {
-                        let request = user.profileChangeRequest()
+                        let request = user.createProfileChangeRequest()
                         request.displayName = username
                         request.commitChanges(completion: { (error) in
                             if let error = error {
@@ -130,7 +130,7 @@ class FirebaseAccessor: NetworkingAccessor {
     }
     
     func signInUser(_ email: String, password: String, completionBlock: UserDataClosure?) {
-        auth?.signIn(withEmail: email, password: password, completion: { (user, error) in
+        auth.signIn(withEmail: email, password: password, completion: { (user, error) in
             if let error = error {
                 log.debug("Error signing in user: \(error.localizedDescription)")
                 
@@ -216,10 +216,10 @@ class FirebaseAccessor: NetworkingAccessor {
 
     // MARK: - Helpers
     
-    private func getUsers(from snapshot: FIRDataSnapshot, withCallback callback: UserArrayClosure?) {
+    private func getUsers(from snapshot: DataSnapshot, withCallback callback: UserArrayClosure?) {
         var returnUsers: [UserData] = []
         
-        guard let children = snapshot.children.allObjects as? [FIRDataSnapshot] else {
+        guard let children = snapshot.children.allObjects as? [DataSnapshot] else {
             callback?(NSError(domain: "Firebase", code: 404, userInfo: nil), nil)
             return
         }
@@ -247,7 +247,7 @@ class FirebaseAccessor: NetworkingAccessor {
         })
     }
     
-    private func buildPost(from snapshot: FIRDataSnapshot, withCallback callback: PostClosure?) {
+    private func buildPost(from snapshot: DataSnapshot, withCallback callback: PostClosure?) {
         if let postData = snapshot.value as? [String : AnyObject],
             let userID = postData["userID"] as? String,
             let username = postData["username"] as? String,
@@ -263,7 +263,7 @@ class FirebaseAccessor: NetworkingAccessor {
             self.database.child("reactions/\(snapshot.key)")
                 .queryOrderedByKey()
                 .observeSingleEvent(of: .value, with: { (snapshot) in
-                    guard let children = snapshot.children.allObjects as? [FIRDataSnapshot] else {
+                    guard let children = snapshot.children.allObjects as? [DataSnapshot] else {
                         callback?(nil, nil)
                         return
                     }
@@ -275,11 +275,11 @@ class FirebaseAccessor: NetworkingAccessor {
         }
     }
     
-    private func getPosts(from snapshot: FIRDataSnapshot, withCallback callback: PostArrayClosure?) {
+    private func getPosts(from snapshot: DataSnapshot, withCallback callback: PostArrayClosure?) {
         
         var returnPosts: [Post] = []
         
-        guard let children = snapshot.children.allObjects as? [FIRDataSnapshot] else {
+        guard let children = snapshot.children.allObjects as? [DataSnapshot] else {
             callback?(NSError(domain: "Firebase", code: 404, userInfo: nil), nil)
             return
         }

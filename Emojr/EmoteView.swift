@@ -104,7 +104,7 @@ extension EmoteView: UITextFieldDelegate {
 extension EmoteView: EmojiKeyboardDelegate {
     func emojiKeyBoarDidUseEmoji(_ emojiKeyBoard: EmojiKeyboard, emoji: String) {
         if reacting {
-            let newLength = (emojiField.text?.characters.count)! + 1
+            let newLength = (emojiField.text?.count)! + 1
             if newLength <= 1 {
                 emojiField.text = (emojiField.text ?? "") + emoji
             }
@@ -116,7 +116,7 @@ extension EmoteView: EmojiKeyboardDelegate {
     func emojiKeyBoardDidPressBackSpace(_ emojiKeyBoard: EmojiKeyboard) {
         if var text = emojiField.text {
             if text != "" {
-                text.remove(at: text.characters.index(before: text.endIndex))
+                text.remove(at: text.index(before: text.endIndex))
                 emojiField.text = text
             }
         }

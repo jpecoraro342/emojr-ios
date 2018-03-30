@@ -9,14 +9,13 @@
 
 import Foundation
 
-
 public class FileDestination: BaseDestination {
 
     public var logFileURL: URL?
 
     override public var defaultHashValue: Int {return 2}
     let fileManager = FileManager.default
-    var fileHandle: FileHandle? = nil
+    var fileHandle: FileHandle?
 
     public override init() {
         // platform-dependent logfile directory default
@@ -67,11 +66,11 @@ public class FileDestination: BaseDestination {
 
     // append to file. uses full base class functionality
     override public func send(_ level: SwiftyBeaver.Level, msg: String, thread: String,
-        file: String, function: String, line: Int) -> String? {
-        let formattedString = super.send(level, msg: msg, thread: thread, file: file, function: function, line: line)
+        file: String, function: String, line: Int, context: Any? = nil) -> String? {
+        let formattedString = super.send(level, msg: msg, thread: thread, file: file, function: function, line: line, context: context)
 
         if let str = formattedString {
-            let _ = saveToFile(str: str)
+            _ = saveToFile(str: str)
         }
         return formattedString
     }
@@ -92,6 +91,14 @@ public class FileDestination: BaseDestination {
                 // create file if not existing
                 let line = str + "\n"
                 try line.write(to: url, atomically: true, encoding: .utf8)
+                
+                #if os(iOS) || os(watchOS)
+                if #available(iOS 10.0, watchOS 3.0, *) {
+                    var attributes = try fileManager.attributesOfItem(atPath: url.path)
+                    attributes[FileAttributeKey.protectionKey] = FileProtectionType.none
+                    try fileManager.setAttributes(attributes, ofItemAtPath: url.path)
+                }
+                #endif
             } else {
                 // append to end of file
                 if fileHandle == nil {
@@ -99,7 +106,7 @@ public class FileDestination: BaseDestination {
                     fileHandle = try FileHandle(forWritingTo: url as URL)
                 }
                 if let fileHandle = fileHandle {
-                    let _ = fileHandle.seekToEndOfFile()
+                    _ = fileHandle.seekToEndOfFile()
                     let line = str + "\n"
                     if let data = line.data(using: String.Encoding.utf8) {
                         fileHandle.write(data)
@@ -109,6 +116,20 @@ public class FileDestination: BaseDestination {
             return true
         } catch {
             print("SwiftyBeaver File Destination could not write to file \(url).")
+            return false
+        }
+    }
+
+    /// deletes log file.
+    /// returns true if file was removed or does not exist, false otherwise
+    public func deleteLogFile() -> Bool {
+        guard let url = logFileURL, fileManager.fileExists(atPath: url.path) == true else { return true }
+        do {
+            try fileManager.removeItem(at: url)
+            fileHandle = nil
+            return true
+        } catch {
+            print("SwiftyBeaver File Destination could not remove file \(url).")
             return false
         }
     }

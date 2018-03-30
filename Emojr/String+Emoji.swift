@@ -41,7 +41,6 @@ extension String {
     }
     
     var isSingleEmoji: Bool {
-        
         return glyphCount == 1 && containsEmoji
     }
     
@@ -58,7 +57,6 @@ extension String {
     // The next tricks are mostly to demonstrate how tricky it can be to determine emoji's
     // If anyone has suggestions how to improve this, please let me know
     var emojiString: String {
-        
         return emojiScalars.map { String($0) }.reduce("", +)
     }
     

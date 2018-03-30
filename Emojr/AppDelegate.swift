@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics.self])
         
-        FIRApp.configure()
+        FirebaseApp.configure()
         
         setAppearances()
         
