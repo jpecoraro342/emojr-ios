@@ -64,7 +64,7 @@ class EmoteView: UIView {
     }
     
     @IBAction func emoteButtonTouched() {
-        if let post = emojiField.text?.emojiString {
+        if let post = emojiField.text?.emojiString, !post.isEmpty {
             emojiField.text = ""
             controller!.postFormReturnedPost(post)
         }
@@ -97,6 +97,12 @@ extension EmoteView: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if reacting && !string.isEmpty {
+            if let text = textField.text, text.glyphCount > 0 && text.isSingleEmoji {
+                return false
+            }
+        }
+        
         return emojiSearchView.textField(textField, shouldChangeCharactersIn: range, replacementString: string)
     }
 }
