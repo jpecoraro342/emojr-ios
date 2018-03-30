@@ -66,7 +66,7 @@ class EmojiSlotMachine: UIView {
         label.text = emojis[randomNumba]
     }
     
-    func randomizeLabels() {
+    @objc func randomizeLabels() {
         for label in emojiStackView.arrangedSubviews {
             if let label = label as? UILabel {
                 randomize(label: label)

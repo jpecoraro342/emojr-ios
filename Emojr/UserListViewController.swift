@@ -51,7 +51,7 @@ class UserListViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
     }
     
     func rightBarButtonItem() -> UIBarButtonItem? {
@@ -75,7 +75,7 @@ class UserListViewController: UIViewController {
         tableView.register(UINib(nibName: "UserTableViewCell", bundle:nil), forCellReuseIdentifier: UserCellIdentifier)
     }
     
-    func refreshData() {
+    @objc func refreshData() {
         refreshControl.beginRefreshing()
         
         networkFacade.getUsers(completionBlock: userResponseHandler)
@@ -104,7 +104,7 @@ class UserListViewController: UIViewController {
         }
     }
     
-    func navigateToAddBySearch() {
+    @objc func navigateToAddBySearch() {
         self.navigationController?.pushViewController(AddUsersViewController(), animated: true)
     }
     

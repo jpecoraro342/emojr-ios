@@ -13,7 +13,7 @@ class DiscoverViewController: TimelineViewController {
     private lazy var searchButton: UIBarButtonItem = {
         let buttonImage = #imageLiteral(resourceName: "searchEmoji").withRenderingMode(.alwaysOriginal)
         let button = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(searchButtonTapped))
-        button.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 32)], for: UIControlState())
+        button.setTitleTextAttributes([NSAttributedStringKey.font : UIFont.systemFont(ofSize: 32)], for: UIControlState())
         
         return button
     }()
@@ -34,7 +34,7 @@ class DiscoverViewController: TimelineViewController {
     
     // MARK: - Action
     
-    func searchButtonTapped(sender: UIBarButtonItem) {
+    @objc func searchButtonTapped(sender: UIBarButtonItem) {
         if User.sharedInstance.isLoggedIn {
             let addUserVC = AddUsersViewController()
             self.navigationController?.pushViewController(addUserVC, animated: true)

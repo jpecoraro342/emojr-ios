@@ -99,7 +99,7 @@ class TimelineViewController: UIViewController {
         } else {
             let buttonImage = #imageLiteral(resourceName: "writeEmoji").withRenderingMode(.alwaysOriginal)
             let postButton = UIBarButtonItem(image: buttonImage, style: .plain, target: self, action: #selector(postButtonTapped))
-            postButton.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 32)], for: UIControlState())
+            postButton.setTitleTextAttributes([NSAttributedStringKey.font : UIFont.systemFont(ofSize: 32)], for: UIControlState())
             
             return postButton
         }
@@ -166,7 +166,7 @@ class TimelineViewController: UIViewController {
         noDataView?.removeFromSuperview()
     }
 
-    func refreshData() {
+    @objc func refreshData() {
         tableDataSource.getFirstPage()
     }
     
@@ -215,7 +215,7 @@ class TimelineViewController: UIViewController {
         })
     }
     
-    func dismissPostForm() {
+    @objc func dismissPostForm() {
         UIView.animate(withDuration: 0.2,
                        delay: 0,
                        usingSpringWithDamping: 1,
@@ -312,7 +312,7 @@ extension TimelineViewController {
         navigationItem.rightBarButtonItem = rightBarButtonItem()
     }
     
-    func followUser() {
+    @objc func followUser() {
         switch type {
         case .user(let user):
             followUserManager.startFollowing(user: user, completionBlock: { _ in self.updateFollowButton() })
@@ -320,7 +320,7 @@ extension TimelineViewController {
         }
     }
     
-    func stopFollowingUser() {
+    @objc func stopFollowingUser() {
         switch type {
         case .user(let user):
             followUserManager.askToStopFollowingUser(user, presentingViewController: self, completionBlock: { _ in self.updateFollowButton() })
@@ -333,7 +333,7 @@ extension TimelineViewController {
 // MARK: - Long Tap Gesture
 
 extension TimelineViewController {
-    func longTapOnCell(_ sender: UILongPressGestureRecognizer) {
+    @objc func longTapOnCell(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             let location = sender.location(in: self.timelineTableView)
             let indexPath = self.timelineTableView.indexPathForRow(at: location)
