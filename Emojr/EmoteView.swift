@@ -64,7 +64,7 @@ class EmoteView: UIView {
     }
     
     @IBAction func emoteButtonTouched() {
-        if let post = emojiField.text {
+        if let post = emojiField.text?.emojiString {
             emojiField.text = ""
             controller!.postFormReturnedPost(post)
         }
@@ -98,27 +98,5 @@ extension EmoteView: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return emojiSearchView.textField(textField, shouldChangeCharactersIn: range, replacementString: string)
-    }
-}
-
-extension EmoteView: EmojiKeyboardDelegate {
-    func emojiKeyBoarDidUseEmoji(_ emojiKeyBoard: EmojiKeyboard, emoji: String) {
-        if reacting {
-            let newLength = (emojiField.text?.count)! + 1
-            if newLength <= 1 {
-                emojiField.text = (emojiField.text ?? "") + emoji
-            }
-        } else {
-            emojiField.text = (emojiField.text ?? "") + emoji
-        }
-    }
-    
-    func emojiKeyBoardDidPressBackSpace(_ emojiKeyBoard: EmojiKeyboard) {
-        if var text = emojiField.text {
-            if text != "" {
-                text.remove(at: text.index(before: text.endIndex))
-                emojiField.text = text
-            }
-        }
     }
 }

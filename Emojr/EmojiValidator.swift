@@ -64,12 +64,11 @@ class EmojiValidator : NSObject {
             else { return emojis }
         
         for (emojiName, emoji) in emojiDict {
-            let words = emojiName.components(separatedBy: ":")
+            let words = emojiName.components(separatedBy: " ")
             
-            let nameWords = words[0].components(separatedBy: " ")
             var nameMatched = false
             
-            for word in nameWords {
+            for word in words {
                 if word.hasPrefix(name) {
                     nameMatched = true
                     emojis.append(emoji)

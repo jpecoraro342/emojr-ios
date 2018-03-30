@@ -92,10 +92,7 @@ class EmojiSearchView: UIView {
                 noDataView.removeFromSuperview()
             }
             
-            let range = Range(uncheckedBounds: (0, emojiCollectionView.numberOfSections))
-            let indexSet = IndexSet(integersIn: range)
-            emojiCollectionView.reloadSections(indexSet)
-            
+            emojiCollectionView.reloadData()
         } else {
             addNoDataView(with: "Start typing to search for emoji 🔍")
         }
@@ -117,7 +114,7 @@ extension EmojiSearchView : UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.text = emojiTextManager.removeNonEmojis(textField.text ?? "")
+        textField.text = textField.text?.emojiString
         textField.resignFirstResponder()
         return true
     }
@@ -151,6 +148,7 @@ extension EmojiSearchView: UICollectionViewDataSource {
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCollectionCell",
                                                       for: indexPath)
+        
         let emoji = emojiList[indexPath.item]
         
         if cell.contentView.subviews.count > 0 {
@@ -163,16 +161,9 @@ extension EmojiSearchView: UICollectionViewDataSource {
             label.text = emoji
             label.font = UIFont.systemFont(ofSize: 40)
             label.adjustsFontSizeToFitWidth = true
-            
-            let contentView = UIView()
-            contentView.translatesAutoresizingMaskIntoConstraints = false
-            cell.contentView.addSubview(contentView)
-            contentView.constrainToEdges(of: cell.contentView)
-            
-            contentView.addSubview(label)
-            label.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
-            label.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
-            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+
+            cell.contentView.addSubview(label)
+            label.constrainToEdges(of: cell.contentView)
         }
         
         return cell

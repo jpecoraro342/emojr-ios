@@ -13,7 +13,7 @@ class EmojiTextFieldInputManager: NSObject {
     
     func updatedStringForEmojiField(_ oldText : String, newText : String, changedText : String) -> String {
         if emojiValidator.isEmoji(changedText) {
-            return removeNonEmojis(newText)
+            return newText.emojiString
         }
         
         return newText
@@ -29,19 +29,5 @@ class EmojiTextFieldInputManager: NSObject {
         }
         
         return stringWithNoEmoji == "" ? nil : stringWithNoEmoji
-    }
-    
-    func removeNonEmojis(_ text: String) -> String {
-        return text.emojiString
-        
-//        var stringWithOnlyEmoji = ""
-//        
-//        text.characters.forEach { (c) in
-//            if emojiValidator.isEmoji("\(c)") {
-//                stringWithOnlyEmoji.append(c)
-//            }
-//        }
-//        
-//        return stringWithOnlyEmoji
     }
 }
