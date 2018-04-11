@@ -147,9 +147,9 @@ class TimelineViewController: UIViewController {
         fadeView?.backgroundColor = UIColor.black
         fadeView?.alpha = 0.0
         
-        noDataView = NoDataView.instanceFromNib()
-        noDataView?.translatesAutoresizingMaskIntoConstraints = false
-        noDataView?.messageLabel.text = noDataMessage
+        noDataView = NoDataView.instanceFromNib(message: noDataMessage)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(refreshData))
+        noDataView?.addGestureRecognizer(tap)
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(TimelineViewController.dismissPostForm))
         emoteView?.addGestureRecognizer(recognizer)

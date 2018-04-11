@@ -11,7 +11,11 @@ import Foundation
 class NoDataView: UIView {
     @IBOutlet weak var messageLabel: UILabel!
     
-    class func instanceFromNib() -> NoDataView {
-        return UINib(nibName: "NoDataView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! NoDataView
+    class func instanceFromNib(message: String) -> NoDataView {
+        let view = UINib(nibName: "NoDataView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! NoDataView
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.messageLabel.text = message
+        
+        return view
     }
 }

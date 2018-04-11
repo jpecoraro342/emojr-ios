@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,7 +23,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uh Oh!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qOx-6h-Z2a">
-                    <rect key="frame" x="151.5" y="220" width="72.5" height="26.5"/>
+                    <rect key="frame" x="152" y="220" width="71.5" height="26.5"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -34,16 +34,34 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Refresh" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iS7-gt-qjH">
+                    <rect key="frame" x="0.0" y="596" width="375" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RefreshEmoji" translatesAutoresizingMaskIntoConstraints="NO" id="4ao-8d-fwG">
+                    <rect key="frame" x="167.5" y="536" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="C8A-yY-PNv"/>
+                        <constraint firstAttribute="height" constant="40" id="Dnv-g2-xD5"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="iS7-gt-qjH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4RG-iQ-fkd"/>
                 <constraint firstItem="YID-Eg-Ffd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="5vP-P2-ZMs"/>
+                <constraint firstAttribute="trailing" secondItem="iS7-gt-qjH" secondAttribute="trailing" id="69w-qf-9jH"/>
                 <constraint firstItem="qEn-Nc-sTs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="GiS-9V-2si"/>
+                <constraint firstItem="4ao-8d-fwG" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Onr-0D-NFv"/>
                 <constraint firstItem="qEn-Nc-sTs" firstAttribute="top" secondItem="qOx-6h-Z2a" secondAttribute="bottom" constant="20" id="UEe-hU-bp4"/>
                 <constraint firstItem="YID-Eg-Ffd" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Xc2-KX-SsB"/>
+                <constraint firstAttribute="bottom" secondItem="iS7-gt-qjH" secondAttribute="bottom" constant="50" id="htT-LD-uqI"/>
                 <constraint firstItem="qOx-6h-Z2a" firstAttribute="top" secondItem="YID-Eg-Ffd" secondAttribute="bottom" constant="20" id="qts-Zg-b36"/>
                 <constraint firstAttribute="trailing" secondItem="qEn-Nc-sTs" secondAttribute="trailing" constant="20" id="ti3-b4-BMw"/>
                 <constraint firstItem="qOx-6h-Z2a" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wT8-zN-SPs"/>
+                <constraint firstItem="iS7-gt-qjH" firstAttribute="top" secondItem="4ao-8d-fwG" secondAttribute="bottom" constant="20" id="ySR-IA-Dgc"/>
             </constraints>
             <connections>
                 <outlet property="messageLabel" destination="qEn-Nc-sTs" id="2nw-OV-Hho"/>
@@ -52,6 +70,7 @@
         </view>
     </objects>
     <resources>
+        <image name="RefreshEmoji" width="64" height="64"/>
         <image name="uhohEmoji" width="200" height="201"/>
     </resources>
 </document>

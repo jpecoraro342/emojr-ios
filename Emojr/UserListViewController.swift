@@ -23,9 +23,10 @@ class UserListViewController: UIViewController {
     }()
     
     lazy var noDataView: NoDataView = {
-        let view = NoDataView.instanceFromNib()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.messageLabel.text = self.noDataMessage
+        let view = NoDataView.instanceFromNib(message: noDataMessage)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(refreshData))
+        view.addGestureRecognizer(tap)
         
         return view
     }()
@@ -141,49 +142,10 @@ extension UserListViewController : UITableViewDelegate {
         let user = shownUsers[indexPath.row];
         
         if user.username! != User.sharedInstance.username! {
-            showActionSheet(for: user)
-        }
-    }
-    
-    func showActionSheet(for user: UserData) {
-        let actionSheet = UIAlertController(title: "What would you like to do?",
-                                            message: nil,
-                                            preferredStyle: .actionSheet)
-        
-        var followActionTitle: String?
-        var followActionBlock: ((UIAlertAction) -> Void)?
-        
-        if User.sharedInstance.isFollowing(user: user) {
-            followActionTitle = "Unfollow \(user.username!)?"
-            
-            followActionBlock = { action in
-                self.askToStopFollowingUser(user)
-            }
-        } else {
-            followActionTitle = "Follow \(user.username!)?"
-            
-            followActionBlock = { action in
-                self.askToFollowUser(user)
-            }
-        }
-        
-        let followAction = UIAlertAction(title: followActionTitle,
-                                         style: .default,
-                                         handler: followActionBlock)
-        actionSheet.addAction(followAction)
-        
-        let viewUserPageAction = UIAlertAction(title: "View \(user.username!)'s Feed", style: .default) { (action: UIAlertAction) in
             let userTimelineVC = TimelineViewController(with: .user(user: user))
             userTimelineVC.user = user
             self.navigationController?.pushViewController(userTimelineVC, animated: true)
         }
-        
-        actionSheet.addAction(viewUserPageAction)
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        actionSheet.addAction(cancel)
-        
-        self.present(actionSheet, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
