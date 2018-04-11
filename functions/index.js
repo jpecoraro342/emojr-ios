@@ -1,38 +1,48 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
-admin.initializeApp(functions.config().firebase);
+admin.initializeApp();
 
-exports.onFollow = functions.database.ref('/follows/{followedUser}').onWrite(event => {
-	let original = event.data.previous.val();
-	let current = event.data.current.val();
+exports.onFollow = functions.database.ref('/follows/{followedUser}').onCreate((snapshot, context) => {	
+	const createdData = snapshot.val();
+	
+	console.log('Created:\n' + createdData);
+	console.log('UID: ' + EventContext.auth.uid);
 
-	original = original ? Object.keys(original) : [];
-	current = current ? Object.keys(current) : [];
-
-	const newFollows = current.filter(follow => original.indexOf(follow) < 0);
-	const removedFollow = original.filter(follow => current.indexOf(follow) < 0);
-
-	console.log('New Follow: ', newFollows);
-	console.log('Removed Follow: ', removedFollow);
-
-	if (newFollows.length != 1) { 
-		console.log(`needed 1 new follow to add timeline, found ${newFollows.length}`);
-		return Promise.resolve(); 
-	}
-
-	let timelineRef = admin.database().ref().child('timeline').child(event.params.followedUser);
+	let timelineRef = admin.database().ref().child('timeline').child(EventContext.auth.uid);
 	let timelinePosts = {};
 
 	return timelineRef.once('value')
 	  .then(timelineSnapshot => {
 	  	timelinePosts = timelineSnapshot.val() || {};
-		return admin.database().ref().child('userPosts').child(newFollows[0]).once('value')
+	  	
+		return admin.database().ref().child('userPosts').child(createdData).once('value')
 	  })
 	  .then(userSnapchat => {
-	  	let userPosts = userSnapchat.val() || {};
-	  	timelinePosts = Object.assign(timelinePosts, userPosts);
+		let userPosts = userSnapchat.val() || {};
+		timelinePosts = Object.assign(timelinePosts, userPosts);
 
 	  	return timelineRef.update(timelinePosts);
 	 });
+});
+
+exports.onUnfollow = functions.database.ref('/follows/{followedUser}').onDelete((snapshot, context) => {	
+	const deletedData = snapshot.val();
+	
+	console.log('Deleted:\n' + deletedData);
+	console.log('UID: ' + EventContext.auth.uid);
+
+	let timelineRef = admin.database().ref().child('timeline').child(EventContext.auth.uid);
+	let timelinePosts = {};
+
+	return timelineRef.once('value')
+	  .then(timelineSnapshot => {
+	  	timelinePosts = timelineSnapshot.val() || {};
+	  	
+	  	console.log('Posts:\n' + timelinePosts);
+	  	
+	  	// delete deletedData
+	  	
+		return timelineRef.update(timelinePosts);
+	  });
 });
