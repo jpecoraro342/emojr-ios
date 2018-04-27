@@ -3,93 +3,79 @@ const admin = require('firebase-admin');
 
 admin.initializeApp();
 
-// When a user follows another user, add those users posts to their timeline
-exports.onFollow = functions.database.ref('/follows/{followedUser}').onCreate((snapshot, context) => {	
-	const createdData = snapshot.val();
-	
-	console.log('Created: ');
-	console.log(createdData);
+exports.onFollowChanged = functions.database.ref('/follows/{followedUser}').onWrite((change, context) => {
+	let original = change.before.val();
+	let current = change.after.val();
 
-	const createdId = Object.keys(createdData)[0];
+	original = original ? Object.keys(original) : [];
+	current = current ? Object.keys(current) : [];
 
-	console.log('CreatedId: ');
-	console.log(createdId);
+	const newFollows = current.filter(follow => original.indexOf(follow) < 0);
+	const removedFollow = original.filter(follow => current.indexOf(follow) < 0);
 
-	const userId = context.auth.uid;
-	console.log('UserId: ');
-	console.log(userId);
+	console.log('New Follow: ', newFollows);
+	console.log('Removed Follow: ', removedFollow);
 
-	// Get the timeline for the user
-	let timelineRef = admin.database().ref().child('timeline').child(userId);
+	let timelineRef = admin.database().ref().child('timeline').child(context.params.followedUser);
 	let timelinePosts = {};
 
-	return timelineRef.once('value')
-	  .then(timelineSnapshot => {
-	  	// Get the posts
-	  	timelinePosts = timelineSnapshot.val() || {};
+	if (removedFollow.length == 1) {
+		console.log('follower removed, remove posts from timeline');
+		const deletedId = removedFollow[0];
 
-	  	console.log('Posts: ');
-	  	console.log(timelinePosts);
-	  	
-		return admin.database().ref().child('userPosts').child(createdId).once('value')
-	  })
-	  .then(userSnapchat => {
-	  	// Add all of the new users posts to the timeline
-		let userPosts = userSnapchat.val() || {};
-		timelinePosts = Object.assign(timelinePosts, userPosts);
+		return timelineRef.once('value')
+		  .then(timelineSnapshot => {
+		  	timelinePosts = timelineSnapshot.val() || {};
+		  	
+		  	console.log('Posts: ');
+		  	console.log(timelinePosts);
 
-		console.log('Posts after Add: ');
-	  	console.log(timelinePosts);
+		  	let updatedPosts = {};
 
-	  	return timelineRef.update(timelinePosts);
-	 });
-});
+		  	console.log(Object.keys(timelinePosts));
+		  	
+		  	// Iterate throught the timeline posts, removing or adding posts to the new array depending on if the post should be deleted or not
+		  	timelinePosts = Object.keys(timelinePosts).forEach(postId => {
+		  		let post = timelinePosts[postId];
+		  		if (post.userID !== deletedId) {
+		  			updatedPosts['' + postId] = post;
+		  		}
+		  		else {
+		  			updatedPosts['' + postId] = null;
+		  		}
+		  	});
 
-// When a user stops following another user, remove those users posts from their timeline
-exports.onUnfollow = functions.database.ref('/follows/{followedUser}').onDelete((snapshot, context) => {	
-	const deletedData = snapshot.val();
-	
-	console.log('Deleted: ');
-	console.log(deletedData);
+		  	console.log('Posts after Delete: ');
+		  	console.log(updatedPosts);
+		  	
+			return timelineRef.update(updatedPosts);
+		  });
+	}
 
-	const deletedId = Object.keys(deletedData)[0];
 
-	console.log('DeletedId:');
-	console.log(deletedId);
+	if (newFollows.length == 1) { 
+		console.log('one follower added, add posts to timeline')
+		const createdId = newFollows[0];
 
-	const userId = context.auth.uid;
-	console.log('UserId: ');
-	console.log(userId);
+		return timelineRef.once('value')
+		  .then(timelineSnapshot => {
+		  	// Get the posts
+		  	timelinePosts = timelineSnapshot.val() || {};
 
-	// Get the timeline for the user
-	let timelineRef = admin.database().ref().child('timeline').child(userId);
-	let timelinePosts = {};
+		  	console.log('Posts: ');
+		  	console.log(timelinePosts);
+		  	
+			return admin.database().ref().child('userPosts').child(createdId).once('value')
+		  })
+		  .then(userSnapchat => {
+		  	// Add all of the new users posts to the timeline
+			let userPosts = userSnapchat.val() || {};
+			timelinePosts = Object.assign(timelinePosts, userPosts);
 
-	return timelineRef.once('value')
-	  .then(timelineSnapshot => {
-	  	timelinePosts = timelineSnapshot.val() || {};
-	  	
-	  	console.log('Posts: ');
-	  	console.log(timelinePosts);
+			console.log('Posts after Add: ');
+		  	console.log(timelinePosts);
 
-	  	let updatedPosts = {};
-
-	  	console.log(Object.keys(timelinePosts));
-	  	
-	  	// Iterate throught the timeline posts, removing or adding posts to the new array depending on if the post should be deleted or not
-	  	timelinePosts = Object.keys(timelinePosts).forEach(postId => {
-	  		let post = timelinePosts[postId];
-	  		if (post.userID !== deletedId) {
-	  			updatedPosts['' + postId] = post;
-	  		}
-	  		else {
-	  			updatedPosts['' + postId] = null;
-	  		}
-	  	});
-
-	  	console.log('Posts after Delete: ');
-	  	console.log(updatedPosts);
-	  	
-		return timelineRef.update(updatedPosts);
-	  });
+		  	return timelineRef.update(timelinePosts);
+		 });	
+	}
 });
