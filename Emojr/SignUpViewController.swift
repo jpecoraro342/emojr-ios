@@ -143,7 +143,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func toLoginPressed(_ sender: AnyObject) {
-        _ = self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: false)
     }
 }
 
