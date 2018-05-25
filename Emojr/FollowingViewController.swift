@@ -17,9 +17,7 @@ class FollowingViewController: UserListViewController {
         noDataMessage = "You're not following anyone yet!"
     }
     
-    override func refreshData() {
-        refreshControl.beginRefreshing()
-        
+    override func refreshData() {        
         networkFacade.getAllFollowing(User.sharedInstance.id!, completionBlock: userResponseHandler)
     }
 }

@@ -76,9 +76,7 @@ class UserListViewController: UIViewController {
         tableView.register(UINib(nibName: "UserTableViewCell", bundle:nil), forCellReuseIdentifier: UserCellIdentifier)
     }
     
-    @objc func refreshData() {
-        refreshControl.beginRefreshing()
-        
+    @objc func refreshData() {        
         networkFacade.getUsers(completionBlock: userResponseHandler)
     }
     
