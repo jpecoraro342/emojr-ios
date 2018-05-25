@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        IQKeyboardManager.shared.enable = true
+        
         setAppearances()
         
         return true
